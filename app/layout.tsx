@@ -17,6 +17,10 @@ const archivoBl = Archivo_Black({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   metadataBase: new URL("https://milon.bro.bd"),
   title: "Milon Mia — Full-Stack Developer",
   description:
