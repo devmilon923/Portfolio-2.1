@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
-import { PERSONAL } from '@/lib/constants';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Download } from "lucide-react";
+import { PERSONAL } from "@/lib/constants";
 
 const NAV_LINKS = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Services', href: '#services' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Contact', href: '#contact' },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
+  { label: "Stack", href: "#stack" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -19,14 +19,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -37,8 +37,8 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-void/90 backdrop-blur-xl border-b border-white/[0.06] shadow-clay-md'
-            : 'bg-transparent'
+            ? "bg-void/90 backdrop-blur-xl border-b border-white/[0.06] shadow-clay-md"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,17 +46,24 @@ export default function Navbar() {
             {/* Logo */}
             <motion.a
               href="#hero"
-              onClick={(e) => { e.preventDefault(); handleNavClick('#hero'); }}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick("#hero");
+              }}
               className="flex items-center gap-2 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <div className="w-8 h-8 rounded-lg bg-cream flex items-center justify-center shadow-clay-sm">
-                <span className="font-display text-void text-sm font-black leading-none">M</span>
+                <span className="font-display text-void text-sm font-black leading-none">
+                  M
+                </span>
               </div>
               <span className="text-white font-medium text-sm tracking-tight hidden sm:block">
-                {PERSONAL.name.split(' ')[0]}{' '}
-                <span className="text-ash font-light">{PERSONAL.name.split(' ')[1]}</span>
+                {PERSONAL.name.split(" ")[0]}{" "}
+                <span className="text-ash font-light">
+                  {PERSONAL.name.split(" ")[1]}
+                </span>
               </span>
             </motion.a>
 
@@ -66,7 +73,10 @@ export default function Navbar() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
                   className="px-4 py-2 text-sm text-ash hover:text-white font-light tracking-tight transition-colors duration-200 rounded-lg hover:bg-white/[0.05]"
                   whileHover={{ y: -1 }}
                   whileTap={{ scale: 0.97 }}
@@ -79,6 +89,7 @@ export default function Navbar() {
             {/* CTA + Mobile toggle */}
             <div className="flex items-center gap-3">
               <motion.a
+                target="_blank"
                 href={PERSONAL.resumeUrl}
                 className="hidden md:flex items-center gap-2 px-4 py-2 rounded-[10px] bg-cream text-void text-sm font-medium tracking-tight shadow-clay-sm hover:shadow-clay-md transition-all duration-200"
                 whileHover={{ scale: 1.03, y: -1 }}
@@ -94,7 +105,11 @@ export default function Navbar() {
                 whileTap={{ scale: 0.93 }}
                 aria-label="Toggle mobile menu"
               >
-                {mobileOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                {mobileOpen ? (
+                  <X className="w-4 h-4" />
+                ) : (
+                  <Menu className="w-4 h-4" />
+                )}
               </motion.button>
             </div>
           </div>
@@ -108,7 +123,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed inset-x-0 top-16 z-40 bg-charcoal/95 backdrop-blur-xl border-b border-white/[0.06] md:hidden"
           >
             <nav className="flex flex-col px-4 py-4 gap-1">
@@ -116,7 +131,10 @@ export default function Navbar() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.href);
+                  }}
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
@@ -126,6 +144,7 @@ export default function Navbar() {
                 </motion.a>
               ))}
               <motion.a
+                target="_blank"
                 href={PERSONAL.resumeUrl}
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}

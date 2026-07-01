@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import useEmblaCarousel from 'embla-carousel-react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { TESTIMONIALS } from '@/lib/constants';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { TESTIMONIALS } from "@/lib/constants";
 
 function StarRating({ count }: { count: number }) {
   return (
@@ -18,10 +18,10 @@ function StarRating({ count }: { count: number }) {
 
 export default function Testimonials() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: 'start',
+    align: "start",
     slidesToScroll: 1,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -32,8 +32,10 @@ export default function Testimonials() {
   useEffect(() => {
     if (!emblaApi) return;
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on('select', onSelect);
-    return () => { emblaApi.off('select', onSelect); };
+    emblaApi.on("select", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
   }, [emblaApi]);
 
   // Auto-play
@@ -44,7 +46,11 @@ export default function Testimonials() {
   }, [emblaApi]);
 
   return (
-    <section id="testimonials" className="py-20 lg:py-28 bg-void relative overflow-hidden" ref={ref}>
+    <section
+      id="testimonials"
+      className="py-20 lg:py-28 bg-void relative overflow-hidden"
+      ref={ref}
+    >
       {/* Background glow */}
       <div className="mist-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[320px] opacity-50 pointer-events-none" />
 
@@ -94,7 +100,7 @@ export default function Testimonials() {
           className="overflow-hidden"
           ref={emblaRef}
         >
-          <div className="flex gap-4">
+          <div className="flex justify-center gap-3 items-center py-3">
             {TESTIMONIALS.map((t) => (
               <div
                 key={t.id}
@@ -123,13 +129,21 @@ export default function Testimonials() {
                   {/* Client */}
                   <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
                     <div className="w-9 h-9 rounded-full bg-cream/10 border border-cream/15 flex items-center justify-center">
-                      <span className="text-cream text-xs font-medium">{t.avatar}</span>
+                      <span className="text-cream text-xs font-medium">
+                        {t.avatar}
+                      </span>
                     </div>
                     <div>
-                      <p className="text-white text-sm font-medium leading-tight">{t.name}</p>
-                      <p className="text-ash text-xs font-light">{t.position}, {t.company}</p>
+                      <p className="text-white text-sm font-medium leading-tight">
+                        {t.name}
+                      </p>
+                      <p className="text-ash text-xs font-light">
+                        {t.position}, {t.company}
+                      </p>
                     </div>
-                    <span className="ml-auto text-ash/40 text-xs font-light">{t.country}</span>
+                    <span className="ml-auto text-ash/40 text-xs font-light">
+                      {t.country}
+                    </span>
                   </div>
                 </motion.div>
               </div>
@@ -144,7 +158,7 @@ export default function Testimonials() {
               key={i}
               onClick={() => emblaApi?.scrollTo(i)}
               className={`h-1 rounded-full transition-all duration-300 ${
-                i === selectedIndex ? 'w-6 bg-cream' : 'w-1.5 bg-white/20'
+                i === selectedIndex ? "w-6 bg-cream" : "w-1.5 bg-white/20"
               }`}
               aria-label={`Go to testimonial ${i + 1}`}
             />

@@ -1,23 +1,30 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Code2, Cpu, GitBranch, Globe } from 'lucide-react';
-import { PERSONAL, STRENGTHS } from '@/lib/constants';
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Code2, Cpu, GitBranch, Globe } from "lucide-react";
+import { PERSONAL, STRENGTHS } from "@/lib/constants";
 
 const icons = [Code2, Cpu, GitBranch, Globe];
-
+import meImage from "./../../assets/me.jpeg";
+import Image from "next/image";
 export default function About() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-20 lg:py-28 bg-charcoal relative overflow-hidden" ref={ref}>
+    <section
+      id="about"
+      className="py-20 lg:py-28 bg-charcoal relative overflow-hidden"
+      ref={ref}
+    >
       {/* Background texture */}
-      <div className="absolute inset-0 opacity-[0.015]"
+      <div
+        className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,237,210,0.8) 1px, transparent 0)',
-          backgroundSize: '32px 32px',
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,237,210,0.8) 1px, transparent 0)",
+          backgroundSize: "32px 32px",
         }}
       />
 
@@ -47,8 +54,8 @@ export default function About() {
               {/* Clay frame */}
               <motion.div
                 whileHover={{ rotateY: 6, rotateX: -4, scale: 1.02 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
-                style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
                 className="relative w-72 h-80 sm:w-80 sm:h-96"
               >
                 {/* Shadow layer */}
@@ -59,41 +66,71 @@ export default function About() {
                   {/* Avatar placeholder */}
                   <div className="w-36 h-36 rounded-clay bg-void border border-cream/10 shadow-clay-md flex items-center justify-center relative overflow-hidden">
                     {/* Monogram */}
-                    <span className="font-display text-5xl font-black text-cream opacity-80">M</span>
+                    <Image
+                      src={meImage}
+                      alt="My Profile Picture"
+                      // Optional: specify layout sizes if needed
+                    />
+                    {/* <span className="font-display text-5xl font-black text-cream opacity-80">
+                      M
+                    </span> */}
                     {/* Decorative ring */}
                     <div className="absolute inset-0 rounded-clay border-2 border-cream/5" />
                   </div>
 
                   <div className="text-center">
-                    <p className="font-display text-2xl font-black text-white tracking-tight">{PERSONAL.name}</p>
-                    <p className="text-cream text-sm font-light mt-1">{PERSONAL.title}</p>
-                    <p className="text-ash text-xs font-light mt-1">{PERSONAL.location}</p>
+                    <p className="font-display text-2xl font-black text-white tracking-tight">
+                      {PERSONAL.name}
+                    </p>
+                    <p className="text-cream text-sm font-light mt-1">
+                      {PERSONAL.title}
+                    </p>
+                    <p className="text-ash text-xs font-light mt-1">
+                      {PERSONAL.location}
+                    </p>
                   </div>
 
                   {/* Status */}
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-void border border-cream/10">
                     <span className="glow-dot w-1.5 h-1.5" />
-                    <span className="text-cream text-xs font-light">Open to Opportunities</span>
+                    <span className="text-cream text-xs font-light">
+                      Open to Opportunities
+                    </span>
                   </div>
                 </div>
 
                 {/* Floating badges */}
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                   className="absolute -top-3 -right-3 bg-charcoal border border-cream/15 rounded-xl px-3 py-2 shadow-clay-sm"
                 >
                   <p className="text-cream text-xs font-medium">1+ Year</p>
-                  <p className="text-ash text-[10px] font-light">Professional Exp.</p>
+                  <p className="text-ash text-[10px] font-light">
+                    Professional Exp.
+                  </p>
                 </motion.div>
 
                 <motion.div
                   animate={{ y: [0, 5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5,
+                  }}
                   className="absolute -bottom-3 -left-3 bg-charcoal border border-cream/15 rounded-xl px-3 py-2 shadow-clay-sm"
                 >
-                  <p className="text-cream text-xs font-medium">AI + Full-Stack</p>
-                  <p className="text-ash text-[10px] font-light">Core Specialty</p>
+                  <p className="text-cream text-xs font-medium">
+                    AI + Full-Stack
+                  </p>
+                  <p className="text-ash text-[10px] font-light">
+                    Core Specialty
+                  </p>
                 </motion.div>
               </motion.div>
             </div>
@@ -104,13 +141,20 @@ export default function About() {
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                delay: 0.3,
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
               <p className="text-white/90 text-base font-light leading-relaxed mb-4">
                 {PERSONAL.summary}
               </p>
               <p className="text-ash text-sm font-light leading-relaxed">
-                My background in Electrical Engineering gave me a systems-thinking mindset that shapes how I approach software — every component serves a purpose, every optimization has a reason. I don't just write code; I engineer solutions.
+                My background in Electrical Engineering gave me a
+                systems-thinking mindset that shapes how I approach software —
+                every component serves a purpose, every optimization has a
+                reason. I don't just write code; I engineer solutions.
               </p>
             </motion.div>
 
@@ -120,7 +164,9 @@ export default function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.45, duration: 0.6 }}
             >
-              <p className="text-ash/60 text-xs font-light uppercase tracking-widest mb-4">Core Strengths</p>
+              <p className="text-ash/60 text-xs font-light uppercase tracking-widest mb-4">
+                Core Strengths
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {STRENGTHS.map((strength, i) => {
                   const Icon = icons[i % icons.length];
@@ -137,8 +183,12 @@ export default function About() {
                           <Icon className="w-3.5 h-3.5 text-cream" />
                         </div>
                         <div>
-                          <p className="text-white text-sm font-medium leading-tight mb-1">{strength.title}</p>
-                          <p className="text-ash text-xs font-light leading-relaxed">{strength.description}</p>
+                          <p className="text-white text-sm font-medium leading-tight mb-1">
+                            {strength.title}
+                          </p>
+                          <p className="text-ash text-xs font-light leading-relaxed">
+                            {strength.description}
+                          </p>
                         </div>
                       </div>
                     </motion.div>
@@ -155,9 +205,12 @@ export default function About() {
               className="border-l-2 border-cream/30 pl-4 py-2"
             >
               <p className="text-ash text-sm font-light italic leading-relaxed">
-                "Good software isn't about lines of code — it's about solving the right problem in the simplest way that lasts."
+                "Good software isn't about lines of code — it's about solving
+                the right problem in the simplest way that lasts."
               </p>
-              <p className="text-cream/60 text-xs font-light mt-2">— Development philosophy</p>
+              <p className="text-cream/60 text-xs font-light mt-2">
+                — Development philosophy
+              </p>
             </motion.blockquote>
           </div>
         </div>
