@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 33 100% 90%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 33 100% 90%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 33 100% 90%;
+    --radius: 1rem;
+
+    /* Design tokens */
+    --color-cream: #ffedd2;
+    --color-void: #0d0d0d;
+    --color-charcoal: #1f1f1f;
+    --color-ash: #9e9e9e;
+    --color-mist: #5b7c99;
+    --color-hairline: #e5e7eb;
+    --shadow-clay-sm: 0 2px 8px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.15);
+    --shadow-clay-md: 0 4px 20px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2);
+    --shadow-clay-lg: 0 8px 40px rgba(0,0,0,0.45), 0 4px 16px rgba(0,0,0,0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgba(255, 237, 210, 0.25);
+    color: #ffedd2;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d0d0d;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #ffedd2;
+  }
+}
+
+@layer components {
+  /* Clay card base */
+  .clay-card {
+    background: #1f1f1f;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,237,210,0.06);
+    border: 1px solid rgba(255,237,210,0.06);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  }
+
+  .clay-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,237,210,0.1);
+  }
+
+  /* Clay button */
+  .clay-btn {
+    border-radius: 10px;
+    font-weight: 450;
+    letter-spacing: -0.01em;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .clay-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* Section heading */
+  .section-label {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffedd2;
+    opacity: 0.7;
+  }
+
+  /* Cream highlight */
+  .cream-text {
+    color: #ffedd2;
+  }
+
+  /* Noise overlay */
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #ffffff 0%, #ffedd2 50%, #f5d9a8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow dot */
+  .glow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffedd2;
+    box-shadow: 0 0 8px rgba(255,237,210,0.8), 0 0 20px rgba(255,237,210,0.4);
+  }
+
+  /* Thin hairline border */
+  .hairline-border {
+    border: 1px solid rgba(229, 231, 235, 0.12);
+  }
+
+  /* Cream accent line */
+  .cream-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffedd2, transparent);
+    opacity: 0.4;
+  }
+
+  /* Cool mist glow — clean, calm alternative to cream blobs */
+  .mist-glow {
+    background: radial-gradient(ellipse at center, rgba(91,124,153,0.10) 0%, transparent 70%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  /* Fluid clamp helpers for responsive section headings */
+  .h-section {
+    font-size: clamp(1.875rem, 6vw, 3rem);
+    line-height: 1.1;
+  }
+  .h-section-lg {
+    font-size: clamp(2.25rem, 8vw, 3.75rem);
+    line-height: 1.05;
+  }
+}
