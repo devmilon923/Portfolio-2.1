@@ -57,9 +57,9 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative sm:pt-12 lg:pt-0 min-h-screen flex items-center justify-center overflow-hidden bg-void "
+      className="relative pt-8 lg:pt-0  min-h-screen flex items-center justify-center overflow-hidden bg-void "
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0  overflow-hidden pointer-events-none">
         <div className="mist-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] max-w-[90vw] opacity-60" />
         <div
           className="absolute inset-0 opacity-[0.025]"
