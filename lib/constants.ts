@@ -107,32 +107,32 @@ export const PROJECTS = [
     sourceUrl: "https://github.com/devmilon923/Heirloom-App-Backend",
     category: "AI Infrastructure",
   },
-  {
-    id: "agency-platform",
-    name: "Enterprise API Platform",
-    subtitle: "Multi-Platform Backend Infrastructure",
-    description:
-      "A comprehensive REST API backbone serving web, iOS, and Android clients simultaneously — built at Spark Tech Agency for international clients requiring rock-solid authentication, performance at scale, and zero-downtime deployments.",
-    problem:
-      "Multi-platform products often end up with fragmented APIs, inconsistent auth, and deployment bottlenecks. This project required a single unified backend with platform-specific optimization and automated deployment.",
-    contribution:
-      "Designed and implemented the full backend: JWT auth with RBAC, MongoDB query optimization that cut API response times by 40%, Redis caching layers, Dockerized services, and GitHub Actions CI/CD eliminating manual releases.",
-    impact:
-      "40% API performance improvement, zero manual deployments, and consistent authentication across web, iOS, and Android clients.",
-    technologies: [
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Redis",
-      "Docker",
-      "AWS EC2",
-      "GitHub Actions",
-      "Nginx",
-    ],
-    liveUrl: null,
-    sourceUrl: null,
-    category: "Backend Infrastructure",
-  },
+  // {
+  //   id: "agency-platform",
+  //   name: "Enterprise API Platform",
+  //   subtitle: "Multi-Platform Backend Infrastructure",
+  //   description:
+  //     "A comprehensive REST API backbone serving web, iOS, and Android clients simultaneously — built at Spark Tech Agency for international clients requiring rock-solid authentication, performance at scale, and zero-downtime deployments.",
+  //   problem:
+  //     "Multi-platform products often end up with fragmented APIs, inconsistent auth, and deployment bottlenecks. This project required a single unified backend with platform-specific optimization and automated deployment.",
+  //   contribution:
+  //     "Designed and implemented the full backend: JWT auth with RBAC, MongoDB query optimization that cut API response times by 40%, Redis caching layers, Dockerized services, and GitHub Actions CI/CD eliminating manual releases.",
+  //   impact:
+  //     "40% API performance improvement, zero manual deployments, and consistent authentication across web, iOS, and Android clients.",
+  //   technologies: [
+  //     "Node.js",
+  //     "Express.js",
+  //     "MongoDB",
+  //     "Redis",
+  //     "Docker",
+  //     "AWS EC2",
+  //     "GitHub Actions",
+  //     "Nginx",
+  //   ],
+  //   liveUrl: null,
+  //   sourceUrl: null,
+  //   category: "Backend Infrastructure",
+  // },
 ];
 
 export const SERVICES = [
