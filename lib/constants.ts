@@ -105,7 +105,7 @@ export const PROJECTS = [
     ],
     liveUrl: null,
     sourceUrl: "https://github.com/devmilon923/Heirloom-App-Backend",
-    category: "AI Infrastructure",
+    category: "Backend + AI Infrastructure",
   },
   // {
   //   id: "agency-platform",

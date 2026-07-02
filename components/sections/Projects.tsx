@@ -1,22 +1,27 @@
-'use client';
+"use client";
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
-import { PROJECTS } from '@/lib/constants';
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import { PROJECTS } from "@/lib/constants";
 
 const categoryColors: Record<string, string> = {
-  'Full-Stack Platform': 'text-cream bg-cream/10 border-cream/20',
-  'AI Infrastructure': 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-  'Backend Infrastructure': 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+  "Full-Stack Platform": "text-cream bg-cream/10 border-cream/20",
+  "AI Infrastructure":
+    "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
+  "Backend Infrastructure": "text-blue-400 bg-blue-400/10 border-blue-400/20",
 };
 
 export default function Projects() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="projects" className="py-20 lg:py-28 bg-void relative overflow-hidden" ref={ref}>
+    <section
+      id="projects"
+      className="py-20 lg:py-28 bg-void relative overflow-hidden"
+      ref={ref}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -30,7 +35,8 @@ export default function Projects() {
             Projects that <span className="gradient-text">define me</span>
           </h2>
           <p className="text-ash text-sm font-light max-w-lg mx-auto leading-relaxed">
-            Selected work from real client engagements and personal builds — each solving a distinct technical challenge.
+            Selected work from real client engagements and personal builds —
+            each solving a distinct technical challenge.
           </p>
         </motion.div>
 
@@ -41,10 +47,15 @@ export default function Projects() {
               key={project.id}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{
+                delay: i * 0.12,
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className=""
             >
               <motion.div
-                className="clay-card p-6 sm:p-8 group"
+                className="clay-card p-4 sm:p-8 group"
                 whileHover={{ scale: 1.005 }}
                 transition={{ duration: 0.3 }}
               >
@@ -52,13 +63,17 @@ export default function Projects() {
                   {/* Left: Project identity */}
                   <div className="lg:col-span-1 space-y-4">
                     <div>
-                      <span className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-full border ${categoryColors[project.category] ?? 'text-ash bg-white/5 border-white/10'} mb-3`}>
+                      <span
+                        className={`inline-block text-[11px] font-medium px-2.5 py-1 rounded-full border ${categoryColors[project.category] ?? "text-ash bg-white/5 border-white/10"} mb-3`}
+                      >
                         {project.category}
                       </span>
                       <h3 className="font-display text-2xl font-black text-white tracking-tight leading-tight">
                         {project.name}
                       </h3>
-                      <p className="text-ash text-sm font-light mt-1">{project.subtitle}</p>
+                      <p className="text-ash text-sm font-light mt-1">
+                        {project.subtitle}
+                      </p>
                     </div>
 
                     {/* Links */}
@@ -90,7 +105,9 @@ export default function Projects() {
                         </motion.a>
                       )}
                       {!project.liveUrl && !project.sourceUrl && (
-                        <span className="text-ash/50 text-xs font-light italic">Client project (NDA)</span>
+                        <span className="text-ash/50 text-xs font-light italic">
+                          Client project (NDA)
+                        </span>
                       )}
                     </div>
                   </div>
@@ -99,25 +116,39 @@ export default function Projects() {
                   <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {/* Description */}
                     <div className="sm:col-span-3">
-                      <p className="text-white/80 text-sm font-light leading-relaxed">{project.description}</p>
+                      <p className="text-white/80 text-sm font-light leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
 
                     {/* Problem */}
                     <div className="p-4 rounded-clay bg-void border border-white/[0.05] hover:border-cream/10 transition-colors">
-                      <p className="text-cream/60 text-[10px] uppercase tracking-widest font-medium mb-2">Problem</p>
-                      <p className="text-ash text-xs font-light leading-relaxed">{project.problem}</p>
+                      <p className="text-cream/60 text-[10px] uppercase tracking-widest font-medium mb-2">
+                        Problem
+                      </p>
+                      <p className="text-ash text-xs font-light leading-relaxed">
+                        {project.problem}
+                      </p>
                     </div>
 
                     {/* Contribution */}
                     <div className="p-4 rounded-clay bg-void border border-white/[0.05] hover:border-cream/10 transition-colors">
-                      <p className="text-cream/60 text-[10px] uppercase tracking-widest font-medium mb-2">My Role</p>
-                      <p className="text-ash text-xs font-light leading-relaxed">{project.contribution}</p>
+                      <p className="text-cream/60 text-[10px] uppercase tracking-widest font-medium mb-2">
+                        My Role
+                      </p>
+                      <p className="text-ash text-xs font-light leading-relaxed">
+                        {project.contribution}
+                      </p>
                     </div>
 
                     {/* Impact */}
                     <div className="p-4 rounded-clay bg-cream/[0.04] border border-cream/10 hover:border-cream/20 transition-colors">
-                      <p className="text-cream/60 text-[10px] uppercase tracking-widest font-medium mb-2">Impact</p>
-                      <p className="text-cream text-xs font-light leading-relaxed">{project.impact}</p>
+                      <p className="text-cream/60 text-[10px] uppercase tracking-widest font-medium mb-2">
+                        Impact
+                      </p>
+                      <p className="text-cream text-xs font-light leading-relaxed">
+                        {project.impact}
+                      </p>
                     </div>
 
                     {/* Tech stack */}
