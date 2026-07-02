@@ -38,6 +38,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Milon Mia", url: "https://milon.bro.bd" }],
   creator: "Milon Mia",
+
   openGraph: {
     type: "website",
     locale: "en_US",
