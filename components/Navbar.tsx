@@ -59,7 +59,7 @@ export default function Navbar() {
                   DM
                 </span>
               </div>
-              <span className="text-white font-medium text-lg tracking-tight hidden sm:block">
+              <span className="text-white font-medium text-lg tracking-tight block">
                 {PERSONAL.name.split(" ")[0]}{" "}
                 <span className="text-ash font-light">
                   {PERSONAL.name.split(" ")[1]}
