@@ -1,30 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, Sparkles } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
 
-function fadeUp(delay: number, isHydrated: boolean) {
+function fadeUp(delay: number) {
   return {
-    initial: !isHydrated ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
+    initial: { opacity: 0, y: 24 },
     animate: {
       opacity: 1,
       y: 0,
-      transition: !isHydrated
-        ? { delay: 0, duration: 0, ease: "easeOut" as const }
-        : { delay, duration: 0.65, ease: "easeOut" as const },
+      transition: { delay, duration: 0.65, ease: "easeOut" as const },
     },
   };
 }
 
 export default function Hero() {
-  const [isHydrated, setIsHydrated] = useState(false);
-
-  useEffect(() => {
-    setIsHydrated(true);
-  }, []);
   const scrollToNext = () => {
     document.querySelector("#stats")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -70,7 +62,7 @@ export default function Hero() {
           <div className="flex flex-col justify-center text-left">
             {/* Status pill */}
             <motion.div
-              {...fadeUp(0.1, isHydrated)}
+              {...fadeUp(0.1)}
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-charcoal border border-cream/10 mb-7 self-start"
             >
               <span className="glow-dot" />
@@ -82,7 +74,7 @@ export default function Hero() {
 
             {/* Headline */}
             <motion.h1
-              {...fadeUp(0.2, isHydrated)}
+              {...fadeUp(0.2)}
               className="font-display text-[2.6rem] sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black leading-[1.06] tracking-tight mb-5 text-white"
             >
               I build systems
@@ -96,7 +88,7 @@ export default function Hero() {
 
             {/* Identity statement */}
             <motion.p
-              {...fadeUp(0.38, isHydrated)}
+              {...fadeUp(0.38)}
               className="text-ash/60 text-sm font-light max-w-md mb-7 leading-relaxed"
             >
               Backend-focused Full-Stack Developer building AI-integrated
@@ -104,10 +96,7 @@ export default function Hero() {
             </motion.p>
 
             {/* What makes me different — three compact pills */}
-            <motion.div
-              {...fadeUp(0.45, isHydrated)}
-              className="flex flex-wrap gap-2 mb-8"
-            >
+            <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-2 mb-8">
               {[
                 "Distributed Systems",
                 "AI / RAG Pipelines",
@@ -125,7 +114,7 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div
-              {...fadeUp(0.52, isHydrated)}
+              {...fadeUp(0.52)}
               className="flex flex-wrap items-center gap-3 mb-8"
             >
               <motion.a
@@ -183,10 +172,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Social row */}
-            <motion.div
-              {...fadeUp(0.6, isHydrated)}
-              className="flex items-center gap-4"
-            >
+            <motion.div {...fadeUp(0.6)} className="flex items-center gap-4">
               <span className="text-ash/30 text-xs font-light">Find me on</span>
               <div className="flex items-center gap-3">
                 <motion.a
@@ -216,13 +202,9 @@ export default function Hero() {
 
           {/* ─── RIGHT COLUMN: Workflow Timeline ──────────────────── */}
           <motion.div
-            initial={!isHydrated ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={
-              !isHydrated
-                ? { delay: 0, duration: 0, ease: "easeOut" }
-                : { delay: 0.3, duration: 0.8, ease: "easeOut" }
-            }
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
             className="w-full relative"
           >
             {/* Glass card frame */}
@@ -260,13 +242,9 @@ export default function Hero() {
       <motion.button
         onClick={scrollToNext}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ash/30 hover:text-ash/60 transition-colors"
-        initial={!isHydrated ? { opacity: 1 } : { opacity: 0 }}
+        initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={
-          !isHydrated
-            ? { delay: 0, duration: 0 }
-            : { delay: 1.5, duration: 0.6 }
-        }
+        transition={{ delay: 1.5, duration: 0.6 }}
         whileHover={{ scale: 1.1 }}
         aria-label="Scroll down"
       >
