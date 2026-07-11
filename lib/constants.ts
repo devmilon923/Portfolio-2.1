@@ -293,12 +293,7 @@ export const TECH_STACK = [
     usage: "Accessible component library for production-ready UIs",
     icon: "◻",
   },
-  {
-    name: "Framer Motion",
-    category: "frontend",
-    usage: "Declarative animations and gesture interactions for React",
-    icon: "✦",
-  },
+
 
   // Backend
   {
@@ -398,6 +393,12 @@ export const TECH_STACK = [
     category: "deployment",
     usage: "Zero-config deployment platform for Next.js projects",
     icon: "▲",
+  },
+  {
+    name: "AWS S3",
+    category: "deployment",
+    usage: "Object storage for media uploads, backups, and static asset delivery via SDK",
+    icon: "🪣",
   },
   {
     name: "Linux",
