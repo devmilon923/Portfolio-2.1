@@ -81,8 +81,17 @@ const structuredData = {
       "AWS",
       "AI Integration",
       "RAG Architecture",
+      "Backend-focused Full-Stack Development",
     ],
-    sameAs: ["https://github.com", "https://linkedin.com"],
+    sameAs: [
+      "https://github.com/devmilon923",
+      "https://www.linkedin.com/in/devmilon",
+      "https://twitter.com/devmilon923",
+      "https://www.facebook.com/devmilon923",
+      "https://www.instagram.com/devmilon923",
+      "https://www.fiverr.com/devmilon923",
+      "https://www.upwork.com/freelancers/~01bd608f5c07cb250e?mp_source=share",
+    ],
   },
 };
 
