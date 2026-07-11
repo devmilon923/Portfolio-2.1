@@ -56,6 +56,36 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    name: "Milon Mia",
+    jobTitle: "Full-Stack Software Engineer",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Jamalpur",
+      addressCountry: "BD",
+    },
+    description:
+      "Backend-focused Full-Stack Developer building AI-integrated systems, RAG pipelines, and scalable cloud infrastructure.",
+    knowsAbout: [
+      "Next.js",
+      "Node.js",
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "TypeScript",
+      "Docker",
+      "AWS",
+      "AI Integration",
+      "RAG Architecture",
+    ],
+    sameAs: ["https://github.com", "https://linkedin.com"],
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -66,6 +96,10 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${archivoBl.variable} font-sans antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         {children}
       </body>
     </html>

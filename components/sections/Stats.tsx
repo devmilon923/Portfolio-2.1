@@ -1,14 +1,25 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { STATS, CLIENT_COUNTRIES } from '@/lib/constants';
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { STATS, CLIENT_COUNTRIES } from "@/lib/constants";
 
-function AnimatedCounter({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
-  const [count, setCount] = useState(0);
+function AnimatedCounter({
+  target,
+  suffix,
+  active,
+}: {
+  target: number;
+  suffix: string;
+  active: boolean;
+}) {
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!active) return;
+
+    setCount(0);
+
     const duration = 1800;
     const steps = 60;
     const increment = target / steps;
@@ -35,10 +46,14 @@ function AnimatedCounter({ target, suffix, active }: { target: number; suffix: s
 
 export default function Stats() {
   const sectionRef = useRef(null);
-  const inView = useInView(sectionRef, { once: true, margin: '-100px' });
+  const inView = useInView(sectionRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="stats" className="py-20 lg:py-28 bg-void relative overflow-hidden" ref={sectionRef}>
+    <section
+      id="stats"
+      className="py-20 lg:py-28 bg-void relative overflow-hidden"
+      ref={sectionRef}
+    >
       <div className="cream-line mx-auto max-w-7xl mb-16 px-4 sm:px-6 lg:px-8" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +61,7 @@ export default function Stats() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-12"
         >
           <p className="section-label mb-3">Impact</p>
@@ -62,14 +77,22 @@ export default function Stats() {
               key={stat.label}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: 'easeOut' }}
+              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
               className="clay-card p-6 text-center group cursor-default"
             >
               <div className="text-4xl sm:text-5xl font-display font-black text-cream mb-2 tracking-tight">
-                <AnimatedCounter target={stat.value} suffix={stat.suffix} active={inView} />
+                <AnimatedCounter
+                  target={stat.value}
+                  suffix={stat.suffix}
+                  active={inView}
+                />
               </div>
-              <p className="text-white text-sm font-medium mb-1">{stat.label}</p>
-              <p className="text-ash text-xs font-light leading-relaxed">{stat.description}</p>
+              <p className="text-white text-sm font-medium mb-1">
+                {stat.label}
+              </p>
+              <p className="text-ash text-xs font-light leading-relaxed">
+                {stat.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -78,7 +101,7 @@ export default function Stats() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ delay: 0.5, duration: 0.6, ease: 'easeOut' }}
+          transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
           className="text-center"
         >
           <p className="text-ash text-sm font-light mb-6 tracking-tight">
@@ -89,12 +112,22 @@ export default function Stats() {
               <motion.div
                 key={country.code}
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ delay: 0.6 + i * 0.08, duration: 0.4, ease: 'easeOut' }}
+                animate={
+                  inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
+                }
+                transition={{
+                  delay: 0.6 + i * 0.08,
+                  duration: 0.4,
+                  ease: "easeOut",
+                }}
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-charcoal border border-white/[0.06] shadow-clay-sm hover:border-cream/20 transition-colors group cursor-default"
                 whileHover={{ y: -2, scale: 1.05 }}
               >
-                <span className="text-lg leading-none" role="img" aria-label={country.name}>
+                <span
+                  className="text-lg leading-none"
+                  role="img"
+                  aria-label={country.name}
+                >
                   {country.flag}
                 </span>
                 <span className="text-ash text-xs font-light group-hover:text-white transition-colors">
