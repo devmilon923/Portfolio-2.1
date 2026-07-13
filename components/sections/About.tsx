@@ -6,7 +6,7 @@ import { Code2, Cpu, GitBranch, Globe } from "lucide-react";
 import { PERSONAL, STRENGTHS } from "@/lib/constants";
 
 const icons = [Code2, Cpu, GitBranch, Globe];
-import meImage from "./../../assets/me.jpeg";
+import meImage from "./../../assets/me.png";
 import Image from "next/image";
 export default function About() {
   const ref = useRef(null);
