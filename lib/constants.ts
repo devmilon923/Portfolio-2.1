@@ -56,6 +56,30 @@ export const CLIENT_COUNTRIES = [
 
 export const PROJECTS = [
   {
+    id: "wordgame",
+    name: "Word Game",
+    subtitle: "Realtime Word Game Platform",
+    description:
+      "A real-time multiplayer word chain game where two players join the same room and compete by entering English words that begin with the last letter of the previous word. The game automatically validates words using a Dictionary API, enforces turn-based rules, and updates scores in real time for a fair and engaging gameplay experience.",
+    problem:
+      "Creating a fair and seamless real-time multiplayer word game with accurate word validation, synchronized gameplay, and automatic rule enforcement.",
+    contribution:
+      "Developed a real-time multiplayer word chain game featuring room-based gameplay, live synchronization, automatic turn management, and Dictionary API integration for accurate English word validation and fair scoring.",
+    impact:
+      "Delivered a responsive and cheat-resistant multiplayer experience by automating game rules, eliminating manual validation, and keeping both players synchronized in real time, resulting in smooth, fair, and engaging gameplay.",
+    technologies: [
+      "Typescript",
+      "Dictionary API",
+      "HTML",
+      "Socket.IO",
+      "CSS",
+      "Javascript",
+    ],
+    liveUrl: "https://word-game-client.vercel.app",
+    sourceUrl: "https://github.com/devmilon923/WordGame-Nextjs",
+    category: "Full-Stack Platform",
+  },
+  {
     id: "storyboard",
     name: "Storyboard",
     subtitle: "Social Blogging Platform",
@@ -78,9 +102,10 @@ export const PROJECTS = [
       "TypeScript",
     ],
     liveUrl: "https://storiboard.vercel.app",
-    sourceUrl: null,
+    sourceUrl: "https://github.com/devmilon923/Storiboard-UI",
     category: "Full-Stack Platform",
   },
+
   {
     id: "heirloom",
     name: "Heirloom",
@@ -107,32 +132,6 @@ export const PROJECTS = [
     sourceUrl: "https://github.com/devmilon923/Heirloom-App-Backend",
     category: "Backend + AI Infrastructure",
   },
-  // {
-  //   id: "agency-platform",
-  //   name: "Enterprise API Platform",
-  //   subtitle: "Multi-Platform Backend Infrastructure",
-  //   description:
-  //     "A comprehensive REST API backbone serving web, iOS, and Android clients simultaneously — built at Spark Tech Agency for international clients requiring rock-solid authentication, performance at scale, and zero-downtime deployments.",
-  //   problem:
-  //     "Multi-platform products often end up with fragmented APIs, inconsistent auth, and deployment bottlenecks. This project required a single unified backend with platform-specific optimization and automated deployment.",
-  //   contribution:
-  //     "Designed and implemented the full backend: JWT auth with RBAC, MongoDB query optimization that cut API response times by 40%, Redis caching layers, Dockerized services, and GitHub Actions CI/CD eliminating manual releases.",
-  //   impact:
-  //     "40% API performance improvement, zero manual deployments, and consistent authentication across web, iOS, and Android clients.",
-  //   technologies: [
-  //     "Node.js",
-  //     "Express.js",
-  //     "MongoDB",
-  //     "Redis",
-  //     "Docker",
-  //     "AWS EC2",
-  //     "GitHub Actions",
-  //     "Nginx",
-  //   ],
-  //   liveUrl: null,
-  //   sourceUrl: null,
-  //   category: "Backend Infrastructure",
-  // },
 ];
 
 export const SERVICES = [
@@ -294,7 +293,6 @@ export const TECH_STACK = [
     icon: "◻",
   },
 
-
   // Backend
   {
     name: "Node.js",
@@ -397,7 +395,8 @@ export const TECH_STACK = [
   {
     name: "AWS S3",
     category: "deployment",
-    usage: "Object storage for media uploads, backups, and static asset delivery via SDK",
+    usage:
+      "Object storage for media uploads, backups, and static asset delivery via SDK",
     icon: "🪣",
   },
   {
