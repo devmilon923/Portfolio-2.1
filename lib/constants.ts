@@ -77,7 +77,7 @@ export const PROJECTS = [
       "React",
       "TypeScript",
     ],
-    liveUrl: "https://storiboard.netlify.app",
+    liveUrl: "https://storiboard.vercel.app",
     sourceUrl: null,
     category: "Full-Stack Platform",
   },
