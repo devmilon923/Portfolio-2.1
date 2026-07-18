@@ -76,7 +76,7 @@ export const PROJECTS = [
       "Javascript",
     ],
     liveUrl: "https://word-game-client.vercel.app",
-    sourceUrl: "https://github.com/devmilon923/WordGame-Nextjs",
+    sourceUrl: "https://github.com/devmilon923/Word-Game",
     category: "Full-Stack Platform",
   },
   {
