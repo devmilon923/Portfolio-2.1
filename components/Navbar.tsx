@@ -59,7 +59,7 @@ export default function Navbar() {
                   DM
                 </span>
               </div>
-              <span className="text-white font-medium text-lg tracking-tight block">
+              <span className="text-white font-medium text-base sm:text-lg tracking-tight block">
                 {PERSONAL.name.split(" ")[0]}{" "}
                 <span className="text-ash font-light">
                   {PERSONAL.name.split(" ")[1]}
@@ -138,7 +138,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="px-4 py-3 text-sm text-ash hover:text-white font-light rounded-xl hover:bg-white/[0.05] transition-colors"
+                  className="px-4 py-3 text-[13px] sm:text-sm text-ash hover:text-white font-light rounded-xl hover:bg-white/[0.05] transition-colors"
                 >
                   {link.label}
                 </motion.a>
@@ -149,7 +149,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, x: -16 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: NAV_LINKS.length * 0.05 }}
-                className="mt-2 flex items-center gap-2 px-4 py-3 rounded-xl bg-cream text-void text-sm font-medium"
+                className="mt-2 flex items-center gap-2 px-4 py-3 rounded-xl bg-cream text-void text-[13px] sm:text-sm font-medium"
               >
                 <Download className="w-4 h-4" />
                 Download Resume

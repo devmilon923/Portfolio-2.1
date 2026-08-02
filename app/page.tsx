@@ -1,13 +1,16 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
-import Stats from "@/components/sections/Stats";
-import About from "@/components/sections/About";
-import Projects from "@/components/sections/Projects";
-import Services from "@/components/sections/Services";
-import Testimonials from "@/components/sections/Testimonials";
-import TechStack from "@/components/sections/TechStack";
-import Contact from "@/components/sections/Contact";
+import dynamic from "next/dynamic";
 import Footer from "@/components/Footer";
+
+// Lazy load below-the-fold components
+const Stats = dynamic(() => import("@/components/sections/Stats"));
+const About = dynamic(() => import("@/components/sections/About"));
+const Projects = dynamic(() => import("@/components/sections/Projects"));
+const Services = dynamic(() => import("@/components/sections/Services"));
+const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
+const TechStack = dynamic(() => import("@/components/sections/TechStack"));
+const Contact = dynamic(() => import("@/components/sections/Contact"));
 
 // Enable Incremental Static Regeneration (ISR) - Revalidate page every 1 day (86,400 seconds)
 export const revalidate = 86400;
@@ -28,3 +31,4 @@ export default function Home() {
     </main>
   );
 }
+

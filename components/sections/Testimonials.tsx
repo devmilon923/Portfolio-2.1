@@ -64,7 +64,7 @@ export default function Testimonials() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div>
             <p className="section-label mb-3">Testimonials</p>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight text-balance">
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight text-balance">
               What clients <span className="gradient-text">say</span>
             </h2>
           </div>
@@ -112,26 +112,26 @@ export default function Testimonials() {
                       </div>
 
                       {/* Review */}
-                      <p className="text-white/80 text-sm font-light leading-relaxed flex-1 mb-6 italic">
+                      <p className="text-white/80 text-[13px] sm:text-sm font-light leading-relaxed flex-1 mb-6 italic">
                         "{t.text}"
                       </p>
 
                       {/* Client */}
                       <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
                         <div className="w-9 h-9 rounded-full bg-cream/10 border border-cream/15 flex items-center justify-center">
-                          <span className="text-cream text-xs font-medium">
+                          <span className="text-cream text-[11px] sm:text-xs font-medium">
                             {t.avatar}
                           </span>
                         </div>
                         <div>
-                          <p className="text-white text-sm font-medium leading-tight">
+                          <p className="text-white text-[13px] sm:text-sm font-medium leading-tight">
                             {t.name}
                           </p>
-                          <p className="text-ash text-xs font-light">
+                          <p className="text-ash text-[11px] sm:text-xs font-light">
                             {t.position}, {t.company}
                           </p>
                         </div>
-                        <span className="ml-auto text-ash/40 text-xs font-light">
+                        <span className="ml-auto text-ash/40 text-[11px] sm:text-xs font-light">
                           {t.country}
                         </span>
                       </div>

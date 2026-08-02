@@ -65,7 +65,7 @@ export default function Stats() {
           className="text-center mb-12"
         >
           <p className="section-label mb-3">Impact</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight text-balance">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight text-balance">
             Numbers that <span className="gradient-text">matter</span>
           </h2>
         </motion.div>
@@ -80,17 +80,17 @@ export default function Stats() {
               transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
               className="clay-card p-6 text-center group cursor-default"
             >
-              <div className="text-4xl sm:text-5xl font-display font-black text-cream mb-2 tracking-tight">
+              <div className="text-3xl sm:text-5xl font-display font-black text-cream mb-2 tracking-tight">
                 <AnimatedCounter
                   target={stat.value}
                   suffix={stat.suffix}
                   active={inView}
                 />
               </div>
-              <p className="text-white text-sm font-medium mb-1">
+              <p className="text-white text-[13px] sm:text-sm font-medium mb-1">
                 {stat.label}
               </p>
-              <p className="text-ash text-xs font-light leading-relaxed">
+              <p className="text-ash text-[11px] sm:text-xs font-light leading-relaxed">
                 {stat.description}
               </p>
             </motion.div>

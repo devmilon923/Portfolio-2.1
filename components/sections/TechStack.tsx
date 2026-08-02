@@ -28,10 +28,10 @@ export default function TechStack() {
           className="text-center mb-12"
         >
           <p className="section-label mb-3">Tech Stack</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
             Tools of the <span className="gradient-text">craft</span>
           </h2>
-          <p className="text-ash text-sm font-light max-w-md mx-auto leading-relaxed">
+          <p className="text-ash text-[13px] sm:text-sm font-light max-w-md mx-auto leading-relaxed">
             Technologies I use daily to build, ship, and scale production
             applications.
           </p>
@@ -48,7 +48,7 @@ export default function TechStack() {
             <motion.button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`relative px-5 py-2 rounded-full text-sm font-light transition-all duration-300 ${
+              className={`relative px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-light transition-all duration-300 ${
                 activeCategory === cat.id
                   ? "text-void font-medium"
                   : "text-ash hover:text-white border border-white/[0.08] hover:border-cream/20"
@@ -103,12 +103,12 @@ export default function TechStack() {
                   </div>
 
                   {/* Name */}
-                  <p className="text-white text-sm font-medium leading-tight">
+                  <p className="text-white text-[12.5px] sm:text-sm font-medium leading-tight">
                     {tech.name}
                   </p>
 
                   {/* Category badge */}
-                  <span className="text-[10px] text-ash/60 font-light capitalize">
+                  <span className="text-[10px] text-ash/70 font-light capitalize">
                     {tech.category}
                   </span>
 

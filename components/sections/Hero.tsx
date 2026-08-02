@@ -61,42 +61,37 @@ export default function Hero() {
           {/* ─── LEFT COLUMN: Identity & CTAs ─────────────────────── */}
           <div className="flex flex-col justify-center text-left">
             {/* Status pill */}
-            <motion.div
-              {...fadeUp(0.1)}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-charcoal border border-cream/10 mb-7 self-start"
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-charcoal border border-cream/10 mb-7 self-start animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:100ms]"
             >
               <span className="glow-dot" />
-              <span className="text-cream text-xs font-light tracking-wide">
+              <span className="text-cream text-[11px] sm:text-xs font-light tracking-wide">
                 Open to freelance projects
               </span>
               <Sparkles className="w-3 h-3 text-cream opacity-50" />
-            </motion.div>
+            </div>
 
             {/* Headline */}
-            <motion.h1
-              {...fadeUp(0.2)}
-              className="font-display text-[2.6rem] sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black leading-[1.06] tracking-tight mb-5 text-white"
+            <h1
+              className="font-display text-[2.15rem] sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black leading-[1.06] tracking-tight mb-5 text-white animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:200ms]"
             >
-              Turning ideas into{" "}
-              <span className="gradient-text">products</span>
-              <br />
-              that grow{" "}
-              <span className="gradient-text">revenue.</span>
-            </motion.h1>
+              Turning ideas into <span className="gradient-text">products</span>{" "}
+              <br className="hidden sm:block" />
+              that grow <span className="gradient-text">revenue.</span>
+            </h1>
 
             {/* Sub-headline */}
 
             {/* Identity statement */}
-            <motion.p
-              {...fadeUp(0.38)}
-              className="text-ash/60 text-sm font-light max-w-md mb-7 leading-relaxed"
+            <p
+              className="text-ash/70 text-[13px] sm:text-sm font-light max-w-md mb-6 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:380ms]"
             >
               Backend-focused Full-Stack Developer building AI-integrated
               systems and scalable infrastructure for clients worldwide.
-            </motion.p>
+            </p>
 
             {/* What makes me different — three compact pills */}
-            <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-7 animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:450ms]">
               {[
                 "Distributed Systems",
                 "AI / RAG Pipelines",
@@ -104,13 +99,13 @@ export default function Hero() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono tracking-wide text-ash/60 border border-white/[0.07] bg-white/[0.025]"
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono tracking-wide text-ash/70 border border-white/[0.07] bg-white/[0.025]"
                 >
                   <span className="w-1 h-1 rounded-full bg-cream/30 flex-shrink-0" />
                   {tag}
                 </span>
               ))}
-            </motion.div>
+            </div>
 
             {/* CTAs */}
             <motion.div
@@ -125,7 +120,7 @@ export default function Hero() {
                     .querySelector("#projects")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="flex items-center gap-2 px-6 py-3 rounded-[12px] bg-cream text-void text-sm font-medium shadow-clay-cream hover:shadow-clay-hover transition-all duration-300"
+                className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] bg-cream text-void text-xs sm:text-sm font-medium shadow-clay-cream hover:shadow-clay-hover transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -151,7 +146,7 @@ export default function Hero() {
                     .querySelector("#contact")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="flex items-center gap-2 px-6 py-3 rounded-[12px] border border-white/[0.08] text-white text-sm font-light hover:bg-white/[0.03] hover:border-cream/20 transition-all duration-300"
+                className="items-center hidden md:flex gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-[12px] border border-white/[0.08] text-white text-xs sm:text-sm font-light hover:bg-white/[0.03] hover:border-cream/20 transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -163,7 +158,7 @@ export default function Hero() {
                 href={PERSONAL.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-[12px] border border-white/[0.08] text-ash text-sm font-light hover:bg-white/[0.03] hover:text-white hover:border-cream/20 transition-all duration-300"
+                className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] border border-white/[0.08] text-ash text-xs sm:text-sm font-light hover:bg-white/[0.03] hover:text-white hover:border-cream/20 transition-all duration-300"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -173,13 +168,15 @@ export default function Hero() {
 
             {/* Social row */}
             <motion.div {...fadeUp(0.6)} className="flex items-center gap-4">
-              <span className="text-ash/30 text-xs font-light">Find me on</span>
+              <span className="text-ash/30 text-[11px] sm:text-xs font-light">
+                Find me on
+              </span>
               <div className="flex items-center gap-3">
                 <motion.a
                   href={PERSONAL.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-ash/60 hover:text-white text-xs font-light transition-colors"
+                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light transition-colors"
                   whileHover={{ y: -2 }}
                 >
                   <Github className="w-3.5 h-3.5" />
@@ -190,7 +187,7 @@ export default function Hero() {
                   href={PERSONAL.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-ash/60 hover:text-white text-xs font-light transition-colors"
+                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light transition-colors"
                   whileHover={{ y: -2 }}
                 >
                   <Linkedin className="w-3.5 h-3.5" />
@@ -214,8 +211,7 @@ export default function Hero() {
                 background:
                   "linear-gradient(135deg, rgba(31,31,31,0.6) 0%, rgba(13,13,13,0.5) 100%)",
                 border: "1px solid rgba(255,237,210,0.06)",
-                boxShadow:
-                  "0 8px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,237,210,0.04)",
+                boxShadow: 'none',
                 backdropFilter: "blur(12px)",
               }}
             >
@@ -241,7 +237,7 @@ export default function Hero() {
       {/* ── Scroll indicator ─────────────────────────────────────── */}
       <motion.button
         onClick={scrollToNext}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ash/30 hover:text-ash/60 transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ash/40 hover:text-ash/70 transition-colors"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}

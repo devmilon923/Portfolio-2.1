@@ -103,10 +103,10 @@ export default function Contact() {
           className="text-center mb-14"
         >
           <p className="section-label mb-3">Contact</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-5 text-balance">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-5 text-balance">
             Let's build something <span className="gradient-text">amazing</span>
           </h2>
-          <p className="text-ash text-base font-light max-w-lg mx-auto leading-relaxed">
+          <p className="text-ash text-[13px] sm:text-base font-light max-w-lg mx-auto leading-relaxed">
             Have a project in mind? I'm currently available for freelance work,
             full-time roles, and technical consulting. Let's talk.
           </p>
@@ -143,7 +143,7 @@ export default function Contact() {
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-ash text-xs font-light mb-0.5">
+                      <p className="text-ash text-[11px] sm:text-xs font-light mb-0.5">
                         {link.label}
                       </p>
                       {link.isNew && (
@@ -153,13 +153,13 @@ export default function Contact() {
                         </span>
                       )}
                     </div>
-                    <p className="text-white text-sm font-medium truncate">
+                    <p className="text-white text-[13px] sm:text-sm font-medium truncate">
                       {link.value}
                     </p>
                   </div>
 
                   <div className="flex items-center gap-1.5 text-ash group-hover:text-cream transition-colors">
-                    <span className="text-xs font-light hidden sm:block">
+                    <span className="text-[11px] sm:text-xs font-light hidden sm:block">
                       {link.action}
                     </span>
                     <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />

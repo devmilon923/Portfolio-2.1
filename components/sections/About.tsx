@@ -37,7 +37,7 @@ export default function About() {
           className="text-center mb-16"
         >
           <p className="section-label mb-3">About</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
             The developer <span className="gradient-text">behind the code</span>
           </h2>
         </motion.div>
@@ -79,13 +79,13 @@ export default function About() {
                   </div>
 
                   <div className="text-center">
-                    <p className="font-display text-2xl font-black text-white tracking-tight">
+                    <p className="font-display text-xl sm:text-2xl font-black text-white tracking-tight">
                       {PERSONAL.name}
                     </p>
-                    <p className="text-cream text-sm font-light mt-1">
+                    <p className="text-cream text-[13px] sm:text-sm font-light mt-1">
                       {PERSONAL.title}
                     </p>
-                    <p className="text-ash text-xs font-light mt-1">
+                    <p className="text-ash text-[11px] sm:text-xs font-light mt-1">
                       {PERSONAL.location}
                     </p>
                   </div>
@@ -93,7 +93,7 @@ export default function About() {
                   {/* Status */}
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-void border border-cream/10">
                     <span className="glow-dot w-1.5 h-1.5" />
-                    <span className="text-cream text-xs font-light">
+                    <span className="text-cream text-[11px] sm:text-xs font-light">
                       Open to Opportunities
                     </span>
                   </div>
@@ -109,7 +109,7 @@ export default function About() {
                   }}
                   className="absolute -top-3 -right-3 bg-charcoal border border-cream/15 rounded-xl px-3 py-2 shadow-clay-sm"
                 >
-                  <p className="text-cream text-xs font-medium">1+ Year</p>
+                  <p className="text-cream text-[11px] sm:text-xs font-medium">1+ Year</p>
                   <p className="text-ash text-[10px] font-light">
                     Professional Exp.
                   </p>
@@ -125,7 +125,7 @@ export default function About() {
                   }}
                   className="absolute -bottom-3 -left-3 bg-charcoal border border-cream/15 rounded-xl px-3 py-2 shadow-clay-sm"
                 >
-                  <p className="text-cream text-xs font-medium">
+                  <p className="text-cream text-[11px] sm:text-xs font-medium">
                     AI + Full-Stack
                   </p>
                   <p className="text-ash text-[10px] font-light">
@@ -147,10 +147,10 @@ export default function About() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <p className="text-white/90 text-base font-light leading-relaxed mb-4">
+              <p className="text-white/90 text-[13px] sm:text-base font-light leading-relaxed mb-4">
                 {PERSONAL.summary}
               </p>
-              <p className="text-ash text-sm font-light leading-relaxed">
+              <p className="text-ash text-[12px] sm:text-sm font-light leading-relaxed">
                 My background in Electrical Engineering gave me a
                 systems-thinking mindset that shapes how I approach software —
                 every component serves a purpose, every optimization has a
@@ -164,7 +164,7 @@ export default function About() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.45, duration: 0.6 }}
             >
-              <p className="text-ash/60 text-xs font-light uppercase tracking-widest mb-4">
+              <p className="text-ash/70 text-[11px] sm:text-xs font-light uppercase tracking-widest mb-4">
                 Core Strengths
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -183,10 +183,10 @@ export default function About() {
                           <Icon className="w-3.5 h-3.5 text-cream" />
                         </div>
                         <div>
-                          <p className="text-white text-sm font-medium leading-tight mb-1">
+                          <p className="text-white text-[13px] sm:text-sm font-medium leading-tight mb-1">
                             {strength.title}
                           </p>
-                          <p className="text-ash text-xs font-light leading-relaxed">
+                          <p className="text-ash text-[11px] sm:text-xs font-light leading-relaxed">
                             {strength.description}
                           </p>
                         </div>
@@ -204,11 +204,11 @@ export default function About() {
               transition={{ delay: 0.7, duration: 0.6 }}
               className="border-l-2 border-cream/30 pl-4 py-2"
             >
-              <p className="text-ash text-sm font-light italic leading-relaxed">
+              <p className="text-ash text-[12.5px] sm:text-sm font-light italic leading-relaxed">
                 "Good software isn't about lines of code — it's about solving
                 the right problem in the simplest way that lasts."
               </p>
-              <p className="text-cream/60 text-xs font-light mt-2">
+              <p className="text-cream/60 text-[11px] sm:text-xs font-light mt-2">
                 — Development philosophy
               </p>
             </motion.blockquote>

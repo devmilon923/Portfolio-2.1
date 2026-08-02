@@ -38,10 +38,10 @@ export default function Services() {
           className="text-center mb-16"
         >
           <p className="section-label mb-3">Services</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
             What I <span className="gradient-text">build for you</span>
           </h2>
-          <p className="text-ash text-sm font-light max-w-lg mx-auto leading-relaxed">
+          <p className="text-ash text-[13px] sm:text-sm font-light max-w-lg mx-auto leading-relaxed">
             From quick bug fixes to full product builds — tailored solutions for
             startups, agencies, and growing teams.
           </p>
@@ -75,10 +75,10 @@ export default function Services() {
                   </span>
                 </div>
 
-                <h3 className="font-display text-xl font-black text-white tracking-tight mb-2">
+                <h3 className="font-display text-lg sm:text-xl font-black text-white tracking-tight mb-2">
                   {service.title}
                 </h3>
-                <p className="text-ash text-sm font-light leading-relaxed mb-6">
+                <p className="text-ash text-[12.5px] sm:text-sm font-light leading-relaxed mb-6">
                   {service.description}
                 </p>
 
@@ -92,7 +92,7 @@ export default function Services() {
                       <div className="w-4 h-4 rounded-full bg-cream/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-cream/20 transition-colors">
                         <Check className="w-2.5 h-2.5 text-cream" />
                       </div>
-                      <span className="text-ash text-xs font-light leading-relaxed">
+                      <span className="text-ash text-[11.5px] sm:text-xs font-light leading-relaxed">
                         {feat}
                       </span>
                     </li>
@@ -101,7 +101,7 @@ export default function Services() {
 
                 {/* Price + CTA */}
                 <div className="pt-4 border-t border-white/[0.06]">
-                  <p className="text-ash text-xs font-light mb-3">
+                  <p className="text-ash text-[11px] sm:text-xs font-light mb-3">
                     {service.price}
                   </p>
                   <motion.a
@@ -112,7 +112,7 @@ export default function Services() {
                         .querySelector("#contact")
                         ?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="flex items-center gap-2 text-cream text-sm font-medium hover:gap-3 transition-all"
+                    className="flex items-center gap-2 text-cream text-[13px] sm:text-sm font-medium hover:gap-3 transition-all"
                     whileHover={{ x: 4 }}
                   >
                     <MessageSquare className="w-4 h-4" />
@@ -133,10 +133,10 @@ export default function Services() {
         >
           <div className="flex flex-col sm:flex-row items-center gap-6 justify-between">
             <div>
-              <p className="text-white font-medium text-sm mb-1">
+              <p className="text-white font-medium text-[13px] sm:text-sm mb-1">
                 Work with me securely
               </p>
-              <p className="text-ash text-xs font-light">
+              <p className="text-ash text-[11px] sm:text-xs font-light">
                 Projects can be handled through established freelance platforms
                 or direct contracts
               </p>

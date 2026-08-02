@@ -1,0 +1,2126 @@
+{
+  "categories": {
+    "performance": 0.56,
+    "accessibility": 0.96,
+    "best-practices": 0.81,
+    "seo": 1
+  },
+  "metrics": {
+    "firstContentfulPaint": 1170,
+    "largestContentfulPaint": 7497,
+    "interactive": 7959,
+    "speedIndex": 2373,
+    "totalBlockingTime": 851,
+    "maxPotentialFID": 209,
+    "cumulativeLayoutShift": 0,
+    "cumulativeLayoutShiftMainFrame": 0,
+    "timeToFirstByte": 460,
+    "observedTimeOrigin": 0,
+    "observedTimeOriginTs": 7908307101,
+    "observedNavigationStart": 0,
+    "observedNavigationStartTs": 7908307101,
+    "observedFirstPaint": 392,
+    "observedFirstPaintTs": 7908699373,
+    "observedFirstContentfulPaint": 712,
+    "observedFirstContentfulPaintTs": 7909019373,
+    "observedFirstContentfulPaintAllFrames": 712,
+    "observedFirstContentfulPaintAllFramesTs": 7909019373,
+    "observedLargestContentfulPaint": 1912,
+    "observedLargestContentfulPaintTs": 7910219374,
+    "observedLargestContentfulPaintAllFrames": 1912,
+    "observedLargestContentfulPaintAllFramesTs": 7910219374,
+    "observedTraceEnd": 3505,
+    "observedTraceEndTs": 7911811715,
+    "observedLoad": 1037,
+    "observedLoadTs": 7909344243,
+    "observedDomContentLoaded": 0,
+    "observedDomContentLoadedTs": 7908307387,
+    "observedCumulativeLayoutShift": 0,
+    "observedCumulativeLayoutShiftMainFrame": 0,
+    "observedFirstVisualChange": 95,
+    "observedFirstVisualChangeTs": 7908402101,
+    "observedLastVisualChange": 3502,
+    "observedLastVisualChangeTs": 7911809101,
+    "observedSpeedIndex": 918,
+    "observedSpeedIndexTs": 7909224803
+  },
+  "audits": [
+    {
+      "id": "first-contentful-paint",
+      "title": "First Contentful Paint",
+      "score": 0.99,
+      "displayValue": "1.2 s",
+      "description": "First Contentful Paint marks the time at which the first text or image is painted. [Learn more about the First Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/).",
+      "details": null
+    },
+    {
+      "id": "largest-contentful-paint",
+      "title": "Largest Contentful Paint",
+      "score": 0.04,
+      "displayValue": "7.5 s",
+      "description": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more about the Largest Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/)",
+      "details": null
+    },
+    {
+      "id": "speed-index",
+      "title": "Speed Index",
+      "score": 0.98,
+      "displayValue": "2.4 s",
+      "description": "Speed Index shows how quickly the contents of a page are visibly populated. [Learn more about the Speed Index metric](https://developer.chrome.com/docs/lighthouse/performance/speed-index/).",
+      "details": null
+    },
+    {
+      "id": "total-blocking-time",
+      "title": "Total Blocking Time",
+      "score": 0.34,
+      "displayValue": "850 ms",
+      "description": "Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. [Learn more about the Total Blocking Time metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time/).",
+      "details": null
+    },
+    {
+      "id": "max-potential-fid",
+      "title": "Max Potential First Input Delay",
+      "score": 0.63,
+      "displayValue": "210 ms",
+      "description": "The maximum potential First Input Delay that your users could experience is the duration of the longest task. [Learn more about the Maximum Potential First Input Delay metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-max-potential-fid/).",
+      "details": null
+    },
+    {
+      "id": "interactive",
+      "title": "Time to Interactive",
+      "score": 0.43,
+      "displayValue": "8.0 s",
+      "description": "Time to Interactive is the amount of time it takes for the page to become fully interactive. [Learn more about the Time to Interactive metric](https://developer.chrome.com/docs/lighthouse/performance/interactive/).",
+      "details": null
+    },
+    {
+      "id": "deprecations",
+      "title": "Uses deprecated APIs",
+      "score": 0,
+      "displayValue": "1 warning found",
+      "description": "Deprecated APIs will eventually be removed from the browser. [Learn more about deprecated APIs](https://developer.chrome.com/docs/lighthouse/best-practices/deprecations/).",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "value",
+            "valueType": "text",
+            "label": "Deprecation / Warning"
+          },
+          {
+            "key": "source",
+            "valueType": "source-location",
+            "label": "Source"
+          }
+        ],
+        "items": [
+          {
+            "value": "The Shared Storage API is deprecated and will be removed in a future release.",
+            "source": {
+              "type": "source-location",
+              "url": "chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame/frame.js",
+              "urlProvider": "network",
+              "line": 1,
+              "column": 90840
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "type": "link",
+                  "url": "https://chromestatus.com/feature/5076349064708096",
+                  "text": "Check the feature status page for more details."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mainthread-work-breakdown",
+      "title": "Minimize main-thread work",
+      "score": 0,
+      "displayValue": "7.7 s",
+      "description": "Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. [Learn how to minimize main-thread work](https://developer.chrome.com/docs/lighthouse/performance/mainthread-work-breakdown/)",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "groupLabel",
+            "valueType": "text",
+            "label": "Category"
+          },
+          {
+            "key": "duration",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Time Spent"
+          }
+        ],
+        "items": [
+          {
+            "group": "scriptEvaluation",
+            "groupLabel": "Script Evaluation",
+            "duration": 3527.1199999998976
+          },
+          {
+            "group": "other",
+            "groupLabel": "Other",
+            "duration": 1707.2519999999836
+          },
+          {
+            "group": "styleLayout",
+            "groupLabel": "Style & Layout",
+            "duration": 1316.3760000000007
+          },
+          {
+            "group": "scriptParseCompile",
+            "groupLabel": "Script Parsing & Compilation",
+            "duration": 635.8400000000003
+          },
+          {
+            "group": "paintCompositeRender",
+            "groupLabel": "Rendering",
+            "duration": 354.2640000000054
+          },
+          {
+            "group": "garbageCollection",
+            "groupLabel": "Garbage Collection",
+            "duration": 89.16
+          },
+          {
+            "group": "parseHTML",
+            "groupLabel": "Parse HTML & CSS",
+            "duration": 54.275999999999996
+          }
+        ],
+        "sortedBy": [
+          "duration"
+        ]
+      }
+    },
+    {
+      "id": "bootup-time",
+      "title": "Reduce JavaScript execution time",
+      "score": 0,
+      "displayValue": "4.0 s",
+      "description": "Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. [Learn how to reduce Javascript execution time](https://developer.chrome.com/docs/lighthouse/performance/bootup-time/).",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "total",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Total CPU Time"
+          },
+          {
+            "key": "scripting",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Script Evaluation"
+          },
+          {
+            "key": "scriptParseCompile",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Script Parse"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://localhost:3000/",
+            "total": 1968.652000000001,
+            "scripting": 192.25600000000034,
+            "scriptParseCompile": 82.98000000000002
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js",
+            "total": 1571.4519999999923,
+            "scripting": 1511.8199999999922,
+            "scriptParseCompile": 8.436
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_13kv7il._.js",
+            "total": 1437.8080000000032,
+            "scripting": 498.3800000000026,
+            "scriptParseCompile": 78.42800000000001
+          },
+          {
+            "url": "Unattributable",
+            "total": 507.2240000000008,
+            "scripting": 150.876,
+            "scriptParseCompile": 0
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js",
+            "total": 451.89600000000013,
+            "scripting": 71.94400000000007,
+            "scriptParseCompile": 71.792
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js",
+            "total": 372.4440000000005,
+            "scripting": 311.07200000000057,
+            "scriptParseCompile": 47.892
+          },
+          {
+            "url": "chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/content.js",
+            "total": 263.2720000000002,
+            "scripting": 136.72400000000013,
+            "scriptParseCompile": 4.715999999999999
+          },
+          {
+            "url": "chrome-extension://kbfnbcaeplbcioakkpcpgfkobkghlhen/src/js/Grammarly-check.js",
+            "total": 252.2960000000003,
+            "scripting": 154.9360000000003,
+            "scriptParseCompile": 72.21600000000001
+          },
+          {
+            "url": "chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame/frame.js",
+            "total": 209.90400000000005,
+            "scripting": 140.73200000000006,
+            "scriptParseCompile": 16.336000000000002
+          },
+          {
+            "url": "chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/src/content-script.js",
+            "total": 150.172,
+            "scripting": 51.25600000000001,
+            "scriptParseCompile": 92.45599999999999
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js",
+            "total": 137.72799999999992,
+            "scripting": 82.92399999999994,
+            "scriptParseCompile": 47.504
+          },
+          {
+            "url": "chrome-extension://inojafojbhdpnehkhhfjalgjjobnhomj/content_script.js",
+            "total": 78.29599999999998,
+            "scripting": 76.49999999999999,
+            "scriptParseCompile": 1.288
+          },
+          {
+            "url": "chrome-extension://hoklmmgfnpapgjgcpechhaamimifchmp/frame_ant/frame_ant.js",
+            "total": 60.964000000000006,
+            "scripting": 56.62800000000001,
+            "scriptParseCompile": 1.4120000000000001
+          }
+        ],
+        "summary": {
+          "wastedMs": 3961.503999999996
+        },
+        "sortedBy": [
+          "total"
+        ]
+      }
+    },
+    {
+      "id": "valid-source-maps",
+      "title": "Missing source maps for large first-party JavaScript",
+      "score": 0,
+      "displayValue": null,
+      "description": "Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps to take advantage of these benefits. [Learn more about source maps](https://developer.chrome.com/docs/devtools/javascript/source-maps/).",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "scriptUrl",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "error"
+            },
+            "label": "URL"
+          },
+          {
+            "key": "sourceMapUrl",
+            "valueType": "url",
+            "label": "Map URL"
+          }
+        ],
+        "items": [
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_13kv7il._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_13kv7il._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Large JavaScript file is missing a source map"
+                },
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/turbopack-_01_ro95._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/_01_ro95._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_17fo74y._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_17fo74y._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqw._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqw._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/components_SmoothScrollProvider_tsx_1shw-mz._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/components_SmoothScrollProvider_tsx_1shw-mz._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsay._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1mojsay._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          },
+          {
+            "scriptUrl": "http://localhost:3000/_next/static/chunks/_0b8s2fs._.js",
+            "sourceMapUrl": "http://localhost:3000/_next/static/chunks/_0b8s2fs._.js.map",
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "error": "Error: Map has no `mappings` field"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "color-contrast",
+      "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+      "score": 0,
+      "displayValue": null,
+      "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.12/color-contrast).",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "relatedNode",
+              "valueType": "node"
+            },
+            "label": "Failing Elements"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,0,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 9610,
+                "bottom": 9625,
+                "left": 89,
+                "right": 127,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,0,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9517,
+                      "bottom": 9642,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "⚛️\n\nReact\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,1,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 9610,
+                "bottom": 9625,
+                "left": 285,
+                "right": 323,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,1,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9517,
+                      "bottom": 9642,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "▲\n\nNext.js\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,2,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 9746,
+                "bottom": 9761,
+                "left": 89,
+                "right": 127,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-5-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,2,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9654,
+                      "bottom": 9778,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "TS\n\nTypeScript\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,3,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 9746,
+                "bottom": 9761,
+                "left": 285,
+                "right": 323,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-7-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,3,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9654,
+                      "bottom": 9778,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "JS\n\nJavaScript\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,4,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 9883,
+                "bottom": 9898,
+                "left": 89,
+                "right": 127,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-9-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,4,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9790,
+                      "bottom": 9915,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🎨\n\nTailwind CSS\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-10-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,5,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 9883,
+                "bottom": 9898,
+                "left": 285,
+                "right": 323,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-11-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,5,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9790,
+                      "bottom": 9915,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "RQ\n\nReact Query\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-12-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,6,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10020,
+                "bottom": 10035,
+                "left": 89,
+                "right": 127,
+                "width": 39,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Frontend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-13-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,6,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9927,
+                      "bottom": 10052,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "◻\n\nShadcn UI\n\nFrontend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-14-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,7,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10020,
+                "bottom": 10035,
+                "left": 285,
+                "right": 323,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-15-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,7,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 9927,
+                      "bottom": 10052,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🟢\n\nNode.js\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-16-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,8,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10156,
+                "bottom": 10171,
+                "left": 89,
+                "right": 127,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-17-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,8,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10064,
+                      "bottom": 10188,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "Ex\n\nExpress.js\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-18-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,9,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10156,
+                "bottom": 10171,
+                "left": 285,
+                "right": 323,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-19-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,9,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10064,
+                      "bottom": 10188,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "⚡\n\nSocket.IO\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-20-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,10,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10293,
+                "bottom": 10308,
+                "left": 89,
+                "right": 127,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-21-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,10,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10200,
+                      "bottom": 10325,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "📋\n\nBullMQ\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-22-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,11,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10293,
+                "bottom": 10308,
+                "left": 285,
+                "right": 323,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-23-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,11,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10200,
+                      "bottom": 10325,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "◉\n\nGraphQL\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-24-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,12,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10430,
+                "bottom": 10445,
+                "left": 89,
+                "right": 127,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-25-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,12,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10337,
+                      "bottom": 10462,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🐘\n\nPostgreSQL\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-26-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,13,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10430,
+                "bottom": 10445,
+                "left": 285,
+                "right": 323,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-27-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,13,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10337,
+                      "bottom": 10462,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🍃\n\nMongoDB\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-28-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,14,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10566,
+                "bottom": 10581,
+                "left": 89,
+                "right": 127,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-29-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,14,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10474,
+                      "bottom": 10598,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🔴\n\nRedis\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-30-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,15,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10566,
+                "bottom": 10581,
+                "left": 285,
+                "right": 323,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-31-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,15,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10474,
+                      "bottom": 10598,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "◇\n\nPrisma\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-32-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,16,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10703,
+                "bottom": 10718,
+                "left": 89,
+                "right": 127,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-33-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,16,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10610,
+                      "bottom": 10735,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🔍\n\nPinecone\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-34-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,17,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10703,
+                "bottom": 10718,
+                "left": 285,
+                "right": 323,
+                "width": 38,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Backend",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-35-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,17,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10610,
+                      "bottom": 10735,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🤖\n\nOpenAI API\n\nBackend"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-36-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,18,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10839,
+                "bottom": 10854,
+                "left": 82,
+                "right": 134,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-37-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,18,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10747,
+                      "bottom": 10871,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "☁️\n\nAWS EC2\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-38-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,19,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10839,
+                "bottom": 10854,
+                "left": 278,
+                "right": 330,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-39-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,19,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10747,
+                      "bottom": 10871,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🐳\n\nDocker\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-40-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,20,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10976,
+                "bottom": 10991,
+                "left": 82,
+                "right": 134,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-41-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,20,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10883,
+                      "bottom": 11008,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "⚙️\n\nNginx\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-42-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,21,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 10976,
+                "bottom": 10991,
+                "left": 278,
+                "right": 330,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-43-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,21,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 10883,
+                      "bottom": 11008,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🔄\n\nGitHub Actions\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-44-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,22,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 11113,
+                "bottom": 11128,
+                "left": 82,
+                "right": 134,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-45-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,22,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 11020,
+                      "bottom": 11145,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "▲\n\nVercel\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-46-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,23,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 11113,
+                "bottom": 11128,
+                "left": 278,
+                "right": 330,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-47-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,23,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 11020,
+                      "bottom": 11145,
+                      "left": 212,
+                      "right": 396,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🪣\n\nAWS S3\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-48-SPAN",
+              "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,24,DIV,0,DIV,2,SPAN",
+              "selector": "div.grid > div > div.clay-card > span.text-[10px]",
+              "boundingRect": {
+                "top": 11249,
+                "bottom": 11264,
+                "left": 82,
+                "right": 134,
+                "width": 53,
+                "height": 15
+              },
+              "snippet": "<span class=\"text-[10px] text-ash/60 font-light capitalize\">",
+              "nodeLabel": "Deployment",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.09 (foreground color: #6b6b6b, background color: #1f1f1f, font size: 7.5pt (10px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-49-DIV",
+                    "path": "1,HTML,1,BODY,2,MAIN,7,SECTION,0,DIV,2,DIV,24,DIV,0,DIV",
+                    "selector": "div.max-w-7xl > div.grid > div > div.clay-card",
+                    "boundingRect": {
+                      "top": 11157,
+                      "bottom": 11281,
+                      "left": 16,
+                      "right": 200,
+                      "width": 184,
+                      "height": 125
+                    },
+                    "snippet": "<div class=\"clay-card p-4 flex flex-col items-center text-center gap-2.5 cursor-default\">",
+                    "nodeLabel": "🐧\n\nLinux\n\nDeployment"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "lhId": "1-50-P",
+              "path": "1,HTML,1,BODY,2,MAIN,9,FOOTER,0,DIV,2,DIV,0,P",
+              "selector": "footer.bg-charcoal > div.max-w-7xl > div.flex > p.text-ash/50",
+              "boundingRect": {
+                "top": 12698,
+                "bottom": 12714,
+                "left": 117,
+                "right": 295,
+                "width": 178,
+                "height": 17
+              },
+              "snippet": "<p class=\"text-ash/50 text-[11px] sm:text-xs font-light\">",
+              "nodeLabel": "© 2026 Milon Mia. Crafted with care.",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.58 (foreground color: #5f5f5f, background color: #1f1f1f, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-51-FOOTER",
+                    "path": "1,HTML,1,BODY,2,MAIN,9,FOOTER",
+                    "selector": "body.inter_6fa66812-module__FDuiPa__variable > main.relative > footer.bg-charcoal",
+                    "boundingRect": {
+                      "top": 12451,
+                      "bottom": 12806,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 356
+                    },
+                    "snippet": "<footer class=\"bg-charcoal border-t border-white/[0.05] py-12 relative\">",
+                    "nodeLabel": "M\nMilon Mia\n\nBackend-focused Full-Stack Developer building AI-integrated system…"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "unminified-javascript",
+      "title": "Minify JavaScript",
+      "score": 0,
+      "displayValue": "Est savings of 390 KiB",
+      "description": "Minifying JavaScript files can reduce payload sizes and script parse time. [Learn how to minify JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unminified-javascript/).",
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/pages/content-script-start.js",
+            "totalBytes": 163360,
+            "wastedBytes": 86934,
+            "wastedPercent": 53.216465231470345
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js",
+            "totalBytes": 152621,
+            "wastedBytes": 68946,
+            "wastedPercent": 45.17463653036889
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js",
+            "totalBytes": 184177,
+            "wastedBytes": 49875,
+            "wastedPercent": 27.08000151231592
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_13kv7il._.js",
+            "totalBytes": 176703,
+            "wastedBytes": 47035,
+            "wastedPercent": 26.61813202168688
+          },
+          {
+            "url": "chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/src/content-script.js",
+            "totalBytes": 158675,
+            "wastedBytes": 34074,
+            "wastedPercent": 21.47419166321779
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_17fo74y._.js",
+            "totalBytes": 48160,
+            "wastedBytes": 18231,
+            "wastedPercent": 37.85402966225686
+          },
+          {
+            "url": "chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/pages/subscribe.js",
+            "totalBytes": 39648,
+            "wastedBytes": 18145,
+            "wastedPercent": 45.76598471859238
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+            "totalBytes": 46119,
+            "wastedBytes": 15605,
+            "wastedPercent": 33.83570812266654
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/_0b8s2fs._.js",
+            "totalBytes": 36969,
+            "wastedBytes": 15338,
+            "wastedPercent": 41.48995652548739
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_1amofcm._.js",
+            "totalBytes": 28340,
+            "wastedBytes": 12192,
+            "wastedPercent": 43.021531896026154
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/turbopack-_01_ro95._.js",
+            "totalBytes": 22519,
+            "wastedBytes": 11399,
+            "wastedPercent": 50.61884806549068
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-6._.js",
+            "totalBytes": 31850,
+            "wastedBytes": 10822,
+            "wastedPercent": 33.97899823649314
+          },
+          {
+            "url": "chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/pages/content-script-end.js",
+            "totalBytes": 19881,
+            "wastedBytes": 8092,
+            "wastedPercent": 40.70047306830442
+          },
+          {
+            "url": "chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/content.js",
+            "totalBytes": 6996,
+            "wastedBytes": 2447,
+            "wastedPercent": 34.97948209990095
+          }
+        ],
+        "overallSavingsMs": 1210,
+        "overallSavingsBytes": 399135,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 0,
+            "LCP": 1210
+          }
+        }
+      }
+    },
+    {
+      "id": "unused-javascript",
+      "title": "Reduce unused JavaScript",
+      "score": 0,
+      "displayValue": "Est savings of 652 KiB",
+      "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
+      "details": {
+        "type": "opportunity",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "source",
+              "valueType": "code"
+            },
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceBytes"
+            },
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "subItemsHeading": {
+              "key": "sourceWastedBytes"
+            },
+            "label": "Est Savings"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jm.js",
+            "totalBytes": 217684,
+            "wastedBytes": 137982,
+            "wastedPercent": 63.38627343560591
+          },
+          {
+            "url": "chrome-extension://bnjjngeaknajbdcgpfkgnonkmififhfo/src/content-script.js",
+            "totalBytes": 158675,
+            "wastedBytes": 98439,
+            "wastedPercent": 62.03817125696448
+          },
+          {
+            "url": "chrome-extension://bgnkhhnnamicmpeenaelnjfhikgbkllg/pages/content-script-start.js",
+            "totalBytes": 163360,
+            "wastedBytes": 85898,
+            "wastedPercent": 52.581757506095585
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_client_0r5nbpw._.js",
+            "totalBytes": 152595,
+            "wastedBytes": 80900,
+            "wastedPercent": 53.01616965302619
+          },
+          {
+            "url": "chrome-extension://kbfnbcaeplbcioakkpcpgfkobkghlhen/src/js/Grammarly-check.js",
+            "totalBytes": 126373,
+            "wastedBytes": 68855,
+            "wastedPercent": 54.48534653620475
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_compiled_react-dom_096_9a-._.js",
+            "totalBytes": 184177,
+            "wastedBytes": 67865,
+            "wastedPercent": 36.847482939185994
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_13kv7il._.js",
+            "totalBytes": 176700,
+            "wastedBytes": 64632,
+            "wastedPercent": 36.577486585434016
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_17fo74y._.js",
+            "totalBytes": 48156,
+            "wastedBytes": 36429,
+            "wastedPercent": 75.64876561272736
+          },
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+            "totalBytes": 46117,
+            "wastedBytes": 26358,
+            "wastedPercent": 57.15501044262202
+          }
+        ],
+        "overallSavingsMs": 2240,
+        "overallSavingsBytes": 667358,
+        "sortedBy": [
+          "wastedBytes"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "metricSavings": {
+            "FCP": 0,
+            "LCP": 2240
+          }
+        }
+      }
+    },
+    {
+      "id": "forced-reflow-insight",
+      "title": "Forced reflow",
+      "score": 0,
+      "displayValue": null,
+      "description": "A forced reflow occurs when JavaScript queries geometric properties (such as `offsetWidth`) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about [forced reflows](https://developer.chrome.com/docs/performance/insights/forced-reflow) and possible mitigations.",
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "source",
+                "valueType": "source-location",
+                "label": "Source"
+              },
+              {
+                "key": "reflowTime",
+                "valueType": "ms",
+                "granularity": 1,
+                "label": "Total reflow time"
+              }
+            ],
+            "items": [
+              {
+                "source": {
+                  "type": "text",
+                  "value": "[unattributed]"
+                },
+                "reflowTime": 97.696
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "legacy-javascript-insight",
+      "title": "Legacy JavaScript",
+      "score": 0.5,
+      "displayValue": "Est savings of 8 KiB",
+      "description": "Polyfills and transforms enable older browsers to use new JavaScript features. However, many aren't necessary for modern browsers. Consider modifying your JavaScript build process to not transpile [Baseline](https://web.dev/articles/baseline-and-polyfills) features, unless you know you must support older browsers. [Learn why most sites can deploy ES6+ code without transpiling](https://developer.chrome.com/docs/performance/insights/legacy-javascript)",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "subItemsHeading": {
+              "key": "location",
+              "valueType": "source-location"
+            },
+            "label": "URL"
+          },
+          {
+            "key": null,
+            "valueType": "code",
+            "subItemsHeading": {
+              "key": "signal"
+            },
+            "label": ""
+          },
+          {
+            "key": "wastedBytes",
+            "valueType": "bytes",
+            "label": "Wasted bytes"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+            "wastedBytes": 8207,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "signal": "Array.prototype.at",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 35,
+                    "column": 27
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flat",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 15,
+                    "column": 29
+                  }
+                },
+                {
+                  "signal": "Array.prototype.flatMap",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 17,
+                    "column": 3
+                  }
+                },
+                {
+                  "signal": "Object.fromEntries",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 31,
+                    "column": 27
+                  }
+                },
+                {
+                  "signal": "Object.hasOwn",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 38,
+                    "column": 22
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimEnd",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 9,
+                    "column": 127
+                  }
+                },
+                {
+                  "signal": "String.prototype.trimStart",
+                  "location": {
+                    "type": "source-location",
+                    "url": "http://localhost:3000/_next/static/chunks/node_modules_next_dist_1ybzpk2._.js",
+                    "urlProvider": "network",
+                    "line": 9,
+                    "column": 36
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "wastedBytes": 8207
+        }
+      }
+    },
+    {
+      "id": "network-dependency-tree-insight",
+      "title": "Network dependency tree",
+      "score": 0,
+      "displayValue": null,
+      "description": "[Avoid chaining critical requests](https://developer.chrome.com/docs/performance/insights/network-dependency-tree) by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.",
+      "details": {
+        "type": "list",
+        "items": [
+          {
+            "type": "list-section",
+            "value": {
+              "type": "network-tree",
+              "chains": {
+                "00BD8160E2E3CDC70A798B0EBAAC18FF": {
+                  "url": "http://localhost:3000/",
+                  "navStartToEndTime": 199,
+                  "transferSize": 21374,
+                  "isLongest": true,
+                  "children": {
+                    "30159.4": {
+                      "url": "http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__1_2_hxi._.css",
+                      "navStartToEndTime": 197,
+                      "transferSize": 13730,
+                      "children": {}
+                    }
+                  }
+                }
+              },
+              "longestChain": {
+                "duration": 199
+              }
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnected origins",
+            "description": "[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.",
+            "value": {
+              "type": "text",
+              "value": "no origins were preconnected"
+            }
+          },
+          {
+            "type": "list-section",
+            "title": "Preconnect candidates",
+            "description": "Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.",
+            "value": {
+              "type": "text",
+              "value": "No additional origins are good candidates for preconnecting"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "render-blocking-insight",
+      "title": "Render-blocking requests",
+      "score": 0.5,
+      "displayValue": null,
+      "description": "Requests are blocking the page's initial render, which may delay LCP. [Deferring or inlining](https://developer.chrome.com/docs/performance/insights/render-blocking) can move these network requests out of the critical path.",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__1_2_hxi._.css",
+            "totalBytes": 13730,
+            "wastedMs": 160
+          }
+        ]
+      }
+    }
+  ]
+}

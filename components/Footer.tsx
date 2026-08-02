@@ -38,7 +38,7 @@ export default function Footer() {
                 {PERSONAL.name}
               </span>
             </div>
-            <p className="text-ash text-xs font-light max-w-xs leading-relaxed">
+            <p className="text-ash text-[11px] sm:text-xs font-light max-w-xs leading-relaxed">
               Backend-focused Full-Stack Developer building AI-integrated
               systems and scalable infrastructure for clients worldwide.
             </p>
@@ -56,7 +56,7 @@ export default function Footer() {
                     .querySelector(link.href)
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="text-ash text-xs font-light hover:text-white transition-colors"
+                className="text-ash text-[11px] sm:text-xs font-light hover:text-white transition-colors"
                 whileHover={{ y: -1 }}
               >
                 {link.label}
@@ -71,7 +71,7 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <p className="text-ash/50 text-xs font-light">
+          <p className="text-ash/70 text-[11px] sm:text-xs font-light">
             &copy; {new Date().getFullYear()} {PERSONAL.name}. Crafted with
             care.
           </p>
@@ -85,7 +85,7 @@ export default function Footer() {
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="text-ash/50 hover:text-cream transition-colors"
+                className="text-ash/70 hover:text-cream transition-colors"
                 whileHover={{ y: -2, scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
               >

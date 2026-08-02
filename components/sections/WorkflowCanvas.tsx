@@ -69,7 +69,8 @@ const PHASES: Phase[] = [
     code: "05 / SHIP",
     title: "Deploy",
     role: "Infrastructure & CI/CD",
-    description: "Docker → AWS → GitHub Actions. Zero-touch from merge to live.",
+    description:
+      "Docker → AWS → GitHub Actions. Zero-touch from merge to live.",
     detail:
       "Automated pipelines, reverse-proxied with Nginx, monitored from day one. You get reliability, not hope.",
     accentColor: "#fbbf24",
@@ -86,9 +87,12 @@ export default function WorkflowCanvas() {
   // Staggered reveal of phases on mount
   useEffect(() => {
     const timers = PHASES.map((phase, i) =>
-      setTimeout(() => {
-        setRevealedPhases((prev) => new Set([...prev, phase.id]));
-      }, 400 + i * 180)
+      setTimeout(
+        () => {
+          setRevealedPhases((prev) => new Set([...prev, phase.id]));
+        },
+        400 + i * 180,
+      ),
     );
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -103,7 +107,7 @@ export default function WorkflowCanvas() {
       <div className="flex items-center justify-between mb-5 px-0.5">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-cream/60" />
-          <span className="text-[10px] font-mono tracking-[0.15em] text-ash/50 uppercase">
+          <span className="text-[10px] font-mono tracking-[0.15em] text-ash/70 uppercase">
             How I Work
           </span>
         </div>
@@ -138,9 +142,7 @@ export default function WorkflowCanvas() {
                   }}
                 >
                   <motion.button
-                    onClick={() =>
-                      setActivePhase(isActive ? null : phase.id)
-                    }
+                    onClick={() => setActivePhase(isActive ? null : phase.id)}
                     className="relative w-9 h-9 rounded-full flex items-center justify-center cursor-pointer focus:outline-none group/node"
                     whileHover={{ scale: 1.12 }}
                     whileTap={{ scale: 0.95 }}
@@ -152,13 +154,14 @@ export default function WorkflowCanvas() {
                         isActive
                           ? phase.accentColor
                           : isRevealed
-                          ? "rgba(255,255,255,0.08)"
-                          : "rgba(255,255,255,0.04)"
+                            ? "rgba(255,255,255,0.08)"
+                            : "rgba(255,255,255,0.04)"
                       }`,
                       boxShadow: isActive
                         ? `0 0 16px ${phase.glowColor}, 0 0 32px ${phase.glowColor}`
                         : "none",
-                      transition: "transform 0.35s ease, opacity 0.35s ease, background 0.35s ease, box-shadow 0.35s ease",
+                      transition:
+                        "transform 0.35s ease, opacity 0.35s ease, background 0.35s ease, box-shadow 0.35s ease",
                     }}
                   >
                     {/* Pulse ring on active */}
@@ -180,7 +183,9 @@ export default function WorkflowCanvas() {
                     <span
                       className="text-[11px] font-mono font-bold leading-none"
                       style={{
-                        color: isActive ? phase.accentColor : "rgba(255,255,255,0.25)",
+                        color: isActive
+                          ? phase.accentColor
+                          : "rgba(255,255,255,0.25)",
                         transition: "color 0.3s ease",
                       }}
                     >
@@ -226,9 +231,7 @@ export default function WorkflowCanvas() {
                 >
                   {/* Phase header row */}
                   <button
-                    onClick={() =>
-                      setActivePhase(isActive ? null : phase.id)
-                    }
+                    onClick={() => setActivePhase(isActive ? null : phase.id)}
                     className="w-full text-left group/card focus:outline-none"
                   >
                     <div className="flex items-start justify-between gap-3 mb-1">
@@ -259,7 +262,7 @@ export default function WorkflowCanvas() {
 
                     <div className="flex items-baseline gap-2 mb-1">
                       <span
-                        className="text-base font-semibold leading-tight tracking-tight transition-colors duration-300"
+                        className="text-sm sm:text-base font-semibold leading-tight tracking-tight transition-colors duration-300"
                         style={{
                           color: isActive ? "#ffffff" : "rgba(255,255,255,0.7)",
                         }}
@@ -278,7 +281,7 @@ export default function WorkflowCanvas() {
                       </span>
                     </div>
 
-                    <p className="text-xs text-ash/50 leading-relaxed font-light">
+                    <p className="text-[11px] sm:text-xs text-ash/70 leading-relaxed font-light">
                       {phase.description}
                     </p>
                   </button>
@@ -295,7 +298,7 @@ export default function WorkflowCanvas() {
                         className="overflow-hidden"
                       >
                         <div
-                          className="mt-3 mb-1 p-3 rounded-xl text-xs text-ash/70 leading-relaxed font-light"
+                          className="mt-3 mb-1 p-3 rounded-xl text-[11px] sm:text-xs text-ash/70 leading-relaxed font-light"
                           style={{
                             background: phase.glowColor,
                             borderLeft: `2px solid ${phase.accentColor}40`,
