@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { Star, ChevronLeft, ChevronRight, Quote, Construction } from "lucide-react";
+import {
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  Quote,
+  Construction,
+} from "lucide-react";
 import { TESTIMONIALS } from "@/lib/constants";
 
 // Flip to true once the backend integration for testimonials is live.

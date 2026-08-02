@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Generates the /out folder
+  output: "export",
   images: { unoptimized: true },
 };
 

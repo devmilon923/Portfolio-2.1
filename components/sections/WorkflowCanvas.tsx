@@ -158,7 +158,7 @@ export default function WorkflowCanvas() {
                       boxShadow: isActive
                         ? `0 0 16px ${phase.glowColor}, 0 0 32px ${phase.glowColor}`
                         : "none",
-                      transition: "all 0.35s ease",
+                      transition: "transform 0.35s ease, opacity 0.35s ease, background 0.35s ease, box-shadow 0.35s ease",
                     }}
                   >
                     {/* Pulse ring on active */}

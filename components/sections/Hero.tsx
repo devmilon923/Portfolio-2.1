@@ -77,11 +77,11 @@ export default function Hero() {
               {...fadeUp(0.2)}
               className="font-display text-[2.6rem] sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black leading-[1.06] tracking-tight mb-5 text-white"
             >
-              I build systems
+              Turning ideas into{" "}
+              <span className="gradient-text">products</span>
               <br />
-              that <span className="gradient-text">outlast</span> the{" "}
-              <br className="hidden sm:block" />
-              <span className="gradient-text">deadline.</span>
+              that grow{" "}
+              <span className="gradient-text">revenue.</span>
             </motion.h1>
 
             {/* Sub-headline */}

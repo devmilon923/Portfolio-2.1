@@ -9,6 +9,9 @@ import TechStack from "@/components/sections/TechStack";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 
+// Enable Incremental Static Regeneration (ISR) - Revalidate page every 1 day (86,400 seconds)
+export const revalidate = 86400;
+
 export default function Home() {
   return (
     <main className="relative bg-void">

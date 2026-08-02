@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Archivo_Black } from "next/font/google";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,6 +16,9 @@ const archivoBl = Archivo_Black({
   weight: "400",
   display: "swap",
 });
+
+// Enable Incremental Static Regeneration (ISR) - Revalidate layout every 1 day (86,400 seconds)
+export const revalidate = 86400;
 
 export const metadata: Metadata = {
   icons: {
@@ -109,7 +113,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        {children}
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
       </body>
     </html>
   );

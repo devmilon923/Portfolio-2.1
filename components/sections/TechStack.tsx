@@ -1,20 +1,24 @@
-'use client';
+"use client";
 
-import { useRef, useState } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { TECH_STACK, TECH_CATEGORIES } from '@/lib/constants';
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { TECH_STACK, TECH_CATEGORIES } from "@/lib/constants";
 
 export default function TechStack() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
-  const [activeCategory, setActiveCategory] = useState('all');
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeCategory, setActiveCategory] = useState("all");
 
   const filtered = TECH_STACK.filter(
-    (t) => activeCategory === 'all' || t.category === activeCategory
+    (t) => activeCategory === "all" || t.category === activeCategory,
   );
 
   return (
-    <section id="stack" className="py-20 lg:py-28 bg-charcoal relative overflow-hidden" ref={ref}>
+    <section
+      id="stack"
+      className="py-20 lg:py-28 bg-charcoal relative overflow-hidden"
+      ref={ref}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -28,7 +32,8 @@ export default function TechStack() {
             Tools of the <span className="gradient-text">craft</span>
           </h2>
           <p className="text-ash text-sm font-light max-w-md mx-auto leading-relaxed">
-            Technologies I use daily to build, ship, and scale production applications.
+            Technologies I use daily to build, ship, and scale production
+            applications.
           </p>
         </motion.div>
 
@@ -45,8 +50,8 @@ export default function TechStack() {
               onClick={() => setActiveCategory(cat.id)}
               className={`relative px-5 py-2 rounded-full text-sm font-light transition-all duration-300 ${
                 activeCategory === cat.id
-                  ? 'text-void font-medium'
-                  : 'text-ash hover:text-white border border-white/[0.08] hover:border-cream/20'
+                  ? "text-void font-medium"
+                  : "text-ash hover:text-white border border-white/[0.08] hover:border-cream/20"
               }`}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
@@ -55,7 +60,7 @@ export default function TechStack() {
                 <motion.div
                   layoutId="tab-pill"
                   className="absolute inset-0 bg-cream rounded-full"
-                  transition={{ type: 'spring', bounce: 0.3, duration: 0.5 }}
+                  transition={{ type: "spring", bounce: 0.3, duration: 0.5 }}
                 />
               )}
               <span className="relative z-10">{cat.label}</span>
@@ -64,7 +69,10 @@ export default function TechStack() {
         </motion.div>
 
         {/* Tech grid */}
-        <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+        <motion.div
+          layout
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"
+        >
           <AnimatePresence mode="popLayout">
             {filtered.map((tech, i) => (
               <motion.div
@@ -74,7 +82,7 @@ export default function TechStack() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.85, y: -10 }}
                 transition={{
-                  layout: { type: 'spring', bounce: 0.25, duration: 0.5 },
+                  layout: { type: "spring", bounce: 0.25, duration: 0.5 },
                   opacity: { delay: i * 0.03, duration: 0.35 },
                   scale: { delay: i * 0.03, duration: 0.35 },
                 }}
@@ -86,16 +94,23 @@ export default function TechStack() {
                 >
                   {/* Icon */}
                   <div className="w-10 h-10 rounded-xl bg-void border border-cream/10 flex items-center justify-center">
-                    <span className="text-base font-medium text-cream leading-none" aria-label={tech.name}>
+                    <span
+                      className="text-base font-medium text-cream leading-none"
+                      aria-label={tech.name}
+                    >
                       {tech.icon}
                     </span>
                   </div>
 
                   {/* Name */}
-                  <p className="text-white text-sm font-medium leading-tight">{tech.name}</p>
+                  <p className="text-white text-sm font-medium leading-tight">
+                    {tech.name}
+                  </p>
 
                   {/* Category badge */}
-                  <span className="text-[10px] text-ash/60 font-light capitalize">{tech.category}</span>
+                  <span className="text-[10px] text-ash/60 font-light capitalize">
+                    {tech.category}
+                  </span>
 
                   {/* Usage tooltip on hover */}
                   <p className="text-ash text-[11px] font-light leading-snug text-center opacity-0 group-hover:opacity-100 transition-opacity hidden group-hover:block">
@@ -131,14 +146,28 @@ export default function TechStack() {
           className="mt-10 flex flex-wrap gap-6 justify-center"
         >
           {[
-            { label: 'Technologies', value: TECH_STACK.length + '+' },
-            { label: 'Frontend', value: TECH_STACK.filter(t => t.category === 'frontend').length },
-            { label: 'Backend', value: TECH_STACK.filter(t => t.category === 'backend').length },
-            { label: 'DevOps Tools', value: TECH_STACK.filter(t => t.category === 'deployment').length },
+            { label: "Technologies", value: TECH_STACK.length + "+" },
+            {
+              label: "Frontend",
+              value: TECH_STACK.filter((t) => t.category === "frontend").length,
+            },
+            {
+              label: "Backend",
+              value: TECH_STACK.filter((t) => t.category === "backend").length,
+            },
+            {
+              label: "DevOps Tools",
+              value: TECH_STACK.filter((t) => t.category === "deployment")
+                .length,
+            },
           ].map((item) => (
             <div key={item.label} className="text-center min-w-[72px]">
-              <p className="font-display text-xl sm:text-2xl font-black text-cream">{item.value}</p>
-              <p className="text-ash text-[11px] sm:text-xs font-light mt-0.5">{item.label}</p>
+              <p className="font-display text-xl sm:text-2xl font-black text-cream">
+                {item.value}
+              </p>
+              <p className="text-ash text-[11px] sm:text-xs font-light mt-0.5">
+                {item.label}
+              </p>
             </div>
           ))}
         </motion.div>

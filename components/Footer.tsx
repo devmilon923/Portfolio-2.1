@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
-import { PERSONAL } from '@/lib/constants';
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { PERSONAL } from "@/lib/constants";
 
 const NAV = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Services', href: '#services' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Contact', href: '#contact' },
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
+  { label: "Stack", href: "#stack" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const SOCIAL = [
-  { icon: Github, href: PERSONAL.github, label: 'GitHub' },
-  { icon: Linkedin, href: PERSONAL.linkedin, label: 'LinkedIn' },
-  { icon: Mail, href: `mailto:${PERSONAL.email}`, label: 'Email' },
+  { icon: Github, href: PERSONAL.github, label: "GitHub" },
+  { icon: Linkedin, href: PERSONAL.linkedin, label: "LinkedIn" },
+  { icon: Mail, href: `mailto:${PERSONAL.email}`, label: "Email" },
 ];
 
 export default function Footer() {
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <footer className="bg-charcoal border-t border-white/[0.05] py-12 relative">
@@ -30,12 +30,17 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <div className="w-7 h-7 rounded-lg bg-cream flex items-center justify-center shadow-clay-sm">
-                <span className="font-display text-void text-sm font-black leading-none">M</span>
+                <span className="font-display text-void text-sm font-black leading-none">
+                  M
+                </span>
               </div>
-              <span className="text-white font-medium text-sm tracking-tight">{PERSONAL.name}</span>
+              <span className="text-white font-medium text-sm tracking-tight">
+                {PERSONAL.name}
+              </span>
             </div>
             <p className="text-ash text-xs font-light max-w-xs leading-relaxed">
-              Backend-focused Full-Stack Developer building AI-integrated systems and scalable infrastructure for clients worldwide.
+              Backend-focused Full-Stack Developer building AI-integrated
+              systems and scalable infrastructure for clients worldwide.
             </p>
           </div>
 
@@ -47,7 +52,9 @@ export default function Footer() {
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                  document
+                    .querySelector(link.href)
+                    ?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="text-ash text-xs font-light hover:text-white transition-colors"
                 whileHover={{ y: -1 }}
@@ -65,7 +72,8 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-ash/50 text-xs font-light">
-            &copy; {new Date().getFullYear()} {PERSONAL.name}. Crafted with care.
+            &copy; {new Date().getFullYear()} {PERSONAL.name}. Crafted with
+            care.
           </p>
 
           {/* Social + Scroll top */}
@@ -74,7 +82,7 @@ export default function Footer() {
               <motion.a
                 key={label}
                 href={href}
-                target={href.startsWith('mailto') ? undefined : '_blank'}
+                target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={label}
                 className="text-ash/50 hover:text-cream transition-colors"
