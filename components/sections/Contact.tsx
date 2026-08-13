@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
 import {
   Github,
   Linkedin,
@@ -75,8 +73,6 @@ const contactLinks = [
 ];
 
 export default function Contact() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [copied, setCopied] = useState(false);
 
   const copyEmail = () => {
@@ -88,134 +84,91 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 lg:py-28 bg-void relative overflow-hidden"
-      ref={ref}
+      className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-iron"
     >
-      {/* Background glow */}
-      <div className="mist-glow absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[320px] opacity-50 pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
+        <div className="text-center mb-14">
           <p className="section-label mb-3">Contact</p>
-          <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight mb-5 text-balance">
-            Let's build something <span className="gradient-text">amazing</span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-4 text-balance">
+            Let's build something <span className="italic font-normal">amazing</span>
           </h2>
-          <p className="text-ash text-[13px] sm:text-base font-light max-w-lg mx-auto leading-relaxed">
+          <p className="text-obsidian/70 text-base sm:text-lg font-normal max-w-lg mx-auto leading-relaxed">
             Have a project in mind? I'm currently available for freelance work,
             full-time roles, and technical consulting. Let's talk.
           </p>
-        </motion.div>
+        </div>
 
         {/* Contact cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          {contactLinks.map((link, i) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+          {contactLinks.map((link) => {
             const Icon = link.icon;
             return (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: 24 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  delay: 0.15 + i * 0.1,
-                  duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <motion.a
+              <div key={link.label}>
+                <a
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className={`clay-card p-5 flex items-center gap-4 group hover:border-opacity-40 cursor-pointer`}
-                  whileHover={{ y: -3, scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian hover:-translate-y-1 hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
                 >
-                  <div
-                    className={`w-11 h-11 rounded-clay flex items-center justify-center flex-shrink-0 ${link.bg} border ${link.border}`}
-                  >
-                    <Icon className={`w-5 h-5 ${link.color}`} />
+                  <div className="w-12 h-12 rounded-full bg-sandstone flex items-center justify-center flex-shrink-0 border border-iron">
+                    <Icon className="w-5 h-5 text-obsidian" />
                   </div>
 
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <p className="text-ash text-[11px] sm:text-xs font-light mb-0.5">
+                      <p className="text-slate-teal text-xs font-bold mb-0.5">
                         {link.label}
                       </p>
                       {link.isNew && (
-                        <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-cream/15 border border-cream/25 text-[9px] font-medium text-cream leading-none">
-                          <Sparkles className="w-2 h-2" />
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-dusty-sky text-[10px] font-bold text-obsidian">
+                          <Sparkles className="w-2.5 h-2.5" />
                           New
                         </span>
                       )}
                     </div>
-                    <p className="text-white text-[13px] sm:text-sm font-medium truncate">
+                    <p className="text-obsidian text-sm sm:text-base font-bold truncate">
                       {link.value}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-ash group-hover:text-cream transition-colors">
-                    <span className="text-[11px] sm:text-xs font-light hidden sm:block">
+                  <div className="flex items-center gap-1.5 text-obsidian/60 group-hover:text-obsidian transition-colors">
+                    <span className="text-xs font-medium hidden sm:block">
                       {link.action}
                     </span>
-                    <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink className="w-4 h-4" />
                   </div>
-                </motion.a>
-              </motion.div>
+                </a>
+              </div>
             );
           })}
         </div>
 
         {/* Quick copy email */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="flex flex-col sm:flex-row gap-3 items-center justify-center"
-        >
-          <motion.button
+        <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+          <button
             onClick={copyEmail}
-            className="flex items-center gap-2 px-6 py-3 rounded-[12px] bg-charcoal border border-white/[0.08] text-white text-sm font-light hover:border-cream/20 transition-all group"
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-2 px-6 py-3 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal hover:scale-105 active:scale-95 transition-all shadow-sm"
           >
-            <Copy className="w-4 h-4 text-ash group-hover:text-cream transition-colors" />
-            {copied ? (
-              <span className="text-cream">Copied!</span>
-            ) : (
-              <span className="font-mono text-ash">{PERSONAL.email}</span>
-            )}
-          </motion.button>
+            <Copy className="w-4 h-4" />
+            {copied ? "Copied to clipboard!" : `Copy Email: ${PERSONAL.email}`}
+          </button>
 
-          <motion.a
+          <a
             href={`mailto:${PERSONAL.email}?subject=Project%20Inquiry`}
-            className="flex items-center gap-2 px-6 py-3 rounded-[12px] bg-cream text-void text-sm font-medium shadow-clay-cream hover:shadow-clay-hover transition-all"
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
+            className="flex items-center gap-2 px-6 py-3 rounded-full border border-iron text-obsidian text-sm font-medium hover:bg-paper-white hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-all"
           >
             <MessageCircle className="w-4 h-4" />
             Start a Conversation
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
 
         {/* Availability note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="text-center mt-10"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-charcoal border border-white/[0.06]">
-            <span className="glow-dot w-1.5 h-1.5" />
-            <span className="text-ash text-xs font-light">
-              Typically responds within 24 hours
-            </span>
-          </div>
-        </motion.div>
+        <div className="mt-12 text-center">
+          <p className="text-slate-teal text-xs font-medium">
+            ⚡ Typical response time: Under 12 hours
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -1,20 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, Sparkles } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
-
-function fadeUp(delay: number) {
-  return {
-    initial: { opacity: 0, y: 24 },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: { delay, duration: 0.65, ease: "easeOut" as const },
-    },
-  };
-}
 
 export default function Hero() {
   const scrollToNext = () => {
@@ -24,33 +12,15 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-void py-24 lg:py-0"
+      className="relative min-h-screen flex items-center overflow-hidden bg-paper-white py-24 lg:py-0"
     >
       {/* ── Background layer ──────────────────────────────────────── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Warm mist bloom — left-biased to counterweight the right panel */}
         <div
-          className="absolute top-1/2 left-[20%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full"
+          className="absolute top-1/2 left-[20%] -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-40"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(91,124,153,0.07) 0%, transparent 70%)",
-          }}
-        />
-        {/* Blueprint dot grid — very subtle */}
-        <div
-          className="absolute inset-0 opacity-[0.018]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(255,237,210,0.6) 1px, transparent 1px)",
-            backgroundSize: "36px 36px",
-          }}
-        />
-        {/* Thin horizontal rule at viewport center */}
-        <div
-          className="absolute top-1/2 left-0 right-0 h-px opacity-[0.04]"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, rgba(255,237,210,0.6) 40%, rgba(255,237,210,0.6) 60%, transparent 100%)",
+              "radial-gradient(ellipse at center, rgba(197,213,232,0.4) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -60,38 +30,36 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-12 items-center min-h-[calc(100vh-80px)]">
           {/* ─── LEFT COLUMN: Identity & CTAs ─────────────────────── */}
           <div className="flex flex-col justify-center text-left">
-            {/* Status pill */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-charcoal border border-cream/10 mb-7 self-start animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:100ms]"
-            >
-              <span className="glow-dot" />
-              <span className="text-cream text-[11px] sm:text-xs font-light tracking-wide">
-                Open to freelance projects
+            {/* Authentic Engineering Status Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-lg bg-bone border border-iron mb-7 self-start shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[11px] font-mono font-semibold text-obsidian uppercase tracking-wider">
+                Available for Hire
               </span>
-              <Sparkles className="w-3 h-3 text-cream opacity-50" />
+              <span className="text-iron">|</span>
+              <span className="text-obsidian/70 text-xs font-medium">
+                Full-Stack & AI Engineer
+              </span>
             </div>
 
             {/* Headline */}
-            <h1
-              className="font-display text-[2.15rem] sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black leading-[1.06] tracking-tight mb-5 text-white animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:200ms]"
-            >
-              Turning ideas into <span className="gradient-text">products</span>{" "}
+            <h1 className="font-serif text-[2.5rem] sm:text-6xl md:text-7xl xl:text-[4.75rem] font-bold leading-[0.98] tracking-[-0.045em] mb-6 text-obsidian">
+              Turning ideas into{" "}
+              <span className="underline decoration-iron underline-offset-8">
+                products
+              </span>{" "}
               <br className="hidden sm:block" />
-              that grow <span className="gradient-text">revenue.</span>
+              that grow <span className="italic font-normal">revenue.</span>
             </h1>
 
-            {/* Sub-headline */}
-
             {/* Identity statement */}
-            <p
-              className="text-ash/70 text-[13px] sm:text-sm font-light max-w-md mb-6 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:380ms]"
-            >
+            <p className="text-obsidian/70 text-base sm:text-lg font-normal max-w-md mb-6 leading-relaxed">
               Backend-focused Full-Stack Developer building AI-integrated
               systems and scalable infrastructure for clients worldwide.
             </p>
 
             {/* What makes me different — three compact pills */}
-            <div className="flex flex-wrap gap-2 mb-7 animate-in fade-in slide-in-from-bottom-6 duration-700 fill-mode-both [animation-delay:450ms]">
+            <div className="flex flex-wrap gap-2 mb-8">
               {[
                 "Distributed Systems",
                 "AI / RAG Pipelines",
@@ -99,20 +67,17 @@ export default function Hero() {
               ].map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full text-[11px] font-mono tracking-wide text-ash/70 border border-white/[0.07] bg-white/[0.025]"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-slate-teal border border-iron bg-bone"
                 >
-                  <span className="w-1 h-1 rounded-full bg-cream/30 flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                   {tag}
                 </span>
               ))}
             </div>
 
             {/* CTAs */}
-            <motion.div
-              {...fadeUp(0.52)}
-              className="flex flex-wrap items-center gap-3 mb-8"
-            >
-              <motion.a
+            <div className="flex flex-wrap items-center gap-3 mb-8">
+              <a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
@@ -120,25 +85,15 @@ export default function Hero() {
                     .querySelector("#projects")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] bg-cream text-void text-xs sm:text-sm font-medium shadow-clay-cream hover:shadow-clay-hover transition-all duration-300"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal hover:scale-[1.03] hover:-translate-y-0.5 active:scale-95 transition-all duration-300"
               >
                 View Projects
-                <motion.span
-                  className="inline-block"
-                  animate={{ x: [0, 3, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 2.2,
-                    ease: "easeInOut",
-                  }}
-                >
+                <span className="inline-block transition-transform duration-200">
                   →
-                </motion.span>
-              </motion.a>
+                </span>
+              </a>
 
-              <motion.a
+              <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
@@ -146,114 +101,72 @@ export default function Hero() {
                     .querySelector("#contact")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="items-center hidden md:flex gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-[12px] border border-white/[0.08] text-white text-xs sm:text-sm font-light hover:bg-white/[0.03] hover:border-cream/20 transition-all duration-300"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+                className="items-center hidden md:flex gap-2 px-6 py-3 rounded-full border border-iron text-obsidian text-sm font-medium hover:bg-bone hover:scale-[1.03] hover:-translate-y-0.5 active:scale-95 transition-all duration-300"
               >
-                <Mail className="w-4 h-4 text-ash" />
+                <Mail className="w-4 h-4 text-obsidian/70" />
                 Let&apos;s Talk
-              </motion.a>
+              </a>
 
-              <motion.a
+              <a
                 href={PERSONAL.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] border border-white/[0.08] text-ash text-xs sm:text-sm font-light hover:bg-white/[0.03] hover:text-white hover:border-cream/20 transition-all duration-300"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+                className="flex items-center gap-2 px-6 py-3 rounded-full border border-iron text-obsidian text-sm font-medium hover:bg-bone hover:scale-[1.03] hover:-translate-y-0.5 active:scale-95 transition-all duration-300"
               >
                 Resume
-              </motion.a>
-            </motion.div>
+              </a>
+            </div>
 
             {/* Social row */}
-            <motion.div {...fadeUp(0.6)} className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
               <span className="text-ash/30 text-[11px] sm:text-xs font-light">
                 Find me on
               </span>
               <div className="flex items-center gap-3">
-                <motion.a
+                <a
                   href={PERSONAL.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light transition-colors"
-                  whileHover={{ y: -2 }}
+                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light hover:-translate-y-0.5 transition-all"
                 >
                   <Github className="w-3.5 h-3.5" />
                   GitHub
-                </motion.a>
+                </a>
                 <span className="w-px h-3 bg-white/[0.08]" />
-                <motion.a
+                <a
                   href={PERSONAL.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light transition-colors"
-                  whileHover={{ y: -2 }}
+                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light hover:-translate-y-0.5 transition-all"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                   LinkedIn
-                </motion.a>
+                </a>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* ─── RIGHT COLUMN: Workflow Timeline ──────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-            className="w-full relative"
-          >
-            {/* Glass card frame */}
-            <div
-              className="relative rounded-[22px] overflow-hidden p-6 sm:p-7"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(31,31,31,0.6) 0%, rgba(13,13,13,0.5) 100%)",
-                border: "1px solid rgba(255,237,210,0.06)",
-                boxShadow: 'none',
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              {/* Faint corner accent lines — blueprint feel */}
-              <span className="absolute top-4 left-4 w-6 h-6 border-t border-l border-cream/10 rounded-tl-sm pointer-events-none" />
-              <span className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-cream/10 rounded-br-sm pointer-events-none" />
+          <div className="relative lg:pl-4">
+            <WorkflowCanvas />
+          </div>
 
-              <WorkflowCanvas />
-            </div>
-
-            {/* Subtle radial glow behind the card */}
-            <div
-              className="absolute -inset-8 -z-10 rounded-full opacity-30 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 60% 50%, rgba(91,124,153,0.12) 0%, transparent 70%)",
-              }}
-            />
-          </motion.div>
         </div>
       </div>
 
       {/* ── Scroll indicator ─────────────────────────────────────── */}
-      <motion.button
+      <button
         onClick={scrollToNext}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ash/40 hover:text-ash/70 transition-colors"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        whileHover={{ scale: 1.1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-ash/40 hover:text-ash/70 hover:scale-110 transition-all group"
         aria-label="Scroll down"
       >
         <span className="text-[9px] font-mono tracking-[0.2em] uppercase">
           Scroll
         </span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-        >
+        <div className="animate-bounce">
           <ArrowDown className="w-3.5 h-3.5" />
-        </motion.div>
-      </motion.button>
+        </div>
+      </button>
     </section>
   );
 }

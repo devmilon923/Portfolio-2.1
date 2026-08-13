@@ -54,18 +54,15 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-20 lg:py-28 bg-void relative overflow-hidden"
+      className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-iron"
     >
-      {/* Background glow */}
-      <div className="mist-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[320px] opacity-50 pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div>
             <p className="section-label mb-3">Testimonials</p>
-            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight text-balance">
-              What clients <span className="gradient-text">say</span>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] text-balance">
+              What clients <span className="italic font-normal">say</span>
             </h2>
           </div>
 
@@ -74,14 +71,14 @@ export default function Testimonials() {
             <div className="flex gap-2">
               <button
                 onClick={scrollPrev}
-                className="w-10 h-10 rounded-clay bg-charcoal border border-white/[0.08] flex items-center justify-center text-ash hover:text-white hover:border-cream/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-paper-white border border-iron flex items-center justify-center text-obsidian hover:bg-obsidian hover:text-paper-white transition-colors"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={scrollNext}
-                className="w-10 h-10 rounded-clay bg-charcoal border border-white/[0.08] flex items-center justify-center text-ash hover:text-white hover:border-cream/20 transition-colors"
+                className="w-10 h-10 rounded-full bg-paper-white border border-iron flex items-center justify-center text-obsidian hover:bg-obsidian hover:text-paper-white transition-colors"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -94,16 +91,16 @@ export default function Testimonials() {
           <>
             {/* Carousel */}
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex py-3 -ml-3">
+              <div className="flex py-3 -ml-4">
                 {TESTIMONIALS.map((t) => (
                   <div
                     key={t.id}
-                    className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-3"
+                    className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4"
                   >
-                    <div className="clay-card p-6 h-full flex flex-col hover:-translate-y-1 transition-transform duration-200">
+                    <div className="bg-paper-white border border-iron rounded-2xl p-6 h-full flex flex-col hover:border-obsidian transition-all shadow-sm">
                       {/* Quote icon */}
-                      <div className="w-8 h-8 rounded-lg bg-cream/10 flex items-center justify-center mb-4">
-                        <Quote className="w-4 h-4 text-cream" />
+                      <div className="w-8 h-8 rounded-full bg-sandstone flex items-center justify-center mb-4 border border-iron">
+                        <Quote className="w-4 h-4 text-obsidian" />
                       </div>
 
                       {/* Rating */}
@@ -112,26 +109,26 @@ export default function Testimonials() {
                       </div>
 
                       {/* Review */}
-                      <p className="text-white/80 text-[13px] sm:text-sm font-light leading-relaxed flex-1 mb-6 italic">
+                      <p className="text-obsidian/80 text-sm font-normal leading-relaxed flex-1 mb-6 italic">
                         "{t.text}"
                       </p>
 
                       {/* Client */}
-                      <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-                        <div className="w-9 h-9 rounded-full bg-cream/10 border border-cream/15 flex items-center justify-center">
-                          <span className="text-cream text-[11px] sm:text-xs font-medium">
+                      <div className="flex items-center gap-3 pt-4 border-t border-iron">
+                        <div className="w-9 h-9 rounded-full bg-sandstone border border-iron flex items-center justify-center">
+                          <span className="text-obsidian text-xs font-bold">
                             {t.avatar}
                           </span>
                         </div>
                         <div>
-                          <p className="text-white text-[13px] sm:text-sm font-medium leading-tight">
+                          <p className="text-obsidian text-sm font-bold leading-tight">
                             {t.name}
                           </p>
-                          <p className="text-ash text-[11px] sm:text-xs font-light">
+                          <p className="text-obsidian/70 text-xs font-normal">
                             {t.position}, {t.company}
                           </p>
                         </div>
-                        <span className="ml-auto text-ash/40 text-[11px] sm:text-xs font-light">
+                        <span className="ml-auto text-slate-teal text-xs font-medium">
                           {t.country}
                         </span>
                       </div>
@@ -142,13 +139,13 @@ export default function Testimonials() {
             </div>
 
             {/* Dots */}
-            <div className="flex justify-center gap-1.5 mt-8">
+            <div className="flex justify-center gap-2 mt-8">
               {TESTIMONIALS.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => emblaApi?.scrollTo(i)}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    i === selectedIndex ? "w-6 bg-cream" : "w-1.5 bg-white/20"
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === selectedIndex ? "w-8 bg-obsidian" : "w-2 bg-iron"
                   }`}
                   aria-label={`Go to testimonial ${i + 1}`}
                 />
@@ -157,14 +154,14 @@ export default function Testimonials() {
           </>
         ) : (
           /* Maintenance state */
-          <div className="clay-card flex flex-col items-center justify-center text-center py-16 px-6">
-            <div className="w-12 h-12 rounded-full bg-cream/10 border border-cream/15 flex items-center justify-center mb-5">
-              <Construction className="w-5 h-5 text-cream" />
+          <div className="bg-paper-white border border-iron rounded-[32px] flex flex-col items-center justify-center text-center py-16 px-6 shadow-sm">
+            <div className="w-12 h-12 rounded-full bg-sandstone border border-iron flex items-center justify-center mb-5">
+              <Construction className="w-5 h-5 text-obsidian" />
             </div>
-            <h3 className="text-white text-lg font-medium mb-2">
+            <h3 className="text-obsidian font-serif text-2xl font-bold mb-2">
               Testimonials are getting an upgrade
             </h3>
-            <p className="text-ash text-sm font-light leading-relaxed max-w-md">
+            <p className="text-obsidian/70 text-base font-normal leading-relaxed max-w-md">
               We&apos;re currently connecting this section to our backend to
               keep client reviews fresh and up to date. Please check back
               shortly.

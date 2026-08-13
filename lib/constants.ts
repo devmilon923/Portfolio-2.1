@@ -17,6 +17,32 @@ export const PERSONAL = {
     "https://drive.google.com/file/d/1PvK_85u1AuyiD-OQdLakm5oEoAaVPWkW/view?usp=drive_link",
 };
 
+export const CERTIFICATIONS = [
+  {
+    title: "Web Development",
+    issuer: "Programming Hero",
+    date: "Jun 2024",
+    credentialId: "WEB10-1794",
+    description:
+      "6-month intensive MERN stack programming covering full-stack fundamentals, REST API design, authentication patterns, and cloud deployment.",
+  },
+];
+
+export const EDUCATION = [
+  {
+    degree: "Diploma in Electrical Engineering",
+    institution: "Rumdo Institute of Modern Technology",
+    location: "Mymensingh, Bangladesh",
+    period: "2019 – 2023",
+  },
+];
+
+export const LANGUAGES = [
+  { name: "Bengali", level: "Native", comp: "100%", speak: "100%" },
+  { name: "English", level: "Fluent", comp: "90%", speak: "80%" },
+  { name: "Hindi", level: "Fluent", comp: "100%", speak: "95%" },
+];
+
 export const STATS = [
   {
     label: "Years of Experience",
@@ -47,10 +73,8 @@ export const STATS = [
 export const CLIENT_COUNTRIES = [
   { name: "United States", flag: "🇺🇸", code: "us" },
   { name: "United Kingdom", flag: "🇬🇧", code: "gb" },
-  // { name: "Canada", flag: "🇨🇦", code: "ca" },
   { name: "Australia", flag: "🇦🇺", code: "au" },
   { name: "Bangladesh", flag: "🇧🇩", code: "bd" },
-  // { name: "Germany", flag: "🇩🇪", code: "de" },
   { name: "India", flag: "🇮🇳", code: "in" },
 ];
 
@@ -60,7 +84,7 @@ export const PROJECTS = [
     name: "Word Game",
     subtitle: "Realtime Word Game Platform",
     description:
-      "A real-time multiplayer word chain game where two players join the same room and compete by entering English words that begin with the last letter of the previous word. The game automatically validates words using a Dictionary API, enforces turn-based rules, and updates scores in real time for a fair and engaging gameplay experience.",
+      "Real-time multiplayer word-chain platform engineered with event-driven WebSockets (Socket.IO). Features room-based state synchronization, turn-based timer enforcement, and automated validation via external Dictionary APIs for low-latency, cheat-resistant gameplay.",
     problem:
       "Creating a fair and seamless real-time multiplayer word game with accurate word validation, synchronized gameplay, and automatic rule enforcement.",
     contribution:
@@ -84,7 +108,7 @@ export const PROJECTS = [
     name: "Storyboard",
     subtitle: "Social Blogging Platform",
     description:
-      "A scalable social platform where creators publish stories, build audiences, and engage communities through structured content — built with a focus on performance, real-time interaction, and data integrity.",
+      "High-throughput social blogging engine built with Next.js 14 and PostgreSQL. Features cursor-based feed pagination, Redis/BullMQ background job queues for async notification processing, and OTP-authenticated Role-Based Access Control (RBAC).",
     problem:
       "Most blogging platforms sacrifice either scalability or developer experience. Storyboard needed to handle personalized feeds, threaded discussions, and async notifications without degrading under load.",
     contribution:
@@ -111,7 +135,7 @@ export const PROJECTS = [
     name: "Heirloom",
     subtitle: "AI-Powered Conversational System",
     description:
-      "An enterprise-grade AI conversational platform with dual-memory architecture — combining short-term session context with long-term semantic memory for deeply personalized, context-aware interactions.",
+      "Multi-tenant AI agent system featuring a dual-memory pipeline. Integrates OpenAI embeddings with Pinecone vector databases for long-term semantic memory retrieval, sub-second context searching, and isolated multi-session persistence.",
     problem:
       "Standard chatbots lose context between sessions and cannot personalize at scale. Heirloom required persistent memory retrieval across conversations while supporting concurrent multi-tenant sessions without cross-contamination.",
     contribution:
@@ -253,43 +277,36 @@ export const TECH_STACK = [
   {
     name: "React",
     category: "frontend",
-    usage: "Building component-driven UIs with hooks and state management",
     icon: "⚛️",
   },
   {
     name: "Next.js",
     category: "frontend",
-    usage: "Full-stack React apps with SSR, API routes, and app router",
     icon: "▲",
   },
   {
     name: "TypeScript",
     category: "frontend",
-    usage: "Strongly typed codebases for safer, more maintainable code",
     icon: "TS",
   },
   {
     name: "JavaScript",
     category: "frontend",
-    usage: "Core language for both client and server-side development",
     icon: "JS",
   },
   {
     name: "Tailwind CSS",
     category: "frontend",
-    usage: "Utility-first styling for rapid, consistent UI development",
     icon: "🎨",
   },
   {
     name: "React Query",
     category: "frontend",
-    usage: "Server-state management, caching, and async data fetching",
     icon: "RQ",
   },
   {
     name: "Shadcn UI",
     category: "frontend",
-    usage: "Accessible component library for production-ready UIs",
     icon: "◻",
   },
 
@@ -297,67 +314,56 @@ export const TECH_STACK = [
   {
     name: "Node.js",
     category: "backend",
-    usage: "High-performance server runtime for scalable APIs",
     icon: "🟢",
   },
   {
     name: "Express.js",
     category: "backend",
-    usage: "Minimal web framework for building REST APIs",
     icon: "Ex",
   },
   {
     name: "Socket.IO",
     category: "backend",
-    usage: "Real-time bidirectional communication for live features",
     icon: "⚡",
   },
   {
     name: "BullMQ",
     category: "backend",
-    usage: "Reliable job queues for async background processing",
     icon: "📋",
   },
   {
     name: "GraphQL",
     category: "backend",
-    usage: "Flexible query language for data-driven APIs",
     icon: "◉",
   },
   {
     name: "PostgreSQL",
     category: "backend",
-    usage: "Relational database with complex query and indexing needs",
     icon: "🐘",
   },
   {
     name: "MongoDB",
     category: "backend",
-    usage: "Flexible document store for dynamic, schema-free data",
     icon: "🍃",
   },
   {
     name: "Redis",
     category: "backend",
-    usage: "In-memory caching, session store, and pub/sub messaging",
     icon: "🔴",
   },
   {
     name: "Prisma",
     category: "backend",
-    usage: "Type-safe ORM for PostgreSQL with migration management",
     icon: "◇",
   },
   {
     name: "Pinecone",
     category: "backend",
-    usage: "Vector database for semantic search and RAG systems",
     icon: "🔍",
   },
   {
     name: "OpenAI API",
     category: "backend",
-    usage: "LLM integration for AI features, embeddings, and RAG",
     icon: "🤖",
   },
 
@@ -365,45 +371,36 @@ export const TECH_STACK = [
   {
     name: "AWS EC2",
     category: "deployment",
-    usage: "Provisioning and managing production Linux servers",
     icon: "☁️",
   },
   {
     name: "Docker",
     category: "deployment",
-    usage: "Containerizing applications for consistent deployments",
     icon: "🐳",
   },
   {
     name: "Nginx",
     category: "deployment",
-    usage: "Reverse proxy, load balancing, and SSL termination",
     icon: "⚙️",
   },
   {
     name: "GitHub Actions",
     category: "deployment",
-    usage: "Automated CI/CD pipelines for zero-touch deployments",
     icon: "🔄",
   },
   {
     name: "Vercel",
     category: "deployment",
-    usage: "Zero-config deployment platform for Next.js projects",
     icon: "▲",
   },
   {
     name: "AWS S3",
     category: "deployment",
-    usage:
-      "Object storage for media uploads, backups, and static asset delivery via SDK",
     icon: "🪣",
   },
   {
     name: "Linux",
     category: "deployment",
-    usage:
-      "Server administration, shell scripting, and production environment management",
     icon: "🐧",
   },
 ];

@@ -21,18 +21,16 @@ export default function SmoothScrollProvider({
 
   useEffect(() => {
     const lenis = new Lenis({
-      // How quickly the scroll "catches up" to the pointer.
-      // 0.06–0.1 is the sweet-spot for a premium feel.
-      lerp: 0.075,
-      // Multiplier for wheel/trackpad scroll speed.
-      wheelMultiplier: 1.0,
-      // Multiplier for touch scroll speed.
-      touchMultiplier: 1.5,
-      // Infinity = unlimited scroll distance per event.
+      // Snappier lerp (0.13) eliminates scroll lag/heaviness for a lightweight, responsive feel
+      lerp: 0.13,
+      // Increased wheel multiplier for immediate, responsive feedback
+      wheelMultiplier: 1.15,
+      // Responsive touch scroll multiplier
+      touchMultiplier: 1.8,
+      // Exponential decay easing for instant start & silky deceleration
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       infinite: false,
-      // Keeps the scroll direction natural (not inverted).
       gestureOrientation: "vertical",
-      // Smooth wheel on all devices (true = uses lerp for wheel too).
       smoothWheel: true,
     });
 

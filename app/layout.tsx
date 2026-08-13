@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Archivo_Black } from "next/font/google";
+import { Inter, Archivo_Black, Playfair_Display, Caveat } from "next/font/google";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const inter = Inter({
@@ -14,6 +14,20 @@ const archivoBl = Archivo_Black({
   subsets: ["latin"],
   variable: "--font-archivo",
   weight: "400",
+  display: "swap",
+});
+
+const fontSerif = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+const fontCaveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -51,12 +65,21 @@ export const metadata: Metadata = {
     description:
       "Backend-focused Full-Stack Developer specializing in AI-integrated systems and scalable infrastructure.",
     siteName: "Milon Mia Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Milon Mia — Full-Stack & AI Developer Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Milon Mia — Full-Stack Developer",
     description:
       "Backend-focused Full-Stack Developer specializing in AI-integrated systems and scalable infrastructure.",
+    images: ["/og-image.png"],
   },
 };
 
@@ -105,9 +128,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="light">
       <body
-        className={`${inter.variable} ${archivoBl.variable} font-sans antialiased`}
+        className={`${inter.variable} ${archivoBl.variable} ${fontSerif.variable} ${fontCaveat.variable} font-sans antialiased`}
       >
         <script
           type="application/ld+json"

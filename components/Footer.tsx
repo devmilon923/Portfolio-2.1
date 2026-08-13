@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 
@@ -22,23 +21,23 @@ export default function Footer() {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="bg-charcoal border-t border-white/[0.05] py-12 relative">
+    <footer className="bg-paper-white border-t border-iron py-12 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg bg-cream flex items-center justify-center shadow-clay-sm">
-                <span className="font-display text-void text-sm font-black leading-none">
-                  M
+              <div className="w-7 h-7 rounded-full bg-obsidian flex items-center justify-center">
+                <span className="font-serif text-paper-white text-xs font-bold leading-none">
+                  DM
                 </span>
               </div>
-              <span className="text-white font-medium text-sm tracking-tight">
+              <span className="text-obsidian font-serif font-bold text-base tracking-tight">
                 {PERSONAL.name}
               </span>
             </div>
-            <p className="text-ash text-[11px] sm:text-xs font-light max-w-xs leading-relaxed">
+            <p className="text-obsidian/70 text-xs font-normal max-w-xs leading-relaxed">
               Backend-focused Full-Stack Developer building AI-integrated
               systems and scalable infrastructure for clients worldwide.
             </p>
@@ -47,7 +46,7 @@ export default function Footer() {
           {/* Nav links */}
           <nav className="flex flex-wrap gap-x-6 gap-y-2">
             {NAV.map((link) => (
-              <motion.a
+              <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => {
@@ -56,54 +55,49 @@ export default function Footer() {
                     .querySelector(link.href)
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="text-ash text-[11px] sm:text-xs font-light hover:text-white transition-colors"
-                whileHover={{ y: -1 }}
+                className="text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-all duration-200"
               >
                 {link.label}
-              </motion.a>
+              </a>
             ))}
           </nav>
         </div>
 
         {/* Divider */}
-        <div className="cream-line mb-8" />
+        <div className="w-full h-px bg-iron mb-8" />
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <p className="text-ash/70 text-[11px] sm:text-xs font-light">
+          <p className="text-obsidian/60 text-xs font-normal">
             &copy; {new Date().getFullYear()} {PERSONAL.name}. Crafted with
-            care.
+            editorial precision.
           </p>
 
           {/* Social + Scroll top */}
           <div className="flex items-center gap-4">
             {SOCIAL.map(({ icon: Icon, href, label }) => (
-              <motion.a
+              <a
                 key={label}
                 href={href}
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="text-ash/70 hover:text-cream transition-colors"
-                whileHover={{ y: -2, scale: 1.15 }}
-                whileTap={{ scale: 0.9 }}
+                className="text-obsidian/70 hover:text-obsidian hover:-translate-y-0.5 hover:scale-110 active:scale-90 transition-all duration-200"
               >
                 <Icon className="w-4 h-4" />
-              </motion.a>
+              </a>
             ))}
 
-            <span className="w-px h-4 bg-white/[0.08]" />
+            <span className="w-px h-4 bg-iron" />
 
-            <motion.button
+            <button
               onClick={scrollTop}
-              className="w-7 h-7 rounded-lg bg-void border border-white/[0.08] flex items-center justify-center text-ash hover:text-cream hover:border-cream/20 transition-colors"
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.93 }}
+              className="w-8 h-8 rounded-full bg-bone border border-iron flex items-center justify-center text-obsidian hover:bg-obsidian hover:text-paper-white hover:scale-110 hover:-translate-y-0.5 active:scale-90 transition-all duration-200"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-3.5 h-3.5" />
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>
