@@ -39,8 +39,8 @@ export const EDUCATION = [
 
 export const LANGUAGES = [
   { name: "Bengali", level: "Native", comp: "100%", speak: "100%" },
-  { name: "English", level: "Fluent", comp: "90%", speak: "80%" },
-  { name: "Hindi", level: "Fluent", comp: "100%", speak: "95%" },
+  { name: "English", level: "Conversational", comp: "85%", speak: "70%" },
+  { name: "Hindi", level: "Fluent", comp: "100%", speak: "90%" },
 ];
 
 export const STATS = [
