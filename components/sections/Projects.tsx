@@ -2,6 +2,9 @@
 
 import { ExternalLink, Github, ArrowUpRight, Sparkles } from "lucide-react";
 import { PROJECTS } from "@/lib/constants";
+import Link from "next/link";
+
+import GithubCTAButton from "@/components/sections/GithubCTAButton";
 
 export default function Projects() {
   return (
@@ -151,18 +154,7 @@ export default function Projects() {
         </div>
 
         {/* GitHub CTA */}
-        <div className="text-center mt-16">
-          <a
-            href="https://github.com/devmilon923"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-obsidian text-sm font-medium hover:bg-deep-teal hover:text-paper-white hover:scale-105 hover:-translate-y-0.5 active:scale-95 transition-all group px-6 py-3 rounded-full bg-bone border border-iron shadow-sm"
-          >
-            <Github className="w-4 h-4" />
-            See more on GitHub
-            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
-        </div>
+        <GithubCTAButton />
       </div>
     </section>
   );

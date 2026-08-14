@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Menu, X, Download } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
+import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -190,7 +191,31 @@ export default function Navbar() {
             </nav>
 
             {/* CTA + Mobile toggle */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
+              {/* Seamless WhatsApp Button */}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={PERSONAL.whatsapp}
+                className="relative flex items-center justify-center w-8 sm:w-9 h-8 sm:h-9 rounded-full bg-paper-white border border-iron hover:border-emerald-500/50 hover:bg-emerald-50/40 transition-all duration-300 hover:scale-105 active:scale-95 shadow-xs overflow-hidden group/wa"
+                aria-label="Chat on WhatsApp"
+                title="Chat on WhatsApp (+88 013 3079-2338)"
+              >
+                {/* Soft ambient hover glow */}
+                <span className="absolute inset-0 rounded-full bg-emerald-500/10 opacity-0 group-hover/wa:opacity-100 transition-opacity duration-300" />
+                <div className="w-5.5 h-5.5 sm:w-6 sm:h-6 rounded-full overflow-hidden flex items-center justify-center relative z-10">
+                  <Image
+                    src="/whatsapp.gif"
+                    alt="WhatsApp"
+                    width={24}
+                    height={24}
+                    className="w-full h-full object-cover mix-blend-multiply scale-110 group-hover/wa:scale-125 transition-transform duration-300"
+                    unoptimized
+                  />
+                </div>
+              </a>
+
+              {/* Resume Button */}
               <a
                 target="_blank"
                 href={PERSONAL.resumeUrl}
@@ -253,14 +278,34 @@ export default function Navbar() {
                 </a>
               );
             })}
-            <a
-              target="_blank"
-              href={PERSONAL.resumeUrl}
-              className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-obsidian text-paper-white text-sm font-medium"
-            >
-              <Download className="w-4 h-4" />
-              Download Resume
-            </a>
+            <div className="grid grid-cols-2 gap-2 mt-2">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={PERSONAL.whatsapp}
+                className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-emerald-600 text-paper-white text-xs font-medium hover:bg-emerald-700 transition-colors shadow-xs"
+              >
+                <div className="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white/20 p-0.5">
+                  <Image
+                    src="/whatsapp.gif"
+                    alt="WhatsApp"
+                    width={20}
+                    height={20}
+                    className="w-full h-full object-cover mix-blend-multiply scale-110"
+                    unoptimized
+                  />
+                </div>
+                WhatsApp
+              </a>
+              <a
+                target="_blank"
+                href={PERSONAL.resumeUrl}
+                className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-full bg-obsidian text-paper-white text-xs font-medium"
+              >
+                <Download className="w-3.5 h-3.5" />
+                Resume
+              </a>
+            </div>
           </nav>
         </div>
       )}

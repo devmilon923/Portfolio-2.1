@@ -3,6 +3,7 @@
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
+import Link from "next/link";
 
 export default function Hero() {
   const scrollToNext = () => {
@@ -123,25 +124,25 @@ export default function Hero() {
                 Find me on
               </span>
               <div className="flex items-center gap-3">
-                <a
+                <Link
                   href={PERSONAL.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light hover:-translate-y-0.5 transition-all"
+                  className="flex items-center gap-1.5 text-ash/70 text-[11px] sm:text-xs font-light hover:-translate-y-0.5 transition-all"
                 >
                   <Github className="w-3.5 h-3.5" />
                   GitHub
-                </a>
+                </Link>
                 <span className="w-px h-3 bg-white/[0.08]" />
-                <a
+                <Link
                   href={PERSONAL.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-ash/70 hover:text-white text-[11px] sm:text-xs font-light hover:-translate-y-0.5 transition-all"
+                  className="flex items-center gap-1.5 text-ash/70 text-[11px] sm:text-xs font-light hover:-translate-y-0.5 transition-all"
                 >
                   <Linkedin className="w-3.5 h-3.5" />
                   LinkedIn
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -150,7 +151,6 @@ export default function Hero() {
           <div className="relative lg:pl-4">
             <WorkflowCanvas />
           </div>
-
         </div>
       </div>
 

@@ -15,6 +15,7 @@ export const PERSONAL = {
     "https://www.upwork.com/freelancers/~01bd608f5c07cb250e?mp_source=share",
   resumeUrl:
     "https://drive.google.com/file/d/1PvK_85u1AuyiD-OQdLakm5oEoAaVPWkW/view?usp=drive_link",
+  whatsapp: "https://wa.me/8801330792338",
 };
 
 export const CERTIFICATIONS = [
