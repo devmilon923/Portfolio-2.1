@@ -13,17 +13,6 @@ interface Orb {
   phase: number;
 }
 
-interface Sparkle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-  alpha: number;
-  decay: number;
-  color: string;
-  char: string;
-}
 
 export default function BackgroundParticles() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -80,27 +69,26 @@ export default function BackgroundParticles() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
 
-    // Glowing Ambient Orbs (Warm Golden Yellow, Amber & Dark Crimson Red)
+    // Glowing Ambient Orbs (Warm Subtle Golden Amber & Muted Tones)
     let orbs: Orb[] = [];
     const orbColors = [
-      { core: "rgba(217, 119, 6, 0.22)", glow: "rgba(217, 119, 6, 0)" },   // warm golden amber
-      { core: "rgba(185, 28, 28, 0.18)", glow: "rgba(185, 28, 28, 0)" },   // dark crimson red
-      { core: "rgba(245, 158, 11, 0.22)", glow: "rgba(245, 158, 11, 0)" }, // golden yellow
-      { core: "rgba(153, 27, 27, 0.16)", glow: "rgba(153, 27, 27, 0)" },   // deep wine red
-      { core: "rgba(231, 211, 191, 0.3)", glow: "rgba(231, 211, 191, 0)" }, // desert clay / warm tone
+      { core: "rgba(217, 119, 6, 0.08)", glow: "rgba(217, 119, 6, 0)" },   // subtle warm golden amber
+      { core: "rgba(180, 83, 9, 0.06)", glow: "rgba(180, 83, 9, 0)" },    // soft bronze
+      { core: "rgba(245, 158, 11, 0.07)", glow: "rgba(245, 158, 11, 0)" }, // soft yellow
+      { core: "rgba(231, 211, 191, 0.12)", glow: "rgba(231, 211, 191, 0)" }, // desert clay tone
     ];
 
     const initOrbs = () => {
       orbs = [];
-      const count = Math.min(Math.floor(width / 220), 7);
+      const count = Math.min(Math.floor(width / 320), 4);
       for (let i = 0; i < count; i++) {
         const colorPair = orbColors[i % orbColors.length];
         orbs.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          radius: Math.random() * 140 + 120,
+          vx: (Math.random() - 0.5) * 0.15,
+          vy: (Math.random() - 0.5) * 0.15,
+          radius: Math.random() * 120 + 100,
           color: colorPair.core,
           glowColor: colorPair.glow,
           phase: Math.random() * Math.PI * 2,
@@ -108,28 +96,36 @@ export default function BackgroundParticles() {
       }
     };
 
-    // Cursor Sparkle Dust
-    let sparkles: Sparkle[] = [];
-    const sparkleChars = ["✦", "✧", "•", "⁺", "✨"];
-    const sparkleColors = [
-      "rgba(217, 119, 6, ",   // amber gold
-      "rgba(185, 28, 28, ",   // crimson red
-      "rgba(245, 158, 11, ",  // golden yellow
-      "rgba(153, 27, 27, ",   // dark wine red
+    // Cursor Micro Dust Trail
+    interface MicroDust {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      alpha: number;
+      decay: number;
+      color: string;
+    }
+
+    let sparkles: MicroDust[] = [];
+    const dustColors = [
+      "rgba(217, 119, 6,",   // amber gold
+      "rgba(245, 158, 11,",  // golden yellow
+      "rgba(180, 83, 9,",    // subtle bronze
     ];
 
     const addSparkle = (x: number, y: number) => {
-      if (sparkles.length > 30) return;
+      if (sparkles.length > 16) return;
       sparkles.push({
-        x: x + (Math.random() - 0.5) * 10,
-        y: y + (Math.random() - 0.5) * 10,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: -Math.random() * 0.5 - 0.2,
-        size: Math.random() * 9 + 7,
-        alpha: 0.75,
-        decay: Math.random() * 0.02 + 0.015,
-        color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
-        char: sparkleChars[Math.floor(Math.random() * sparkleChars.length)],
+        x: x + (Math.random() - 0.5) * 8,
+        y: y + (Math.random() - 0.5) * 8,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: -Math.random() * 0.3 - 0.1,
+        radius: Math.random() * 1.2 + 0.8,
+        alpha: 0.5,
+        decay: Math.random() * 0.02 + 0.02,
+        color: dustColors[Math.floor(Math.random() * dustColors.length)],
       });
     };
 
@@ -167,7 +163,7 @@ export default function BackgroundParticles() {
         if (orb.y < -100) orb.y = height + 100;
         if (orb.y > height + 100) orb.y = -100;
 
-        const currentRadius = orb.radius + Math.sin(time + orb.phase) * 15;
+        const currentRadius = orb.radius + Math.sin(time + orb.phase) * 10;
 
         const gradient = ctx.createRadialGradient(
           orb.x,
@@ -184,23 +180,9 @@ export default function BackgroundParticles() {
         ctx.beginPath();
         ctx.arc(orb.x, orb.y, currentRadius, 0, Math.PI * 2);
         ctx.fill();
-
-        // Magnetic laser light beam connecting cursor to nearby energy orb
-        const dx = mouseX - orb.x;
-        const dy = mouseY - orb.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 260) {
-          const lineAlpha = (1 - dist / 260) * 0.18;
-          ctx.beginPath();
-          ctx.moveTo(orb.x, orb.y);
-          ctx.lineTo(mouseX, mouseY);
-          ctx.strokeStyle = `rgba(217, 119, 6, ${lineAlpha})`;
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        }
       }
 
-      // 2. Render Interactive Cursor Sparkle Dust Trail
+      // 2. Render Interactive Micro Dust Trail
       for (let i = sparkles.length - 1; i >= 0; i--) {
         const s = sparkles[i];
         s.x += s.vx;
@@ -212,9 +194,10 @@ export default function BackgroundParticles() {
           continue;
         }
 
-        ctx.font = `${s.size}px sans-serif`;
         ctx.fillStyle = `${s.color}${s.alpha})`;
-        ctx.fillText(s.char, s.x, s.y);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       animationFrameId = requestAnimationFrame(render);
