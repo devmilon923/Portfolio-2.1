@@ -53,6 +53,18 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", updatePill);
   }, [activeSection]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   // Throttled 60fps scroll detection
   useEffect(() => {
     let ticking = false;
@@ -253,61 +265,70 @@ export default function Navbar() {
 
       {/* Floating Mobile menu */}
       {mobileOpen && (
-        <div className="fixed top-18 sm:top-20 left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-40 bg-paper-white/98 backdrop-blur-xl border border-iron rounded-3xl md:hidden shadow-xl p-3 animate-in fade-in zoom-in-95 duration-200">
-          <nav className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => {
-              const isActive = activeSection === link.href;
-              return (
+        <>
+          {/* Backdrop Overlay */}
+          <div
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 z-40 bg-obsidian/30 backdrop-blur-xs md:hidden animate-in fade-in duration-200"
+          />
+
+          {/* Floating Mobile menu card */}
+          <div className="fixed top-[4.25rem] sm:top-[4.75rem] left-1/2 -translate-x-1/2 w-[90%] max-w-xs z-50 bg-paper-white/98 backdrop-blur-xl border border-iron rounded-2xl md:hidden shadow-xl p-2.5 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-3 duration-200">
+            <nav className="flex flex-col gap-0.5">
+              {NAV_LINKS.map((link) => {
+                const isActive = activeSection === link.href;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    }}
+                    className={`px-3 py-2 text-xs font-medium rounded-xl transition-all flex items-center justify-between ${
+                      isActive
+                        ? "bg-bone text-obsidian font-semibold border border-iron/70 shadow-2xs"
+                        : "text-obsidian/80 hover:bg-bone/60 active:scale-[0.99]"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-slate-teal animate-pulse" />
+                    )}
+                  </a>
+                );
+              })}
+              <div className="grid grid-cols-2 gap-2 mt-1.5 pt-1.5 border-t border-iron/40">
                 <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  className={`px-4 py-2.5 text-sm font-medium rounded-2xl transition-colors flex items-center justify-between ${
-                    isActive
-                      ? "bg-bone text-obsidian font-semibold border border-iron/60"
-                      : "text-obsidian/80 hover:bg-bone/60"
-                  }`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={PERSONAL.whatsapp}
+                  className="flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded-xl bg-emerald-600/90 text-paper-white text-[11px] font-medium hover:bg-emerald-600 active:scale-95 transition-all shadow-2xs"
                 >
-                  <span>{link.label}</span>
-                  {isActive && (
-                    <span className="w-2 h-2 rounded-full bg-slate-teal" />
-                  )}
+                  <div className="w-3.5 h-3.5 rounded-full overflow-hidden flex items-center justify-center bg-white/20 p-0.5 shrink-0">
+                    <Image
+                      src="/whatsapp.gif"
+                      alt="WhatsApp"
+                      width={14}
+                      height={14}
+                      className="w-full h-full object-cover mix-blend-multiply scale-110"
+                      unoptimized
+                    />
+                  </div>
+                  <span>WhatsApp</span>
                 </a>
-              );
-            })}
-            <div className="grid grid-cols-2 gap-2 mt-2">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={PERSONAL.whatsapp}
-                className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-emerald-600 text-paper-white text-xs font-medium hover:bg-emerald-700 transition-colors shadow-xs"
-              >
-                <div className="w-5 h-5 rounded-full overflow-hidden flex items-center justify-center bg-white/20 p-0.5">
-                  <Image
-                    src="/whatsapp.gif"
-                    alt="WhatsApp"
-                    width={20}
-                    height={20}
-                    className="w-full h-full object-cover mix-blend-multiply scale-110"
-                    unoptimized
-                  />
-                </div>
-                WhatsApp
-              </a>
-              <a
-                target="_blank"
-                href={PERSONAL.resumeUrl}
-                className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-full bg-obsidian text-paper-white text-xs font-medium"
-              >
-                <Download className="w-3.5 h-3.5" />
-                Resume
-              </a>
-            </div>
-          </nav>
-        </div>
+                <a
+                  target="_blank"
+                  href={PERSONAL.resumeUrl}
+                  className="flex items-center justify-center gap-1 py-1.5 px-2.5 rounded-xl bg-obsidian text-paper-white text-[11px] font-medium hover:bg-deep-teal active:scale-95 transition-all shadow-2xs"
+                >
+                  <Download className="w-3 h-3 shrink-0" />
+                  <span>Resume</span>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </>
       )}
     </>
   );
