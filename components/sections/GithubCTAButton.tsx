@@ -44,86 +44,94 @@ export default function GithubCTAButton() {
     publicRepos: 68,
     followers: 6,
     avatarUrl: "https://avatars.githubusercontent.com/u/104084043?v=4",
-    lastUpdated: "Active recently",
+    lastUpdated: "Active today",
     latestRepo: {
       name: "Portfolio-2.1",
       url: "https://github.com/devmilon923/Portfolio-2.1",
       description:
-        "Personal developer portfolio built with Next.js & TypeScript.",
+        "I focused on creating an aesthetic design that reflects my design taste and development approach.",
       language: "TypeScript",
-      stars: 0,
+      stars: 1,
     },
   });
 
+  // Fetch real-time public activity on component mount
   useEffect(() => {
     let isMounted = true;
+
     const fetchGitHubProfile = async () => {
       try {
-        const [userRes, eventsRes, reposRes] = await Promise.all([
+        // 1. Fetch live profile and public events from GitHub REST API
+        const [userRes, eventsRes] = await Promise.all([
           fetch("https://api.github.com/users/devmilon923"),
           fetch(
-            "https://api.github.com/users/devmilon923/events/public?per_page=5",
-          ),
-          fetch(
-            "https://api.github.com/users/devmilon923/repos?sort=pushed&per_page=1",
+            "https://api.github.com/users/devmilon923/events/public?per_page=5"
           ),
         ]);
 
         if (userRes.ok && isMounted) {
           const userData = await userRes.json();
           let lastActivityDate = userData.updated_at;
-          let latestRepoName = "Portfolio-2.1";
-          let latestRepoUrl = "https://github.com/devmilon923/Portfolio-2.1";
-          let latestRepoDesc =
-            "Personal developer portfolio built with Next.js & TypeScript.";
-          let latestRepoLang = "TypeScript";
-          let latestRepoStars = 0;
+          let targetRepoFullName = "devmilon923/Portfolio-2.1";
 
-          // Extract real activity date from public events API
+          // Parse true latest event timestamp & active repository
           if (eventsRes.ok) {
             const events = await eventsRes.json();
             if (Array.isArray(events) && events.length > 0) {
               const firstEvent =
-                events.find((e: { type: string }) => e.type === "PushEvent") ||
-                events[0];
+                events.find(
+                  (e: { type: string }) => e.type === "PushEvent"
+                ) || events[0];
               if (firstEvent?.created_at) {
                 lastActivityDate = firstEvent.created_at;
               }
               if (firstEvent?.repo?.name) {
-                const repoShortName = firstEvent.repo.name.replace(
-                  "devmilon923/",
-                  "",
-                );
-                latestRepoName = repoShortName;
-                latestRepoUrl = `https://github.com/${firstEvent.repo.name}`;
+                targetRepoFullName = firstEvent.repo.name;
               }
             }
           }
 
-          // Extract repo metadata
-          if (reposRes.ok) {
-            const repos = await reposRes.json();
-            if (Array.isArray(repos) && repos.length > 0) {
-              const r = repos[0];
-              if (!latestRepoName || latestRepoName === "Portfolio-2.1") {
-                latestRepoName = r.name;
-                latestRepoUrl = r.html_url;
-              }
-              latestRepoDesc = r.description || latestRepoDesc;
-              latestRepoLang = r.language || "TypeScript";
-              latestRepoStars = r.stargazers_count || 0;
+          // 2. Fetch repo metadata directly for the active repository
+          let latestRepoData = {
+            name: targetRepoFullName.replace("devmilon923/", ""),
+            url: `https://github.com/${targetRepoFullName}`,
+            description:
+              "Personal developer portfolio built with Next.js & TypeScript.",
+            language: "TypeScript",
+            stars: 1,
+          };
+
+          try {
+            const repoRes = await fetch(
+              `https://api.github.com/repos/${targetRepoFullName}`
+            );
+            if (repoRes.ok) {
+              const r = await repoRes.json();
+              latestRepoData = {
+                name: r.name,
+                url: r.html_url,
+                description:
+                  r.description ||
+                  "Public GitHub repository by @devmilon923.",
+                language: r.language || "TypeScript",
+                stars: r.stargazers_count ?? 0,
+              };
             }
+          } catch (err) {
+            console.error("Repo metadata fetch error:", err);
           }
 
-          // Format relative time accurately from true event date
+          // 3. Format precise relative activity time
           const getRelativeTime = (dateString: string) => {
             const date = new Date(dateString);
             const now = new Date();
             const diffMs = Math.max(0, now.getTime() - date.getTime());
+            const diffMinutes = Math.floor(diffMs / (1000 * 60));
             const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
             const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-            if (diffHours < 1) return "Active just now";
+            if (diffMinutes < 5) return "Active just now";
+            if (diffMinutes < 60) return `Active ${diffMinutes}m ago`;
             if (diffHours < 24) return `Active ${diffHours}h ago`;
             if (diffDays === 1) return "Active yesterday";
             if (diffDays < 30) return `Active ${diffDays}d ago`;
@@ -140,13 +148,7 @@ export default function GithubCTAButton() {
               userData.avatar_url ||
               "https://avatars.githubusercontent.com/u/104084043?v=4",
             lastUpdated: getRelativeTime(lastActivityDate),
-            latestRepo: {
-              name: latestRepoName,
-              url: latestRepoUrl,
-              description: latestRepoDesc,
-              language: latestRepoLang,
-              stars: latestRepoStars,
-            },
+            latestRepo: latestRepoData,
           });
           setIsLive(true);
         }
@@ -156,6 +158,7 @@ export default function GithubCTAButton() {
     };
 
     fetchGitHubProfile();
+
     return () => {
       isMounted = false;
     };
@@ -198,7 +201,7 @@ export default function GithubCTAButton() {
           <span className="font-semibold">@devmilon923</span>
           {isLive && (
             <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded-full">
-              LIVE
+              LIVE API
             </span>
           )}
         </div>
@@ -216,7 +219,7 @@ export default function GithubCTAButton() {
           <button
             onClick={() => setShowRepoDrawer(!showRepoDrawer)}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-dusty-sky/40 hover:bg-dusty-sky/70 border border-iron text-obsidian transition-colors group cursor-pointer"
-            title="Click to view recent repo"
+            title="Click to view live recent repo"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -328,7 +331,7 @@ export default function GithubCTAButton() {
                 <GitBranch className="w-3.5 h-3.5 text-slate-teal flex-shrink-0 opacity-70 group-hover:rotate-45 transition-transform duration-300" />
               </div>
               <p className="text-[11px] sm:text-xs text-obsidian/60 font-medium truncate">
-                {githubData.publicRepos} public repos • Real-time code & commits
+                {githubData.publicRepos} public repos • Live GitHub REST API
               </p>
             </div>
           </Link>

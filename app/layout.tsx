@@ -122,6 +122,8 @@ const structuredData = {
   },
 };
 
+import BackgroundParticles from "@/components/BackgroundParticles";
+
 export default function RootLayout({
   children,
 }: {
@@ -130,12 +132,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${inter.variable} ${archivoBl.variable} ${fontSerif.variable} ${fontCaveat.variable} font-sans antialiased`}
+        className={`${inter.variable} ${archivoBl.variable} ${fontSerif.variable} ${fontCaveat.variable} font-sans antialiased relative`}
       >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <BackgroundParticles />
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>

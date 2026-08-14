@@ -22,7 +22,7 @@ import Image from "next/image";
 
 const icons = [Code2, Cpu, GitBranch, Globe];
 
-/* ─── INTERACTIVE NEURAL NETWORK CONSTELLATION MESH ─────────────────── */
+/* ─── HOLOGRAPHIC AURORA & CODE SPARKLE MESH ─────────────────── */
 function ProfileCardNeuralMesh() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const mouseRef = useRef<{ x: number | null; y: number | null }>({
@@ -44,6 +44,7 @@ function ProfileCardNeuralMesh() {
       if (!canvas) return;
       width = canvas.width = canvas.offsetWidth;
       height = canvas.height = canvas.offsetHeight;
+      initElements();
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -65,76 +66,171 @@ function ProfileCardNeuralMesh() {
     }
     window.addEventListener("resize", handleResize);
 
-    // Create 36 Neural Nodes
-    const nodes = Array.from({ length: 36 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.5,
-      vy: (Math.random() - 0.5) * 0.5,
-      radius: Math.random() * 2 + 1.2,
-      pulse: Math.random() * Math.PI * 2,
-    }));
+    interface EnergyOrb {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      color: string;
+      phase: number;
+    }
+
+    interface Sparkle {
+      x: number;
+      y: number;
+      vy: number;
+      size: number;
+      alpha: number;
+      char: string;
+    }
+
+    let orbs: EnergyOrb[] = [];
+    let sparkles: Sparkle[] = [];
+
+    const orbColors = [
+      "rgba(217, 119, 6, 0.22)",  // warm golden amber
+      "rgba(185, 28, 28, 0.2)",   // dark crimson red
+      "rgba(245, 158, 11, 0.25)", // golden yellow
+      "rgba(153, 27, 27, 0.18)",  // deep wine red
+    ];
+
+    const chars = ["✦", "✧", "•", "1", "0", "✨"];
+
+    const initElements = () => {
+      orbs = [];
+      sparkles = [];
+
+      for (let i = 0; i < 18; i++) {
+        orbs.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 25 + 15,
+          color: orbColors[i % orbColors.length],
+          phase: Math.random() * Math.PI * 2,
+        });
+      }
+
+      for (let i = 0; i < 14; i++) {
+        sparkles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vy: -Math.random() * 0.35 - 0.1,
+          size: Math.random() * 9 + 6,
+          alpha: Math.random() * 0.45 + 0.2,
+          char: chars[Math.floor(Math.random() * chars.length)],
+        });
+      }
+    };
+
+    let time = 0;
+    initElements();
+
+    let isVisible = true;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = requestAnimationFrame(render);
+        } else {
+          cancelAnimationFrame(animationFrameId);
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    if (canvas) {
+      observer.observe(canvas);
+    }
 
     const render = () => {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, width, height);
+      time += 0.02;
 
-      // Draw connecting lines between nearby nodes
-      const maxDistance = 95;
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
+      // 1. Draw glowing constellation light beams
+      for (let i = 0; i < orbs.length; i++) {
+        for (let j = i + 1; j < orbs.length; j++) {
+          const dx = orbs[i].x - orbs[j].x;
+          const dy = orbs[i].y - orbs[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < maxDistance) {
-            const alpha = (1 - dist / maxDistance) * 0.22;
+          if (dist < 115) {
+            const lineAlpha = (1 - dist / 115) * 0.18;
             ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(45, 95, 80, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.moveTo(orbs[i].x, orbs[i].y);
+            ctx.lineTo(orbs[j].x, orbs[j].y);
+            ctx.strokeStyle = `rgba(217, 119, 6, ${lineAlpha})`;
+            ctx.lineWidth = 0.9;
             ctx.stroke();
           }
         }
       }
 
-      // Connect to mouse if hovering inside the card
+      // 2. Connect laser beam to mouse cursor on card hover
       const mouse = mouseRef.current;
       if (mouse.x !== null && mouse.y !== null) {
-        nodes.forEach((node) => {
-          const dx = node.x - mouse.x!;
-          const dy = node.y - mouse.y!;
+        orbs.forEach((orb) => {
+          const dx = orb.x - mouse.x!;
+          const dy = orb.y - mouse.y!;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 130) {
-            const alpha = (1 - dist / 130) * 0.45;
+          if (dist < 140) {
+            const alpha = (1 - dist / 140) * 0.35;
             ctx.beginPath();
-            ctx.moveTo(node.x, node.y);
+            ctx.moveTo(orb.x, orb.y);
             ctx.lineTo(mouse.x!, mouse.y!);
-            ctx.strokeStyle = `rgba(20, 110, 90, ${alpha})`;
+            ctx.strokeStyle = `rgba(185, 28, 28, ${alpha})`;
             ctx.lineWidth = 1.2;
             ctx.stroke();
           }
         });
       }
 
-      // Draw and update neural nodes
-      nodes.forEach((node) => {
-        node.x += node.vx;
-        node.y += node.vy;
-        node.pulse += 0.03;
+      // 3. Render glowing energy orbs
+      for (let i = 0; i < orbs.length; i++) {
+        const orb = orbs[i];
+        orb.x += orb.vx;
+        orb.y += orb.vy;
 
-        if (node.x < 0 || node.x > width) node.vx *= -1;
-        if (node.y < 0 || node.y > height) node.vy *= -1;
+        if (orb.x < -30 || orb.x > width + 30) orb.vx *= -1;
+        if (orb.y < -30 || orb.y > height + 30) orb.vy *= -1;
 
-        const currentRadius = node.radius + Math.sin(node.pulse) * 0.4;
+        const currentRadius = orb.radius + Math.sin(time + orb.phase) * 5;
 
+        const grad = ctx.createRadialGradient(
+          orb.x,
+          orb.y,
+          0,
+          orb.x,
+          orb.y,
+          currentRadius
+        );
+        grad.addColorStop(0, orb.color);
+        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+        ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(35, 85, 70, 0.45)";
-        ctx.shadowColor = "rgba(35, 85, 70, 0.4)";
-        ctx.shadowBlur = 4;
+        ctx.arc(orb.x, orb.y, currentRadius, 0, Math.PI * 2);
         ctx.fill();
-      });
+      }
+
+      // 4. Render floating sparkles & binary symbols
+      for (let i = 0; i < sparkles.length; i++) {
+        const s = sparkles[i];
+        s.y += s.vy;
+        if (s.y < -10) {
+          s.y = height + 10;
+          s.x = Math.random() * width;
+        }
+
+        ctx.font = `${s.size}px sans-serif`;
+        ctx.fillStyle = `rgba(217, 119, 6, ${s.alpha})`;
+        ctx.fillText(s.char, s.x, s.y);
+      }
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -142,6 +238,7 @@ function ProfileCardNeuralMesh() {
     render();
 
     return () => {
+      observer.disconnect();
       if (parent) {
         parent.removeEventListener("mousemove", handleMouseMove);
         parent.removeEventListener("mouseleave", handleMouseLeave);
@@ -190,9 +287,9 @@ export default function About() {
           <div className="lg:col-span-5 flex flex-col">
             <div
               onMouseMove={handleCardMouseMove}
-              className="w-full h-full rounded-[32px] bg-paper-white border border-iron p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-sm relative group hover:border-obsidian/40 transition-colors overflow-hidden"
+              className="w-full h-full rounded-[32px] bg-paper-white border border-iron p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-sm relative group hover:border-amber-700/50 transition-all duration-500 overflow-hidden"
               style={{
-                background: `radial-gradient(500px circle at ${mousePos.x}% ${mousePos.y}%, rgba(45, 110, 90, 0.09), transparent 60%), #ffffff`,
+                background: `radial-gradient(450px circle at ${mousePos.x}% ${mousePos.y}%, rgba(217, 119, 6, 0.14), rgba(185, 28, 28, 0.08) 45%, transparent 70%), #ffffff`,
               }}
             >
               {/* Interactive Neural Network Constellation Canvas */}
@@ -202,7 +299,7 @@ export default function About() {
               <div className="relative z-10 w-full flex flex-col justify-between items-center h-full">
                 {/* Badges Header Row */}
                 <div className="w-full flex items-center justify-between gap-2 mb-3">
-                  <div className="bg-bone/90 backdrop-blur-sm border border-iron rounded-xl px-3 py-1.5 text-left shadow-xs">
+                  <div className="bg-bone/90 backdrop-blur-sm border border-iron rounded-xl px-3 py-1.5 text-left shadow-xs group-hover:border-amber-700/40 transition-colors">
                     <p className="text-obsidian text-xs font-bold leading-tight">
                       1+ Year
                     </p>
@@ -210,7 +307,7 @@ export default function About() {
                       Professional Exp.
                     </p>
                   </div>
-                  <div className="bg-bone/90 backdrop-blur-sm border border-iron rounded-xl px-3 py-1.5 text-right shadow-xs">
+                  <div className="bg-bone/90 backdrop-blur-sm border border-iron rounded-xl px-3 py-1.5 text-right shadow-xs group-hover:border-amber-700/40 transition-colors">
                     <p className="text-obsidian text-xs font-bold leading-tight">
                       AI + Full-Stack
                     </p>
@@ -221,7 +318,7 @@ export default function About() {
                 </div>
 
                 {/* Profile Image */}
-                <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-2xl bg-sandstone border border-iron flex items-center justify-center relative overflow-hidden my-2 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
+                <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-2xl bg-sandstone border-2 border-iron flex items-center justify-center relative overflow-hidden my-2 shadow-md group-hover:shadow-xl group-hover:shadow-amber-900/15 group-hover:border-amber-700/60 group-hover:scale-[1.02] transition-all duration-500">
                   <Image
                     src={meImage}
                     alt="My Profile Picture"
@@ -243,8 +340,8 @@ export default function About() {
                 </div>
 
                 {/* Status Badge */}
-                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-bone/90 backdrop-blur-sm border border-iron mt-2 shadow-xs">
-                  <span className="glow-dot w-2 h-2 bg-deep-teal" />
+                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-bone/90 backdrop-blur-sm border border-iron mt-2 shadow-xs group-hover:border-amber-700/40 transition-colors">
+                  <span className="glow-dot w-2 h-2 bg-amber-600" />
                   <span className="text-obsidian text-xs font-medium">
                     Open to Opportunities
                   </span>
