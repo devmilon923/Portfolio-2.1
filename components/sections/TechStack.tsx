@@ -22,7 +22,7 @@ export default function TechStack() {
             Tech Stack
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-paper-white tracking-[-0.045em] mb-4">
-            Tools of the <span className="italic font-normal">craft</span>
+            Tools of the <span className=" font-normal">craft</span>
           </h2>
           <p className="text-paper-white/70 text-base sm:text-lg font-normal max-w-md mx-auto leading-relaxed">
             Technologies I use daily to build, ship, and scale production

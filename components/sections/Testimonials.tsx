@@ -62,7 +62,7 @@ export default function Testimonials() {
           <div>
             <p className="section-label mb-3">Testimonials</p>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] text-balance">
-              What clients <span className="italic font-normal">say</span>
+              What clients <span className=" font-normal">say</span>
             </h2>
           </div>
 
@@ -109,7 +109,7 @@ export default function Testimonials() {
                       </div>
 
                       {/* Review */}
-                      <p className="text-obsidian/80 text-sm font-normal leading-relaxed flex-1 mb-6 italic">
+                      <p className="text-obsidian/80 text-sm font-normal leading-relaxed flex-1 mb-6 ">
                         "{t.text}"
                       </p>
 

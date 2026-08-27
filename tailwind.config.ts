@@ -10,22 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-roboto)", "ui-sans-serif", "system-ui", "sans-serif"],
         display: [
-          "var(--font-serif)",
-          "var(--font-archivo)",
-          "ui-serif",
-          "Georgia",
-          "serif",
+          "var(--font-roboto)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
         ],
         serif: [
-          "var(--font-serif)",
-          "ui-serif",
-          "Georgia",
-          "Cambria",
-          "Times New Roman",
-          "Times",
-          "serif",
+          "var(--font-roboto)",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
         ],
       },
       colors: {

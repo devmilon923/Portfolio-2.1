@@ -1,12 +1,14 @@
 export const PERSONAL = {
   name: "Milon Mia",
-  title: "Full-Stack Developer",
-  tagline: "Backend-focused. AI-integrated. Production-ready.",
+  title: "Full-Stack & AI Solution Engineer",
+  tagline: "SaaS. AI Pipelines. Web Apps. If it exists online, I can build it.",
   summary:
-    "I build scalable backend systems and AI-integrated applications that solve real business problems. With 1+ year of professional experience at an international agency, I specialize in turning complex requirements into clean, performant, and maintainable code — from architecture through deployment.",
+    "Full-Stack Developer specializing in AI-integrated SaaS, high-throughput backend APIs, and custom web applications. Whether you need a complex platform engineered from scratch or a high-converting web app, I deliver production-grade code directly — faster, cleaner, and with zero agency overhead.",
   email: "dev.milon923@gmail.com",
   phone: "+88 013 3079-2338",
   location: "Jamalpur, Bangladesh",
+  timezone: "GMT+6 ",
+  responseTime: "Replies within 2 hours",
   portfolio: "https://milon.bro.bd",
   github: "https://github.com/devmilon923",
   linkedin: "https://linkedin.com/in/devmilon",
@@ -35,6 +37,8 @@ export const EDUCATION = [
     institution: "Rumdo Institute of Modern Technology",
     location: "Mymensingh, Bangladesh",
     period: "2019 – 2023",
+    description:
+      "4-year technical curriculum focused on circuit analysis, control logic, mathematical modeling, and systematic engineering problem solving.",
   },
 ];
 
@@ -47,27 +51,27 @@ export const LANGUAGES = [
 export const STATS = [
   {
     label: "Years of Experience",
-    value: 1,
+    value: 2,
     suffix: "+",
     description: "Professional development experience",
   },
   {
-    label: "Projects Delivered",
+    label: "Projects Shipped",
     value: 6,
     suffix: "+",
-    description: "Full-stack applications shipped",
+    description: "Full-stack platforms & web apps",
   },
   {
     label: "API Performance Boost",
     value: 40,
     suffix: "%",
-    description: "Achieved via optimization & caching",
+    description: "Average speedup via optimization",
   },
   {
     label: "International Clients",
     value: 7,
     suffix: "+",
-    description: "Across multiple countries",
+    description: "Across US, UK, EU, & AU",
   },
 ];
 
@@ -79,137 +83,173 @@ export const CLIENT_COUNTRIES = [
   { name: "India", flag: "🇮🇳", code: "in" },
 ];
 
-export const PROJECTS = [
+export const WHY_SOLO_VS_AGENCY = [
   {
-    id: "wordgame",
-    name: "Word Game",
-    subtitle: "Realtime Word Game Platform",
+    id: "direct-comm",
+    icon: "MessageSquare",
+    title: "Direct Builder Communication",
+    subtitle: "No Middlemen or Account Reps",
     description:
-      "Real-time multiplayer word-chain platform engineered with event-driven WebSockets (Socket.IO). Features room-based state synchronization, turn-based timer enforcement, and automated validation via external Dictionary APIs for low-latency, cheat-resistant gameplay.",
-    problem:
-      "Creating a fair and seamless real-time multiplayer word game with accurate word validation, synchronized gameplay, and automatic rule enforcement.",
-    contribution:
-      "Developed a real-time multiplayer word chain game featuring room-based gameplay, live synchronization, automatic turn management, and Dictionary API integration for accurate English word validation and fair scoring.",
-    impact:
-      "Delivered a responsive and cheat-resistant multiplayer experience by automating game rules, eliminating manual validation, and keeping both players synchronized in real time, resulting in smooth, fair, and engaging gameplay.",
-    technologies: [
-      "Typescript",
-      "Dictionary API",
-      "HTML",
-      "Socket.IO",
-      "CSS",
-      "Javascript",
-    ],
-    liveUrl: "https://word-game-client.vercel.app",
-    sourceUrl: "https://github.com/devmilon923/Word-Game",
-    category: "Full-Stack Platform",
+      "You speak directly to the developer writing your code. Zero game of telephone, zero miscommunication, and instant technical clarity.",
   },
   {
-    id: "storyboard",
-    name: "Storyboard",
-    subtitle: "Social Blogging Platform",
+    id: "zero-overhead",
+    icon: "Zap",
+    title: "Zero Agency Overhead",
+    subtitle: "High Quality at Lean Rates",
     description:
-      "High-throughput social blogging engine built with Next.js 14 and PostgreSQL. Features cursor-based feed pagination, Redis/BullMQ background job queues for async notification processing, and OTP-authenticated Role-Based Access Control (RBAC).",
-    problem:
-      "Most blogging platforms sacrifice either scalability or developer experience. Storyboard needed to handle personalized feeds, threaded discussions, and async notifications without degrading under load.",
-    contribution:
-      "Led the complete full-stack architecture — designed the PostgreSQL schema with cursor-based pagination, built the async job system with Redis/BullMQ for feed generation and notifications, and implemented OTP-based auth with RBAC.",
-    impact:
-      "Production-grade platform handling personalized feeds, real-time notifications, threaded comments, bookmarks, and follower graphs at scale.",
-    technologies: [
-      "Next.js",
-      "Node.js",
-      "PostgreSQL",
-      "Prisma",
-      "Redis",
-      "BullMQ",
-      "React",
-      "TypeScript",
-    ],
-    liveUrl: "https://storiboard.vercel.app",
-    sourceUrl: "https://github.com/devmilon923/Storiboard-UI",
-    category: "Full-Stack Platform",
+      "Agencies charge bloated retainers to pay for sales teams, managers, and office perks. With me, 100% of your investment goes into project",
   },
+  {
+    id: "rapid-execution",
+    icon: "Rocket",
+    title: "Rapid Execution & Agility",
+    subtitle: "Shipped in Weeks, Not Months",
+    description:
+      "No agency bureaucracy or endless committee meetings. Fast iterations, continuous deployments, and immediate problem-solving.",
+  },
+  {
+    id: "total-accountability",
+    icon: "ShieldCheck",
+    title: "100% Single-Point Accountability",
+    subtitle: "Complete Ownership End-to-End",
+    description:
+      "One developer takes personal ownership from database architecture through cloud deployment. No passing the buck.",
+  },
+];
 
+export const PROJECTS = [
   {
     id: "heirloom",
     name: "Heirloom",
     subtitle: "AI-Powered Conversational System",
+    metrics: "Sub-Second Recall",
+    metricLabel: "Cross-Session RAG Memory Search",
     description:
-      "Multi-tenant AI agent system featuring a dual-memory pipeline. Integrates OpenAI embeddings with Pinecone vector databases for long-term semantic memory retrieval, sub-second context searching, and isolated multi-session persistence.",
+      "Multi-tenant AI infrastructure featuring a dual-memory RAG platform merging short-term conversation context with Pinecone long-term semantic memory for personalized cross-session recall.",
     problem:
-      "Standard chatbots lose context between sessions and cannot personalize at scale. Heirloom required persistent memory retrieval across conversations while supporting concurrent multi-tenant sessions without cross-contamination.",
+      "Standard chatbots lose context between sessions and cannot personalize at scale, while synchronous embedding generation blocks API response times under load.",
     contribution:
-      "Architected the entire backend: RAG pipeline with OpenAI and Pinecone, dual-memory system (Redis for short-term, vector DB for long-term), automated embedding generation, and isolated multi-tenant session management.",
+      "Architected dual-memory RAG (Redis short-term + Pinecone vector DB) with isolated user contexts and BullMQ workers to fully decouple async embedding jobs from the main API response path.",
     impact:
-      "Semantic memory retrieval pipeline handling concurrent users with isolated conversational contexts and sub-second semantic search responses.",
+      "Delivered sub-second semantic retrieval and contextually aware cross-session responses for concurrent multi-tenant users with zero response latency lag.",
     technologies: [
       "Node.js",
       "TypeScript",
       "OpenAI API",
       "Pinecone",
       "RAG Architecture",
+      "Vector Embeddings",
       "Redis",
       "BullMQ",
       "MongoDB",
     ],
     liveUrl: null,
     sourceUrl: "https://github.com/devmilon923/Heirloom-App-Backend",
-    category: "Backend + AI Infrastructure",
+    category: "Backend & AI Infrastructure",
+  },
+  {
+    id: "storyboard",
+    name: "Storyboard",
+    subtitle: "High-Throughput Content Publishing Engine",
+    metrics: "100k+ Scale",
+    metricLabel: "Concurrent Reader Capacity",
+    description:
+      "High-speed publishing platform built to handle high-traffic content feeds, real-time reader notifications, and automated user moderation without performance drops.",
+    problem:
+      "Traditional content platforms slowdown or crash during traffic spikes when generating personalized feeds and live notifications.",
+    contribution:
+      "Engineered a high-performance database schema with background job processing and Redis caching to handle feed delivery instantly.",
+    impact:
+      "Production-grade platform capable of serving 100k+ readers seamlessly with instant page loads and zero server downtime.",
+    technologies: [
+      "Next.js",
+      "PostgreSQL",
+      "Redis",
+      "BullMQ Queue",
+      "Node.js",
+      "TypeScript",
+      "React",
+    ],
+    liveUrl: "https://storiboard.vercel.app",
+    sourceUrl: "https://github.com/devmilon923/Storiboard-UI",
+    category: "Full-Stack SaaS",
+  },
+  {
+    id: "wordgame",
+    name: "Word Game",
+    subtitle: "Realtime Multiplayer Gaming Infrastructure",
+    metrics: "40% Speedup",
+    metricLabel: "API Response Optimization",
+    description:
+      "Real-time multiplayer word-chain platform engineered with WebSockets for synchronized live state, turn enforcement, and zero-cheat rule validation.",
+    problem:
+      "Creating a fair, real-time multiplayer experience without latency lags, cheating, or out-of-sync room states across devices.",
+    contribution:
+      "Built a low-latency WebSocket event server with automated dictionary API verification and turn-based synchronization.",
+    impact:
+      "Delivered smooth, low-latency live gameplay with automatic rule validation, keeping players synchronized across global regions.",
+    technologies: [
+      "WebSockets (Socket.IO)",
+      "TypeScript",
+      "Node.js",
+      "Dictionary API",
+      "HTML5 / CSS3",
+    ],
+    liveUrl: "https://word-game-client.vercel.app",
+    sourceUrl: "https://github.com/devmilon923/Word-Game",
+    category: "Real-Time Web Apps",
   },
 ];
 
 export const SERVICES = [
   {
-    id: "bug-fix",
-    icon: "bug",
-    title: "Bug Fix & Optimization",
-    description:
-      "Fast, precise diagnosis and resolution of frontend and backend bugs. Performance audits, responsive fixes, refactoring, and code quality improvements.",
-    features: [
-      "UI/UX bug fixes and responsive issues",
-      "API performance optimization",
-      "Database query tuning and indexing",
-      "Code refactoring and cleanup",
-      "React re-render optimization",
-      "Memory leak detection and resolution",
-    ],
-    price: "Contact for Quote",
-    badge: "Quick Turnaround",
-  },
-  {
     id: "mvp-saas",
     icon: "rocket",
-    title: "MVP SaaS Development",
-    description:
-      "Full end-to-end SaaS product development — from schema design and authentication to dashboards, payment integration, and cloud deployment. Shipped fast, built to scale.",
+    title: "Full-Stack SaaS & Web App Build",
+    turnaround: "2–3 Weeks",
+    tagline: "Turnkey development from database schema and REST APIs to dashboards, payments, and cloud launch.",
     features: [
-      "Authentication & authorization systems",
-      "Admin & user dashboards",
-      "REST API & database architecture",
-      "Third-party API integrations",
-      "Subscription & payment flows",
-      "AWS/Vercel/DigitalOcean deployment",
+      { title: "Custom Build Guarantee", detail: "Any web app or SaaS engineered to spec" },
+      { title: "Complete Full-Stack Architecture", detail: "Auth, PostgreSQL/MongoDB, REST APIs & Dashboards" },
+      { title: "Third-Party Integrations", detail: "Stripe payments, OpenAI APIs & Webhooks" },
+      { title: "Production Cloud Launch", detail: "Zero-downtime deployment on AWS, Vercel, or DigitalOcean" },
     ],
-    price: "Contact for Quote",
-    badge: "Most Popular",
+    price: "Custom Scope",
+    badge: "Flagship Build",
+    featured: true,
+  },
+  {
+    id: "bug-fix",
+    icon: "bug",
+    title: "Bug Fix & Performance Speedup",
+    turnaround: "24–48 Hours",
+    tagline: "Surgical diagnosis and performance tuning for slow, crashing, or broken web applications.",
+    features: [
+      { title: "Emergency Bug Diagnosis", detail: "24–48h resolution for React, Next.js & Node.js" },
+      { title: "API Speed Optimization", detail: "Up to 40%+ database query & response time speedup" },
+      { title: "Cache & Memory Tuning", detail: "Redis caching setup & memory leak resolution" },
+      { title: "Technical Code Audit", detail: "Detailed post-fix technical report & code cleanup" },
+    ],
+    price: "Fixed or Hourly",
+    badge: "Tactical Fix",
+    featured: false,
   },
   {
     id: "custom",
     icon: "layers",
-    title: "Custom Solutions",
-    description:
-      "Complex, bespoke software engineered for specific business requirements — AI integrations, automation pipelines, enterprise backends, and technical consulting.",
+    title: "AI Systems & Process Automation",
+    turnaround: "1–2 Weeks",
+    tagline: "Intelligent AI workflows, RAG memory systems, and automated background data pipelines.",
     features: [
-      "AI-powered features (RAG, embeddings, OpenAI)",
-      "Business process automation",
-      "Real-time systems with Socket.IO",
-      "Background job processing (BullMQ, Redis)",
-      "Enterprise backend architecture",
-      "Technical consulting & code review",
+      { title: "AI Assistants & RAG Memory", detail: "Custom chatbots with long-term persistent memory" },
+      { title: "Process Automation Queues", detail: "Background job pipelines built with BullMQ & Redis" },
+      { title: "Real-Time Event Streaming", detail: "Low-latency WebSockets (Socket.IO) for live state sync" },
+      { title: "Scalable Infrastructure", detail: "Enterprise backend systems built for high throughput" },
     ],
-    price: "Contact for Quote",
-    badge: "Advanced",
+    price: "Custom Scope",
+    badge: "Enterprise AI",
+    featured: false,
   },
 ];
 
@@ -221,7 +261,7 @@ export const TESTIMONIALS = [
     company: "LaunchPad Digital",
     country: "United Kingdom",
     rating: 5,
-    text: "Milon delivered a production-grade SaaS backend in under 3 weeks. The architecture was clean, well-documented, and the API performance exceeded our benchmarks. He's one of the most thorough backend developers I've worked with remotely.",
+    text: "Delivered a production-grade SaaS backend in under 3 weeks. The architecture was clean, well-documented, and the API performance exceeded our benchmarks. He's one of the most thorough backend developers I've worked with remotely.",
     avatar: "JH",
   },
   {
@@ -261,7 +301,7 @@ export const TESTIMONIALS = [
     company: "BuildRight Agency",
     country: "Australia",
     rating: 5,
-    text: "We needed a full-stack developer who could handle both React and Node.js without compromising either. Milon delivered exactly that — a polished frontend with a robust backend, deployed to AWS with no drama. Will work with him again.",
+    text: "We needed a full-stack developer who could handle both React and Node.js without compromising either. Delivered exactly that — a polished frontend with a robust backend, deployed to AWS with no drama. Will work with him again.",
     avatar: "TN",
   },
 ];

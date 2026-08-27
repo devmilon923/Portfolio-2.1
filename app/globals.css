@@ -78,7 +78,7 @@
   body {
     background-color: var(--color-paper-white);
     color: var(--color-obsidian);
-    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
     font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.4;
@@ -90,8 +90,7 @@
   h3,
   .font-serif,
   .editorial-heading {
-    font-family: var(--font-serif), Georgia, serif;
-    letter-spacing: -0.045em;
+    font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
   }
 
   ::selection {
@@ -140,7 +139,7 @@
     background-color: var(--color-obsidian);
     color: var(--color-paper-white);
     padding: 12px 24px;
-    font-family: var(--font-inter), sans-serif;
+    font-family: var(--font-roboto), sans-serif;
     font-weight: 500;
     font-size: 16px;
     letter-spacing: -0.02em;
@@ -173,9 +172,8 @@
 
   /* Editorial Headline Styling */
   .gradient-text {
-    font-family: var(--font-serif), Georgia, serif;
+    font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
     color: var(--color-obsidian);
-    letter-spacing: -0.045em;
     display: inline-block;
   }
 
@@ -241,5 +239,9 @@
   .h-section-lg {
     font-size: clamp(2.25rem, 8vw, 3.75rem);
     line-height: 1.05;
+  }
+
+  .font-caveat {
+    font-family: var(--font-caveat);
   }
 }

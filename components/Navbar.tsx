@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, Download } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 import Image from "next/image";
@@ -20,6 +20,9 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   const navRef = useRef<HTMLDivElement | null>(null);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const [pillStyle, setPillStyle] = useState<{
     left: number;
     width: number;
@@ -31,27 +34,27 @@ export default function Navbar() {
   });
 
   // Smoothly recalculate sliding backdrop pill position whenever activeSection changes
-  useEffect(() => {
-    const updatePill = () => {
-      if (!navRef.current || !activeSection) return;
-      const activeEl = navRef.current.querySelector(
-        `a[href="${activeSection}"]`,
-      ) as HTMLElement;
-      if (activeEl) {
-        const parentRect = navRef.current.getBoundingClientRect();
-        const activeRect = activeEl.getBoundingClientRect();
-        setPillStyle({
-          left: activeRect.left - parentRect.left,
-          width: activeRect.width,
-          opacity: 1,
-        });
-      }
-    };
+  const updatePill = useCallback(() => {
+    if (!navRef.current || !activeSection) return;
+    const activeEl = navRef.current.querySelector(
+      `a[href="${activeSection}"]`
+    ) as HTMLElement;
+    if (activeEl) {
+      const parentRect = navRef.current.getBoundingClientRect();
+      const activeRect = activeEl.getBoundingClientRect();
+      setPillStyle({
+        left: activeRect.left - parentRect.left,
+        width: activeRect.width,
+        opacity: 1,
+      });
+    }
+  }, [activeSection]);
 
+  useEffect(() => {
     updatePill();
     window.addEventListener("resize", updatePill);
     return () => window.removeEventListener("resize", updatePill);
-  }, [activeSection]);
+  }, [updatePill]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -65,7 +68,7 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  // Throttled 60fps scroll detection
+  // Throttled 60fps scroll detection & active section intersection
   useEffect(() => {
     let ticking = false;
 
@@ -80,30 +83,35 @@ export default function Navbar() {
             document.documentElement.scrollHeight - window.innerHeight;
           if (totalScroll > 0) {
             setScrollProgress(
-              Math.min(100, Math.max(0, (scrollY / totalScroll) * 100)),
+              Math.min(100, Math.max(0, (scrollY / totalScroll) * 100))
             );
           }
 
-          // Active Section Detection with viewport center & 50px buffer
-          const viewportCenter = scrollY + window.innerHeight / 3;
-          const sections = NAV_LINKS.map((link) => link.href.replace("#", ""));
+          // Active Section Detection (Only when not click scrolling)
+          if (!isClickScrollingRef.current) {
+            const sections = NAV_LINKS.map((link) =>
+              link.href.replace("#", "")
+            );
+            let currentSection = "#about";
+            const threshold = 140;
 
-          let currentSection = "";
-          for (const sectionId of sections) {
-            const el = document.getElementById(sectionId);
-            if (el) {
-              const top = el.offsetTop - 50;
-              const height = el.offsetHeight;
-              if (viewportCenter >= top && viewportCenter < top + height) {
-                currentSection = `#${sectionId}`;
-                break;
+            for (let i = sections.length - 1; i >= 0; i--) {
+              const sectionId = sections[i];
+              const el = document.getElementById(sectionId);
+              if (el) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top <= threshold) {
+                  currentSection = `#${sectionId}`;
+                  break;
+                }
               }
+            }
+
+            if (currentSection) {
+              setActiveSection(currentSection);
             }
           }
 
-          if (currentSection) {
-            setActiveSection(currentSection);
-          }
           ticking = false;
         });
         ticking = true;
@@ -118,10 +126,19 @@ export default function Navbar() {
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     setActiveSection(href);
+
+    // Lock scroll-based section changes during click-driven smooth scrolling
+    isClickScrollingRef.current = true;
+    if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+
+    clickTimeoutRef.current = setTimeout(() => {
+      isClickScrollingRef.current = false;
+    }, 900);
   };
 
   return (
@@ -165,11 +182,11 @@ export default function Navbar() {
             {/* Desktop nav with smooth sliding backdrop pill */}
             <nav
               ref={navRef}
-              className="hidden md:flex items-center gap-1 bg-bone/60 p-1 rounded-full border border-iron/50 shadow-inner relative"
+              className="hidden md:flex items-center gap-1 bg-bone/70 p-1 rounded-full border border-iron/60 shadow-inner relative"
             >
-              {/* Sliding Pill Background */}
+              {/* Sliding Pill Background with Smooth Cubic Bezier */}
               <span
-                className="absolute top-1 bottom-1 rounded-full bg-paper-white shadow-xs border border-iron/60 transition-all duration-300 ease-out pointer-events-none z-0"
+                className="absolute top-1 bottom-1 rounded-full bg-paper-white shadow-2xs border border-iron/80 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none z-0"
                 style={{
                   left: `${pillStyle.left}px`,
                   width: `${pillStyle.width}px`,
@@ -253,10 +270,10 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Scroll Progress Bar at bottom of navbar */}
-          <div className="absolute bottom-0 left-6 right-6 h-[2px] bg-transparent overflow-hidden rounded-full pointer-events-none">
+          {/* Hardware-Accelerated Smooth Scroll Progress Bar */}
+          <div className="absolute bottom-0 left-4 right-4 h-[2.5px] bg-iron/30 overflow-hidden rounded-full pointer-events-none">
             <div
-              className="h-full bg-slate-teal/80 transition-all duration-150 rounded-full"
+              className="h-full bg-gradient-to-r from-slate-teal via-deep-teal to-emerald-500 transition-all duration-75 ease-out rounded-full shadow-[0_0_8px_rgba(15,118,110,0.4)]"
               style={{ width: `${scrollProgress}%` }}
             />
           </div>

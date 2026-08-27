@@ -12,7 +12,6 @@ import {
   GitBranch,
   Star,
   Code2,
-  Activity,
   Layers,
   ChevronDown,
 } from "lucide-react";
@@ -49,7 +48,7 @@ export default function GithubCTAButton() {
       name: "Portfolio-2.1",
       url: "https://github.com/devmilon923/Portfolio-2.1",
       description:
-        "I focused on creating an aesthetic design that reflects my design taste and development approach.",
+        "Personal developer portfolio built with Next.js & TypeScript.",
       language: "TypeScript",
       stars: 1,
     },
@@ -61,7 +60,6 @@ export default function GithubCTAButton() {
 
     const fetchGitHubProfile = async () => {
       try {
-        // 1. Fetch live profile and public events from GitHub REST API
         const [userRes, eventsRes] = await Promise.all([
           fetch("https://api.github.com/users/devmilon923"),
           fetch(
@@ -74,7 +72,6 @@ export default function GithubCTAButton() {
           let lastActivityDate = userData.updated_at;
           let targetRepoFullName = "devmilon923/Portfolio-2.1";
 
-          // Parse true latest event timestamp & active repository
           if (eventsRes.ok) {
             const events = await eventsRes.json();
             if (Array.isArray(events) && events.length > 0) {
@@ -91,7 +88,6 @@ export default function GithubCTAButton() {
             }
           }
 
-          // 2. Fetch repo metadata directly for the active repository
           let latestRepoData = {
             name: targetRepoFullName.replace("devmilon923/", ""),
             url: `https://github.com/${targetRepoFullName}`,
@@ -121,7 +117,6 @@ export default function GithubCTAButton() {
             console.error("Repo metadata fetch error:", err);
           }
 
-          // 3. Format precise relative activity time
           const getRelativeTime = (dateString: string) => {
             const date = new Date(dateString);
             const now = new Date();
@@ -174,8 +169,8 @@ export default function GithubCTAButton() {
 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const deltaX = (x - centerX) * 0.08;
-    const deltaY = (y - centerY) * 0.08;
+    const deltaX = (x - centerX) * 0.06;
+    const deltaY = (y - centerY) * 0.06;
     setTransformPos({ x: deltaX, y: deltaY });
   };
 
@@ -193,41 +188,35 @@ export default function GithubCTAButton() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 mt-16 max-w-xl mx-auto">
-      {/* ── Top Live Status & Metrics Bar ───────────────────────────────── */}
-      <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono">
-        {/* Real-time Indicator Pill */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bone border border-iron text-obsidian shadow-xs">
-          <span className="font-semibold">@devmilon923</span>
+    <div className="flex flex-col items-center gap-4 mt-16 max-w-xl mx-auto w-full px-2 sm:px-0">
+      {/* ── Top System Bar: Integrated Live GitHub Telemetry ─────────────── */}
+      <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 p-1.5 rounded-md py-3 sm:rounded-full shadow-2xs text-xs">
+        {/* Handle Badge */}
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-paper-white border border-iron/70 font-semibold text-obsidian shadow-2xs">
+          <Github className="w-3.5 h-3.5 text-obsidian flex-shrink-0" />
+          <span className="text-[11px] sm:text-xs">@devmilon923</span>
           {isLive && (
-            <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded-full">
-              LIVE API
-            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5 flex-shrink-0" />
           )}
         </div>
 
-        {/* Real Repos Pill */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sandstone/80 border border-iron text-obsidian/80">
-          <Layers className="w-3.5 h-3.5 text-slate-teal" />
-          <span className="font-semibold text-obsidian">
-            {githubData.publicRepos} Repositories
-          </span>
+        {/* Public Repos Count */}
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-obsidian/80 font-medium text-[11px] sm:text-xs">
+          <Layers className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
+          <span>{githubData.publicRepos} Repositories</span>
         </div>
 
-        {/* Real-time Activity Pill / Drawer Toggle */}
+        {/* Latest Activity Dropdown Trigger */}
         {githubData.latestRepo && (
           <button
             onClick={() => setShowRepoDrawer(!showRepoDrawer)}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-dusty-sky/40 hover:bg-dusty-sky/70 border border-iron text-obsidian transition-colors group cursor-pointer"
-            title="Click to view live recent repo"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-slate-teal/10 hover:bg-paper-white border border-slate-teal/20 text-slate-teal font-semibold text-[11px] sm:text-xs transition-all duration-200 cursor-pointer"
+            title="Click to peek recent GitHub activity"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            <span>{githubData.lastUpdated}</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+            <span className="whitespace-nowrap">{githubData.lastUpdated}</span>
             <ChevronDown
-              className={`w-3.5 h-3.5 text-obsidian/60 transition-transform duration-300 ${
+              className={`w-3.5 h-3.5 transition-transform duration-300 flex-shrink-0 ${
                 showRepoDrawer ? "rotate-180" : ""
               }`}
             />
@@ -235,17 +224,17 @@ export default function GithubCTAButton() {
         )}
       </div>
 
-      {/* ── Latest Activity Drawer (Expandable Real-Time Peek) ───────────── */}
+      {/* ── Latest Activity Drawer (Expandable Glassmorphic Peek) ───────── */}
       {githubData.latestRepo && showRepoDrawer && (
-        <div className="w-full bg-paper-white border border-iron rounded-2xl p-4 shadow-sm transition-all duration-300 animate-in fade-in slide-in-from-top-2">
+        <div className="w-full bg-paper-white border border-iron/90 rounded-2xl p-4 sm:p-5 shadow-xs transition-all duration-300 animate-in fade-in slide-in-from-top-2">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <Code2 className="w-4 h-4 text-slate-teal" />
-              <span className="text-xs font-mono font-semibold text-obsidian uppercase tracking-wider">
-                Latest GitHub Activity
+              <span className="text-xs font-bold text-obsidian uppercase tracking-wider">
+                Latest Active Repository
               </span>
             </div>
-            <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-sandstone border border-iron text-slate-teal font-medium">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-bone border border-iron/70 text-obsidian/80 font-medium">
               {githubData.latestRepo.language}
             </span>
           </div>
@@ -254,28 +243,28 @@ export default function GithubCTAButton() {
             href={githubData.latestRepo.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block group/repo"
+            className="block group/repo pt-1"
           >
             <div className="flex items-center justify-between">
-              <h4 className="font-semibold text-sm text-obsidian group-hover/repo:text-slate-teal transition-colors flex items-center gap-1.5">
-                {githubData.latestRepo.name}
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover/repo:opacity-100 transition-opacity" />
+              <h4 className="font-semibold text-sm sm:text-base text-obsidian group-hover/repo:text-slate-teal transition-colors flex items-center gap-1.5">
+                <span>{githubData.latestRepo.name}</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-teal opacity-0 group-hover/repo:opacity-100 transition-opacity" />
               </h4>
               {githubData.latestRepo.stars > 0 && (
-                <span className="flex items-center gap-1 text-xs text-amber-600 font-medium">
-                  <Star className="w-3 h-3 fill-amber-400 text-amber-500" />
+                <span className="flex items-center gap-1 text-xs text-amber-600 font-bold">
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
                   {githubData.latestRepo.stars}
                 </span>
               )}
             </div>
-            <p className="text-xs text-obsidian/70 mt-1 line-clamp-2 leading-relaxed">
+            <p className="text-xs text-obsidian/75 mt-1 line-clamp-2 leading-relaxed">
               {githubData.latestRepo.description}
             </p>
           </a>
         </div>
       )}
 
-      {/* ── Main Magnetic Spotlight CTA Card ───────────────────────────────── */}
+      {/* ── Main Premium Tactile Spotlight CTA Container ───────────────── */}
       <div
         ref={buttonRef}
         onMouseMove={handleMouseMove}
@@ -287,86 +276,92 @@ export default function GithubCTAButton() {
               ? "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)"
               : "none",
         }}
-        className="w-full relative group p-[1.5px] rounded-full bg-gradient-to-r from-iron via-slate-teal/50 to-iron hover:from-slate-teal hover:via-deep-teal hover:to-slate-teal transition-all duration-500 shadow-sm hover:shadow-xl hover:shadow-deep-teal/15"
+        className="w-full relative group p-[1.5px] rounded-full bg-gradient-to-r from-iron via-slate-teal/40 to-iron hover:from-slate-teal hover:via-obsidian hover:to-slate-teal transition-all duration-500 shadow-2xs hover:shadow-md"
       >
-        {/* Spotlight Overlay Canvas */}
+        {/* Cursor Spotlight Radial Canvas */}
         <div
           className="pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 z-10"
           style={{
             opacity: spotlightPos.opacity,
-            background: `radial-gradient(280px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(11, 37, 42, 0.18), transparent 80%)`,
+            background: `radial-gradient(280px circle at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(15, 23, 42, 0.08), transparent 80%)`,
           }}
         />
 
-        {/* Outer Pill Container */}
-        <div className="relative z-20 flex items-center justify-between gap-3 sm:gap-6 px-5 sm:px-8 py-3.5 sm:py-4 rounded-full bg-bone group-hover:bg-paper-white transition-colors duration-300">
-          {/* Direct Link & Profile Identity */}
+        {/* Inner Interactive Pill Container */}
+        <div className="relative z-20 flex items-center justify-between gap-2 sm:gap-6 px-3.5 sm:px-7 py-2.5 sm:py-3.5 rounded-full bg-paper-white group-hover:bg-white transition-colors duration-300">
+          {/* Direct Link & Profile Info */}
           <Link
             href={PERSONAL.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3.5 text-obsidian group-hover:text-deep-teal transition-colors flex-1 min-w-0"
+            className="flex items-center gap-2.5 sm:gap-3.5 text-obsidian group/link flex-1 min-w-0"
           >
-            {/* Real Avatar or GitHub Icon with Ring */}
-            <div className="relative flex-shrink-0 w-11 h-11 rounded-full bg-paper-white group-hover:bg-deep-teal text-obsidian group-hover:text-paper-white border border-iron group-hover:border-deep-teal shadow-xs group-hover:scale-105 transition-all duration-300 overflow-hidden flex items-center justify-center">
+            {/* Real Avatar Container with Ring Glow */}
+            <div className="relative flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-bone border border-iron/80 flex items-center justify-center shadow-2xs group-hover/link:ring-2 group-hover/link:ring-slate-teal/40 group-hover/link:scale-105 transition-all duration-300 overflow-hidden">
               {githubData.avatarUrl ? (
                 <Image
                   src={githubData.avatarUrl}
                   alt="Milon Mia GitHub Avatar"
                   width={44}
                   height={44}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover/link:scale-110 transition-transform duration-300"
                   unoptimized
                 />
               ) : (
-                <Github className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" />
+                <Github className="w-4 h-4 sm:w-5 sm:h-5 text-obsidian transition-transform duration-300 group-hover/link:scale-110" />
               )}
-              <Sparkles className="absolute -top-0.5 -right-0.5 w-4 h-4 text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse z-20" />
+              <Sparkles className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 text-amber-500 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 animate-pulse z-20" />
             </div>
 
             {/* Content Details */}
             <div className="text-left min-w-0">
-              <div className="flex items-center gap-1.5 font-semibold text-sm sm:text-base text-obsidian group-hover:text-deep-teal transition-colors truncate">
-                <span className="truncate">See more on GitHub</span>
-                <GitBranch className="w-3.5 h-3.5 text-slate-teal flex-shrink-0 opacity-70 group-hover:rotate-45 transition-transform duration-300" />
+              <div className="flex items-center gap-1 sm:gap-1.5 font-bold text-xs sm:text-base text-obsidian group-hover/link:text-slate-teal transition-colors leading-tight">
+                <span className="hidden sm:inline truncate">Explore Source Code on GitHub</span>
+                <span className="inline sm:hidden truncate">Explore GitHub Source</span>
+                <GitBranch className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-slate-teal flex-shrink-0 opacity-80 group-hover/link:rotate-45 transition-transform duration-300" />
               </div>
-              <p className="text-[11px] sm:text-xs text-obsidian/60 font-medium truncate">
-                {githubData.publicRepos} public repos • Live GitHub REST API
+              <p className="text-[10.5px] sm:text-xs text-obsidian/70 font-normal leading-tight mt-0.5">
+                <span className="hidden sm:inline truncate">
+                  {githubData.publicRepos} public repositories • Active open-source engineer
+                </span>
+                <span className="inline sm:hidden truncate">
+                  {githubData.publicRepos} repos • Active engineer
+                </span>
               </p>
             </div>
           </Link>
 
           {/* Vertical Divider */}
-          <div className="w-px h-7 bg-iron/80 my-auto flex-shrink-0" />
+          <div className="w-px h-6 sm:h-7 bg-iron/70 my-auto flex-shrink-0" />
 
-          {/* Right Action Icons */}
-          <div className="flex items-center gap-1.5 flex-shrink-0">
-            {/* Quick Copy Link Button */}
+          {/* Action Trigger Buttons */}
+          <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
+            {/* Copy Handle Button */}
             <button
               onClick={handleCopyHandle}
-              title={copied ? "Copied handle!" : "Copy profile URL"}
-              className="p-2.5 rounded-full text-obsidian/70 hover:text-obsidian hover:bg-sandstone active:scale-95 transition-all duration-200 relative group/btn"
+              title={copied ? "Copied profile URL!" : "Copy GitHub URL"}
+              className="p-1.5 sm:p-2.5 rounded-full text-obsidian/70 hover:text-obsidian hover:bg-paper-white active:scale-95 transition-all duration-200 relative group/btn border border-transparent hover:border-iron/70 shadow-2xs"
               aria-label="Copy GitHub profile URL"
             >
               {copied ? (
-                <Check className="w-4 h-4 text-emerald-600 animate-in zoom-in-75 duration-200" />
+                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 animate-in zoom-in-75 duration-200" />
               ) : (
-                <Copy className="w-4 h-4" />
+                <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               )}
-              <span className="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded bg-obsidian text-paper-white text-[10px] font-medium opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md">
+              <span className="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md bg-obsidian text-paper-white text-[10px] font-medium opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-md">
                 {copied ? "Copied!" : "Copy URL"}
               </span>
             </button>
 
-            {/* External Direct Link Button */}
+            {/* Direct Open Link Button */}
             <Link
               href={PERSONAL.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-obsidian text-paper-white group-hover:bg-deep-teal group-hover:scale-105 active:scale-95 transition-all duration-300 shadow-xs flex items-center justify-center"
-              aria-label="Open GitHub in new tab"
+              className="p-1.5 sm:p-2.5 rounded-full bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xs flex items-center justify-center"
+              aria-label="Open GitHub profile in new tab"
             >
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+              <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
             </Link>
           </div>
         </div>

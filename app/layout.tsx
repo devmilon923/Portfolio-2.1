@@ -1,12 +1,19 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Archivo_Black, Playfair_Display, Caveat } from "next/font/google";
+import { Roboto, Archivo_Black, Caveat } from "next/font/google";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
-const inter = Inter({
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-roboto",
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+});
+
+const fontSerif = Roboto({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["300", "400", "500", "700"],
   display: "swap",
 });
 
@@ -14,13 +21,6 @@ const archivoBl = Archivo_Black({
   subsets: ["latin"],
   variable: "--font-archivo",
   weight: "400",
-  display: "swap",
-});
-
-const fontSerif = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -40,31 +40,54 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   metadataBase: new URL("https://milon.bro.bd"),
-  title: "Milon Mia — Full-Stack Developer",
+  alternates: {
+    canonical: "https://milon.bro.bd",
+  },
+  title: "Milon Mia — Full-Stack & AI Systems Developer",
   description:
-    "Backend-focused Full-Stack Developer specializing in AI-integrated systems, scalable backends, and international client delivery. Expert in React, Next.js, Node.js, PostgreSQL, and AWS.",
+    "Backend-focused Full-Stack Engineer building high-performance SaaS platforms, AI RAG memory systems, and scalable APIs for clients worldwide.",
   keywords: [
     "Full-Stack Developer",
     "Backend Developer",
+    "AI Developer",
+    "SaaS Engineer",
     "React",
     "Next.js",
     "Node.js",
     "TypeScript",
-    "AI Developer",
-    "Bangladesh Developer",
-    "Freelance Developer",
+    "PostgreSQL",
+    "MongoDB",
+    "Redis",
+    "RAG Architecture",
+    "AWS",
+    "Docker",
+    "Milon Mia",
+    "Software Engineer Bangladesh",
+    "Freelance Full-Stack Developer",
   ],
   authors: [{ name: "Milon Mia", url: "https://milon.bro.bd" }],
   creator: "Milon Mia",
+  publisher: "Milon Mia",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://milon.bro.bd",
-    title: "Milon Mia — Full-Stack Developer",
+    title: "Milon Mia — Full-Stack & AI Systems Developer",
     description:
-      "Backend-focused Full-Stack Developer specializing in AI-integrated systems and scalable infrastructure.",
-    siteName: "Milon Mia Portfolio",
+      "Backend-focused Full-Stack Engineer building high-performance SaaS platforms, AI RAG memory systems, and scalable APIs for clients worldwide.",
+    siteName: "Milon Mia Developer Portfolio",
     images: [
       {
         url: "/og-image.png",
@@ -76,20 +99,22 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Milon Mia — Full-Stack Developer",
+    title: "Milon Mia — Full-Stack & AI Systems Developer",
     description:
-      "Backend-focused Full-Stack Developer specializing in AI-integrated systems and scalable infrastructure.",
+      "Backend-focused Full-Stack Engineer building high-performance SaaS platforms and AI memory systems.",
     images: ["/og-image.png"],
+    creator: "@devmilon923",
   },
 };
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  mainEntity: {
+const structuredData = [
+  {
+    "@context": "https://schema.org",
     "@type": "Person",
     name: "Milon Mia",
-    jobTitle: "Full-Stack Software Engineer",
+    url: "https://milon.bro.bd",
+    image: "https://milon.bro.bd/og-image.png",
+    jobTitle: "Full-Stack & AI Systems Engineer",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Jamalpur",
@@ -108,7 +133,7 @@ const structuredData = {
       "AWS",
       "AI Integration",
       "RAG Architecture",
-      "Backend-focused Full-Stack Development",
+      "Full-Stack Web Development",
     ],
     sameAs: [
       "https://github.com/devmilon923",
@@ -120,7 +145,28 @@ const structuredData = {
       "https://www.upwork.com/freelancers/~01bd608f5c07cb250e?mp_source=share",
     ],
   },
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Milon Mia Portfolio",
+    url: "https://milon.bro.bd",
+    author: {
+      "@type": "Person",
+      name: "Milon Mia",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Milon Mia — Full-Stack Software Engineering Services",
+    url: "https://milon.bro.bd",
+    image: "https://milon.bro.bd/og-image.png",
+    priceRange: "$$$",
+    areaServed: ["United States", "United Kingdom", "Australia", "Bangladesh", "India"],
+    description:
+      "Full-stack SaaS development, AI system integration, performance speedups, and cloud architecture contracts.",
+  },
+];
 
 import BackgroundParticles from "@/components/BackgroundParticles";
 
@@ -132,7 +178,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${inter.variable} ${archivoBl.variable} ${fontSerif.variable} ${fontCaveat.variable} font-sans antialiased relative`}
+        className={`${roboto.variable} ${archivoBl.variable} ${fontSerif.variable} ${fontCaveat.variable} font-sans antialiased relative`}
       >
         <script
           type="application/ld+json"

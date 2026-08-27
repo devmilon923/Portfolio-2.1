@@ -9,6 +9,10 @@ import {
   Award,
   GraduationCap,
   Globe2,
+  MessageSquare,
+  Zap,
+  Rocket,
+  ShieldCheck,
 } from "lucide-react";
 import {
   PERSONAL,
@@ -16,6 +20,7 @@ import {
   CERTIFICATIONS,
   EDUCATION,
   LANGUAGES,
+  WHY_SOLO_VS_AGENCY,
 } from "@/lib/constants";
 import meImage from "./../../assets/me.jpeg";
 import Image from "next/image";
@@ -132,7 +137,7 @@ function ProfileCardNeuralMesh() {
           cancelAnimationFrame(animationFrameId);
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
 
     if (canvas) {
@@ -159,7 +164,7 @@ function ProfileCardNeuralMesh() {
           0,
           orb.x,
           orb.y,
-          orb.radius
+          orb.radius,
         );
         grad.addColorStop(0, "rgba(217, 119, 6, 0.06)");
         grad.addColorStop(1, "rgba(255, 255, 255, 0)");
@@ -218,7 +223,8 @@ function ProfileCardNeuralMesh() {
         if (node.y < -10 || node.y > height + 10) node.vy *= -1;
 
         // Render Node Dot
-        const currentAlpha = node.alpha + Math.sin(time * 2 + node.phase) * 0.15;
+        const currentAlpha =
+          node.alpha + Math.sin(time * 2 + node.phase) * 0.15;
         ctx.fillStyle = `rgba(217, 119, 6, ${Math.max(0.1, Math.min(0.6, currentAlpha))})`;
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
@@ -262,27 +268,44 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-b border-iron"
+      className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-iron/60"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative space-y-16">
-        {/* Section label & Title */}
-        <div className="text-center">
-          <p className="section-label mb-3">About</p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em]">
-            The developer{" "}
-            <span className="italic font-normal">behind the code</span>
+      {/* Subtle ambient background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-[30%] right-[15%] w-[500px] h-[500px] rounded-full opacity-25 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(244, 237, 224, 0.6) 0%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Section Header */}
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <p className="section-label mb-3">About The Developer</p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-3 text-balance">
+            Engineering precision.{" "}
+            <span className="font-normal text-slate-teal">
+              Business results.
+            </span>
           </h2>
+          <p className="text-obsidian/55 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
+            Combining electrical engineering principles with modern full-stack
+            architecture to build resilient web products.
+          </p>
         </div>
 
         {/* Top Grid: Profile Card & Bio / Strengths */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {/* Left: Full-width Profile Card */}
           <div className="lg:col-span-5 flex flex-col">
             <div
               onMouseMove={handleCardMouseMove}
-              className="w-full h-full rounded-[32px] bg-paper-white border border-iron p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-sm relative group hover:border-amber-700/50 transition-all duration-500 overflow-hidden"
+              className="w-full h-full rounded-[32px] bg-paper-white border border-iron/90 p-6 sm:p-8 flex flex-col justify-between items-center text-center shadow-2xs relative group hover:border-obsidian/40 transition-all duration-300 overflow-hidden"
               style={{
-                background: `radial-gradient(400px circle at ${mousePos.x}% ${mousePos.y}%, rgba(217, 119, 6, 0.08), rgba(180, 83, 9, 0.03) 50%, transparent 80%), #ffffff`,
+                background: `radial-gradient(400px circle at ${mousePos.x}% ${mousePos.y}%, rgba(15, 23, 42, 0.03), rgba(0, 0, 0, 0.01) 50%, transparent 80%), #ffffff`,
               }}
             >
               {/* Interactive Neural Network Constellation Canvas */}
@@ -291,40 +314,40 @@ export default function About() {
               {/* Card Content (z-10 relative) */}
               <div className="relative z-10 w-full flex flex-col justify-between items-center h-full">
                 {/* Badges Header Row */}
-                <div className="w-full flex items-center justify-between gap-2 mb-3">
-                  <div className="bg-bone/90 backdrop-blur-sm border border-iron rounded-xl px-3 py-1.5 text-left shadow-xs group-hover:border-amber-700/40 transition-colors">
-                    <p className="text-obsidian text-xs font-bold leading-tight">
-                      1+ Year
+                <div className="w-full flex items-center justify-between gap-2 mb-4">
+                  <div className="bg-bone/90 backdrop-blur-sm border border-iron/80 rounded-xl px-3.5 py-2 text-left shadow-2xs hover:border-obsidian/30 transition-colors">
+                    <p className="text-obsidian text-[13px] font-bold leading-tight">
+                      2+ Years
                     </p>
-                    <p className="text-obsidian/60 text-[10px] font-normal leading-tight">
+                    <p className="text-obsidian/50 text-[10px] font-medium leading-tight mt-0.5">
                       Professional Exp.
                     </p>
                   </div>
-                  <div className="bg-bone/90 backdrop-blur-sm border border-iron rounded-xl px-3 py-1.5 text-right shadow-xs group-hover:border-amber-700/40 transition-colors">
-                    <p className="text-obsidian text-xs font-bold leading-tight">
-                      AI + Full-Stack
+                  <div className="bg-bone/90 backdrop-blur-sm border border-iron/80 rounded-xl px-3.5 py-2 text-right shadow-2xs hover:border-obsidian/30 transition-colors">
+                    <p className="text-obsidian text-[13px] font-bold leading-tight">
+                      Full-Stack + AI
                     </p>
-                    <p className="text-obsidian/60 text-[10px] font-normal leading-tight">
+                    <p className="text-obsidian/50 text-[10px] font-medium leading-tight mt-0.5">
                       Core Specialty
                     </p>
                   </div>
                 </div>
 
                 {/* Profile Image */}
-                <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-2xl bg-sandstone border-2 border-iron flex items-center justify-center relative overflow-hidden my-2 shadow-md group-hover:shadow-xl group-hover:shadow-amber-900/15 group-hover:border-amber-700/60 group-hover:scale-[1.02] transition-all duration-500">
+                <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-2xl bg-sandstone border border-iron/80 flex items-center justify-center relative overflow-hidden my-3 shadow-2xs group-hover:scale-[1.01] transition-all duration-300">
                   <Image
                     src={meImage}
-                    alt="My Profile Picture"
+                    alt="Milon Mia - Full Stack Engineer"
                     className="object-cover w-full h-full"
                   />
                 </div>
 
                 {/* Name & Title */}
                 <div className="text-center my-2">
-                  <p className="font-serif text-2xl font-bold text-obsidian tracking-tight">
+                  <p className="font-serif text-2xl sm:text-3xl font-bold text-obsidian tracking-tight">
                     {PERSONAL.name}
                   </p>
-                  <p className="text-slate-teal text-xs sm:text-sm font-medium mt-1">
+                  <p className="text-slate-teal text-xs sm:text-sm font-semibold mt-1">
                     {PERSONAL.title}
                   </p>
                   <p className="text-obsidian/60 text-xs font-normal mt-0.5">
@@ -333,10 +356,13 @@ export default function About() {
                 </div>
 
                 {/* Status Badge */}
-                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-bone/90 backdrop-blur-sm border border-iron mt-2 shadow-xs group-hover:border-amber-700/40 transition-colors">
-                  <span className="glow-dot w-2 h-2 bg-amber-600" />
-                  <span className="text-obsidian text-xs font-medium">
-                    Open to Opportunities
+                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-bone/90 backdrop-blur-sm border border-emerald-600/30 mt-3 shadow-2xs">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  </span>
+                  <span className="text-obsidian text-xs font-semibold">
+                    Available for Contracts &amp; SaaS Builds
                   </span>
                 </div>
               </div>
@@ -348,82 +374,77 @@ export default function About() {
             {/* Bio & Mindset Cards */}
             <div className="space-y-4">
               {/* Lead Pitch Card */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-paper-white border border-iron shadow-sm relative overflow-hidden group hover:border-obsidian/30 transition-colors">
+              <div className="p-6 sm:p-7 rounded-[24px] bg-paper-white border border-iron/90 shadow-2xs relative overflow-hidden group hover:border-obsidian/40 transition-colors">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className="w-2 h-2 rounded-full bg-slate-teal animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-slate-teal" />
                   <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-teal">
-                    Engineering Focus
+                    Engineering Approach
                   </span>
                 </div>
 
                 <p className="text-obsidian text-base sm:text-lg font-normal leading-relaxed">
-                  I build{" "}
+                  I engineer{" "}
                   <strong className="font-semibold text-obsidian bg-sandstone/80 px-1.5 py-0.5 rounded border border-iron/40">
-                    scalable backend systems
+                    scalable backend architectures
                   </strong>{" "}
                   and{" "}
                   <strong className="font-semibold text-obsidian bg-sandstone/80 px-1.5 py-0.5 rounded border border-iron/40">
-                    AI-integrated applications
+                    AI-integrated web applications
                   </strong>{" "}
-                  that solve real business problems. With{" "}
-                  <span className="font-bold text-slate-teal">
-                    1+ year of professional experience
-                  </span>{" "}
-                  at an international agency, I specialize in turning complex
-                  requirements into clean, performant, and maintainable code —{" "}
-                  <span className="italic font-serif font-medium text-obsidian">
-                    from architecture through deployment
-                  </span>
-                  .
+                  tailored for business growth. Grounded in systematic problem
+                  solving, I transform complex specs into maintainable,
+                  production-ready code.
                 </p>
               </div>
 
               {/* Systems-Thinking Mindset Card */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-sandstone/70 border border-iron relative flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-paper-white border border-iron/80 flex items-center justify-center flex-shrink-0 mt-0.5 text-obsidian shadow-xs">
+              <div className="p-5 rounded-[24px] bg-sandstone/80 border border-iron/80 relative flex items-start gap-4 shadow-2xs">
+                <div className="w-10 h-10 rounded-xl bg-paper-white border border-iron/80 flex items-center justify-center flex-shrink-0 mt-0.5 text-obsidian shadow-2xs">
                   <Cpu className="w-5 h-5 text-slate-teal" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-obsidian text-xs font-bold uppercase tracking-wider text-slate-teal">
-                    Systems-Thinking Mindset
+                  <p className="text-obsidian text-xs font-bold uppercase tracking-wider">
+                    Electrical Engineering Background
                   </p>
                   <p className="text-obsidian/85 text-xs sm:text-sm font-normal leading-relaxed">
-                    My background in{" "}
-                    <strong className="font-semibold text-obsidian">
-                      Electrical Engineering
-                    </strong>{" "}
-                    shapes how I approach software — every component serves a
-                    purpose, every optimization has a reason.{" "}
-                    <span className="italic font-serif font-medium text-obsidian">
-                      "I don't just write code; I engineer solutions."
-                    </span>
+                    My foundation in electrical hardware shapes how I structure
+                    software systems — modular, fault-tolerant, and optimized
+                    for low latency and high throughput.
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Core strengths */}
-            <div>
-              <p className="text-slate-teal text-xs font-bold uppercase tracking-wider mb-4">
-                Core Strengths
+            <div className="space-y-3">
+              <p className="text-slate-teal text-xs font-bold uppercase tracking-wider">
+                Core Engineering Capabilities
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {STRENGTHS.map((strength, i) => {
                   const Icon = icons[i % icons.length];
+                  const accentBg = [
+                    "bg-mist-mint/30",
+                    "bg-wisteria/25",
+                    "bg-desert-clay/20",
+                    "bg-dusty-sky/25",
+                  ][i % 4];
                   return (
                     <div
                       key={strength.title}
-                      className="p-4 rounded-2xl bg-sandstone border border-iron hover:border-obsidian transition-colors group"
+                      className="p-4 rounded-2xl bg-paper-white border border-iron/90 hover:border-obsidian/30 hover:-translate-y-0.5 transition-all duration-200 shadow-2xs group"
                     >
                       <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-full bg-paper-white flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
-                          <Icon className="w-4 h-4 text-obsidian" />
+                        <div
+                          className={`w-9 h-9 rounded-xl ${accentBg} flex items-center justify-center flex-shrink-0 mt-0.5 border border-iron/40 group-hover:scale-105 transition-transform duration-200`}
+                        >
+                          <Icon className="w-4 h-4 text-obsidian/80" />
                         </div>
                         <div>
                           <p className="text-obsidian text-sm font-bold leading-tight mb-1">
                             {strength.title}
                           </p>
-                          <p className="text-obsidian/70 text-xs font-normal leading-relaxed">
+                          <p className="text-obsidian/65 text-xs font-normal leading-relaxed">
                             {strength.description}
                           </p>
                         </div>
@@ -435,24 +456,92 @@ export default function About() {
             </div>
 
             {/* Philosophy */}
-            <blockquote className="border-l-2 border-obsidian pl-4 py-2">
-              <p className="text-obsidian font-serif text-sm sm:text-base font-normal italic leading-relaxed">
-                "Good software isn't about lines of code — it's about solving
-                the right problem in the simplest way that lasts."
-              </p>
-              <p className="text-slate-teal text-xs font-medium mt-2">
-                — Development philosophy
+            <blockquote className="border-l-2 border-slate-teal pl-4 py-1.5">
+              <p className="text-obsidian font-serif text-sm sm:text-base font-normal leading-relaxed italic">
+                &ldquo;Great engineering isn&apos;t about adding complexity —
+                it&apos;s about solving business problems with clean, durable
+                simplicity.&rdquo;
               </p>
             </blockquote>
           </div>
         </div>
 
+        <div className="pt-14 border-t border-iron/40 mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="section-label mb-2 block">
+              Direct Value Proposition
+            </span>
+            <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-obsidian tracking-tight">
+              Why Work With a Solo Software Developer{" "}
+              <span className="font-normal text-slate-teal">
+                vs. an Agency?
+              </span>
+            </h3>
+            <p className="text-obsidian/55 text-sm sm:text-base mt-3 leading-relaxed max-w-xl mx-auto">
+              Agencies charge high retainers to pay for account reps, managers,
+              and office overhead. Partnering directly with me provides smooth
+              execution, faster delivery, and 100% single-point accountability.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {WHY_SOLO_VS_AGENCY.map((item, idx) => {
+              const iconAccentBg = [
+                "bg-mist-mint/35",
+                "bg-desert-clay/25",
+                "bg-wisteria/30",
+                "bg-dusty-sky/30",
+              ][idx % 4];
+              return (
+                <div
+                  key={item.id}
+                  className="group p-6 rounded-2xl bg-paper-white border border-iron/80 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-1 hover:shadow-sm transition-all duration-300"
+                >
+                  <div>
+                    {/* Numbered accent icon */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className={`w-10 h-10 rounded-xl ${iconAccentBg} border border-iron/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-200`}
+                      >
+                        {item.id === "direct-comm" && (
+                          <MessageSquare className="w-4.5 h-4.5 text-obsidian/75" />
+                        )}
+                        {item.id === "zero-overhead" && (
+                          <Zap className="w-4.5 h-4.5 text-obsidian/75" />
+                        )}
+                        {item.id === "rapid-execution" && (
+                          <Rocket className="w-4.5 h-4.5 text-obsidian/75" />
+                        )}
+                        {item.id === "total-accountability" && (
+                          <ShieldCheck className="w-4.5 h-4.5 text-obsidian/75" />
+                        )}
+                      </div>
+                      <span className="text-obsidian/20 text-2xl font-serif font-bold leading-none select-none">
+                        0{idx + 1}
+                      </span>
+                    </div>
+                    <h4 className="text-obsidian text-[15px] font-bold mb-1 leading-snug">
+                      {item.title}
+                    </h4>
+                    <p className="text-slate-teal text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5">
+                      {item.subtitle}
+                    </p>
+                    <p className="text-obsidian/60 text-xs sm:text-[13px] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
         {/* Bottom 3-Column Credentials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4">
           {/* Card 1: Certifications */}
-          <div className="rounded-2xl bg-paper-white border border-iron p-6 shadow-sm flex flex-col justify-between hover:border-obsidian/40 transition-colors">
+          <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-0.5 transition-all duration-200">
             <div>
-              <div className="flex items-center justify-between border-b border-iron/60 pb-3 mb-4">
+              <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
                 <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                   <Award className="w-4 h-4 text-obsidian" />
                   Certifications
@@ -472,7 +561,7 @@ export default function About() {
                   <p className="text-[11px] font-mono text-slate-teal font-medium pt-0.5">
                     ID: {cert.credentialId}
                   </p>
-                  <p className="text-obsidian/70 text-xs leading-relaxed pt-2">
+                  <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
                     {cert.description}
                   </p>
                 </div>
@@ -481,9 +570,9 @@ export default function About() {
           </div>
 
           {/* Card 2: Education */}
-          <div className="rounded-2xl bg-paper-white border border-iron p-6 shadow-sm flex flex-col justify-between hover:border-obsidian/40 transition-colors">
+          <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-0.5 transition-all duration-200">
             <div>
-              <div className="flex items-center justify-between border-b border-iron/60 pb-3 mb-4">
+              <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
                 <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                   <GraduationCap className="w-4 h-4 text-obsidian" />
                   Education
@@ -493,7 +582,7 @@ export default function About() {
                 </span>
               </div>
               {EDUCATION.map((edu) => (
-                <div key={edu.degree} className="space-y-2">
+                <div key={edu.degree} className="space-y-1.5">
                   <p className="text-obsidian font-serif font-bold text-base leading-snug">
                     {edu.degree}
                   </p>
@@ -503,15 +592,20 @@ export default function About() {
                   <p className="text-obsidian/60 text-xs font-normal">
                     {edu.location}
                   </p>
+                  {"description" in edu && (
+                    <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
+                      {edu.description}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
           {/* Card 3: Languages */}
-          <div className="rounded-2xl bg-paper-white border border-iron p-6 shadow-sm flex flex-col justify-between hover:border-obsidian/40 transition-colors">
+          <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-0.5 transition-all duration-200">
             <div>
-              <div className="flex items-center justify-between border-b border-iron/60 pb-3 mb-4">
+              <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
                 <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
                   <Globe2 className="w-4 h-4 text-obsidian" />
                   Languages
