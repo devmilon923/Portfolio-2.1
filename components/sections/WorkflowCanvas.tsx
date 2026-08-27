@@ -135,11 +135,11 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
   if (side === "right") {
     return (
       <svg
-        width="60"
-        height="36"
+        width="48"
+        height="28"
         viewBox="0 0 60 36"
         fill="none"
-        className="absolute right-4 top-1.5 pointer-events-none"
+        className="absolute right-3 top-1 pointer-events-none opacity-60"
         aria-hidden
       >
         <path
@@ -148,7 +148,6 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
           strokeWidth="1.4"
           fill="none"
           strokeLinecap="round"
-          className="opacity-75"
         />
         <path
           d="M 50,30 L 56,28 L 54,22"
@@ -157,18 +156,17 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="opacity-75"
         />
       </svg>
     );
   }
   return (
     <svg
-      width="60"
-      height="36"
+      width="48"
+      height="28"
       viewBox="0 0 60 36"
       fill="none"
-      className="absolute right-4 top-1.5 pointer-events-none"
+      className="absolute right-3 top-1 pointer-events-none opacity-60"
       aria-hidden
     >
       <path
@@ -177,7 +175,6 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
         strokeWidth="1.4"
         fill="none"
         strokeLinecap="round"
-        className="opacity-75"
       />
       <path
         d="M 10,30 L 4,28 L 6,22"
@@ -186,7 +183,6 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="opacity-75"
       />
     </svg>
   );
@@ -208,7 +204,7 @@ export default function WorkflowCanvas() {
         () => {
           setRevealedPhases((prev) => new Set([...prev, phase.id]));
         },
-        200 + i * 120
+        180 + i * 100
       )
     );
     return () => timers.forEach(clearTimeout);
@@ -220,11 +216,11 @@ export default function WorkflowCanvas() {
 
     if (typingState === "typing") {
       const chars = PHASES[typingPhase].description.length;
-      const t = setTimeout(() => setTypingState("pausing"), chars * 50 + 800);
+      const t = setTimeout(() => setTypingState("pausing"), chars * 45 + 750);
       return () => clearTimeout(t);
     }
     if (typingState === "pausing") {
-      const t = setTimeout(() => setTypingState("erasing"), 2000);
+      const t = setTimeout(() => setTypingState("erasing"), 1800);
       return () => clearTimeout(t);
     }
   }, [typingState, typingPhase, isManualSelection]);
@@ -241,7 +237,7 @@ export default function WorkflowCanvas() {
   };
 
   return (
-    <div className="relative w-full rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-5 sm:p-6 font-caveat shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
+    <div className="relative w-full rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-4 sm:p-5 font-caveat shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
       {/* Soft paper vignette background glow */}
       <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_15%_15%,rgba(255,255,255,0.4)_0%,transparent_60%),radial-gradient(ellipse_at_85%_85%,rgba(245,236,229,0.3)_0%,transparent_50%)] pointer-events-none z-0" />
 
@@ -250,18 +246,18 @@ export default function WorkflowCanvas() {
         aria-hidden
         className="absolute inset-0 w-full h-full pointer-events-none z-0 rounded-2xl"
       >
-        {Array.from({ length: 22 }, (_, i) => {
-          const y = 48 + i * 28;
+        {Array.from({ length: 20 }, (_, i) => {
+          const y = 40 + i * 24;
           return (
             <line
               key={i}
-              x1="20"
+              x1="16"
               y1={y}
               x2="96%"
-              y2={y + Math.sin(i * 1.3) * 0.6}
+              y2={y + Math.sin(i * 1.3) * 0.5}
               stroke="#e2d9cd"
-              strokeWidth="0.6"
-              opacity="0.6"
+              strokeWidth="0.5"
+              opacity="0.55"
             />
           );
         })}
@@ -270,31 +266,31 @@ export default function WorkflowCanvas() {
       {/* Main Content Layer */}
       <div className="relative z-10">
         {/* ── HEADER ── */}
-        <div className="mb-4 relative">
+        <div className="mb-3 relative">
           <div className="flex items-start justify-between">
             {/* Title */}
             <div className="relative inline-block">
-              <h2 className="font-caveat text-2xl sm:text-3xl font-bold text-obsidian tracking-wide uppercase m-0 leading-none">
+              <h2 className="font-caveat text-xl sm:text-2xl font-bold text-obsidian tracking-wide uppercase m-0 leading-none">
                 How I Work
               </h2>
               {/* Hand-drawn double underline SVG */}
               <svg
                 aria-hidden
-                className="block w-full h-2 overflow-visible mt-0.5"
+                className="block w-full h-1.5 overflow-visible mt-0.5"
                 viewBox="0 0 180 7"
                 preserveAspectRatio="none"
               >
                 <path
                   d="M 1,2 Q 45,1.2 90,2.4 Q 135,3 179,1.8"
                   stroke="#406e7a"
-                  strokeWidth="1.8"
+                  strokeWidth="1.6"
                   fill="none"
                   strokeLinecap="round"
                 />
                 <path
                   d="M 1,5 Q 45,4.5 90,5.5 Q 135,6 179,5"
                   stroke="#406e7a"
-                  strokeWidth="0.9"
+                  strokeWidth="0.8"
                   fill="none"
                   strokeLinecap="round"
                   opacity="0.5"
@@ -304,7 +300,7 @@ export default function WorkflowCanvas() {
 
             {/* CLIENT POV Tag */}
             <div className="relative">
-              <span className="font-caveat text-xs sm:text-sm font-bold text-slate-teal tracking-widest uppercase">
+              <span className="font-caveat text-xs font-bold text-slate-teal tracking-widest uppercase">
                 Client POV
               </span>
               <svg
@@ -316,7 +312,7 @@ export default function WorkflowCanvas() {
                 <path
                   d="M 0,2 Q 40,1 80,2.5"
                   stroke="#406e7a"
-                  strokeWidth="1.2"
+                  strokeWidth="1.1"
                   fill="none"
                   strokeLinecap="round"
                 />
@@ -336,7 +332,7 @@ export default function WorkflowCanvas() {
               <div
                 key={phase.id}
                 onClick={() => handlePhaseClick(index)}
-                className={`flex gap-0 cursor-pointer py-0.5 px-1.5 transition-all duration-300 border-l-2 ${
+                className={`flex gap-0 cursor-pointer py-0.5 px-1 transition-all duration-300 border-l-2 ${
                   isHighlighted
                     ? "border-slate-teal"
                     : "border-transparent hover:border-slate-teal/30"
@@ -346,16 +342,16 @@ export default function WorkflowCanvas() {
                     : "opacity-0 translate-y-2"
                 }`}
                 style={{
-                  transitionDelay: `${index * 80}ms`,
+                  transitionDelay: `${index * 60}ms`,
                 }}
               >
                 {/* LEFT: circle + connector line */}
-                <div className="flex flex-col items-center w-12 flex-shrink-0 pt-0.5">
+                <div className="flex flex-col items-center w-9 flex-shrink-0 pt-0.5">
                   {/* Hand-drawn circle node */}
                   <div className="flex-shrink-0">
                     <svg
-                      width="38"
-                      height="38"
+                      width="32"
+                      height="32"
                       viewBox="0 0 40 40"
                       className="block overflow-visible"
                     >
@@ -393,8 +389,8 @@ export default function WorkflowCanvas() {
                   {/* Connector line */}
                   {!isLast && (
                     <svg
-                      width="14"
-                      height="38"
+                      width="12"
+                      height="26"
                       viewBox="0 0 14 38"
                       className="flex-shrink-0"
                       aria-hidden
@@ -416,12 +412,12 @@ export default function WorkflowCanvas() {
                 {/* RIGHT: content */}
                 <div
                   className={`flex-1 min-w-0 pt-0.5 relative ${
-                    isLast ? "pb-0" : "pb-3.5"
+                    isLast ? "pb-0" : "pb-2"
                   }`}
                 >
                   {/* Code · duration */}
                   <div
-                    className={`font-caveat text-xs sm:text-sm font-bold mb-0.5 tracking-wide ${
+                    className={`font-caveat text-xs font-bold mb-0.5 tracking-wide ${
                       isHighlighted ? "text-slate-teal" : "text-[#7a6e66]"
                     }`}
                   >
@@ -430,19 +426,19 @@ export default function WorkflowCanvas() {
 
                   {/* Title & Description */}
                   <div className="block text-left w-full">
-                    <div className="flex items-baseline gap-1.5 flex-wrap mb-1 relative">
+                    <div className="flex items-baseline gap-1.5 flex-wrap mb-0.5 relative">
                       {/* Title with Underline */}
-                      <span className="font-caveat text-lg sm:text-xl font-bold text-obsidian relative inline-block leading-tight border-b-2 border-slate-teal">
+                      <span className="font-caveat text-base sm:text-lg font-bold text-obsidian relative inline-block leading-tight border-b-2 border-slate-teal">
                         {phase.title}
                       </span>
 
-                      <span className="font-caveat text-sm sm:text-base text-slate-teal font-semibold leading-tight">
+                      <span className="font-caveat text-xs sm:text-sm text-slate-teal font-semibold leading-tight">
                         – {phase.role}
                       </span>
                     </div>
 
                     {/* Description: Typewriter on active phase */}
-                    <div className="font-caveat text-xs sm:text-sm text-[#2a221d] font-medium leading-relaxed mt-0.5 min-h-[1.5em]">
+                    <div className="font-caveat text-xs sm:text-[13px] text-[#2a221d] font-medium leading-normal mt-0.5 min-h-[1.4em]">
                       {isHighlighted ? (
                         typingState === "erasing" ? (
                           <ErasingText
@@ -476,7 +472,7 @@ export default function WorkflowCanvas() {
         </div>
 
         {/* ── BOTTOM TAGLINE ── */}
-        <div className="mt-4 pt-3 relative flex items-center justify-between gap-2 flex-wrap">
+        <div className="mt-3 pt-2.5 relative flex items-center justify-between gap-2 flex-wrap">
           {/* Hand-drawn divider SVG */}
           <svg
             aria-hidden
@@ -494,13 +490,13 @@ export default function WorkflowCanvas() {
             />
           </svg>
 
-          <span className="font-caveat text-xs sm:text-sm font-semibold text-[#4a403a]">
+          <span className="font-caveat text-xs font-semibold text-[#4a403a]">
             From brief to production – no hand-holding required.
           </span>
 
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-caveat text-xs font-bold text-emerald-700 tracking-wider uppercase">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-caveat text-[11px] font-bold text-emerald-700 tracking-wider uppercase">
               Available
             </span>
           </div>

@@ -215,7 +215,7 @@ export default function Hero() {
           {/* ─── RIGHT COLUMN: Workflow Canvas Notepad Card (5 cols) ── */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             {/* Subtle organic shadow backing to lift WorkflowCanvas gracefully */}
-            <div className="relative w-full max-w-lg transition-transform duration-300 hover:scale-[1.01]">
+            <div className="relative w-full max-w-[440px] transition-transform duration-300 hover:scale-[1.01]">
               {/* Paper shadow illusion behind notepad */}
               <div 
                 className="absolute inset-0 translate-x-2 translate-y-3 rounded-lg bg-stone/30 opacity-70 blur-md pointer-events-none"
