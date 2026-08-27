@@ -1,16 +1,28 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, Download } from "lucide-react";
+import {
+  Menu,
+  X,
+  Download,
+  User,
+  FolderKanban,
+  Layers,
+  Cpu,
+  Mail,
+  ChevronRight,
+  Github,
+  Linkedin,
+} from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 import Image from "next/image";
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Services", href: "#services" },
-  { label: "Stack", href: "#stack" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "#about", code: "01", icon: User },
+  { label: "Projects", href: "#projects", code: "02", icon: FolderKanban },
+  { label: "Services", href: "#services", code: "03", icon: Layers },
+  { label: "Tech Stack", href: "#stack", code: "04", icon: Cpu },
+  { label: "Contact", href: "#contact", code: "05", icon: Mail },
 ];
 
 export default function Navbar() {
@@ -280,20 +292,33 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Floating Mobile menu */}
+      {/* Floating Mobile menu Drawer */}
       {mobileOpen && (
         <>
           {/* Backdrop Overlay */}
           <div
             onClick={() => setMobileOpen(false)}
-            className="fixed inset-0 z-40 bg-obsidian/30 backdrop-blur-xs md:hidden animate-in fade-in duration-200"
+            className="fixed inset-0 z-40 bg-obsidian/40 backdrop-blur-sm md:hidden animate-in fade-in duration-300"
           />
 
-          {/* Floating Mobile menu card */}
-          <div className="fixed top-[4.25rem] sm:top-[4.75rem] left-1/2 -translate-x-1/2 w-[90%] max-w-xs z-50 bg-paper-white/98 backdrop-blur-xl border border-iron rounded-2xl md:hidden shadow-xl p-2.5 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-3 duration-200">
-            <nav className="flex flex-col gap-0.5">
+          {/* Floating Mobile Menu Card */}
+          <div className="fixed top-[4.25rem] sm:top-[4.75rem] left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 bg-paper-white/98 backdrop-blur-2xl border border-iron/80 rounded-2xl md:hidden shadow-2xl p-4 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300">
+            {/* Header */}
+            <div className="flex items-center justify-between pb-3 mb-2 border-b border-iron/50">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-teal">
+                Navigation Menu
+              </span>
+              <span className="text-[10px] font-mono text-obsidian/40 font-semibold">
+                05 SECTIONS
+              </span>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => {
                 const isActive = activeSection === link.href;
+                const Icon = link.icon;
+
                 return (
                   <a
                     key={link.href}
@@ -302,48 +327,103 @@ export default function Navbar() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className={`px-3 py-2 text-xs font-medium rounded-xl transition-all flex items-center justify-between ${
+                    className={`px-3.5 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-between group ${
                       isActive
-                        ? "bg-bone text-obsidian font-semibold border border-iron/70 shadow-2xs"
-                        : "text-obsidian/80 hover:bg-bone/60 active:scale-[0.99]"
+                        ? "bg-slate-teal/10 text-slate-teal border border-slate-teal/25 font-bold shadow-2xs"
+                        : "text-obsidian/80 hover:bg-bone/80 hover:text-obsidian border border-transparent active:scale-[0.98]"
                     }`}
                   >
-                    <span>{link.label}</span>
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-teal animate-pulse" />
-                    )}
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                          isActive
+                            ? "bg-slate-teal text-paper-white shadow-2xs"
+                            : "bg-bone text-obsidian/60 group-hover:text-obsidian group-hover:bg-paper-white"
+                        }`}
+                      >
+                        <Icon className="w-3.5 h-3.5" />
+                      </div>
+                      <span className="text-sm font-semibold tracking-tight">
+                        {link.label}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-mono text-obsidian/35 font-semibold">
+                        {link.code}
+                      </span>
+                      <ChevronRight
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isActive
+                            ? "text-slate-teal translate-x-0.5"
+                            : "text-obsidian/20 group-hover:text-obsidian/50 group-hover:translate-x-0.5"
+                        }`}
+                      />
+                    </div>
                   </a>
                 );
               })}
-              <div className="grid grid-cols-2 gap-2 mt-1.5 pt-1.5 border-t border-iron/40">
+            </nav>
+
+            {/* Action Buttons & Social Links Footer */}
+            <div className="pt-3 mt-2 border-t border-iron/50 space-y-2.5">
+              <div className="grid grid-cols-2 gap-2">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href={PERSONAL.whatsapp}
-                  className="flex items-center justify-center gap-1.5 py-1.5 px-2.5 rounded-xl bg-emerald-600/90 text-paper-white text-[11px] font-medium hover:bg-emerald-600 active:scale-95 transition-all shadow-2xs"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500/10 border border-emerald-600/30 text-emerald-950 text-xs font-semibold hover:bg-emerald-500/20 active:scale-95 transition-all shadow-2xs"
                 >
-                  <div className="w-3.5 h-3.5 rounded-full overflow-hidden flex items-center justify-center bg-white/20 p-0.5 shrink-0">
+                  <div className="w-4 h-4 rounded-full overflow-hidden flex items-center justify-center shrink-0">
                     <Image
                       src="/whatsapp.gif"
                       alt="WhatsApp"
-                      width={14}
-                      height={14}
+                      width={16}
+                      height={16}
                       className="w-full h-full object-cover mix-blend-multiply scale-110"
                       unoptimized
                     />
                   </div>
                   <span>WhatsApp</span>
                 </a>
+
                 <a
                   target="_blank"
                   href={PERSONAL.resumeUrl}
-                  className="flex items-center justify-center gap-1 py-1.5 px-2.5 rounded-xl bg-obsidian text-paper-white text-[11px] font-medium hover:bg-deep-teal active:scale-95 transition-all shadow-2xs"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal active:scale-95 transition-all shadow-2xs"
                 >
-                  <Download className="w-3 h-3 shrink-0" />
+                  <Download className="w-3.5 h-3.5 shrink-0" />
                   <span>Resume</span>
                 </a>
               </div>
-            </nav>
+
+              {/* Quick Connect Row */}
+              <div className="flex items-center justify-between px-1 pt-1 text-[11px] text-obsidian/60 font-medium">
+                <span className="font-mono text-[10px] uppercase text-obsidian/40 font-bold">
+                  Quick Connect
+                </span>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={PERSONAL.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-obsidian/80 hover:text-obsidian"
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    <span>GitHub</span>
+                  </a>
+                  <a
+                    href={PERSONAL.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-obsidian/80 hover:text-slate-teal"
+                  >
+                    <Linkedin className="w-3.5 h-3.5 text-slate-teal" />
+                    <span>LinkedIn</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </>
       )}
