@@ -176,7 +176,7 @@ export default function Hero() {
 
             {/* Social Row - Center Aligned on Mobile */}
             <div className="flex items-center justify-center sm:justify-start gap-3 sm:gap-4 pt-3 border-t border-iron/40 w-full flex-wrap sm:flex-nowrap">
-              <span className="text-obsidian/50 text-[11px] sm:text-xs font-medium uppercase tracking-wider">
+              <span className="text-obsidian/70 text-[11px] sm:text-xs font-semibold uppercase tracking-wider">
                 Connect
               </span>
               <div className="flex items-center gap-3 sm:gap-4">

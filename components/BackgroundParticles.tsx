@@ -129,11 +129,14 @@ export default function BackgroundParticles() {
       });
     };
 
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) return;
+
     initOrbs();
 
     let time = 0;
-
     let isTabVisible = true;
+    let startTimer: NodeJS.Timeout;
 
     const handleVisibilityChange = () => {
       isTabVisible = !document.hidden;
@@ -203,9 +206,13 @@ export default function BackgroundParticles() {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    // Defer start until after initial paint window
+    startTimer = setTimeout(() => {
+      render();
+    }, 400);
 
     return () => {
+      clearTimeout(startTimer);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);

@@ -20,14 +20,19 @@ export default function SmoothScrollProvider({
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Disable Lenis on touch devices / mobile screens to allow 100% native GPU touch scrolling
+    const isTouch =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.innerWidth < 768);
+
+    if (isTouch) return;
+
     const lenis = new Lenis({
-      // Snappier lerp (0.13) eliminates scroll lag/heaviness for a lightweight, responsive feel
       lerp: 0.13,
-      // Increased wheel multiplier for immediate, responsive feedback
       wheelMultiplier: 1.15,
-      // Responsive touch scroll multiplier
       touchMultiplier: 1.8,
-      // Exponential decay easing for instant start & silky deceleration
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       infinite: false,
       gestureOrientation: "vertical",

@@ -6,14 +6,7 @@ import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 const roboto = Roboto({
   subsets: ["latin"],
   variable: "--font-roboto",
-  weight: ["300", "400", "500", "700"],
-  display: "swap",
-});
-
-const fontSerif = Roboto({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -27,7 +20,7 @@ const archivoBl = Archivo_Black({
 const fontCaveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "700"],
   display: "swap",
 });
 
@@ -179,7 +172,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body
-        className={`${roboto.variable} ${archivoBl.variable} ${fontSerif.variable} ${fontCaveat.variable} font-sans antialiased relative`}
+        className={`${roboto.variable} ${archivoBl.variable} ${fontCaveat.variable} font-sans antialiased relative`}
       >
         <script
           type="application/ld+json"

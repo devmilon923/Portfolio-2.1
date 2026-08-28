@@ -67,7 +67,7 @@ export default function Projects() {
             Engineered for scale &amp;{" "}
             <span className="font-normal text-slate-teal">business ROI</span>
           </h2>
-          <p className="text-obsidian/55 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
+          <p className="text-obsidian/75 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
             Real production case studies demonstrating backend architecture, AI
             memory systems, and measurable performance results.
           </p>

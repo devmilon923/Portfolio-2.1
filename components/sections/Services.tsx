@@ -119,7 +119,7 @@ export default function Services() {
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-obsidian tracking-[-0.035em] mb-2 leading-snug">
                     {service.title}
                   </h3>
-                  <p className="text-obsidian/65 text-xs sm:text-sm font-normal leading-relaxed mb-6">
+                  <p className="text-obsidian/75 text-xs sm:text-sm font-normal leading-relaxed mb-6">
                     {service.tagline}
                   </p>
 
@@ -139,7 +139,7 @@ export default function Services() {
                             <p className="text-obsidian text-xs font-bold leading-tight">
                               {feat.title}
                             </p>
-                            <p className="text-obsidian/65 text-[11px] font-normal leading-relaxed">
+                            <p className="text-obsidian/75 text-[11px] font-normal leading-relaxed">
                               {feat.detail}
                             </p>
                           </div>
@@ -155,7 +155,7 @@ export default function Services() {
                     <p className="text-obsidian text-sm sm:text-base font-serif font-bold">
                       {service.price}
                     </p>
-                    <p className="text-obsidian/50 text-[10px] font-medium">
+                    <p className="text-obsidian/70 text-[10px] font-medium">
                       Direct Developer Guarantee
                     </p>
                   </div>
@@ -191,7 +191,7 @@ export default function Services() {
                 Flexible &amp; Secure Engagement Options
               </p>
             </div>
-            <p className="text-obsidian/60 text-xs font-normal max-w-md mx-auto md:mx-0">
+            <p className="text-obsidian/75 text-xs font-normal max-w-md mx-auto md:mx-0">
               Work directly via custom milestones or execute contracts securely through verified platforms with escrow protection.
             </p>
           </div>
@@ -212,7 +212,7 @@ export default function Services() {
                   <p className="text-obsidian text-xs font-bold leading-tight truncate">
                     {p.name}
                   </p>
-                  <p className="text-obsidian/50 text-[10px] sm:text-[9px] font-medium leading-tight mt-0.5 truncate">
+                  <p className="text-obsidian/70 text-[10px] sm:text-[9px] font-medium leading-tight mt-0.5 truncate">
                     {p.label}
                   </p>
                 </div>

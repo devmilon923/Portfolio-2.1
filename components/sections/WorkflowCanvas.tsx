@@ -190,25 +190,14 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
 
 /* ─── MAIN COMPONENT ─────────────────────────────────────────────────── */
 export default function WorkflowCanvas() {
-  const [revealedPhases, setRevealedPhases] = useState<Set<number>>(new Set());
+  const [revealedPhases, setRevealedPhases] = useState<Set<number>>(
+    () => new Set(PHASES.map((p) => p.id))
+  );
   const [typingPhase, setTypingPhase] = useState(0);
   const [typingState, setTypingState] = useState<
     "typing" | "pausing" | "erasing"
   >("typing");
   const [isManualSelection, setIsManualSelection] = useState(false);
-
-  // Staggered reveal
-  useEffect(() => {
-    const timers = PHASES.map((phase, i) =>
-      setTimeout(
-        () => {
-          setRevealedPhases((prev) => new Set([...prev, phase.id]));
-        },
-        180 + i * 100
-      )
-    );
-    return () => timers.forEach(clearTimeout);
-  }, []);
 
   // Auto-cycle typing unless manually selected
   useEffect(() => {
@@ -378,7 +367,7 @@ export default function WorkflowCanvas() {
                         y="24"
                         textAnchor="middle"
                         className={`font-caveat text-xs font-bold transition-colors duration-300 ${
-                          isHighlighted ? "fill-slate-teal" : "fill-[#4a403a]"
+                          isHighlighted ? "fill-slate-teal" : "fill-[#2c241f]"
                         }`}
                       >
                         {String(phase.id).padStart(2, "0")}
@@ -418,7 +407,7 @@ export default function WorkflowCanvas() {
                   {/* Code · duration */}
                   <div
                     className={`font-caveat text-xs font-bold mb-0.5 tracking-wide ${
-                      isHighlighted ? "text-slate-teal" : "text-[#7a6e66]"
+                      isHighlighted ? "text-slate-teal" : "text-[#4a3f37]"
                     }`}
                   >
                     {phase.code} · {phase.duration}
@@ -490,7 +479,7 @@ export default function WorkflowCanvas() {
             />
           </svg>
 
-          <span className="font-caveat text-xs font-semibold text-[#4a403a]">
+          <span className="font-caveat text-xs font-semibold text-[#2c241f]">
             From brief to production – no hand-holding required.
           </span>
 

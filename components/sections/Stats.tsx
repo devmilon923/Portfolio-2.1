@@ -107,7 +107,7 @@ export default function Stats() {
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian leading-tight tracking-[-0.045em] text-balance">
             Numbers that <span className="font-normal">matter</span>
           </h2>
-          <p className="mt-3 text-obsidian/55 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+          <p className="mt-3 text-obsidian/75 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
             Real metrics from production systems and client engagements.
           </p>
         </div>
@@ -145,7 +145,7 @@ export default function Stats() {
               </p>
 
               {/* Description */}
-              <p className="text-obsidian/55 text-[11px] sm:text-xs font-normal leading-relaxed">
+              <p className="text-obsidian/75 text-[11px] sm:text-xs font-normal leading-relaxed">
                 {stat.description}
               </p>
             </div>
@@ -154,7 +154,7 @@ export default function Stats() {
 
         {/* Country flags — Clean inline strip */}
         <div className="flex flex-col items-center gap-4">
-          <p className="text-obsidian/50 text-xs sm:text-sm font-medium tracking-tight uppercase">
+          <p className="text-obsidian/70 text-xs sm:text-sm font-semibold tracking-tight uppercase">
             Trusted by clients across
           </p>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">

@@ -291,7 +291,7 @@ export default function About() {
               Business results.
             </span>
           </h2>
-          <p className="text-obsidian/55 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
+          <p className="text-obsidian/75 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
             Combining electrical engineering principles with modern full-stack
             architecture to build resilient web products.
           </p>
@@ -319,7 +319,7 @@ export default function About() {
                     <p className="text-obsidian text-[13px] font-bold leading-tight">
                       2+ Years
                     </p>
-                    <p className="text-obsidian/50 text-[10px] font-medium leading-tight mt-0.5">
+                    <p className="text-obsidian/70 text-[10px] font-medium leading-tight mt-0.5">
                       Professional Exp.
                     </p>
                   </div>
@@ -327,7 +327,7 @@ export default function About() {
                     <p className="text-obsidian text-[13px] font-bold leading-tight">
                       Full-Stack + AI
                     </p>
-                    <p className="text-obsidian/50 text-[10px] font-medium leading-tight mt-0.5">
+                    <p className="text-obsidian/70 text-[10px] font-medium leading-tight mt-0.5">
                       Core Specialty
                     </p>
                   </div>
@@ -477,7 +477,7 @@ export default function About() {
                 vs. an Agency?
               </span>
             </h3>
-            <p className="text-obsidian/55 text-sm sm:text-base mt-3 leading-relaxed max-w-xl mx-auto">
+            <p className="text-obsidian/75 text-sm sm:text-base mt-3 leading-relaxed max-w-xl mx-auto">
               Agencies charge high retainers to pay for account reps, managers,
               and office overhead. Partnering directly with me provides smooth
               execution, faster delivery, and 100% single-point accountability.
