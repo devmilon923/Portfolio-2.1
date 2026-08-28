@@ -90,9 +90,10 @@ export const metadata: Metadata = {
     siteName: "Milon Mia Developer Portfolio",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png?v=2",
         width: 1200,
         height: 630,
+        type: "image/png",
         alt: "Milon Mia — Full-Stack & AI Developer Portfolio",
       },
     ],
@@ -102,7 +103,7 @@ export const metadata: Metadata = {
     title: "Milon Mia — Full-Stack & AI Systems Developer",
     description:
       "Backend-focused Full-Stack Engineer building high-performance SaaS platforms and AI memory systems.",
-    images: ["/og-image.png"],
+    images: ["/og-image.png?v=2"],
     creator: "@devmilon923",
   },
 };
@@ -113,7 +114,7 @@ const structuredData = [
     "@type": "Person",
     name: "Milon Mia",
     url: "https://milon.bro.bd",
-    image: "https://milon.bro.bd/og-image.png",
+    image: "https://milon.bro.bd/og-image.png?v=2",
     jobTitle: "Full-Stack & AI Systems Engineer",
     address: {
       "@type": "PostalAddress",
@@ -160,7 +161,7 @@ const structuredData = [
     "@type": "ProfessionalService",
     name: "Milon Mia — Full-Stack Software Engineering Services",
     url: "https://milon.bro.bd",
-    image: "https://milon.bro.bd/og-image.png",
+    image: "https://milon.bro.bd/og-image.png?v=2",
     priceRange: "$$$",
     areaServed: ["United States", "United Kingdom", "Australia", "Bangladesh", "India"],
     description:
