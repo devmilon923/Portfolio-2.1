@@ -21,6 +21,8 @@ export default function BackgroundParticles() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    if (window.innerWidth < 768) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -129,8 +131,6 @@ export default function BackgroundParticles() {
       });
     };
 
-    const isMobile = window.innerWidth < 768;
-    if (isMobile) return;
 
     initOrbs();
 

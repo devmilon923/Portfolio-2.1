@@ -1,9 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import * as RechartsPrimitive from 'recharts';
+import dynamic from 'next/dynamic';
+import type * as RechartsPrimitive from 'recharts';
 
 import { cn } from '@/lib/utils';
+
+const ResponsiveContainer = dynamic(
+  () => import('recharts').then((mod) => mod.ResponsiveContainer as unknown as React.ComponentType<any>),
+  { ssr: false }
+);
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const;
@@ -46,8 +52,10 @@ const ChartContainer = React.forwardRef<
   const uniqueId = React.useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, '')}`;
 
+  const contextValue = React.useMemo(() => ({ config }), [config]);
+
   return (
-    <ChartContext.Provider value={{ config }}>
+    <ChartContext.Provider value={contextValue}>
       <div
         data-chart={chartId}
         ref={ref}
@@ -58,9 +66,7 @@ const ChartContainer = React.forwardRef<
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        <ResponsiveContainer>{children}</ResponsiveContainer>
       </div>
     </ChartContext.Provider>
   );
@@ -100,7 +106,10 @@ ${colorConfig
   );
 };
 
-const ChartTooltip = RechartsPrimitive.Tooltip;
+const ChartTooltip = dynamic(
+  () => import('recharts').then((mod) => mod.Tooltip as unknown as React.ComponentType<any>),
+  { ssr: false }
+);
 
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
@@ -256,7 +265,10 @@ const ChartTooltipContent = React.forwardRef<
 );
 ChartTooltipContent.displayName = 'ChartTooltip';
 
-const ChartLegend = RechartsPrimitive.Legend;
+const ChartLegend = dynamic(
+  () => import('recharts').then((mod) => mod.Legend as unknown as React.ComponentType<any>),
+  { ssr: false }
+);
 
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,

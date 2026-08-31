@@ -124,10 +124,10 @@ export default function TechStack() {
             return (
               <div
                 key={tech.name}
-                className="group p-4 sm:p-5 rounded-2xl bg-paper-white/[0.04] border border-paper-white/5 flex flex-col items-center text-center gap-3 cursor-default hover:bg-paper-white/[0.09] hover:border-paper-white/20 hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300"
+                className="group p-4 sm:p-5 rounded-2xl bg-paper-white/[0.04] border border-paper-white/5 flex flex-col items-center text-center gap-3 cursor-default hover:bg-paper-white/[0.09] hover:border-paper-white/20 hover:-translate-y-1 hover:scale-[1.02] transition-transform duration-300"
               >
                 {/* Vector Brand Icon Badge */}
-                <div className="w-12 h-12 rounded-xl bg-paper-white/[0.08] border border-paper-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-paper-white/15 group-hover:border-paper-white/25 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-paper-white/[0.08] border border-paper-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-paper-white/15 group-hover:border-paper-white/25 transition-transform duration-300">
                   {IconComponent ? (
                     <IconComponent
                       className="w-6 h-6 sm:w-6.5 sm:h-6.5 transition-colors duration-300"

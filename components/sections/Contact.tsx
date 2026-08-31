@@ -108,7 +108,7 @@ export default function Contact() {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian hover:-translate-y-1 hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer shadow-sm"
+                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian hover:-translate-y-1 hover:scale-[1.01] active:scale-[0.98] transition-transform cursor-pointer shadow-sm"
                 >
                   <div className="w-12 h-12 rounded-full bg-sandstone flex items-center justify-center flex-shrink-0 border border-iron">
                     <Icon className="w-5 h-5 text-obsidian" />
@@ -149,7 +149,7 @@ export default function Contact() {
             href={PERSONAL.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 text-paper-white text-sm font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-all shadow-sm w-full sm:w-auto text-center"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 text-paper-white text-sm font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-transform shadow-sm w-full sm:w-auto text-center"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Chat Directly on WhatsApp</span>
@@ -157,7 +157,7 @@ export default function Contact() {
 
           <button
             onClick={copyEmail}
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal hover:scale-105 active:scale-95 transition-all shadow-sm w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal hover:scale-105 active:scale-95 transition-transform shadow-sm w-full sm:w-auto"
           >
             <Copy className="w-4 h-4" />
             <span>{copied ? "Copied to clipboard!" : `Copy Email: ${PERSONAL.email}`}</span>

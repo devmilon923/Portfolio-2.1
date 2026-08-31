@@ -6,10 +6,11 @@ import CountryFlag from "@/components/ui/CountryFlag";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
 import Link from "next/link";
 
+const scrollToNext = () => {
+  document.querySelector("#stats")?.scrollIntoView({ behavior: "smooth" });
+};
+
 export default function Hero() {
-  const scrollToNext = () => {
-    document.querySelector("#stats")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section
@@ -115,15 +116,15 @@ export default function Hero() {
 
             {/* Core Capabilities - Crisp Minimal Pills */}
             <div className="flex flex-wrap gap-2 mb-7 w-full sm:w-auto">
-              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-all">
+              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                 Full-Stack SaaS
               </span>
-              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-all">
+              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                 AI &amp; RAG Systems
               </span>
-              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-all">
+              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                 High-Speed APIs
               </span>
@@ -131,46 +132,44 @@ export default function Hero() {
 
             {/* CTAs Row - Direct WhatsApp DM + Contact Triggers */}
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 mb-7 sm:mb-9 w-full sm:w-auto">
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
+              <button
+                type="button"
+                onClick={() => {
                   document
                     .querySelector("#projects")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-semibold hover:bg-deep-teal hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-sm w-full sm:w-auto"
+                className="group flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-semibold hover:bg-deep-teal hover:scale-[1.02] active:scale-95 transition-transform duration-200 shadow-sm w-full sm:w-auto text-left"
               >
                 <span>View Projects</span>
                 <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
                   →
                 </span>
-              </a>
+              </button>
 
               <div className="grid grid-cols-2 gap-2.5 sm:flex sm:items-center sm:gap-3 w-full sm:w-auto">
                 <a
                   href={PERSONAL.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full border border-emerald-600/30 bg-emerald-500/10 text-emerald-950 text-xs sm:text-sm font-semibold hover:bg-emerald-500/20 hover:border-emerald-600/50 hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-2xs w-full sm:w-auto"
+                  className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full border border-emerald-600/30 bg-emerald-500/10 text-emerald-950 text-xs sm:text-sm font-semibold hover:bg-emerald-500/20 hover:border-emerald-600/50 hover:scale-[1.02] active:scale-95 transition-transform duration-200 shadow-2xs w-full sm:w-auto"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                   <span>Direct WhatsApp</span>
                 </a>
 
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
+                <button
+                  type="button"
+                  onClick={() => {
                     document
                       .querySelector("#contact")
                       ?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-full border border-iron/90 bg-paper-white text-obsidian text-xs sm:text-sm font-medium hover:bg-bone hover:border-obsidian/40 hover:scale-[1.02] active:scale-95 transition-all duration-200 shadow-2xs w-full sm:w-auto"
+                  className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-full border border-iron/90 bg-paper-white text-obsidian text-xs sm:text-sm font-medium hover:bg-bone hover:border-obsidian/40 hover:scale-[1.02] active:scale-95 transition-transform duration-200 shadow-2xs w-full sm:w-auto text-left"
                 >
                   <Mail className="w-3.5 h-3.5 text-obsidian/70" />
                   <span>Let&apos;s Talk</span>
-                </a>
+                </button>
               </div>
             </div>
 
@@ -184,7 +183,7 @@ export default function Hero() {
                   href={PERSONAL.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-all"
+                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform"
                 >
                   <Github className="w-3.5 h-3.5 text-obsidian/70" />
                   GitHub
@@ -194,7 +193,7 @@ export default function Hero() {
                   href={PERSONAL.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-all"
+                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform"
                 >
                   <Linkedin className="w-3.5 h-3.5 text-slate-teal" />
                   LinkedIn
@@ -204,7 +203,7 @@ export default function Hero() {
                   href={PERSONAL.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-all"
+                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform"
                 >
                   Resume
                 </a>
@@ -231,7 +230,7 @@ export default function Hero() {
       {/* ── Scroll Indicator ─────────────────────────────────────── */}
       <button
         onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-obsidian/40 hover:text-obsidian hover:scale-110 transition-all group"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-obsidian/40 hover:text-obsidian hover:scale-110 transition-transform group"
         aria-label="Scroll down"
       >
         <span className="text-[10px] font-mono tracking-[0.2em] uppercase font-semibold">

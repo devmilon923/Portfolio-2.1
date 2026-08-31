@@ -159,15 +159,14 @@ export default function Services() {
                       Direct Developer Guarantee
                     </p>
                   </div>
-                  <a
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
+                  <button
+                    type="button"
+                    onClick={() => {
                       document
                         .querySelector("#contact")
                         ?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-semibold transition-all duration-200 shadow-2xs ${
+                    className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-semibold transition-transform duration-200 shadow-2xs text-left ${
                       isFeatured
                         ? "bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 shadow-sm"
                         : "bg-paper-white/80 border border-obsidian/15 text-obsidian hover:bg-paper-white hover:border-obsidian/40 hover:scale-105 active:scale-95 backdrop-blur-xs"
@@ -175,7 +174,7 @@ export default function Services() {
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     <span>Discuss Scope</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             );
@@ -200,7 +199,7 @@ export default function Services() {
             {PLATFORMS.map((p) => (
               <div
                 key={p.name}
-                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/70 hover:border-obsidian/30 hover:scale-[1.02] sm:hover:scale-105 transition-all duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center"
+                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/70 hover:border-obsidian/30 hover:scale-[1.02] sm:hover:scale-105 transition-transform duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center"
               >
                 <span
                   className="w-6 h-6 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-[9px] font-black text-white flex-shrink-0 shadow-2xs"

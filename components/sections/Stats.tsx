@@ -117,12 +117,11 @@ export default function Stats() {
           {STATS.map((stat, i) => (
             <div
               key={stat.label}
-              className={`group relative p-5 sm:p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-sm cursor-default ${STAT_ACCENTS[i % STAT_ACCENTS.length]}`}
+              className={`group relative p-5 sm:p-6 rounded-2xl border hover:-translate-y-1 hover:shadow-sm cursor-default ${STAT_ACCENTS[i % STAT_ACCENTS.length]}`}
               style={{
-                transitionDelay: inView ? `${i * 80}ms` : "0ms",
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(12px)",
-                transition: "opacity 0.5s ease, transform 0.5s ease",
+                transition: `opacity 0.5s ease ${inView ? i * 80 : 0}ms, transform 0.5s ease ${inView ? i * 80 : 0}ms`,
               }}
             >
               {/* Accent dot */}
@@ -161,7 +160,7 @@ export default function Stats() {
             {CLIENT_COUNTRIES.map((country) => (
               <div
                 key={country.code}
-                className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bone/80 border border-iron/80 hover:border-obsidian/30 hover:bg-bone transition-all duration-200 cursor-default"
+                className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bone/80 border border-iron/80 hover:border-obsidian/30 hover:bg-bone transition-colors duration-200 cursor-default"
               >
                 <CountryFlag code={country.code} className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
                 <span className="text-obsidian/80 text-[11px] sm:text-xs font-medium group-hover:text-obsidian transition-colors">

@@ -31,6 +31,51 @@ interface GitHubData {
   };
 }
 
+interface GithubRepoDrawerProps {
+  latestRepo: NonNullable<GitHubData["latestRepo"]>;
+}
+
+function GithubRepoDrawer({ latestRepo }: GithubRepoDrawerProps) {
+  return (
+    <div className="w-full bg-paper-white border border-iron/90 rounded-2xl p-4 sm:p-5 shadow-xs transition-opacity duration-300 animate-in fade-in slide-in-from-top-2">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <Code2 className="w-4 h-4 text-slate-teal" />
+          <span className="text-xs font-bold text-obsidian uppercase tracking-wider">
+            Latest Active Repository
+          </span>
+        </div>
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-bone border border-iron/70 text-obsidian/80 font-medium">
+          {latestRepo.language}
+        </span>
+      </div>
+
+      <a
+        href={latestRepo.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block group/repo pt-1"
+      >
+        <div className="flex items-center justify-between">
+          <h4 className="font-semibold text-sm sm:text-base text-obsidian group-hover/repo:text-slate-teal transition-colors flex items-center gap-1.5">
+            <span>{latestRepo.name}</span>
+            <ArrowUpRight className="w-4 h-4 text-slate-teal opacity-0 group-hover/repo:opacity-100 transition-opacity" />
+          </h4>
+          {latestRepo.stars > 0 && (
+            <span className="flex items-center gap-1 text-xs text-amber-600 font-bold">
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+              {latestRepo.stars}
+            </span>
+          )}
+        </div>
+        <p className="text-xs text-obsidian/75 mt-1 line-clamp-2 leading-relaxed">
+          {latestRepo.description}
+        </p>
+      </a>
+    </div>
+  );
+}
+
 export default function GithubCTAButton() {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0, opacity: 0 });
@@ -56,18 +101,20 @@ export default function GithubCTAButton() {
 
   // Fetch real-time public activity on component mount
   useEffect(() => {
-    let isMounted = true;
+    const controller = new AbortController();
+    const { signal } = controller;
 
     const fetchGitHubProfile = async () => {
       try {
         const [userRes, eventsRes] = await Promise.all([
-          fetch("https://api.github.com/users/devmilon923"),
+          fetch("https://api.github.com/users/devmilon923", { signal }),
           fetch(
-            "https://api.github.com/users/devmilon923/events/public?per_page=5"
+            "https://api.github.com/users/devmilon923/events/public?per_page=5",
+            { signal }
           ),
         ]);
 
-        if (userRes.ok && isMounted) {
+        if (userRes.ok && !signal.aborted) {
           const userData = await userRes.json();
           let lastActivityDate = userData.updated_at;
           let targetRepoFullName = "devmilon923/Portfolio-2.1";
@@ -99,7 +146,8 @@ export default function GithubCTAButton() {
 
           try {
             const repoRes = await fetch(
-              `https://api.github.com/repos/${targetRepoFullName}`
+              `https://api.github.com/repos/${targetRepoFullName}`,
+              { signal }
             );
             if (repoRes.ok) {
               const r = await repoRes.json();
@@ -113,7 +161,8 @@ export default function GithubCTAButton() {
                 stars: r.stargazers_count ?? 0,
               };
             }
-          } catch (err) {
+          } catch (err: unknown) {
+            if (err instanceof Error && err.name === "AbortError") return;
             console.error("Repo metadata fetch error:", err);
           }
 
@@ -136,18 +185,21 @@ export default function GithubCTAButton() {
             })}`;
           };
 
-          setGithubData({
-            publicRepos: userData.public_repos ?? 68,
-            followers: userData.followers ?? 6,
-            avatarUrl:
-              userData.avatar_url ||
-              "https://avatars.githubusercontent.com/u/104084043?v=4",
-            lastUpdated: getRelativeTime(lastActivityDate),
-            latestRepo: latestRepoData,
-          });
-          setIsLive(true);
+          if (!signal.aborted) {
+            setGithubData({
+              publicRepos: userData.public_repos ?? 68,
+              followers: userData.followers ?? 6,
+              avatarUrl:
+                userData.avatar_url ||
+                "https://avatars.githubusercontent.com/u/104084043?v=4",
+              lastUpdated: getRelativeTime(lastActivityDate),
+              latestRepo: latestRepoData,
+            });
+            setIsLive(true);
+          }
         }
-      } catch (err) {
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name === "AbortError") return;
         console.error("GitHub API fetch error:", err);
       }
     };
@@ -155,7 +207,7 @@ export default function GithubCTAButton() {
     fetchGitHubProfile();
 
     return () => {
-      isMounted = false;
+      controller.abort();
     };
   }, []);
 
@@ -189,9 +241,7 @@ export default function GithubCTAButton() {
 
   return (
     <div className="flex flex-col items-center gap-4 mt-16 max-w-xl mx-auto w-full px-2 sm:px-0">
-      {/* ── Top System Bar: Integrated Live GitHub Telemetry ─────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 p-1.5 rounded-md py-3 sm:rounded-full shadow-2xs text-xs">
-        {/* Handle Badge */}
         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-paper-white border border-iron/70 font-semibold text-obsidian shadow-2xs">
           <Github className="w-3.5 h-3.5 text-obsidian flex-shrink-0" />
           <span className="text-[11px] sm:text-xs">@devmilon923</span>
@@ -200,17 +250,15 @@ export default function GithubCTAButton() {
           )}
         </div>
 
-        {/* Public Repos Count */}
         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full text-obsidian/80 font-medium text-[11px] sm:text-xs">
           <Layers className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
           <span>{githubData.publicRepos} Repositories</span>
         </div>
 
-        {/* Latest Activity Dropdown Trigger */}
         {githubData.latestRepo && (
           <button
             onClick={() => setShowRepoDrawer(!showRepoDrawer)}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-slate-teal/10 hover:bg-paper-white border border-slate-teal/20 text-slate-teal font-semibold text-[11px] sm:text-xs transition-all duration-200 cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-slate-teal/10 hover:bg-paper-white border border-slate-teal/20 text-slate-teal font-semibold text-[11px] sm:text-xs transition-colors duration-200 cursor-pointer"
             title="Click to peek recent GitHub activity"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
@@ -224,47 +272,10 @@ export default function GithubCTAButton() {
         )}
       </div>
 
-      {/* ── Latest Activity Drawer (Expandable Glassmorphic Peek) ───────── */}
       {githubData.latestRepo && showRepoDrawer && (
-        <div className="w-full bg-paper-white border border-iron/90 rounded-2xl p-4 sm:p-5 shadow-xs transition-all duration-300 animate-in fade-in slide-in-from-top-2">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <Code2 className="w-4 h-4 text-slate-teal" />
-              <span className="text-xs font-bold text-obsidian uppercase tracking-wider">
-                Latest Active Repository
-              </span>
-            </div>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-bone border border-iron/70 text-obsidian/80 font-medium">
-              {githubData.latestRepo.language}
-            </span>
-          </div>
-
-          <a
-            href={githubData.latestRepo.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block group/repo pt-1"
-          >
-            <div className="flex items-center justify-between">
-              <h4 className="font-semibold text-sm sm:text-base text-obsidian group-hover/repo:text-slate-teal transition-colors flex items-center gap-1.5">
-                <span>{githubData.latestRepo.name}</span>
-                <ArrowUpRight className="w-4 h-4 text-slate-teal opacity-0 group-hover/repo:opacity-100 transition-opacity" />
-              </h4>
-              {githubData.latestRepo.stars > 0 && (
-                <span className="flex items-center gap-1 text-xs text-amber-600 font-bold">
-                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-                  {githubData.latestRepo.stars}
-                </span>
-              )}
-            </div>
-            <p className="text-xs text-obsidian/75 mt-1 line-clamp-2 leading-relaxed">
-              {githubData.latestRepo.description}
-            </p>
-          </a>
-        </div>
+        <GithubRepoDrawer latestRepo={githubData.latestRepo} />
       )}
 
-      {/* ── Main Premium Tactile Spotlight CTA Container ───────────────── */}
       <div
         ref={buttonRef}
         onMouseMove={handleMouseMove}
@@ -276,9 +287,8 @@ export default function GithubCTAButton() {
               ? "transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)"
               : "none",
         }}
-        className="w-full relative group p-[1.5px] rounded-full bg-gradient-to-r from-iron via-slate-teal/40 to-iron hover:from-slate-teal hover:via-obsidian hover:to-slate-teal transition-all duration-500 shadow-2xs hover:shadow-md"
+        className="w-full relative group p-[1.5px] rounded-full bg-gradient-to-r from-iron via-slate-teal/40 to-iron hover:from-slate-teal hover:via-obsidian hover:to-slate-teal transition-colors duration-500 shadow-2xs hover:shadow-md"
       >
-        {/* Cursor Spotlight Radial Canvas */}
         <div
           className="pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 z-10"
           style={{
@@ -287,17 +297,14 @@ export default function GithubCTAButton() {
           }}
         />
 
-        {/* Inner Interactive Pill Container */}
         <div className="relative z-20 flex items-center justify-between gap-2 sm:gap-6 px-3.5 sm:px-7 py-2.5 sm:py-3.5 rounded-full bg-paper-white group-hover:bg-white transition-colors duration-300">
-          {/* Direct Link & Profile Info */}
           <Link
             href={PERSONAL.github}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2.5 sm:gap-3.5 text-obsidian group/link flex-1 min-w-0"
           >
-            {/* Real Avatar Container with Ring Glow */}
-            <div className="relative flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-bone border border-iron/80 flex items-center justify-center shadow-2xs group-hover/link:ring-2 group-hover/link:ring-slate-teal/40 group-hover/link:scale-105 transition-all duration-300 overflow-hidden">
+            <div className="relative flex-shrink-0 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-bone border border-iron/80 flex items-center justify-center shadow-2xs group-hover/link:ring-2 group-hover/link:ring-slate-teal/40 group-hover/link:scale-105 transition-colors duration-300 overflow-hidden">
               {githubData.avatarUrl ? (
                 <Image
                   src={githubData.avatarUrl}
@@ -313,7 +320,6 @@ export default function GithubCTAButton() {
               <Sparkles className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 text-amber-500 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 animate-pulse z-20" />
             </div>
 
-            {/* Content Details */}
             <div className="text-left min-w-0">
               <div className="flex items-center gap-1 sm:gap-1.5 font-bold text-xs sm:text-base text-obsidian group-hover/link:text-slate-teal transition-colors leading-tight">
                 <span className="hidden sm:inline truncate">Explore Source Code on GitHub</span>
@@ -331,20 +337,17 @@ export default function GithubCTAButton() {
             </div>
           </Link>
 
-          {/* Vertical Divider */}
           <div className="w-px h-6 sm:h-7 bg-iron/70 my-auto flex-shrink-0" />
 
-          {/* Action Trigger Buttons */}
           <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
-            {/* Copy Handle Button */}
             <button
               onClick={handleCopyHandle}
               title={copied ? "Copied profile URL!" : "Copy GitHub URL"}
-              className="p-1.5 sm:p-2.5 rounded-full text-obsidian/70 hover:text-obsidian hover:bg-paper-white active:scale-95 transition-all duration-200 relative group/btn border border-transparent hover:border-iron/70 shadow-2xs"
+              className="p-1.5 sm:p-2.5 rounded-full text-obsidian/70 hover:text-obsidian hover:bg-paper-white active:scale-95 transition-transform duration-200 relative group/btn border border-transparent hover:border-iron/70 shadow-2xs"
               aria-label="Copy GitHub profile URL"
             >
               {copied ? (
-                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 animate-in zoom-in-75 duration-200" />
+                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 transition-transform animate-in zoom-in-75 duration-200" />
               ) : (
                 <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               )}
@@ -353,12 +356,11 @@ export default function GithubCTAButton() {
               </span>
             </button>
 
-            {/* Direct Open Link Button */}
             <Link
               href={PERSONAL.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 sm:p-2.5 rounded-full bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xs flex items-center justify-center"
+              className="p-1.5 sm:p-2.5 rounded-full bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 transition-transform duration-300 shadow-2xs flex items-center justify-center"
               aria-label="Open GitHub profile in new tab"
             >
               <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />

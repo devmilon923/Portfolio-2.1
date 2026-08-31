@@ -65,11 +65,9 @@ function TypedText({
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    setDisplayed("");
-    setStarted(false);
     const t = setTimeout(() => setStarted(true), delay);
     return () => clearTimeout(t);
-  }, [text, delay]);
+  }, [delay]);
 
   useEffect(() => {
     if (!started || displayed.length >= text.length) return;
@@ -188,7 +186,62 @@ function CurvedArrow({ side }: { side: "left" | "right" }) {
   );
 }
 
-/* ─── MAIN COMPONENT ─────────────────────────────────────────────────── */
+function WorkflowHeader() {
+  return (
+    <div className="mb-3 relative">
+      <div className="flex items-start justify-between">
+        <div className="relative inline-block">
+          <h2 className="font-caveat text-xl sm:text-2xl font-bold text-obsidian tracking-wide uppercase m-0 leading-none">
+            How I Work
+          </h2>
+          <svg
+            aria-hidden
+            className="block w-full h-1.5 overflow-visible mt-0.5"
+            viewBox="0 0 180 7"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M 1,2 Q 45,1.2 90,2.4 Q 135,3 179,1.8"
+              stroke="#406e7a"
+              strokeWidth="1.6"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d="M 1,5 Q 45,4.5 90,5.5 Q 135,6 179,5"
+              stroke="#406e7a"
+              strokeWidth="0.8"
+              fill="none"
+              strokeLinecap="round"
+              opacity="0.5"
+            />
+          </svg>
+        </div>
+
+        <div className="relative">
+          <span className="font-caveat text-xs font-bold text-slate-teal tracking-widest uppercase">
+            Client POV
+          </span>
+          <svg
+            aria-hidden
+            className="block w-full h-1 mt-0.5"
+            viewBox="0 0 80 4"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M 0,2 Q 40,1 80,2.5"
+              stroke="#406e7a"
+              strokeWidth="1.1"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function WorkflowCanvas() {
   const [revealedPhases, setRevealedPhases] = useState<Set<number>>(
     () => new Set(PHASES.map((p) => p.id))
@@ -199,7 +252,6 @@ export default function WorkflowCanvas() {
   >("typing");
   const [isManualSelection, setIsManualSelection] = useState(false);
 
-  // Auto-cycle typing unless manually selected
   useEffect(() => {
     if (isManualSelection) return;
 
@@ -226,11 +278,9 @@ export default function WorkflowCanvas() {
   };
 
   return (
-    <div className="relative w-full rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-4 sm:p-5 font-caveat shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
-      {/* Soft paper vignette background glow */}
+    <div className="relative w-full rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-4 sm:p-5 font-caveat shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group">
       <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_15%_15%,rgba(255,255,255,0.4)_0%,transparent_60%),radial-gradient(ellipse_at_85%_85%,rgba(245,236,229,0.3)_0%,transparent_50%)] pointer-events-none z-0" />
 
-      {/* Crisp ruled lines SVG overlay */}
       <svg
         aria-hidden
         className="absolute inset-0 w-full h-full pointer-events-none z-0 rounded-2xl"
@@ -252,65 +302,9 @@ export default function WorkflowCanvas() {
         })}
       </svg>
 
-      {/* Main Content Layer */}
       <div className="relative z-10">
-        {/* ── HEADER ── */}
-        <div className="mb-3 relative">
-          <div className="flex items-start justify-between">
-            {/* Title */}
-            <div className="relative inline-block">
-              <h2 className="font-caveat text-xl sm:text-2xl font-bold text-obsidian tracking-wide uppercase m-0 leading-none">
-                How I Work
-              </h2>
-              {/* Hand-drawn double underline SVG */}
-              <svg
-                aria-hidden
-                className="block w-full h-1.5 overflow-visible mt-0.5"
-                viewBox="0 0 180 7"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 1,2 Q 45,1.2 90,2.4 Q 135,3 179,1.8"
-                  stroke="#406e7a"
-                  strokeWidth="1.6"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M 1,5 Q 45,4.5 90,5.5 Q 135,6 179,5"
-                  stroke="#406e7a"
-                  strokeWidth="0.8"
-                  fill="none"
-                  strokeLinecap="round"
-                  opacity="0.5"
-                />
-              </svg>
-            </div>
+        <WorkflowHeader />
 
-            {/* CLIENT POV Tag */}
-            <div className="relative">
-              <span className="font-caveat text-xs font-bold text-slate-teal tracking-widest uppercase">
-                Client POV
-              </span>
-              <svg
-                aria-hidden
-                className="block w-full h-1 mt-0.5"
-                viewBox="0 0 80 4"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M 0,2 Q 40,1 80,2.5"
-                  stroke="#406e7a"
-                  strokeWidth="1.1"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        {/* ── PHASE LIST ── */}
         <div className="flex flex-col gap-0">
           {PHASES.map((phase, index) => {
             const isRevealed = revealedPhases.has(phase.id);
@@ -318,10 +312,11 @@ export default function WorkflowCanvas() {
             const isLast = index === PHASES.length - 1;
 
             return (
-              <div
+              <button
+                type="button"
                 key={phase.id}
                 onClick={() => handlePhaseClick(index)}
-                className={`flex gap-0 cursor-pointer py-0.5 px-1 transition-all duration-300 border-l-2 ${
+                className={`w-full text-left flex gap-0 cursor-pointer py-0.5 px-1 border-l-2 ${
                   isHighlighted
                     ? "border-slate-teal"
                     : "border-transparent hover:border-slate-teal/30"
@@ -331,7 +326,7 @@ export default function WorkflowCanvas() {
                     : "opacity-0 translate-y-2"
                 }`}
                 style={{
-                  transitionDelay: `${index * 60}ms`,
+                  transition: `opacity 300ms ease ${index * 60}ms, transform 300ms ease ${index * 60}ms, border-color 300ms ease`,
                 }}
               >
                 {/* LEFT: circle + connector line */}
@@ -455,7 +450,7 @@ export default function WorkflowCanvas() {
                     <CurvedArrow side={phase.arrow as "left" | "right"} />
                   )}
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>

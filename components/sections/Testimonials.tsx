@@ -97,7 +97,7 @@ export default function Testimonials() {
                     key={t.id}
                     className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-4"
                   >
-                    <div className="bg-paper-white border border-iron rounded-2xl p-6 h-full flex flex-col hover:border-obsidian transition-all shadow-sm">
+                    <div className="bg-paper-white border border-iron rounded-2xl p-6 h-full flex flex-col hover:border-obsidian transition-colors shadow-sm">
                       {/* Quote icon */}
                       <div className="w-8 h-8 rounded-full bg-sandstone flex items-center justify-center mb-4 border border-iron">
                         <Quote className="w-4 h-4 text-obsidian" />
@@ -140,9 +140,9 @@ export default function Testimonials() {
 
             {/* Dots */}
             <div className="flex justify-center gap-2 mt-8">
-              {TESTIMONIALS.map((_, i) => (
+              {TESTIMONIALS.map((t, i) => (
                 <button
-                  key={i}
+                  key={t.id}
                   onClick={() => emblaApi?.scrollTo(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === selectedIndex ? "w-8 bg-obsidian" : "w-2 bg-iron"
