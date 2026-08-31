@@ -185,7 +185,7 @@ export default function Navbar() {
               </div>
               <span className="text-obsidian font-serif font-bold text-base sm:text-lg tracking-tight block">
                 {PERSONAL.name.split(" ")[0]}{" "}
-                <span className="text-slate-teal font-sans font-normal text-xs sm:text-sm">
+                <span className="text-deep-teal font-sans font-medium text-xs sm:text-sm">
                   {PERSONAL.name.split(" ")[1]}
                 </span>
               </span>
@@ -301,20 +301,23 @@ export default function Navbar() {
             className="fixed inset-0 z-40 bg-obsidian/40 backdrop-blur-sm md:hidden animate-in fade-in duration-300"
           />
 
-          {/* Floating Mobile Menu Card */}
-          <div className="fixed top-[4.25rem] sm:top-[4.75rem] left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 bg-paper-white/98 backdrop-blur-2xl border border-iron/80 rounded-2xl md:hidden shadow-2xl p-4 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300">
+          {/* Floating Mobile Menu Card with Senior UI/UX Refinements */}
+          <div className="fixed top-[4.25rem] sm:top-[4.75rem] left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 bg-paper-white/75 backdrop-blur-2xl backdrop-saturate-200 border border-white/80 rounded-2xl md:hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-4 max-h-[calc(100vh-5.5rem)] overflow-y-auto animate-in fade-in slide-in-from-top-4 duration-300">
             {/* Header */}
-            <div className="flex items-center justify-between pb-3 mb-2 border-b border-iron/50">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-teal">
-                Navigation Menu
-              </span>
-              <span className="text-[10px] font-mono text-obsidian/40 font-semibold">
+            <div className="flex items-center justify-between pb-3 mb-2.5 border-b border-obsidian/10">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-obsidian/80">
+                  Navigation Menu
+                </span>
+              </div>
+              <span className="text-[10px] font-mono font-bold text-obsidian/70 bg-obsidian/5 px-2.5 py-0.5 rounded-full border border-obsidian/10">
                 05 SECTIONS
               </span>
             </div>
 
             {/* Navigation Links */}
-            <nav className="flex flex-col gap-1">
+            <nav className="flex flex-col gap-1.5">
               {NAV_LINKS.map((link) => {
                 const isActive = activeSection === link.href;
                 const Icon = link.icon;
@@ -327,36 +330,44 @@ export default function Navbar() {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className={`px-3.5 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-between group ${
+                    className={`px-3 py-2 rounded-xl transition-all duration-200 flex items-center justify-between group ${
                       isActive
-                        ? "bg-slate-teal/10 text-slate-teal border border-slate-teal/25 font-bold shadow-2xs"
-                        : "text-obsidian/80 hover:bg-bone/80 hover:text-obsidian border border-transparent active:scale-[0.98]"
+                        ? "bg-obsidian text-paper-white shadow-md font-bold"
+                        : "text-obsidian hover:bg-obsidian/5 border border-transparent active:scale-[0.98]"
                     }`}
                   >
                     <div className="flex items-center gap-3">
                       <div
-                        className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                        className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all shrink-0 ${
                           isActive
-                            ? "bg-slate-teal text-paper-white shadow-2xs"
-                            : "bg-bone text-obsidian/60 group-hover:text-obsidian group-hover:bg-paper-white"
+                            ? "bg-white/20 text-paper-white shadow-2xs"
+                            : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white group-hover:scale-105"
                         }`}
                       >
-                        <Icon className="w-3.5 h-3.5" />
+                        <Icon className="w-4 h-4" />
                       </div>
-                      <span className="text-sm font-semibold tracking-tight">
+                      <span
+                        className={`text-sm tracking-tight ${
+                          isActive ? "font-bold text-paper-white" : "font-semibold text-obsidian"
+                        }`}
+                      >
                         {link.label}
                       </span>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono text-obsidian/35 font-semibold">
+                      <span
+                        className={`text-[11px] font-mono font-bold ${
+                          isActive ? "text-paper-white/70" : "text-obsidian/45 group-hover:text-obsidian/80"
+                        }`}
+                      >
                         {link.code}
                       </span>
                       <ChevronRight
                         className={`w-4 h-4 transition-transform duration-200 ${
                           isActive
-                            ? "text-slate-teal translate-x-0.5"
-                            : "text-obsidian/20 group-hover:text-obsidian/50 group-hover:translate-x-0.5"
+                            ? "text-paper-white translate-x-0.5"
+                            : "text-obsidian/30 group-hover:text-obsidian group-hover:translate-x-0.5"
                         }`}
                       />
                     </div>
@@ -366,13 +377,13 @@ export default function Navbar() {
             </nav>
 
             {/* Action Buttons & Social Links Footer */}
-            <div className="pt-3 mt-2 border-t border-iron/50 space-y-2.5">
-              <div className="grid grid-cols-2 gap-2">
+            <div className="pt-3 mt-3 border-t border-obsidian/10 space-y-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href={PERSONAL.whatsapp}
-                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500/10 border border-emerald-600/30 text-emerald-950 text-xs font-semibold hover:bg-emerald-500/20 active:scale-95 transition-all shadow-2xs"
+                  className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 text-xs font-bold hover:bg-emerald-500/20 active:scale-[0.98] transition-all shadow-2xs group/wa"
                 >
                   <div className="w-4 h-4 rounded-full overflow-hidden flex items-center justify-center shrink-0">
                     <Image
@@ -380,7 +391,7 @@ export default function Navbar() {
                       alt="WhatsApp"
                       width={16}
                       height={16}
-                      className="w-full h-full object-cover mix-blend-multiply scale-110"
+                      className="w-full h-full object-cover mix-blend-multiply scale-110 group-hover/wa:scale-125 transition-transform"
                       unoptimized
                     />
                   </div>
@@ -390,35 +401,35 @@ export default function Navbar() {
                 <a
                   target="_blank"
                   href={PERSONAL.resumeUrl}
-                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal active:scale-95 transition-all shadow-2xs"
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-obsidian text-paper-white text-xs font-bold hover:bg-deep-teal active:scale-[0.98] transition-all shadow-2xs group/res"
                 >
-                  <Download className="w-3.5 h-3.5 shrink-0" />
+                  <Download className="w-3.5 h-3.5 shrink-0 group-hover/res:-translate-y-0.5 transition-transform" />
                   <span>Resume</span>
                 </a>
               </div>
 
               {/* Quick Connect Row */}
-              <div className="flex items-center justify-between px-1 pt-1 text-[11px] text-obsidian/60 font-medium">
-                <span className="font-mono text-[10px] uppercase text-obsidian/40 font-bold">
+              <div className="flex items-center justify-between px-0.5 pt-0.5 text-[11px]">
+                <span className="font-mono text-[10px] uppercase text-obsidian/50 font-bold tracking-wider">
                   Quick Connect
                 </span>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <a
                     href={PERSONAL.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-obsidian/80 hover:text-obsidian"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-obsidian/5 hover:bg-obsidian/10 border border-obsidian/10 text-obsidian text-xs font-semibold transition-all active:scale-95"
                   >
-                    <Github className="w-3.5 h-3.5" />
+                    <Github className="w-3.5 h-3.5 text-obsidian" />
                     <span>GitHub</span>
                   </a>
                   <a
                     href={PERSONAL.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-obsidian/80 hover:text-slate-teal"
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-obsidian/5 hover:bg-obsidian/10 border border-obsidian/10 text-obsidian text-xs font-semibold transition-all active:scale-95"
                   >
-                    <Linkedin className="w-3.5 h-3.5 text-slate-teal" />
+                    <Linkedin className="w-3.5 h-3.5 text-[#0A66C2]" />
                     <span>LinkedIn</span>
                   </a>
                 </div>
