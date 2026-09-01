@@ -71,16 +71,7 @@ export default function TechStack() {
       id="stack"
       className="py-20 lg:py-28 bg-deep-teal text-paper-white relative overflow-hidden"
     >
-      {/* Subtle ambient lighting */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-15 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(197, 213, 232, 0.4) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -144,7 +135,7 @@ export default function TechStack() {
                   <p className="text-paper-white text-xs sm:text-sm font-bold tracking-tight group-hover:text-paper-white transition-colors">
                     {tech.name}
                   </p>
-                  <p className="text-paper-white/60 text-[10px] sm:text-[11px] font-medium mt-0.5 capitalize">
+                  <p className="text-paper-white/80 text-[10px] sm:text-[11px] font-medium mt-0.5 capitalize">
                     {tech.category}
                   </p>
                 </div>

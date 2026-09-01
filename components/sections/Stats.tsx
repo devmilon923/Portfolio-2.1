@@ -89,16 +89,7 @@ export default function Stats() {
       id="stats"
       className="py-20 lg:py-28 bg-paper-white relative overflow-hidden border-t border-iron/60"
     >
-      {/* Subtle background texture */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(212, 230, 235, 0.5) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+
 
       <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}

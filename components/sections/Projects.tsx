@@ -173,7 +173,7 @@ export default function Projects() {
                           <CheckCircle2 className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
                           <span className="truncate">System Overview</span>
                         </span>
-                        <span className="text-[10px] text-obsidian/35 font-semibold font-mono whitespace-nowrap flex-shrink-0">
+                        <span className="text-[10px] text-obsidian/60 font-semibold font-mono whitespace-nowrap flex-shrink-0">
                           0{index + 1} • CASE STUDY
                         </span>
                       </div>
