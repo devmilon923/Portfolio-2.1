@@ -8,7 +8,9 @@ const Stats = dynamic(() => import("@/components/sections/Stats"));
 const About = dynamic(() => import("@/components/sections/About"));
 const Projects = dynamic(() => import("@/components/sections/Projects"));
 const Services = dynamic(() => import("@/components/sections/Services"));
-const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
+const Testimonials = dynamic(
+  () => import("@/components/sections/Testimonials"),
+);
 const TechStack = dynamic(() => import("@/components/sections/TechStack"));
 const Contact = dynamic(() => import("@/components/sections/Contact"));
 
@@ -31,4 +33,3 @@ export default function Home() {
     </main>
   );
 }
-
