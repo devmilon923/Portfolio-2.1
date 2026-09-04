@@ -451,8 +451,8 @@ export default function About() {
             </span>
           </h2>
           <p className="text-obsidian/75 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
-            Combining electrical engineering principles with modern full-stack
-            architecture to build resilient web products.
+            Building resilient, scalable web applications and AI solutions with
+            modern full-stack architecture.
           </p>
         </div>
 
@@ -471,10 +471,10 @@ export default function About() {
                 <div className="w-full flex items-center justify-between gap-2 mb-4">
                   <div className="bg-bone/90 backdrop-blur-sm border border-iron/80 rounded-xl px-3.5 py-2 text-left shadow-2xs hover:border-obsidian/30 transition-colors">
                     <p className="text-obsidian text-[13px] font-bold leading-tight">
-                      2+ Years
+                      ~2 Years
                     </p>
                     <p className="text-obsidian/70 text-[10px] font-medium leading-tight mt-0.5">
-                      Professional Exp.
+                      Industry &amp; Freelance
                     </p>
                   </div>
                   <div className="bg-bone/90 backdrop-blur-sm border border-iron/80 rounded-xl px-3.5 py-2 text-right shadow-2xs hover:border-obsidian/30 transition-colors">
@@ -540,7 +540,7 @@ export default function About() {
                     AI-integrated web applications
                   </strong>{" "}
                   tailored for business growth. Grounded in systematic problem
-                  solving, I transform complex specs into maintainable,
+                  solving, I transform complex requirements into maintainable,
                   production-ready code.
                 </p>
               </div>
@@ -551,12 +551,11 @@ export default function About() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-obsidian text-xs font-bold uppercase tracking-wider">
-                    Electrical Engineering Background
+                    Full-Stack Software Architecture
                   </p>
                   <p className="text-obsidian/85 text-xs sm:text-sm font-normal leading-relaxed">
-                    My foundation in electrical hardware shapes how I structure
-                    software systems — modular, fault-tolerant, and optimized
-                    for low latency and high throughput.
+                    Structuring software systems to be modular, fault-tolerant,
+                    and optimized for low latency and high throughput.
                   </p>
                 </div>
               </div>

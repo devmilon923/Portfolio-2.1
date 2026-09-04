@@ -38,7 +38,7 @@ export const EDUCATION = [
     location: "Mymensingh, Bangladesh",
     period: "2019 – 2023",
     description:
-      "4-year technical curriculum focused on circuit analysis, control logic, mathematical modeling, and systematic engineering problem solving.",
+      "4-year technical diploma program covering electrical systems, circuit analysis, and engineering fundamentals.",
   },
 ];
 
@@ -51,9 +51,9 @@ export const LANGUAGES = [
 export const STATS = [
   {
     label: "Years of Experience",
-    value: 2,
-    suffix: "+",
-    description: "Professional development experience",
+    value: 1.8,
+    suffix: "",
+    description: "Combined industry & freelance",
   },
   {
     label: "Projects Shipped",
@@ -208,12 +208,26 @@ export const SERVICES = [
     icon: "rocket",
     title: "Full-Stack SaaS & Web App Build",
     turnaround: "2–3 Weeks",
-    tagline: "Turnkey development from database schema and REST APIs to dashboards, payments, and cloud launch.",
+    tagline:
+      "Turnkey development from database schema and REST APIs to dashboards, payments, and cloud launch.",
     features: [
-      { title: "Custom Build Guarantee", detail: "Any web app or SaaS engineered to spec" },
-      { title: "Complete Full-Stack Architecture", detail: "Auth, PostgreSQL/MongoDB, REST APIs & Dashboards" },
-      { title: "Third-Party Integrations", detail: "Stripe payments, OpenAI APIs & Webhooks" },
-      { title: "Production Cloud Launch", detail: "Zero-downtime deployment on AWS, Vercel, or DigitalOcean" },
+      {
+        title: "Custom Build Guarantee",
+        detail: "Any web app or SaaS built to your exact requirements",
+      },
+      {
+        title: "Complete Full-Stack Architecture",
+        detail: "Auth, PostgreSQL/MongoDB, REST APIs & Dashboards",
+      },
+      {
+        title: "Third-Party Integrations",
+        detail: "Stripe payments, OpenAI APIs & Webhooks",
+      },
+      {
+        title: "Production Cloud Launch",
+        detail:
+          "Deployment on Cloud or Local environment",
+      },
     ],
     price: "Custom Scope",
     badge: "Flagship Build",
@@ -224,12 +238,25 @@ export const SERVICES = [
     icon: "bug",
     title: "Bug Fix & Performance Speedup",
     turnaround: "24–48 Hours",
-    tagline: "Surgical diagnosis and performance tuning for slow, crashing, or broken web applications.",
+    tagline:
+      "Surgical diagnosis and performance tuning for slow, crashing, or broken web applications.",
     features: [
-      { title: "Emergency Bug Diagnosis", detail: "24–48h resolution for React, Next.js & Node.js" },
-      { title: "API Speed Optimization", detail: "Up to 40%+ database query & response time speedup" },
-      { title: "Cache & Memory Tuning", detail: "Redis caching setup & memory leak resolution" },
-      { title: "Technical Code Audit", detail: "Detailed post-fix technical report & code cleanup" },
+      {
+        title: "Emergency Bug Diagnosis",
+        detail: "24–48h resolution for React, Next.js & Node.js",
+      },
+      {
+        title: "API Speed Optimization",
+        detail: "Up to 40%+ database query & response time speedup",
+      },
+      {
+        title: "Cache & Memory Tuning",
+        detail: "Redis caching setup & memory leak resolution",
+      },
+      {
+        title: "Technical Code Audit",
+        detail: "Detailed post-fix technical report & code cleanup",
+      },
     ],
     price: "Fixed or Hourly",
     badge: "Tactical Fix",
@@ -240,12 +267,25 @@ export const SERVICES = [
     icon: "layers",
     title: "AI Systems & Process Automation",
     turnaround: "1–2 Weeks",
-    tagline: "Intelligent AI workflows, RAG memory systems, and automated background data pipelines.",
+    tagline:
+      "Intelligent AI workflows, RAG memory systems, and automated background data pipelines.",
     features: [
-      { title: "AI Assistants & RAG Memory", detail: "Custom chatbots with long-term persistent memory" },
-      { title: "Process Automation Queues", detail: "Background job pipelines built with BullMQ & Redis" },
-      { title: "Real-Time Event Streaming", detail: "Low-latency WebSockets (Socket.IO) for live state sync" },
-      { title: "Scalable Infrastructure", detail: "Enterprise backend systems built for high throughput" },
+      {
+        title: "AI Assistants & RAG Memory",
+        detail: "Custom chatbots with long-term persistent memory",
+      },
+      {
+        title: "Process Automation Queues",
+        detail: "Background job pipelines built with BullMQ & Redis",
+      },
+      {
+        title: "Real-Time Event Streaming",
+        detail: "Low-latency WebSockets (Socket.IO) for live state sync",
+      },
+      {
+        title: "Scalable Infrastructure",
+        detail: "Enterprise backend systems built for high throughput",
+      },
     ],
     price: "Custom Scope",
     badge: "Enterprise AI",

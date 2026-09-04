@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDown, Github, Linkedin, Mail, Sparkles, Star } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Sparkles, Rocket } from "lucide-react";
 import { PERSONAL, CLIENT_COUNTRIES } from "@/lib/constants";
 import CountryFlag from "@/components/ui/CountryFlag";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
@@ -67,11 +67,11 @@ export default function Hero() {
             
             {/* ── Trust Strip — Rating + Timezone + Flag Avatar Stack ── */}
             <div className="flex items-center flex-wrap gap-y-2 mb-6 self-start">
-              {/* Proof Point: Rating */}
+              {/* Proof Point: Shipped Apps */}
               <div className="flex items-center gap-1.5">
-                <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500 flex-shrink-0" />
+                <Rocket className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
                 <span className="text-xs sm:text-[13px] font-semibold text-obsidian tracking-tight whitespace-nowrap">
-                  5.0 Rated
+                  6+ Production Apps
                 </span>
               </div>
 
@@ -85,23 +85,7 @@ export default function Hero() {
               <span className="w-px h-3.5 bg-iron/50 mx-2.5 sm:mx-3.5 flex-shrink-0" aria-hidden="true" />
 
               {/* Overlapping Flag Avatar Stack + Count */}
-              <div className="flex items-center -space-x-1.5">
-                {CLIENT_COUNTRIES.map((country) => (
-                  <div
-                    key={country.code}
-                    className="relative rounded-full ring-[1.5px] ring-paper-white transition-transform duration-200 hover:z-10 hover:scale-110 cursor-default"
-                    title={country.name}
-                  >
-                    <CountryFlag code={country.code} className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
-                  </div>
-                ))}
-                {/* +N Overflow Count Circle */}
-                <div className="relative flex items-center justify-center w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-bone border border-iron/80 ring-[1.5px] ring-paper-white cursor-default" title="7+ clients worldwide">
-                  <span className="text-[8px] sm:text-[9px] font-semibold text-obsidian/70 leading-none select-none">
-                    7+
-                  </span>
-                </div>
-              </div>
+          
             </div>
 
             {/* Main Headline - Concise & Punchy 2-3 Lines */}
@@ -111,7 +95,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-obsidian/75 text-base sm:text-lg font-normal max-w-lg mb-6 leading-relaxed">
-              Full-stack developer building high-performance SaaS platforms &amp; AI workflows with production reliability. From SaaS apps to complex backends, I turn specs into launch-ready software.
+              Full-stack developer building high-performance SaaS platforms &amp; AI workflows with production reliability. From SaaS apps to complex backends, I turn ideas into launch-ready software.
             </p>
 
             {/* Core Capabilities - Crisp Minimal Pills */}

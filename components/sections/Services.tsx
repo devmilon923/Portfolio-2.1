@@ -127,7 +127,7 @@ export default function Services() {
                   <div className="pt-5 border-t border-obsidian/8 mb-8">
                     <p className="text-[10px] font-mono font-bold text-slate-teal uppercase tracking-wider mb-4 flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-slate-teal" />
-                      <span>Key Deliverables &amp; Specs</span>
+                      <span>Key Deliverables &amp; Features</span>
                     </p>
                     <ul className="space-y-3.5">
                       {service.features.map((feat) => (

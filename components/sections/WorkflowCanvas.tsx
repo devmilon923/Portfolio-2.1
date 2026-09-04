@@ -10,7 +10,7 @@ const PHASES = [
     title: "Understand",
     role: "Strategic Alignment",
     description: "I read the problem before I write a single line.",
-    duration: "Day 1",
+    duration: "Week 1",
     arrow: "right",
   },
   {
@@ -19,7 +19,7 @@ const PHASES = [
     title: "Architect",
     role: "System Design",
     description: "Schema → API contract → Data flow. Planned, not improvised.",
-    duration: "Day 2–3",
+    duration: "Week 1",
     arrow: "left",
   },
   {
@@ -28,7 +28,7 @@ const PHASES = [
     title: "Execute",
     role: "Full-Stack Development",
     description: "Backend-first, performance-always, frontend that follows.",
-    duration: "Day 4–7",
+    duration: "Week 2–3",
     arrow: "right",
   },
   {
@@ -37,7 +37,7 @@ const PHASES = [
     title: "Validate",
     role: "QA & Integration Testing",
     description: "Break it locally so clients don't break it live.",
-    duration: "Day 8",
+    duration: "Week 3",
     arrow: "right",
   },
   {
@@ -46,7 +46,7 @@ const PHASES = [
     title: "Deploy",
     role: "Production Launch & Handoff",
     description: "Clean deployment, documented APIs, clean handoff.",
-    duration: "Day 9",
+    duration: "Week 3",
     arrow: null,
   },
 ];

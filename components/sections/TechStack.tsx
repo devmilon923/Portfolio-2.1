@@ -24,7 +24,7 @@ import {
   SiVercel,
   SiLinux,
 } from "react-icons/si";
-import { TbBrandOpenai, TbBrandAws, TbBinaryTree, TbStack3 } from "react-icons/tb";
+import { TbBrandOpenai, TbBinaryTree, TbStack3 } from "react-icons/tb";
 import { FaAws } from "react-icons/fa6";
 
 // Map tech item name to official brand SVG component & high-contrast brand color for dark backgrounds
@@ -50,7 +50,7 @@ const TECH_ICON_MAP: Record<
   Prisma: { icon: SiPrisma, color: "#8B9BFF" },
   Pinecone: { icon: TbBinaryTree, color: "#00F5B2" },
   "OpenAI API": { icon: TbBrandOpenai, color: "#10C895" },
-  "AWS EC2": { icon: TbBrandAws, color: "#FF9900" },
+  "AWS EC2": { icon: FaAws, color: "#FF9900" },
   Docker: { icon: SiDocker, color: "#38A5FF" },
   Nginx: { icon: SiNginx, color: "#00C84B" },
   "GitHub Actions": { icon: SiGithubactions, color: "#389BFF" },

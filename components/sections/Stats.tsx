@@ -31,11 +31,13 @@ function useInView(threshold = 0.3) {
 // ── Animated counter that only starts when visible ──
 function AnimatedCounter({
   target,
-  suffix,
+  prefix = "",
+  suffix = "",
   active,
 }: {
   target: number;
-  suffix: string;
+  prefix?: string;
+  suffix?: string;
   active: boolean;
 }) {
   const [count, setCount] = useState(0);
@@ -60,6 +62,7 @@ function AnimatedCounter({
 
   return (
     <span>
+      {prefix}
       {count}
       {suffix}
     </span>
@@ -124,6 +127,7 @@ export default function Stats() {
               <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-obsidian mb-1.5 tracking-[-0.045em] leading-none">
                 <AnimatedCounter
                   target={stat.value}
+                  prefix={"prefix" in stat ? (stat as { prefix?: string }).prefix : ""}
                   suffix={stat.suffix}
                   active={inView}
                 />

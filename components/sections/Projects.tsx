@@ -80,7 +80,7 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className={`rounded-2xl border px-4 sm:px-8 py-6 sm:py-8 lg:p-10 transition-all duration-300 shadow-sm hover:shadow-md ${accent.border}`}
+                className={`rounded-2xl border px-4 sm:px-8 py-6 sm:py-8 lg:p-10 transition-all duration-300 hover:shadow-sm ${accent.border}`}
                 style={{ background: accent.bg }}
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
@@ -104,7 +104,7 @@ export default function Projects() {
                       <div>
                         <h3 className="font-serif text-3xl sm:text-4xl font-bold text-obsidian tracking-[-0.035em] flex items-center justify-between gap-2">
                           <span>{project.name}</span>
-                          <ArrowUpRight className="w-5 h-5 text-obsidian/20 flex-shrink-0" />
+
                         </h3>
                         <p className="text-slate-teal text-xs sm:text-sm font-semibold mt-1.5">
                           {project.subtitle}
@@ -113,16 +113,12 @@ export default function Projects() {
 
                       {/* Primary KPI Box */}
                       {project.metricLabel && (
-                        <div
-                          className={`p-3.5 rounded-xl border space-y-1 ${accent.kpi}`}
-                        >
+                        <div className={` rounded-xl space-y-1`}>
                           <div className="flex items-center justify-between">
                             <p className="text-[10px] font-bold uppercase tracking-wider text-slate-teal">
                               Primary Engineering Outcome
                             </p>
-                            <span
-                              className={`w-1.5 h-1.5 rounded-full ${accent.dot}`}
-                            />
+                  
                           </div>
                           <p className="text-obsidian text-sm font-bold leading-snug">
                             {project.metricLabel}
