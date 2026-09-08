@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { TECH_STACK, TECH_CATEGORIES } from "@/lib/constants";
 import {
   SiReact,
@@ -26,6 +26,63 @@ import {
 } from "react-icons/si";
 import { TbBrandOpenai, TbBinaryTree, TbStack3 } from "react-icons/tb";
 import { FaAws } from "react-icons/fa6";
+
+// Smooth Count-Up Animation Component with cubic easing
+function AnimatedCount({ value }: { value: string | number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  const targetStr = String(value);
+  const numericMatch = targetStr.match(/^(\d+(\.\d+)?)(.*)$/);
+  const targetNum = numericMatch ? parseFloat(numericMatch[1]) : 0;
+  const suffix = numericMatch ? numericMatch[3] : "";
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || hasAnimated) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasAnimated(true);
+          const duration = 1200; // Smooth 1.2s animation
+          const startTime = performance.now();
+
+          const animate = (currentTime: number) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic: 1 - Math.pow(1 - progress, 3)
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const currentVal = Math.floor(easeOut * targetNum);
+
+            setCount(currentVal);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              setCount(targetNum);
+            }
+          };
+
+          requestAnimationFrame(animate);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [targetNum, hasAnimated]);
+
+  return (
+    <span ref={ref}>
+      {hasAnimated ? count : 0}
+      {suffix}
+    </span>
+  );
+}
 
 // Map tech item name to official brand SVG component & high-contrast brand color for dark backgrounds
 const TECH_ICON_MAP: Record<
@@ -168,7 +225,7 @@ export default function TechStack() {
           ].map((item) => (
             <div key={item.label} className="text-center min-w-[100px]">
               <p className="font-serif text-3xl sm:text-4xl font-bold text-paper-white tracking-[-0.045em]">
-                {item.value}
+                <AnimatedCount value={item.value} />
               </p>
               <p className="text-dusty-sky text-xs sm:text-sm font-medium mt-1">
                 {item.label}

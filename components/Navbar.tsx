@@ -26,6 +26,7 @@ const NAV_LINKS = [
 interface MobileNavDrawerProps {
   NAV_LINKS: typeof NAV_LINKS;
   activeSection: string;
+  isDarkSection: boolean;
   handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
   setMobileOpen: (open: boolean) => void;
   navHeight: number;
@@ -34,6 +35,7 @@ interface MobileNavDrawerProps {
 function MobileNavDrawer({
   NAV_LINKS,
   activeSection,
+  isDarkSection,
   handleNavClick,
   setMobileOpen,
   navHeight,
@@ -87,7 +89,7 @@ function MobileNavDrawer({
       <div
         aria-hidden="true"
         onClick={() => setMobileOpen(false)}
-        className="fixed inset-0 z-40 bg-obsidian/40 backdrop-blur-sm md:hidden transition-opacity animate-in fade-in duration-300"
+        className="fixed inset-0 z-40 bg-obsidian/50 backdrop-blur-sm md:hidden transition-opacity animate-in fade-in duration-300"
       />
 
       {/* Floating Mobile Menu Card (Semantic Dialog) */}
@@ -97,23 +99,33 @@ function MobileNavDrawer({
         aria-modal="true"
         aria-label="Mobile Navigation Menu"
         style={{ top: `${navHeight}px` }}
-        className="fixed left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 bg-paper-white/95 backdrop-blur-2xl backdrop-saturate-200 border border-iron/80 rounded-2xl md:hidden shadow-[0_20px_50px_rgba(0,0,0,0.18)] p-4 max-h-[calc(100vh-6.5rem)] overflow-y-auto transition-all animate-in fade-in slide-in-from-top-4 duration-300"
+        className={`fixed left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 backdrop-blur-2xl backdrop-saturate-200 rounded-2xl md:hidden shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-4 max-h-[calc(100vh-6.5rem)] overflow-y-auto transition-all animate-in fade-in slide-in-from-top-4 duration-300 ${
+          isDarkSection
+            ? "bg-obsidian/95 border border-white/10 text-paper-white"
+            : "bg-paper-white/95 border border-iron/80 text-obsidian"
+        }`}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between pb-3 mb-2.5 border-b border-obsidian/10">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-obsidian/80">
-              Navigation Menu
-            </span>
-          </div>
-          <span className="text-xs font-mono font-bold text-obsidian/70 bg-obsidian/5 px-2.5 py-0.5 rounded-full border border-obsidian/10">
-            05 SECTIONS
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-obsidian/10">
+          <span
+            className={`text-xs font-mono font-bold uppercase tracking-wider ${
+              isDarkSection ? "text-dusty-sky" : "text-slate-teal"
+            }`}
+          >
+            Navigation
+          </span>
+          <span
+            className={`text-[10px] font-mono font-medium px-2 py-0.5 rounded-full border ${
+              isDarkSection
+                ? "bg-white/10 text-paper-white/80 border-white/10"
+                : "bg-bone text-obsidian/60 border-iron/60"
+            }`}
+          >
+            Quick Links
           </span>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="flex flex-col gap-1.5">
+        {/* Dynamic Nav links list */}
+        <nav className="space-y-1">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.href;
             const Icon = link.icon;
@@ -125,7 +137,11 @@ function MobileNavDrawer({
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-between group ${
                   isActive
-                    ? "bg-obsidian text-paper-white shadow-sm font-bold"
+                    ? isDarkSection
+                      ? "bg-paper-white text-obsidian shadow-sm font-bold"
+                      : "bg-obsidian text-paper-white shadow-sm font-bold"
+                    : isDarkSection
+                    ? "text-paper-white hover:bg-white/10 border border-transparent"
                     : "text-obsidian hover:bg-obsidian/5 border border-transparent"
                 }`}
               >
@@ -133,38 +149,30 @@ function MobileNavDrawer({
                   <div
                     className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 shrink-0 ${
                       isActive
-                        ? "bg-white/20 text-paper-white shadow-2xs"
+                        ? isDarkSection
+                          ? "bg-obsidian/10 text-obsidian shadow-2xs"
+                          : "bg-white/20 text-paper-white shadow-2xs"
+                        : isDarkSection
+                        ? "bg-white/10 border border-white/10 text-paper-white group-hover:bg-paper-white group-hover:text-obsidian"
                         : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span
-                    className={`text-sm tracking-tight ${
-                      isActive
-                        ? "font-bold text-paper-white"
-                        : "font-semibold text-obsidian"
-                    }`}
-                  >
+                  <span className="text-sm tracking-tight font-semibold">
                     {link.label}
                   </span>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span
-                    className={`text-xs font-mono font-bold ${
-                      isActive
-                        ? "text-paper-white/70"
-                        : "text-obsidian/50 group-hover:text-obsidian/80"
-                    }`}
-                  >
+                  <span className="text-xs font-mono font-bold opacity-60">
                     {link.code}
                   </span>
                   <ChevronRight
                     className={`w-4 h-4 transition-transform duration-200 ${
                       isActive
-                        ? "text-paper-white translate-x-0.5"
-                        : "text-obsidian/30 group-hover:text-obsidian group-hover:translate-x-0.5"
+                        ? "translate-x-0.5"
+                        : "opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5"
                     }`}
                   />
                 </div>
@@ -174,12 +182,20 @@ function MobileNavDrawer({
         </nav>
 
         {/* Streamlined Action Footer */}
-        <div className="pt-3 mt-3 border-t border-obsidian/10 flex items-center gap-2">
+        <div
+          className={`pt-3 mt-3 border-t flex items-center gap-2 ${
+            isDarkSection ? "border-white/10" : "border-obsidian/10"
+          }`}
+        >
           <a
             target="_blank"
             rel="noopener noreferrer"
             href={PERSONAL.resumeUrl}
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal transition-colors duration-200 shadow-2xs group/res"
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-semibold transition-colors duration-200 shadow-2xs group/res ${
+              isDarkSection
+                ? "bg-paper-white text-obsidian hover:bg-bone"
+                : "bg-obsidian text-paper-white hover:bg-deep-teal"
+            }`}
           >
             <Download className="w-4 h-4 shrink-0" />
             <span>Download Resume</span>
@@ -190,9 +206,13 @@ function MobileNavDrawer({
             target="_blank"
             rel="noopener noreferrer"
             aria-label="View GitHub Profile"
-            className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-paper-white hover:bg-bone border border-obsidian/15 text-obsidian text-xs font-semibold transition-colors duration-200 shadow-2xs"
+            className={`flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-semibold transition-colors duration-200 shadow-2xs border ${
+              isDarkSection
+                ? "bg-white/10 hover:bg-white/20 border-white/10 text-paper-white"
+                : "bg-paper-white hover:bg-bone border-obsidian/15 text-obsidian"
+            }`}
           >
-            <Github className="w-4 h-4 text-obsidian" />
+            <Github className="w-4 h-4" />
             <span className="hidden sm:inline">GitHub</span>
           </a>
         </div>
@@ -202,79 +222,66 @@ function MobileNavDrawer({
 }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("#about");
-  const [navHeight, setNavHeight] = useState<number>(72);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("#hero");
+  const [navHeight, setNavHeight] = useState(72);
+  const headerRef = useRef<HTMLElement>(null);
 
-  const headerRef = useRef<HTMLElement | null>(null);
-  const navRef = useRef<HTMLDivElement | null>(null);
-  const isClickScrollingRef = useRef(false);
-  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const DARK_SECTIONS = ["#stack"];
+  const isDarkSection = DARK_SECTIONS.includes(activeSection);
 
-  const [pillStyle, setPillStyle] = useState<{
-    left: number;
-    width: number;
-    opacity: number;
-  }>({
+  const [pillStyle, setPillStyle] = useState({
     left: 0,
     width: 0,
     opacity: 0,
   });
 
+  const navRef = useRef<HTMLElement>(null);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Dynamic pill positioning
   const updatePill = useCallback(() => {
-    if (!navRef.current || !activeSection) return;
-    const activeEl = navRef.current.querySelector(
+    if (!navRef.current) return;
+    const activeLink = navRef.current.querySelector<HTMLAnchorElement>(
       `a[data-href="${activeSection}"]`
-    ) as HTMLElement;
-    if (activeEl) {
-      const parentRect = navRef.current.getBoundingClientRect();
-      const activeRect = activeEl.getBoundingClientRect();
+    );
+
+    if (activeLink) {
+      const linkRect = activeLink.getBoundingClientRect();
+      const navRect = navRef.current.getBoundingClientRect();
+
       setPillStyle({
-        left: activeRect.left - parentRect.left,
-        width: activeRect.width,
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
         opacity: 1,
       });
+    } else {
+      setPillStyle((prev) => ({ ...prev, opacity: 0 }));
     }
   }, [activeSection]);
 
-  // ResizeObserver for pill accuracy across layout shifts & font loading
   useEffect(() => {
     updatePill();
-    if (!navRef.current) return;
-
-    const ro = new ResizeObserver(() => {
-      updatePill();
-    });
-    ro.observe(navRef.current);
-
     window.addEventListener("resize", updatePill);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", updatePill);
-    };
+    return () => window.removeEventListener("resize", updatePill);
   }, [updatePill]);
 
-  // Measure dynamic navbar bottom position for zero-overlap drawer placement
-  const updateNavHeight = useCallback(() => {
+  // Update nav height dynamically
+  useEffect(() => {
     if (headerRef.current) {
       const rect = headerRef.current.getBoundingClientRect();
-      setNavHeight(Math.round(rect.bottom) + 12);
+      setNavHeight(rect.bottom + 8);
     }
-  }, []);
+  }, [scrolled]);
 
-  useEffect(() => {
-    updateNavHeight();
-    window.addEventListener("resize", updateNavHeight);
-    return () => window.removeEventListener("resize", updateNavHeight);
-  }, [updateNavHeight, scrolled, mobileOpen]);
-
-  // Prevent layout shift when body scroll is locked
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
+      document.body.style.overflow = "hidden";
       const scrollbarWidth =
         window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
@@ -290,7 +297,6 @@ export default function Navbar() {
 
   useEffect(() => {
     let ticking = false;
-
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
@@ -298,36 +304,25 @@ export default function Navbar() {
           setScrolled(scrollY > 40);
 
           if (!isClickScrollingRef.current) {
-            const sections = NAV_LINKS.map((link) =>
-              link.href.replace("#", "")
-            );
+            const sections = NAV_LINKS.map((link) => link.href.replace("#", ""));
             let currentSection = "#about";
             const threshold = 140;
 
             for (let i = sections.length - 1; i >= 0; i--) {
-              const sectionId = sections[i];
-              const el = document.getElementById(sectionId);
-              if (el) {
-                const rect = el.getBoundingClientRect();
-                if (rect.top <= threshold) {
-                  currentSection = `#${sectionId}`;
-                  break;
-                }
+              const el = document.getElementById(sections[i]);
+              if (el && el.getBoundingClientRect().top <= threshold) {
+                currentSection = `#${sections[i]}`;
+                break;
               }
             }
-
-            if (currentSection) {
-              setActiveSection(currentSection);
-            }
+            setActiveSection(currentSection);
           }
-
           ticking = false;
         });
         ticking = true;
       }
     };
 
-    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -339,18 +334,12 @@ export default function Navbar() {
     e.preventDefault();
     setMobileOpen(false);
     setActiveSection(href);
-
     isClickScrollingRef.current = true;
+    
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    if (window.history.pushState) window.history.pushState(null, "", href);
+
     if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
-
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-      if (window.history.pushState) {
-        window.history.pushState(null, "", href);
-      }
-    }
-
     clickTimeoutRef.current = setTimeout(() => {
       isClickScrollingRef.current = false;
     }, 900);
@@ -364,12 +353,20 @@ export default function Navbar() {
       >
         <div
           className={`w-full rounded-full border transition-all duration-300 ease-out relative overflow-hidden group/bar ${
-            scrolled
-              ? "bg-paper-white/85 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6"
-              : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3 sm:py-3.5 px-4 sm:px-6"
+            isDarkSection
+              ? "bg-obsidian/90 backdrop-blur-xl border-white/10 shadow-lg shadow-black/30 py-2.5 px-4 sm:px-6 text-paper-white"
+              : scrolled
+              ? "bg-paper-white/85 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6 text-obsidian"
+              : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3 sm:py-3.5 px-4 sm:px-6 text-obsidian"
           }`}
         >
-          <div className="absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-obsidian/15 to-transparent pointer-events-none" />
+          <div
+            className={`absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r ${
+              isDarkSection
+                ? "from-transparent via-white/15 to-transparent"
+                : "from-transparent via-obsidian/15 to-transparent"
+            } pointer-events-none`}
+          />
 
           <div className="flex items-center justify-between relative z-10">
             {/* Logo Link */}
@@ -379,15 +376,33 @@ export default function Navbar() {
               aria-label="DM Portfolio Home"
               className="flex items-center gap-2.5 group/logo text-left"
             >
-              <div className="w-8 h-8 rounded-full bg-obsidian flex items-center justify-center shadow-xs relative overflow-hidden group-hover/logo:shadow-sm transition-shadow duration-300">
-                <span className="font-serif text-paper-white text-xs font-bold leading-none">
+              <div
+                className={`w-8 h-8 rounded-full flex items-center justify-center shadow-xs relative overflow-hidden group-hover/logo:shadow-sm transition-all duration-300 ${
+                  isDarkSection
+                    ? "bg-paper-white text-obsidian"
+                    : "bg-obsidian text-paper-white"
+                }`}
+              >
+                <span className="font-serif text-xs font-bold leading-none">
                   DM
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover/logo:translate-x-full transition-transform duration-700 pointer-events-none" />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r from-transparent ${
+                    isDarkSection ? "via-black/15" : "via-white/25"
+                  } to-transparent -translate-x-full group-hover/logo:translate-x-full transition-transform duration-700 pointer-events-none`}
+                />
               </div>
-              <span className="text-obsidian font-serif font-bold text-base sm:text-lg tracking-tight block">
+              <span
+                className={`font-serif font-bold text-base sm:text-lg tracking-tight block transition-colors duration-300 ${
+                  isDarkSection ? "text-paper-white" : "text-obsidian"
+                }`}
+              >
                 {PERSONAL.name.split(" ")[0]}{" "}
-                <span className="text-deep-teal font-sans font-medium text-xs sm:text-sm">
+                <span
+                  className={`font-sans font-medium text-xs sm:text-sm transition-colors duration-300 ${
+                    isDarkSection ? "text-dusty-sky" : "text-slate-teal"
+                  }`}
+                >
                   {PERSONAL.name.split(" ")[1]}
                 </span>
               </span>
@@ -396,10 +411,18 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <nav
               ref={navRef}
-              className="hidden md:flex items-center gap-1 bg-bone/70 p-1 rounded-full border border-iron/60 shadow-inner relative"
+              className={`hidden md:flex items-center gap-1 p-1 rounded-full border transition-all duration-300 relative ${
+                isDarkSection
+                  ? "bg-white/10 border-white/10 shadow-inner"
+                  : "bg-bone/70 border-iron/60 shadow-inner"
+              }`}
             >
               <span
-                className="absolute top-1 bottom-1 rounded-full bg-paper-white shadow-2xs border border-iron/80 transition-[left,width,opacity] duration-300 ease-out pointer-events-none z-0"
+                className={`absolute top-1 bottom-1 rounded-full shadow-2xs border transition-[left,width,opacity,background-color,border-color] duration-300 ease-out pointer-events-none z-0 ${
+                  isDarkSection
+                    ? "bg-paper-white border-paper-white/80"
+                    : "bg-paper-white border-iron/80"
+                }`}
                 style={{
                   left: `${pillStyle.left}px`,
                   width: `${pillStyle.width}px`,
@@ -417,7 +440,9 @@ export default function Navbar() {
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={`relative z-10 px-3.5 py-1.5 text-xs sm:text-sm font-medium tracking-tight transition-colors duration-200 rounded-full flex items-center ${
                       isActive
-                        ? "text-obsidian font-semibold"
+                        ? "text-obsidian font-bold"
+                        : isDarkSection
+                        ? "text-paper-white/80 hover:text-paper-white"
                         : "text-obsidian/75 hover:text-obsidian"
                     }`}
                   >
@@ -432,9 +457,17 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 href={PERSONAL.resumeUrl}
-                className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-medium tracking-tight hover:bg-deep-teal transition-colors duration-200 shadow-xs relative overflow-hidden group/btn"
+                className={`hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full text-xs sm:text-sm font-medium tracking-tight transition-all duration-200 shadow-xs relative overflow-hidden group/btn ${
+                  isDarkSection
+                    ? "bg-paper-white text-obsidian hover:bg-bone"
+                    : "bg-obsidian text-paper-white hover:bg-deep-teal"
+                }`}
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
+                <span
+                  className={`absolute inset-0 bg-gradient-to-r from-transparent ${
+                    isDarkSection ? "via-black/10" : "via-white/20"
+                  } to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none`}
+                />
                 <Download className="w-3.5 h-3.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
                 <span>Resume</span>
               </a>
@@ -442,7 +475,11 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden w-8 h-8 flex items-center justify-center rounded-full border border-iron text-obsidian hover:bg-bone active:scale-95 transition-all duration-200"
+                className={`md:hidden w-8 h-8 flex items-center justify-center rounded-full border active:scale-95 transition-all duration-200 ${
+                  isDarkSection
+                    ? "border-white/10 text-paper-white hover:bg-paper-white/10"
+                    : "border-iron text-obsidian hover:bg-bone"
+                }`}
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               >
                 {mobileOpen ? (
@@ -460,6 +497,7 @@ export default function Navbar() {
         <MobileNavDrawer
           NAV_LINKS={NAV_LINKS}
           activeSection={activeSection}
+          isDarkSection={isDarkSection}
           handleNavClick={handleNavClick}
           setMobileOpen={setMobileOpen}
           navHeight={navHeight}
