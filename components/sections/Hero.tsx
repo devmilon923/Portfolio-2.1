@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  ArrowDown,
-  Github,
-  Linkedin,
-  Mail,
-  Rocket,
-} from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, Rocket } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -26,7 +20,7 @@ const WorkflowCanvas = dynamic(
         <div className="h-4 w-24 bg-[#e2d9cd]/50 rounded self-end" />
       </div>
     ),
-  }
+  },
 );
 
 const scrollToNext = () => {
@@ -37,7 +31,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-paper-white py-20 lg:py-0"
+      className="relative min-h-screen flex  items-center overflow-hidden bg-paper-white py-20 lg:py-0"
     >
       {/* ── Background Atmosphere & Ambient Warmth ────────────────── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -77,7 +71,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main Content Container ───────────────────────────────── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10  w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[calc(100vh-80px)] py-12 lg:py-0">
           {/* ─── LEFT COLUMN: Identity, Headline & Action (7 cols) ──── */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left pr-0 lg:pr-4">
