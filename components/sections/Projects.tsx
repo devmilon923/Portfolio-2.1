@@ -6,9 +6,29 @@ import {
   ArrowUpRight,
   Sparkles,
   CheckCircle2,
+  Calendar,
 } from "lucide-react";
 import { PROJECTS } from "@/lib/constants";
 import GithubCTAButton from "@/components/sections/GithubCTAButton";
+
+function formatLastUpdated(dateInput?: string) {
+  if (!dateInput) return "";
+  if (dateInput.startsWith("Updated ")) return dateInput;
+
+  const parsedDate = new Date(
+    dateInput.length === 7 ? `${dateInput}-01` : dateInput
+  );
+
+  if (!isNaN(parsedDate.getTime())) {
+    const month = parsedDate.toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    });
+    return `Updated ${month}`;
+  }
+
+  return `Updated ${dateInput}`;
+}
 
 // Soft gradient per project card
 const PROJECT_GRADIENTS = [
@@ -92,10 +112,10 @@ export default function Projects() {
                         <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-paper-white/80 text-obsidian border border-iron/50 uppercase tracking-wider backdrop-blur-xs">
                           {project.category}
                         </span>
-                        {project.metrics && (
-                          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-600/20 text-emerald-950">
-                            <Sparkles className="w-3 h-3 text-emerald-600" />
-                            {project.metrics}
+                        {project.lastUpdated && (
+                          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-paper-white/80 text-obsidian/80 border border-iron/50 backdrop-blur-xs">
+                            <Calendar className="w-3 h-3 text-slate-teal flex-shrink-0" />
+                            <span>{formatLastUpdated(project.lastUpdated)}</span>
                           </span>
                         )}
                       </div>

@@ -1,6 +1,13 @@
 "use client";
 
-import { ArrowDown, Github, Linkedin, Mail, Sparkles, Rocket } from "lucide-react";
+import {
+  ArrowDown,
+  Github,
+  Linkedin,
+  Mail,
+  Sparkles,
+  Rocket,
+} from "lucide-react";
 import { PERSONAL, CLIENT_COUNTRIES } from "@/lib/constants";
 import CountryFlag from "@/components/ui/CountryFlag";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
@@ -11,7 +18,6 @@ const scrollToNext = () => {
 };
 
 export default function Hero() {
-
   return (
     <section
       id="hero"
@@ -47,11 +53,7 @@ export default function Hero() {
               height="48"
               patternUnits="userSpaceOnUse"
             >
-              <path
-                d="M 48 0 L 0 0 0 48"
-                fill="none"
-                strokeWidth="1"
-              />
+              <path d="M 48 0 L 0 0 0 48" fill="none" strokeWidth="1" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#hero-grid)" />
@@ -61,31 +63,34 @@ export default function Hero() {
       {/* ── Main Content Container ───────────────────────────────── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[calc(100vh-80px)] py-12 lg:py-0">
-          
           {/* ─── LEFT COLUMN: Identity, Headline & Action (7 cols) ──── */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left pr-0 lg:pr-4">
-            
             {/* ── Trust Strip — Rating + Timezone + Flag Avatar Stack ── */}
             <div className="flex items-center flex-wrap gap-y-2 mb-6 self-start">
               {/* Proof Point: Shipped Apps */}
               <div className="flex items-center gap-1.5">
                 <Rocket className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
                 <span className="text-xs sm:text-[13px] font-semibold text-obsidian tracking-tight whitespace-nowrap">
-                  6+ Production Apps
+                  5+ Production Apps
                 </span>
               </div>
 
-              <span className="w-px h-3.5 bg-iron/50 mx-2.5 sm:mx-3.5 flex-shrink-0" aria-hidden="true" />
+              <span
+                className="w-px h-3.5 bg-iron/50 mx-2.5 sm:mx-3.5 flex-shrink-0"
+                aria-hidden="true"
+              />
 
               {/* Proof Point: Timezone */}
               <span className="text-xs sm:text-[13px] text-obsidian/70 font-medium whitespace-nowrap">
                 GMT+6 · Flexible
               </span>
 
-              <span className="w-px h-3.5 bg-iron/50 mx-2.5 sm:mx-3.5 flex-shrink-0" aria-hidden="true" />
+              <span
+                className="w-px h-3.5 bg-iron/50 mx-2.5 sm:mx-3.5 flex-shrink-0"
+                aria-hidden="true"
+              />
 
               {/* Overlapping Flag Avatar Stack + Count */}
-          
             </div>
 
             {/* Main Headline - Concise & Punchy 2-3 Lines */}
@@ -95,7 +100,9 @@ export default function Hero() {
             </h1>
 
             <p className="text-obsidian/75 text-base sm:text-lg font-normal max-w-lg mb-6 leading-relaxed">
-              Full-stack developer building high-performance SaaS platforms &amp; AI workflows with production reliability. From SaaS apps to complex backends, I turn ideas into launch-ready software.
+              Full-stack developer building high-performance SaaS platforms
+              &amp; AI workflows with production reliability. From SaaS apps to
+              complex backends, I turn ideas into launch-ready software.
             </p>
 
             {/* Core Capabilities - Crisp Minimal Pills */}
@@ -200,14 +207,13 @@ export default function Hero() {
             {/* Subtle organic shadow backing to lift WorkflowCanvas gracefully */}
             <div className="relative w-full max-w-[440px] transition-transform duration-300 hover:scale-[1.01]">
               {/* Paper shadow illusion behind notepad */}
-              <div 
+              <div
                 className="absolute inset-0 translate-x-2 translate-y-3 rounded-lg bg-stone/30 opacity-70 blur-md pointer-events-none"
                 aria-hidden
               />
               <WorkflowCanvas />
             </div>
           </div>
-
         </div>
       </div>
 

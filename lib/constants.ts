@@ -123,8 +123,8 @@ export const PROJECTS = [
     id: "heirloom",
     name: "Heirloom",
     subtitle: "AI-Powered Conversational System",
-    metrics: "Sub-Second Recall",
     metricLabel: "Cross-Session RAG Memory Search",
+    lastUpdated: "2026-03-02",
     description:
       "Multi-tenant AI infrastructure featuring a dual-memory RAG platform merging short-term conversation context with Pinecone long-term semantic memory for personalized cross-session recall.",
     problem:
@@ -152,8 +152,8 @@ export const PROJECTS = [
     id: "storyboard",
     name: "Storyboard",
     subtitle: "High-Throughput Content Publishing Engine",
-    metrics: "100k+ Scale",
     metricLabel: "Concurrent Reader Capacity",
+    lastUpdated: "2026-07-17",
     description:
       "High-speed publishing platform built to handle high-traffic content feeds, real-time reader notifications, and automated user moderation without performance drops.",
     problem:
@@ -179,8 +179,8 @@ export const PROJECTS = [
     id: "wordgame",
     name: "Word Game",
     subtitle: "Realtime Multiplayer Gaming Infrastructure",
-    metrics: "40% Speedup",
     metricLabel: "API Response Optimization",
+    lastUpdated: "2026-07-17",
     description:
       "Real-time multiplayer word-chain platform engineered with WebSockets for synchronized live state, turn enforcement, and zero-cheat rule validation.",
     problem:
@@ -204,39 +204,9 @@ export const PROJECTS = [
 
 export const SERVICES = [
   {
-    id: "mvp-saas",
-    icon: "rocket",
-    title: "Full-Stack SaaS & Web App Build",
-    turnaround: "2–3 Weeks",
-    tagline:
-      "Turnkey development from database schema and REST APIs to dashboards, payments, and cloud launch.",
-    features: [
-      {
-        title: "Custom Build Guarantee",
-        detail: "Any web app or SaaS built to your exact requirements",
-      },
-      {
-        title: "Complete Full-Stack Architecture",
-        detail: "Auth, PostgreSQL/MongoDB, REST APIs & Dashboards",
-      },
-      {
-        title: "Third-Party Integrations",
-        detail: "Stripe payments, OpenAI APIs & Webhooks",
-      },
-      {
-        title: "Production Cloud Launch",
-        detail:
-          "Deployment on Cloud or Local environment",
-      },
-    ],
-    price: "Custom Scope",
-    badge: "Flagship Build",
-    featured: true,
-  },
-  {
     id: "bug-fix",
     icon: "bug",
-    title: "Bug Fix & Performance Speedup",
+    title: "Bug Fix & Performance",
     turnaround: "24–48 Hours",
     tagline:
       "Surgical diagnosis and performance tuning for slow, crashing, or broken web applications.",
@@ -263,9 +233,38 @@ export const SERVICES = [
     featured: false,
   },
   {
+    id: "mvp-saas",
+    icon: "rocket",
+    title: "Full-Stack SaaS & Web Apps",
+    turnaround: "2–3 Weeks",
+    tagline:
+      "Turnkey development from database schema and REST APIs to dashboards, payments, and cloud launch.",
+    features: [
+      {
+        title: "Custom Build Guarantee",
+        detail: "Any web app or SaaS built to your exact requirements",
+      },
+      {
+        title: "Complete Full-Stack Architecture",
+        detail: "Auth, PostgreSQL/MongoDB, REST APIs & Dashboards",
+      },
+      {
+        title: "Third-Party Integrations",
+        detail: "Stripe payments, OpenAI APIs & Webhooks",
+      },
+      {
+        title: "Production Cloud Launch",
+        detail: "Deployment on Cloud or Local environment",
+      },
+    ],
+    price: "Custom Scope",
+    badge: "Flagship Build",
+    featured: true,
+  },
+  {
     id: "custom",
     icon: "layers",
-    title: "AI Systems & Process Automation",
+    title: "AI Systems & Automation",
     turnaround: "1–2 Weeks",
     tagline:
       "Intelligent AI workflows, RAG memory systems, and automated background data pipelines.",

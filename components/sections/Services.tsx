@@ -1,37 +1,32 @@
 "use client";
 
-import { Bug, Rocket, Layers, Check, MessageSquare, Clock, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  Bug,
+  Rocket,
+  Layers,
+  Check,
+  MessageSquare,
+  Clock,
+  ShieldCheck,
+  ArrowUpRight,
+} from "lucide-react";
 import { SERVICES } from "@/lib/constants";
 
 const icons = { bug: Bug, rocket: Rocket, layers: Layers };
 
 const PLATFORMS = [
   { name: "Fiverr", color: "#1DBF73", initial: "Fi", label: "Secure Payment" },
-  { name: "Upwork", color: "#14A800", initial: "Up", label: "Escrow Protection" },
-  { name: "Direct Contract", color: "#000000", initial: "DM", label: "Custom Milestones & NDA" },
-];
-
-const SERVICE_ACCENTS = [
   {
-    bg: "linear-gradient(135deg, rgba(212,230,235,0.2) 0%, rgba(255,255,255,0.7) 60%, rgba(212,230,235,0.12) 100%)",
-    border: "border-mist-mint/40 hover:border-mist-mint/70",
-    iconBg: "bg-mist-mint/35 border-mist-mint/50",
-    checkBg: "bg-mist-mint/30 text-deep-teal border-mist-mint/50",
-    badgeBg: "bg-mist-mint/25 text-deep-teal border-mist-mint/40",
+    name: "Upwork",
+    color: "#14A800",
+    initial: "Up",
+    label: "Escrow Protection",
   },
   {
-    bg: "linear-gradient(135deg, rgba(231,211,191,0.22) 0%, rgba(255,255,255,0.85) 60%, rgba(245,236,229,0.15) 100%)",
-    border: "border-desert-clay/40 hover:border-desert-clay/70",
-    iconBg: "bg-desert-clay/35 border-desert-clay/50",
-    checkBg: "bg-desert-clay/30 text-saddle-brown border-desert-clay/50",
-    badgeBg: "bg-desert-clay/25 text-saddle-brown border-desert-clay/40",
-  },
-  {
-    bg: "linear-gradient(135deg, rgba(239,229,249,0.22) 0%, rgba(255,255,255,0.7) 60%, rgba(239,229,249,0.12) 100%)",
-    border: "border-wisteria/40 hover:border-wisteria/70",
-    iconBg: "bg-wisteria/35 border-wisteria/50",
-    checkBg: "bg-wisteria/30 text-slate-teal border-wisteria/50",
-    badgeBg: "bg-wisteria/25 text-slate-teal border-wisteria/40",
+    name: "Direct Contract",
+    color: "#000000",
+    initial: "DM",
+    label: "Custom Milestones & NDA",
   },
 ];
 
@@ -41,7 +36,7 @@ export default function Services() {
       id="services"
       className="py-20 lg:py-28 bg-paper-white relative overflow-hidden"
     >
-      {/* Subtle ambient background atmosphere */}
+      {/* Subtle ambient background */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-[15%] right-[10%] w-[550px] h-[550px] rounded-full opacity-20 blur-3xl"
@@ -60,138 +55,172 @@ export default function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Service Section Subtitle Header */}
+        {/* Section Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <p className="section-label mb-3">Service Packages &amp; Products</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-3 text-balance">
-            Production-grade engineering <span className="font-normal text-slate-teal">packages</span>
+            Production-grade engineering{" "}
+            <span className="font-normal text-slate-teal">packages</span>
           </h2>
-          <p className="text-obsidian/55 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
-            Direct developer execution with zero agency middleman overhead; shipped fast and built to scale.
+          <p className="text-obsidian/65 text-sm sm:text-base font-normal leading-relaxed max-w-lg mx-auto">
+            Direct developer execution with zero agency middleman overhead;
+            shipped fast and built to scale.
           </p>
         </div>
 
-        {/* Product Offerings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 items-stretch">
+        {/* ─── Stacked Service Cards ─── */}
+        <div className="flex flex-col gap-5 mb-16">
           {SERVICES.map((service, index) => {
             const Icon = icons[service.icon as keyof typeof icons] ?? Rocket;
             const isFeatured = service.featured;
-            const accent = SERVICE_ACCENTS[index % SERVICE_ACCENTS.length];
+            const num = String(index + 1).padStart(2, "0");
 
             return (
               <div
                 key={service.id}
-                className={`group p-6 sm:p-8 rounded-2xl flex flex-col justify-between h-full transition-all duration-300 relative border shadow-sm hover:shadow-md hover:-translate-y-1 ${
+                className={`group relative rounded-2xl transition-all duration-300 font-sans overflow-hidden ${
                   isFeatured
-                    ? "ring-2 ring-obsidian/20 border-obsidian/40"
-                    : accent.border
+                    ? "bg-bone border border-obsidian/15 shadow-sm hover:shadow-md"
+                    : "bg-paper-white border border-iron/80 hover:border-obsidian/20 hover:shadow-md"
                 }`}
-                style={{ background: accent.bg }}
               >
-                {/* Featured Ribbon Badge */}
+                {/* Featured subtle top accent line */}
                 {isFeatured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-obsidian text-paper-white text-[10px] font-mono font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md flex items-center gap-1.5 whitespace-nowrap z-20">
-                    <Sparkles className="w-3 h-3 text-amber-400 animate-pulse" />
-                    <span>Most Popular Choice</span>
-                  </div>
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-obsidian/40 to-transparent" />
                 )}
 
-                {/* Top Section */}
-                <div>
-                  {/* Category & Turnaround Header Bar */}
-                  <div className="flex items-center justify-between gap-2 mb-6 pt-1">
-                    <div className={`w-11 h-11 rounded-xl ${accent.iconBg} border flex items-center justify-center shadow-2xs flex-shrink-0 group-hover:scale-105 transition-transform duration-200`}>
-                      <Icon className="w-5 h-5 text-obsidian/85" />
+                <div className="p-6 sm:p-8 lg:p-10">
+                  {/* ─── Top Row: Number + Meta + CTA ─── */}
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
+                    {/* Left: Number + Title Block */}
+                    <div className="flex items-start gap-4 sm:gap-5 min-w-0 flex-1">
+                      {/* Large editorial number */}
+                      <span className="text-obsidian/10 font-sans font-black text-5xl sm:text-6xl leading-none tracking-tighter select-none flex-shrink-0 -mt-1">
+                        {num}
+                      </span>
+
+                      <div className="min-w-0 flex-1 pt-1">
+                        {/* Badges row */}
+                        <div className="flex items-center gap-2 flex-wrap mb-2.5">
+                          <div
+                            className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                              isFeatured
+                                ? "bg-obsidian text-paper-white"
+                                : "bg-obsidian/5 text-obsidian/75"
+                            }`}
+                          >
+                            <Icon className="w-4 h-4" />
+                          </div>
+
+                          {isFeatured && (
+                            <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-obsidian bg-obsidian/8 px-2.5 py-0.5 rounded-full">
+                              Most Popular
+                            </span>
+                          )}
+
+                          <span
+                            className={`text-[10px] font-sans font-semibold px-2.5 py-0.5 rounded-full border whitespace-nowrap ${
+                              isFeatured
+                                ? "bg-paper-white text-obsidian/80 border-obsidian/15"
+                                : "bg-paper-white/80 text-obsidian/70 border-iron"
+                            }`}
+                          >
+                            {service.badge}
+                          </span>
+
+                          <span className="text-[10px] font-sans text-obsidian/55 font-medium flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {service.turnaround}
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-sans text-xl sm:text-2xl font-bold text-obsidian tracking-tight leading-tight mb-1.5">
+                          {service.title}
+                        </h3>
+
+                        {/* Tagline */}
+                        <p className="font-sans text-obsidian/65 text-sm font-normal leading-relaxed max-w-xl">
+                          {service.tagline}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-1.5 flex-wrap justify-end">
-                      <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-full border whitespace-nowrap leading-none ${accent.badgeBg}`}>
-                        {service.badge}
-                      </span>
-                      <span className="text-[10px] font-mono font-semibold px-2.5 py-1 rounded-full bg-paper-white/80 text-obsidian/80 border border-iron/60 whitespace-nowrap leading-none flex items-center gap-1 backdrop-blur-xs">
-                        <Clock className="w-3 h-3 text-slate-teal" />
-                        <span>{service.turnaround}</span>
-                      </span>
+                    {/* Right: CTA + Price */}
+                    <div className="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-2 flex-shrink-0 sm:pt-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          document
+                            .querySelector("#contact")
+                            ?.scrollIntoView({ behavior: "smooth" });
+                        }}
+                        className={`font-sans inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-200 whitespace-nowrap ${
+                          isFeatured
+                            ? "bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 shadow-sm"
+                            : "bg-paper-white border border-obsidian/15 text-obsidian hover:bg-obsidian hover:text-paper-white hover:scale-105 active:scale-95"
+                        }`}
+                      >
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>Discuss Scope</span>
+                      </button>
+                      <div className="text-right">
+                        <p className="font-sans text-base sm:text-lg font-bold text-obsidian tracking-tight leading-none">
+                          {service.price}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Title & Tagline */}
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-obsidian tracking-[-0.035em] mb-2 leading-snug">
-                    {service.title}
-                  </h3>
-                  <p className="text-obsidian/75 text-xs sm:text-sm font-normal leading-relaxed mb-6">
-                    {service.tagline}
-                  </p>
-
-                  {/* Product Deliverables List */}
-                  <div className="pt-5 border-t border-obsidian/8 mb-8">
-                    <p className="text-[10px] font-mono font-bold text-slate-teal uppercase tracking-wider mb-4 flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-slate-teal" />
-                      <span>Key Deliverables &amp; Features</span>
-                    </p>
-                    <ul className="space-y-3.5">
-                      {service.features.map((feat) => (
-                        <li key={feat.title} className="flex items-start gap-3">
-                          <div className={`w-4 h-4 rounded-full ${accent.checkBg} flex items-center justify-center flex-shrink-0 mt-0.5 border shadow-2xs`}>
-                            <Check className="w-2.5 h-2.5 stroke-[3]" />
-                          </div>
-                          <div className="space-y-0.5">
-                            <p className="text-obsidian text-xs font-bold leading-tight">
-                              {feat.title}
-                            </p>
-                            <p className="text-obsidian/75 text-[11px] font-normal leading-relaxed">
-                              {feat.detail}
-                            </p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Pricing & CTA Footer */}
-                <div className="pt-4 border-t border-obsidian/8 flex items-center justify-between mt-auto">
-                  <div>
-                    <p className="text-obsidian text-sm sm:text-base font-serif font-bold">
-                      {service.price}
-                    </p>
-                    <p className="text-obsidian/70 text-[10px] font-medium">
-                      Direct Developer Guarantee
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      document
-                        .querySelector("#contact")
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className={`inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-xs font-semibold transition-transform duration-200 shadow-2xs text-left ${
-                      isFeatured
-                        ? "bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 shadow-sm"
-                        : "bg-paper-white/80 border border-obsidian/15 text-obsidian hover:bg-paper-white hover:border-obsidian/40 hover:scale-105 active:scale-95 backdrop-blur-xs"
+                  {/* ─── Deliverables Grid ─── */}
+                  <div
+                    className={`pt-5 border-t ${
+                      isFeatured ? "border-obsidian/10" : "border-iron/80"
                     }`}
                   >
-                    <MessageSquare className="w-3.5 h-3.5" />
-                    <span>Discuss Scope</span>
-                  </button>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                      {service.features.map((feat) => (
+                        <div
+                          key={feat.title}
+                          className={`p-4 rounded-xl transition-all duration-200 group/feat ${
+                            isFeatured
+                              ? "bg-paper-white/80 border border-obsidian/8 hover:border-obsidian/20 hover:-translate-y-0.5"
+                              : "bg-bone/50 border border-iron/60 hover:border-obsidian/15 hover:-translate-y-0.5"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2 mb-2">
+                            <div className="w-4 h-4 rounded-full bg-emerald-500/12 border border-emerald-600/20 text-emerald-700 flex items-center justify-center flex-shrink-0">
+                              <Check className="w-2.5 h-2.5 stroke-[3]" />
+                            </div>
+                            <p className="font-sans text-obsidian text-xs font-bold leading-snug truncate">
+                              {feat.title}
+                            </p>
+                          </div>
+                          <p className="font-sans text-obsidian/60 text-[11px] font-normal leading-relaxed pl-6">
+                            {feat.detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Trust & Security Banner */}
-        <div className="p-5 sm:p-8 rounded-2xl bg-gradient-to-r from-sandstone/80 via-paper-white/90 to-sandstone/80 border border-iron/80 shadow-2xs flex flex-col md:flex-row items-center gap-6 justify-between">
+        {/* ─── Bottom Trust & Security Banner ─── */}
+        <div className="p-6 sm:p-8 rounded-2xl bg-bone border border-iron/80 flex flex-col md:flex-row items-center gap-6 justify-between font-sans">
           <div className="text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
-              <ShieldCheck className="w-4.5 h-4.5 text-slate-teal flex-shrink-0" />
-              <p className="text-obsidian font-serif text-base sm:text-lg font-bold">
+            <div className="flex items-center justify-center md:justify-start gap-2 mb-1.5">
+              <ShieldCheck className="w-5 h-5 text-slate-teal flex-shrink-0" />
+              <p className="font-sans text-obsidian text-base sm:text-lg font-bold tracking-tight">
                 Flexible &amp; Secure Engagement Options
               </p>
             </div>
-            <p className="text-obsidian/75 text-xs font-normal max-w-md mx-auto md:mx-0">
-              Work directly via custom milestones or execute contracts securely through verified platforms with escrow protection.
+            <p className="font-sans text-obsidian/65 text-xs sm:text-sm font-normal max-w-md leading-relaxed mx-auto md:mx-0">
+              Work directly via custom milestones or execute contracts securely
+              through verified platforms with escrow protection.
             </p>
           </div>
 
@@ -199,7 +228,7 @@ export default function Services() {
             {PLATFORMS.map((p) => (
               <div
                 key={p.name}
-                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/70 hover:border-obsidian/30 hover:scale-[1.02] sm:hover:scale-105 transition-transform duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center"
+                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/80 hover:border-obsidian/25 hover:scale-[1.02] sm:hover:scale-105 transition-transform duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center font-sans"
               >
                 <span
                   className="w-6 h-6 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-[9px] font-black text-white flex-shrink-0 shadow-2xs"
@@ -208,10 +237,10 @@ export default function Services() {
                   {p.initial.charAt(0)}
                 </span>
                 <div className="text-left min-w-0">
-                  <p className="text-obsidian text-xs font-bold leading-tight truncate">
+                  <p className="font-sans text-obsidian text-xs font-bold leading-tight truncate">
                     {p.name}
                   </p>
-                  <p className="text-obsidian/70 text-[10px] sm:text-[9px] font-medium leading-tight mt-0.5 truncate">
+                  <p className="font-sans text-obsidian/60 text-[10px] sm:text-[9px] font-medium leading-tight mt-0.5 truncate">
                     {p.label}
                   </p>
                 </div>

@@ -162,7 +162,6 @@ const structuredData = [
   },
 ];
 
-import BackgroundParticles from "@/components/BackgroundParticles";
 
 export default function RootLayout({
   children,
@@ -180,7 +179,7 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
           }}
         />
-        <BackgroundParticles />
+        {/* <BackgroundParticles /> */}
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
