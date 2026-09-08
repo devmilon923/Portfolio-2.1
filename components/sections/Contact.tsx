@@ -84,7 +84,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-iron"
+      className="py-20 sm:py-24 lg:py-28 bg-bone relative overflow-hidden border-t border-iron"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -111,7 +111,7 @@ export default function Contact() {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian hover:shadow-sm transition-all duration-200 cursor-pointer shadow-sm"
+                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian/40 hover:shadow-sm transition-all duration-200 cursor-pointer shadow-sm"
                 >
                   <div className="w-12 h-12 rounded-full bg-sandstone flex items-center justify-center flex-shrink-0 border border-iron">
                     <Icon className="w-5 h-5 text-obsidian" />
@@ -134,7 +134,7 @@ export default function Contact() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-obsidian/60 group-hover:text-obsidian transition-colors">
+                  <div className="flex items-center gap-1.5 text-obsidian/60 group-hover:text-obsidian transition-colors duration-200">
                     <span className="text-xs font-medium hidden sm:block">
                       {link.action}
                     </span>

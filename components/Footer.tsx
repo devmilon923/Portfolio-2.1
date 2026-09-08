@@ -22,7 +22,7 @@ const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 export default function Footer() {
 
   return (
-    <footer className="bg-paper-white border-t border-iron py-12 relative">
+    <footer className="bg-paper-white border-t border-iron py-16 sm:py-20 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">

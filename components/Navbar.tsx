@@ -12,10 +12,8 @@ import {
   Mail,
   ChevronRight,
   Github,
-  Linkedin,
 } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
-import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "About", href: "#about", code: "01", icon: User },
@@ -28,8 +26,9 @@ const NAV_LINKS = [
 interface MobileNavDrawerProps {
   NAV_LINKS: typeof NAV_LINKS;
   activeSection: string;
-  handleNavClick: (href: string) => void;
+  handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
   setMobileOpen: (open: boolean) => void;
+  navHeight: number;
 }
 
 function MobileNavDrawer({
@@ -37,28 +36,78 @@ function MobileNavDrawer({
   activeSection,
   handleNavClick,
   setMobileOpen,
+  navHeight,
 }: MobileNavDrawerProps) {
+  const drawerRef = useRef<HTMLDivElement | null>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  // Focus trap & Escape key handling
+  useEffect(() => {
+    previousFocusRef.current = document.activeElement as HTMLElement;
+
+    // Focus first focusable link/element in drawer
+    const focusables = drawerRef.current?.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusables && focusables.length > 0) {
+      focusables[0].focus();
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMobileOpen(false);
+        return;
+      }
+
+      if (e.key === "Tab" && focusables && focusables.length > 0) {
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      previousFocusRef.current?.focus();
+    };
+  }, [setMobileOpen]);
+
   return (
     <>
-      {/* Backdrop Overlay */}
-      <button
-        type="button"
-        aria-label="Close navigation menu"
+      {/* Non-interactive Backdrop Overlay */}
+      <div
+        aria-hidden="true"
         onClick={() => setMobileOpen(false)}
-        className="fixed inset-0 z-40 bg-obsidian/40 backdrop-blur-sm md:hidden transition-opacity animate-in fade-in duration-300 border-none cursor-pointer"
+        className="fixed inset-0 z-40 bg-obsidian/40 backdrop-blur-sm md:hidden transition-opacity animate-in fade-in duration-300"
       />
 
-      {/* Floating Mobile Menu Card */}
-      <div className="fixed top-[4.25rem] sm:top-[4.75rem] left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 bg-paper-white/75 backdrop-blur-2xl backdrop-saturate-200 border border-white/80 rounded-2xl md:hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-4 max-h-[calc(100vh-5.5rem)] overflow-y-auto transition-transform animate-in fade-in slide-in-from-top-4 duration-300">
+      {/* Floating Mobile Menu Card (Semantic Dialog) */}
+      <div
+        ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation Menu"
+        style={{ top: `${navHeight}px` }}
+        className="fixed left-1/2 -translate-x-1/2 w-[92%] max-w-sm z-50 bg-paper-white/95 backdrop-blur-2xl backdrop-saturate-200 border border-iron/80 rounded-2xl md:hidden shadow-[0_20px_50px_rgba(0,0,0,0.18)] p-4 max-h-[calc(100vh-6.5rem)] overflow-y-auto transition-all animate-in fade-in slide-in-from-top-4 duration-300"
+      >
         {/* Header */}
         <div className="flex items-center justify-between pb-3 mb-2.5 border-b border-obsidian/10">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-obsidian/80">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-obsidian/80">
               Navigation Menu
             </span>
           </div>
-          <span className="text-[10px] font-mono font-bold text-obsidian/70 bg-obsidian/5 px-2.5 py-0.5 rounded-full border border-obsidian/10">
+          <span className="text-xs font-mono font-bold text-obsidian/70 bg-obsidian/5 px-2.5 py-0.5 rounded-full border border-obsidian/10">
             05 SECTIONS
           </span>
         </div>
@@ -70,19 +119,19 @@ function MobileNavDrawer({
             const Icon = link.icon;
 
             return (
-              <button
+              <a
                 key={link.href}
-                type="button"
-                onClick={() => handleNavClick(link.href)}
-                className={`px-3 py-2 rounded-xl transition-transform duration-200 flex items-center justify-between group text-left ${
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-between group ${
                   isActive
                     ? "bg-obsidian text-paper-white shadow-sm font-bold"
-                    : "text-obsidian hover:bg-obsidian/5 border border-transparent active:scale-[0.98]"
+                    : "text-obsidian hover:bg-obsidian/5 border border-transparent"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-transform shrink-0 ${
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 shrink-0 ${
                       isActive
                         ? "bg-white/20 text-paper-white shadow-2xs"
                         : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white"
@@ -103,10 +152,10 @@ function MobileNavDrawer({
 
                 <div className="flex items-center gap-2">
                   <span
-                    className={`text-[11px] font-mono font-bold ${
+                    className={`text-xs font-mono font-bold ${
                       isActive
                         ? "text-paper-white/70"
-                        : "text-obsidian/45 group-hover:text-obsidian/80"
+                        : "text-obsidian/50 group-hover:text-obsidian/80"
                     }`}
                   >
                     {link.code}
@@ -119,69 +168,33 @@ function MobileNavDrawer({
                     }`}
                   />
                 </div>
-              </button>
+              </a>
             );
           })}
         </nav>
 
-        {/* Action Buttons & Social Links Footer */}
-        <div className="pt-3 mt-3 border-t border-obsidian/10 space-y-3">
-          <div className="grid grid-cols-2 gap-2.5">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={PERSONAL.whatsapp}
-              className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 text-xs font-bold hover:bg-emerald-500/20 active:scale-[0.98] transition-transform shadow-2xs group/wa"
-            >
-              <div className="w-4 h-4 rounded-full overflow-hidden flex items-center justify-center shrink-0">
-                <Image
-                  src="/whatsapp.gif"
-                  alt="WhatsApp"
-                  width={16}
-                  height={16}
-                  className="w-full h-full object-cover mix-blend-multiply scale-110 group-hover/wa:scale-125 transition-transform"
-                  unoptimized
-                />
-              </div>
-              <span>WhatsApp</span>
-            </a>
+        {/* Streamlined Action Footer */}
+        <div className="pt-3 mt-3 border-t border-obsidian/10 flex items-center gap-2">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={PERSONAL.resumeUrl}
+            className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal transition-colors duration-200 shadow-2xs group/res"
+          >
+            <Download className="w-4 h-4 shrink-0" />
+            <span>Download Resume</span>
+          </a>
 
-            <a
-              target="_blank"
-              href={PERSONAL.resumeUrl}
-              className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-obsidian text-paper-white text-xs font-bold hover:bg-deep-teal active:scale-[0.98] transition-transform shadow-2xs group/res"
-            >
-              <Download className="w-3.5 h-3.5 shrink-0 group-hover/res:-translate-y-0.5 transition-transform" />
-              <span>Resume</span>
-            </a>
-          </div>
-
-          {/* Quick Connect Row */}
-          <div className="flex items-center justify-between px-0.5 pt-0.5 text-[11px]">
-            <span className="font-mono text-[10px] uppercase text-obsidian/50 font-bold tracking-wider">
-              Quick Connect
-            </span>
-            <div className="flex items-center gap-2">
-              <a
-                href={PERSONAL.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-obsidian/5 hover:bg-obsidian/10 border border-obsidian/10 text-obsidian text-xs font-semibold transition-transform active:scale-95"
-              >
-                <Github className="w-3.5 h-3.5 text-obsidian" />
-                <span>GitHub</span>
-              </a>
-              <a
-                href={PERSONAL.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-obsidian/5 hover:bg-obsidian/10 border border-obsidian/10 text-obsidian text-xs font-semibold transition-transform active:scale-95"
-              >
-                <Linkedin className="w-3.5 h-3.5 text-[#0A66C2]" />
-                <span>LinkedIn</span>
-              </a>
-            </div>
-          </div>
+          <a
+            href={PERSONAL.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View GitHub Profile"
+            className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-paper-white hover:bg-bone border border-obsidian/15 text-obsidian text-xs font-semibold transition-colors duration-200 shadow-2xs"
+          >
+            <Github className="w-4 h-4 text-obsidian" />
+            <span className="hidden sm:inline">GitHub</span>
+          </a>
         </div>
       </div>
     </>
@@ -192,7 +205,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("#about");
+  const [navHeight, setNavHeight] = useState<number>(72);
 
+  const headerRef = useRef<HTMLElement | null>(null);
   const navRef = useRef<HTMLDivElement | null>(null);
   const isClickScrollingRef = useRef(false);
   const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -210,7 +225,7 @@ export default function Navbar() {
   const updatePill = useCallback(() => {
     if (!navRef.current || !activeSection) return;
     const activeEl = navRef.current.querySelector(
-      `button[data-href="${activeSection}"]`,
+      `a[data-href="${activeSection}"]`
     ) as HTMLElement;
     if (activeEl) {
       const parentRect = navRef.current.getBoundingClientRect();
@@ -223,20 +238,53 @@ export default function Navbar() {
     }
   }, [activeSection]);
 
+  // ResizeObserver for pill accuracy across layout shifts & font loading
   useEffect(() => {
     updatePill();
+    if (!navRef.current) return;
+
+    const ro = new ResizeObserver(() => {
+      updatePill();
+    });
+    ro.observe(navRef.current);
+
     window.addEventListener("resize", updatePill);
-    return () => window.removeEventListener("resize", updatePill);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", updatePill);
+    };
   }, [updatePill]);
 
+  // Measure dynamic navbar bottom position for zero-overlap drawer placement
+  const updateNavHeight = useCallback(() => {
+    if (headerRef.current) {
+      const rect = headerRef.current.getBoundingClientRect();
+      setNavHeight(Math.round(rect.bottom) + 12);
+    }
+  }, []);
+
+  useEffect(() => {
+    updateNavHeight();
+    window.addEventListener("resize", updateNavHeight);
+    return () => window.removeEventListener("resize", updateNavHeight);
+  }, [updateNavHeight, scrolled, mobileOpen]);
+
+  // Prevent layout shift when body scroll is locked
   useEffect(() => {
     if (mobileOpen) {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
     } else {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, [mobileOpen]);
 
@@ -251,7 +299,7 @@ export default function Navbar() {
 
           if (!isClickScrollingRef.current) {
             const sections = NAV_LINKS.map((link) =>
-              link.href.replace("#", ""),
+              link.href.replace("#", "")
             );
             let currentSection = "#about";
             const threshold = 140;
@@ -284,7 +332,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
     setMobileOpen(false);
     setActiveSection(href);
 
@@ -294,6 +346,9 @@ export default function Navbar() {
     const el = document.querySelector(href);
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
+      if (window.history.pushState) {
+        window.history.pushState(null, "", href);
+      }
     }
 
     clickTimeoutRef.current = setTimeout(() => {
@@ -303,20 +358,25 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl transition-transform duration-300">
+      <header
+        ref={headerRef}
+        className="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl transition-transform duration-300"
+      >
         <div
-          className={`w-full rounded-full border transition-colors duration-300 relative overflow-hidden group/bar ${
+          className={`w-full rounded-full border transition-all duration-300 ease-out relative overflow-hidden group/bar ${
             scrolled
-              ? "bg-paper-white/80 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6"
-              : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3.5 px-4 sm:px-6"
+              ? "bg-paper-white/85 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6"
+              : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3 sm:py-3.5 px-4 sm:px-6"
           }`}
         >
           <div className="absolute inset-x-8 top-0 h-[1px] bg-gradient-to-r from-transparent via-obsidian/15 to-transparent pointer-events-none" />
 
           <div className="flex items-center justify-between relative z-10">
-            <button
-              type="button"
-              onClick={() => handleNavClick("#hero")}
+            {/* Logo Link */}
+            <a
+              href="#hero"
+              onClick={(e) => handleNavClick(e, "#hero")}
+              aria-label="DM Portfolio Home"
               className="flex items-center gap-2.5 group/logo text-left"
             >
               <div className="w-8 h-8 rounded-full bg-obsidian flex items-center justify-center shadow-xs relative overflow-hidden group-hover/logo:shadow-sm transition-shadow duration-300">
@@ -331,8 +391,9 @@ export default function Navbar() {
                   {PERSONAL.name.split(" ")[1]}
                 </span>
               </span>
-            </button>
+            </a>
 
+            {/* Desktop Navigation */}
             <nav
               ref={navRef}
               className="hidden md:flex items-center gap-1 bg-bone/70 p-1 rounded-full border border-iron/60 shadow-inner relative"
@@ -349,22 +410,19 @@ export default function Navbar() {
               {NAV_LINKS.map((link) => {
                 const isActive = activeSection === link.href;
                 return (
-                  <button
+                  <a
                     key={link.href}
-                    type="button"
+                    href={link.href}
                     data-href={link.href}
-                    onClick={() => handleNavClick(link.href)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className={`relative z-10 px-3.5 py-1.5 text-xs sm:text-sm font-medium tracking-tight transition-colors duration-200 rounded-full flex items-center ${
                       isActive
                         ? "text-obsidian font-semibold"
                         : "text-obsidian/75 hover:text-obsidian"
                     }`}
                   >
-                    {isActive && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-slate-teal mr-1.5 animate-pulse" />
-                    )}
                     {link.label}
-                  </button>
+                  </a>
                 );
               })}
             </nav>
@@ -372,6 +430,7 @@ export default function Navbar() {
             <div className="flex items-center gap-2.5">
               <a
                 target="_blank"
+                rel="noopener noreferrer"
                 href={PERSONAL.resumeUrl}
                 className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-medium tracking-tight hover:bg-deep-teal transition-colors duration-200 shadow-xs relative overflow-hidden group/btn"
               >
@@ -383,8 +442,8 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden w-8 h-8 flex items-center justify-center rounded-full border border-iron text-obsidian hover:bg-bone active:scale-95 transition-transform"
-                aria-label="Toggle mobile menu"
+                className="md:hidden w-8 h-8 flex items-center justify-center rounded-full border border-iron text-obsidian hover:bg-bone active:scale-95 transition-all duration-200"
+                aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               >
                 {mobileOpen ? (
                   <X className="w-4 h-4" />
@@ -403,8 +462,10 @@ export default function Navbar() {
           activeSection={activeSection}
           handleNavClick={handleNavClick}
           setMobileOpen={setMobileOpen}
+          navHeight={navHeight}
         />
       )}
     </>
   );
 }
+

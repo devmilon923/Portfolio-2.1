@@ -301,7 +301,7 @@ export const SERVICES = [
     title: "Full-Stack SaaS & Web Apps",
     turnaround: "2–3 Weeks",
     tagline:
-      "Turnkey development from database schema and REST APIs to dashboards, payments, and cloud launch.",
+      "Development from database schema and REST APIs to dashboards, payments, and cloud launch.",
     features: [
       {
         title: "Custom Build Guarantee",

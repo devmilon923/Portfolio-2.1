@@ -52,7 +52,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 lg:py-28 bg-paper-white relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 bg-paper-white relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}

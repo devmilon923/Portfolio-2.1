@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex  items-center overflow-hidden bg-paper-white py-20 lg:py-0"
+            className="relative min-h-screen flex  items-center overflow-hidden bg-paper-white py-20 lg:py-0"
     >
       {/* ── Background Atmosphere & Ambient Warmth ────────────────── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -108,15 +108,15 @@ export default function Hero() {
 
             {/* Core Capabilities - Crisp Minimal Pills */}
             <div className="flex flex-wrap gap-2 mb-7 w-full sm:w-auto">
-              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors">
+              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors duration-200">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                 Full-Stack SaaS
               </span>
-              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors">
+              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors duration-200">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                 AI &amp; RAG Systems
               </span>
-              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors">
+              <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1 rounded-full text-xs font-medium text-obsidian border border-iron/90 bg-bone/80 shadow-2xs hover:border-obsidian/40 hover:bg-bone transition-colors duration-200">
                 <span className="w-1.5 h-1.5 rounded-full bg-slate-teal flex-shrink-0" />
                 High-Speed APIs
               </span>

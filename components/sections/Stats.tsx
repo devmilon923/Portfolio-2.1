@@ -9,7 +9,7 @@ export default function Stats() {
   return (
     <section
       id="stats"
-      className="py-16 sm:py-20 bg-bone relative border-t border-b border-iron"
+      className="py-16 sm:py-20 lg:py-24 bg-bone relative border-t border-b border-iron"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -38,7 +38,7 @@ export default function Stats() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl sm:text-4xl font-serif font-bold text-obsidian tracking-tight group-hover:text-slate-teal transition-colors">
+                    <span className="text-3xl sm:text-4xl font-serif font-bold text-obsidian tracking-tight group-hover:text-slate-teal transition-colors duration-200">
                       {displayVal}
                     </span>
                     <div className="w-9 h-9 rounded-full bg-sandstone flex items-center justify-center border border-iron/80">
@@ -70,7 +70,7 @@ export default function Stats() {
             {CLIENT_COUNTRIES.map((country) => (
               <span
                 key={country.code}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sandstone border border-iron text-xs font-medium text-obsidian shadow-2xs hover:border-obsidian transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sandstone border border-iron text-xs font-medium text-obsidian shadow-2xs hover:border-obsidian transition-colors duration-200"
               >
                 <span
                   className="text-sm leading-none"

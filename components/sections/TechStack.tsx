@@ -75,7 +75,7 @@ export default function TechStack() {
   return (
     <section
       id="stack"
-      className="py-20 lg:py-28 bg-deep-teal text-paper-white relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 bg-deep-teal text-paper-white relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -136,7 +136,7 @@ export default function TechStack() {
                 </div>
 
                 <div>
-                  <p className="text-paper-white text-xs sm:text-sm font-bold tracking-tight group-hover:text-paper-white transition-colors">
+                  <p className="text-paper-white text-xs sm:text-sm font-bold tracking-tight group-hover:text-paper-white transition-colors duration-200">
                     {tech.name}
                   </p>
                   <p className="text-paper-white/80 text-[10px] sm:text-[11px] font-medium mt-0.5 capitalize">

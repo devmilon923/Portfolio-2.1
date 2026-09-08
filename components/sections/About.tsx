@@ -120,7 +120,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-iron/60"
+      className="py-20 sm:py-24 lg:py-28 bg-bone relative overflow-hidden  border-iron/60"
     >
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="text-center mb-16 max-w-2xl mx-auto">
@@ -149,7 +149,10 @@ export default function About() {
                 <div className="w-full flex items-center justify-between gap-2 mb-4">
                   <div className="bg-paper-white/[0.05] border border-slate-teal/20 backdrop-blur-xl rounded-xl px-3.5 py-2 text-left shadow-2xs">
                     <p className="text-paper-white text-[13px] font-bold leading-tight">
-                      {STATS[0].value === 1.8 ? "2~" : `${STATS[0].value}${STATS[0].suffix}`} Years
+                      {STATS[0].value === 1.8
+                        ? "2~"
+                        : `${STATS[0].value}${STATS[0].suffix}`}{" "}
+                      Years
                     </p>
                     <p className="text-dusty-sky/75 text-[10px] font-medium leading-tight mt-0.5">
                       {STATS[0].description}
@@ -206,7 +209,7 @@ export default function About() {
           {/* Right Column — Engineering content */}
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
-              <div className="p-6 sm:p-7 rounded-[24px] bg-paper-white border border-iron/90 shadow-2xs relative overflow-hidden group hover:border-obsidian/40 transition-colors">
+              <div className="p-6 sm:p-7 rounded-[24px] bg-paper-white border border-iron/90 shadow-2xs relative overflow-hidden group hover:border-obsidian/40 transition-colors duration-200">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-2 h-2 rounded-full bg-slate-teal" />
                   <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-teal">

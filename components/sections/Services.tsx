@@ -36,7 +36,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-20 lg:py-28 bg-paper-white relative overflow-hidden"
+      className="py-20 sm:py-24 lg:py-28 bg-paper-white relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -62,17 +62,12 @@ export default function Services() {
             return (
               <div
                 key={service.id}
-                className={`group relative rounded-2xl transition-[border-color,box-shadow] duration-300 font-sans overflow-hidden ${
+                className={`group relative rounded-2xl transition-all duration-300 font-sans overflow-hidden ${
                   isFeatured
-                    ? "bg-bone border border-obsidian/15 shadow-sm hover:shadow-sm"
-                    : "bg-paper-white border border-iron/80 hover:border-obsidian/20 hover:shadow-sm"
+                    ? "bg-bone border border-obsidian/25 shadow-sm hover:border-obsidian/40"
+                    : "bg-paper-white border border-iron/80 hover:border-obsidian/20 hover:shadow-xs"
                 }`}
               >
-                {/* Featured subtle top accent line */}
-                {isFeatured && (
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-obsidian/40 to-transparent" />
-                )}
-
                 <div className="p-6 sm:p-8 lg:p-10">
                   {/* ─── Top Row: Number + Meta + CTA ─── */}
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
@@ -141,13 +136,13 @@ export default function Services() {
                             .querySelector("#contact")
                             ?.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className={`font-sans inline-flex items-center gap-2 px-6 py-3 min-h-[44px] rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap ${
+                        className={`font-sans group/btn inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-full text-xs font-semibold transition-colors duration-200 whitespace-nowrap ${
                           isFeatured
-                            ? "bg-obsidian text-paper-white hover:bg-deep-teal shadow-sm"
-                            : "bg-paper-white border border-obsidian/20 text-obsidian hover:bg-obsidian hover:text-paper-white shadow-2xs"
+                            ? "bg-obsidian text-paper-white hover:bg-deep-teal shadow-sm hover:shadow-md"
+                            : "bg-paper-white border border-obsidian/20 text-obsidian hover:bg-obsidian hover:text-paper-white hover:border-obsidian shadow-2xs hover:shadow-sm"
                         }`}
                       >
-                        <MessageSquare className="w-4 h-4" />
+                        <MessageSquare className="w-4 h-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5" />
                         <span>Discuss Scope</span>
                       </button>
                       <div className="text-right">
@@ -200,7 +195,7 @@ export default function Services() {
             {PLATFORMS.map((p) => (
               <div
                 key={p.name}
-                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/80 hover:border-obsidian/25 hover:shadow-sm transition-all duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center font-sans"
+                className="flex cursor-pointer items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/80 hover:border-obsidian/25 hover:shadow-sm transition-all duration-200 shadow-2xs w-full sm:w-auto justify-start sm:justify-center font-sans"
               >
                 <span
                   className="w-6 h-6 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-[9px] font-black text-white flex-shrink-0 shadow-2xs"

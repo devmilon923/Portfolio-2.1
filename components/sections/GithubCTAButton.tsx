@@ -112,7 +112,7 @@ export default function GithubCTAButton() {
 
         {/* Text */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 text-obsidian font-bold text-sm sm:text-base group-hover:text-slate-teal transition-colors leading-tight">
+          <div className="flex items-center gap-1.5 text-obsidian font-bold text-sm sm:text-base group-hover:text-slate-teal transition-colors duration-200 leading-tight">
             <span>Explore Source Code</span>
             <GitBranch className="w-3.5 h-3.5 text-slate-teal opacity-70" />
           </div>
