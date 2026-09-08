@@ -202,6 +202,69 @@ export const PROJECTS = [
   },
 ];
 
+export const BUILDING_PRODUCTS = [
+  {
+    id: "storiboard-product",
+    name: "Storiboard",
+    status: "LIVE",
+    statusLabel: "Live Product",
+    category: "Publishing Platform",
+    tagline: "High-throughput content publishing & reader engagement engine.",
+    description:
+      "An independent, high-speed content publishing platform engineered to deliver dynamic reader feeds instantly without latency lag.",
+    role: "Independent Creator & Full-Stack Developer",
+    keyCapabilities: [
+      "Dynamic feed caching with sub-second response times",
+      "Automated background queues for notifications & moderation",
+      "Production deployment serving active readers seamlessly",
+    ],
+    technologies: ["Next.js", "PostgreSQL", "Redis", "BullMQ", "TypeScript"],
+    liveUrl: "https://storiboard.vercel.app",
+    sourceUrl: "https://github.com/devmilon923/Storiboard-UI",
+    featured: true,
+  },
+  {
+    id: "context-rag",
+    name: "ContextRAG",
+    status: "IN DEVELOPMENT",
+    statusLabel: "In Development",
+    category: "AI Memory Tooling",
+    tagline: "Embeddable cross-session vector context wrapper for LLM applications.",
+    description:
+      "A lightweight developer utility designed to plug persistent semantic memory and multi-tenant context recall into Node.js backends.",
+    role: "Creator & Backend Architect",
+    keyCapabilities: [
+      "Hybrid keyword & Pinecone vector search pipeline",
+      "Async BullMQ background embedding workers",
+      "Isolated multi-tenant context management",
+    ],
+    technologies: ["Node.js", "TypeScript", "Pinecone", "Redis", "OpenAI"],
+    liveUrl: null,
+    sourceUrl: "https://github.com/devmilon923/Heirloom-App-Backend",
+    featured: false,
+  },
+  {
+    id: "api-pulse",
+    name: "API SpeedKit",
+    status: "COMING SOON",
+    statusLabel: "Coming Soon",
+    category: "Developer Utility",
+    tagline: "Zero-overhead latency & unindexed query diagnostic middleware.",
+    description:
+      "A lightweight diagnostic module for Node.js APIs that flags slow database queries, memory leaks, and uncached endpoints before production deployment.",
+    role: "Creator & Developer",
+    keyCapabilities: [
+      "One-line Express & Fastify middleware integration",
+      "Real-time query execution timeline breakdown",
+      "Low-overhead performance diagnostic reports",
+    ],
+    technologies: ["Node.js", "TypeScript", "Express", "PostgreSQL"],
+    liveUrl: null,
+    sourceUrl: null,
+    featured: false,
+  },
+];
+
 export const SERVICES = [
   {
     id: "bug-fix",
@@ -291,9 +354,6 @@ export const SERVICES = [
     featured: false,
   },
 ];
-
-
-
 
 export const TECH_CATEGORIES = [
   { id: "all", label: "All" },

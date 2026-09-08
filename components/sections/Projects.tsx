@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  ExternalLink,
-  Github,
-  ArrowUpRight,
-  Sparkles,
-  CheckCircle2,
-  Calendar,
-} from "lucide-react";
 import { PROJECTS } from "@/lib/constants";
 import GithubCTAButton from "@/components/sections/GithubCTAButton";
+import ProjectCard from "@/components/sections/ProjectCard";
 
 function formatLastUpdated(dateInput?: string) {
   if (!dateInput) return "";
@@ -61,7 +54,6 @@ export default function Projects() {
       id="projects"
       className="py-20 lg:py-28 bg-paper-white relative overflow-hidden"
     >
-
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
@@ -81,164 +73,13 @@ export default function Projects() {
           {PROJECTS.map((project, index) => {
             const accent = PROJECT_GRADIENTS[index % PROJECT_GRADIENTS.length];
             return (
-              <div
+              <ProjectCard
                 key={project.id}
-                className={`rounded-2xl border px-4 sm:px-8 py-6 sm:py-8 lg:p-10 transition-[border-color,box-shadow] duration-300 hover:shadow-sm ${accent.border}`}
-                style={{ background: accent.bg }}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-                  {/* ── Left Column: Identity & Actions (5 cols) ── */}
-                  <div className="lg:col-span-5 flex flex-col justify-between space-y-5">
-                    <div className="space-y-4">
-                      {/* Top Badges */}
-                      <div className="flex items-center justify-between gap-2 flex-wrap pb-4 border-b border-obsidian/8">
-                        <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-paper-white/80 text-obsidian border border-iron/50 uppercase tracking-wider backdrop-blur-xs">
-                          {project.category}
-                        </span>
-                        {project.lastUpdated && (
-                          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-paper-white/80 text-obsidian/80 border border-iron/50 backdrop-blur-xs">
-                            <Calendar className="w-3 h-3 text-slate-teal flex-shrink-0" />
-                            <span>{formatLastUpdated(project.lastUpdated)}</span>
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Project Title & Subtitle */}
-                      <div>
-                        <h3 className="font-serif text-3xl sm:text-4xl font-bold text-obsidian tracking-[-0.035em] flex items-center justify-between gap-2">
-                          <span>{project.name}</span>
-
-                        </h3>
-                        <p className="text-slate-teal text-xs sm:text-sm font-semibold mt-1.5">
-                          {project.subtitle}
-                        </p>
-                      </div>
-
-                      {/* Primary KPI Box */}
-                      {project.metricLabel && (
-                        <div className={` rounded-xl space-y-1`}>
-                          <div className="flex items-center justify-between">
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-slate-teal">
-                              Primary Engineering Outcome
-                            </p>
-                  
-                          </div>
-                          <p className="text-obsidian text-sm font-bold leading-snug">
-                            {project.metricLabel}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Action Links */}
-                    <div className="flex flex-wrap gap-2.5 pt-4 border-t border-obsidian/8">
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal transition-colors duration-200 shadow-sm flex-1 text-center"
-                        >
-                          <ExternalLink className="w-3.5 h-3.5" />
-                          <span>Live Demo</span>
-                        </a>
-                      )}
-                      {project.sourceUrl && (
-                        <a
-                          href={project.sourceUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-obsidian/12 bg-paper-white/70 text-obsidian text-xs font-semibold hover:bg-paper-white hover:border-obsidian/25 transition-colors duration-200 backdrop-blur-xs flex-1 text-center"
-                        >
-                          <Github className="w-3.5 h-3.5" />
-                          <span>Source Code</span>
-                        </a>
-                      )}
-                      {!project.liveUrl && !project.sourceUrl && (
-                        <span className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-paper-white/60 border border-obsidian/8 text-obsidian/60 text-xs font-medium w-full backdrop-blur-xs">
-                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                          <span>Client Enterprise NDA</span>
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* ── Right Column: Case Study Content (7 cols) ── */}
-                  <div className="lg:col-span-7 space-y-4">
-                    {/* System Architecture Overview */}
-                    <div className="p-5 rounded-xl bg-paper-white/60 border border-obsidian/6 backdrop-blur-xs">
-                      <div className="flex items-center justify-between gap-2 mb-3 border-b border-obsidian/6 pb-2.5 overflow-hidden">
-                        <span className="text-[10px] sm:text-[10.5px] font-bold text-slate-teal uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap min-w-0">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
-                          <span className="truncate">System Overview</span>
-                        </span>
-                        <span className="text-[10px] text-obsidian/60 font-semibold font-mono whitespace-nowrap flex-shrink-0">
-                          0{index + 1} • CASE STUDY
-                        </span>
-                      </div>
-                      <p className="text-obsidian/75 text-xs sm:text-sm font-normal leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* 3-Pillar Proof Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      {/* Challenge */}
-                      <div className="p-4 rounded-xl bg-paper-white/50 border border-obsidian/6 backdrop-blur-xs hover:border-obsidian/20 hover:bg-paper-white/70 transition-colors duration-200">
-                        <p className="text-slate-teal text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
-                          <span>The Challenge</span>
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full ${accent.dot}`}
-                          />
-                        </p>
-                        <p className="text-obsidian/65 text-xs font-normal leading-relaxed">
-                          {project.problem}
-                        </p>
-                      </div>
-
-                      {/* Execution */}
-                      <div className="p-4 rounded-xl bg-paper-white/50 border border-obsidian/6 backdrop-blur-xs hover:border-obsidian/20 hover:bg-paper-white/70 transition-colors duration-200">
-                        <p className="text-slate-teal text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
-                          <span>Engineering Execution</span>
-                          <span
-                            className={`w-1.5 h-1.5 rounded-full ${accent.dot}`}
-                          />
-                        </p>
-                        <p className="text-obsidian/65 text-xs font-normal leading-relaxed">
-                          {project.contribution}
-                        </p>
-                      </div>
-
-                      {/* Business ROI */}
-                      <div
-                        className={`p-4 rounded-xl border backdrop-blur-xs hover:border-obsidian/20 transition-colors duration-200 ${accent.roi}`}
-                      >
-                        <p className="text-slate-teal text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
-                          <span>Business ROI</span>
-                          <Sparkles className="w-3 h-3 text-slate-teal" />
-                        </p>
-                        <p className="text-obsidian text-xs font-semibold leading-relaxed">
-                          {project.impact}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Tech Stack Pills */}
-                    <div className="pt-1">
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="text-[11px] font-mono font-medium text-obsidian/45 px-2.5 py-0.5 rounded-full bg-paper-white/70 border border-obsidian/8 hover:border-obsidian/20 hover:text-obsidian/65 transition-colors cursor-default backdrop-blur-xs"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                project={project}
+                index={index}
+                accent={accent}
+                formatLastUpdated={formatLastUpdated}
+              />
             );
           })}
         </div>

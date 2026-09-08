@@ -9,8 +9,10 @@ import {
   Clock,
   ShieldCheck,
   ArrowUpRight,
+  Sparkles,
 } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
+import ServiceFeatureCard from "@/components/sections/ServiceFeatureCard";
 
 const icons = { bug: Bug, rocket: Rocket, layers: Layers };
 
@@ -81,48 +83,50 @@ export default function Services() {
                         {num}
                       </span>
 
-                      <div className="min-w-0 flex-1 pt-1">
+                      <div className="min-w-0 flex-1 space-y-3">
                         {/* Badges row */}
-                        <div className="flex items-center gap-2 flex-wrap mb-2.5">
-                          <div
-                            className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                              isFeatured
-                                ? "bg-obsidian text-paper-white"
-                                : "bg-obsidian/5 text-obsidian/75"
-                            }`}
-                          >
-                            <Icon className="w-4 h-4" />
-                          </div>
-
+                        <div className="flex items-center gap-2 flex-wrap">
                           {isFeatured && (
-                            <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-obsidian bg-obsidian/8 px-2.5 py-0.5 rounded-full">
-                              Most Popular
+                            <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-obsidian text-paper-white shadow-2xs">
+                              <Sparkles className="w-3.5 h-3.5 text-paper-white" />
+                              <span>Most Popular</span>
                             </span>
                           )}
 
                           <span
-                            className={`text-[10px] font-sans font-semibold px-2.5 py-0.5 rounded-full border whitespace-nowrap ${
+                            className={`text-xs font-semibold px-3 py-1 rounded-full border whitespace-nowrap ${
                               isFeatured
-                                ? "bg-paper-white text-obsidian/80 border-obsidian/15"
-                                : "bg-paper-white/80 text-obsidian/70 border-iron"
+                                ? "bg-paper-white text-obsidian border-obsidian/20 shadow-2xs"
+                                : "bg-paper-white/90 text-obsidian/90 border-iron/70 shadow-2xs"
                             }`}
                           >
                             {service.badge}
                           </span>
 
-                          <span className="text-[10px] font-sans text-obsidian/55 font-medium flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {service.turnaround}
+                          <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-paper-white/90 text-obsidian/85 border border-iron/70 shadow-2xs backdrop-blur-xs">
+                            <Clock className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
+                            <span>{service.turnaround}</span>
                           </span>
                         </div>
 
-                        {/* Title */}
-                        <h3 className="font-sans text-xl sm:text-2xl font-bold text-obsidian tracking-tight leading-tight mb-1.5">
-                          {service.title}
-                        </h3>
+                        {/* Title Block with Icon Header */}
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 shadow-2xs ${
+                              isFeatured
+                                ? "bg-obsidian text-paper-white"
+                                : "bg-paper-white border border-iron/70 text-obsidian"
+                            }`}
+                          >
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <h3 className="font-sans text-xl sm:text-2xl font-bold text-obsidian tracking-tight leading-tight">
+                            {service.title}
+                          </h3>
+                        </div>
 
                         {/* Tagline */}
-                        <p className="font-sans text-obsidian/65 text-sm font-normal leading-relaxed max-w-xl">
+                        <p className="font-sans text-obsidian/75 text-xs sm:text-sm font-normal leading-relaxed max-w-xl">
                           {service.tagline}
                         </p>
                       </div>
@@ -137,13 +141,13 @@ export default function Services() {
                             .querySelector("#contact")
                             ?.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className={`font-sans inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-[background-color,border-color,color] duration-200 whitespace-nowrap ${
+                        className={`font-sans inline-flex items-center gap-2 px-6 py-3 min-h-[44px] rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap ${
                           isFeatured
                             ? "bg-obsidian text-paper-white hover:bg-deep-teal shadow-sm"
-                            : "bg-paper-white border border-obsidian/15 text-obsidian hover:bg-obsidian hover:text-paper-white"
+                            : "bg-paper-white border border-obsidian/20 text-obsidian hover:bg-obsidian hover:text-paper-white shadow-2xs"
                         }`}
                       >
-                        <MessageSquare className="w-3.5 h-3.5" />
+                        <MessageSquare className="w-4 h-4" />
                         <span>Discuss Scope</span>
                       </button>
                       <div className="text-right">
@@ -162,26 +166,12 @@ export default function Services() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                       {service.features.map((feat) => (
-                        <div
+                        <ServiceFeatureCard
                           key={feat.title}
-                          className={`p-4 rounded-xl transition-all duration-200 group/feat ${
-                            isFeatured
-                              ? "bg-paper-white/80 border border-obsidian/8 hover:border-obsidian/20 hover:shadow-2xs"
-                              : "bg-bone/50 border border-iron/60 hover:border-obsidian/15 hover:shadow-2xs"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-4 h-4 rounded-full bg-emerald-500/12 border border-emerald-600/20 text-emerald-700 flex items-center justify-center flex-shrink-0">
-                              <Check className="w-2.5 h-2.5 stroke-[3]" />
-                            </div>
-                            <p className="font-sans text-obsidian text-xs font-bold leading-snug truncate">
-                              {feat.title}
-                            </p>
-                          </div>
-                          <p className="font-sans text-obsidian/60 text-[11px] font-normal leading-relaxed pl-6">
-                            {feat.detail}
-                          </p>
-                        </div>
+                          title={feat.title}
+                          detail={feat.detail}
+                          isFeatured={isFeatured}
+                        />
                       ))}
                     </div>
                   </div>

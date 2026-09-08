@@ -23,7 +23,7 @@
     --border: 0 0% 88%;
     --input: 0 0% 88%;
     --ring: 0 0% 0%;
-    --radius: 999px;
+    --radius: 12px;
 
     /* Handwriting font variable (loaded in layout.tsx via Caveat Google Font) */
     --font-caveat: 'Caveat', 'Patrick Hand', cursive;

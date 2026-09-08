@@ -92,7 +92,9 @@ function MobileNavDrawer({
                   </div>
                   <span
                     className={`text-sm tracking-tight ${
-                      isActive ? "font-bold text-paper-white" : "font-semibold text-obsidian"
+                      isActive
+                        ? "font-bold text-paper-white"
+                        : "font-semibold text-obsidian"
                     }`}
                   >
                     {link.label}
@@ -102,7 +104,9 @@ function MobileNavDrawer({
                 <div className="flex items-center gap-2">
                   <span
                     className={`text-[11px] font-mono font-bold ${
-                      isActive ? "text-paper-white/70" : "text-obsidian/45 group-hover:text-obsidian/80"
+                      isActive
+                        ? "text-paper-white/70"
+                        : "text-obsidian/45 group-hover:text-obsidian/80"
                     }`}
                   >
                     {link.code}
@@ -206,7 +210,7 @@ export default function Navbar() {
   const updatePill = useCallback(() => {
     if (!navRef.current || !activeSection) return;
     const activeEl = navRef.current.querySelector(
-      `button[data-href="${activeSection}"]`
+      `button[data-href="${activeSection}"]`,
     ) as HTMLElement;
     if (activeEl) {
       const parentRect = navRef.current.getBoundingClientRect();
@@ -247,7 +251,7 @@ export default function Navbar() {
 
           if (!isClickScrollingRef.current) {
             const sections = NAV_LINKS.map((link) =>
-              link.href.replace("#", "")
+              link.href.replace("#", ""),
             );
             let currentSection = "#about";
             const threshold = 140;
