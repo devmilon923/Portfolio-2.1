@@ -292,58 +292,8 @@ export const SERVICES = [
   },
 ];
 
-export const TESTIMONIALS = [
-  {
-    id: 1,
-    name: "James Hartwell",
-    position: "CTO",
-    company: "LaunchPad Digital",
-    country: "United Kingdom",
-    rating: 5,
-    text: "Delivered a production-grade SaaS backend in under 3 weeks. The architecture was clean, well-documented, and the API performance exceeded our benchmarks. He's one of the most thorough backend developers I've worked with remotely.",
-    avatar: "JH",
-  },
-  {
-    id: 2,
-    name: "Sarah Chen",
-    position: "Product Manager",
-    company: "NovaTech Solutions",
-    country: "United States",
-    rating: 5,
-    text: "We hired Milon to optimize our sluggish Node.js API and he reduced our average response time by nearly 40%. His Redis caching strategy and MongoDB indexing fixes were exactly what we needed. Highly recommend for backend work.",
-    avatar: "SC",
-  },
-  {
-    id: 3,
-    name: "Marcus Weber",
-    position: "Founder",
-    company: "Streamline AI",
-    country: "Germany",
-    rating: 5,
-    text: "The AI memory system Milon built for us is genuinely impressive — RAG pipeline, dual-memory architecture, multi-tenant isolation. He understood the requirements without extensive hand-holding and shipped a solid system on time.",
-    avatar: "MW",
-  },
-  {
-    id: 4,
-    name: "Priya Kapoor",
-    position: "Engineering Lead",
-    company: "Orion Labs",
-    country: "Canada",
-    rating: 5,
-    text: "Milon joined a critical phase of our project and immediately added value. His Docker + CI/CD setup eliminated our deployment headaches and his code reviews raised the whole team's quality bar. Reliable, communicative, and skilled.",
-    avatar: "PK",
-  },
-  {
-    id: 5,
-    name: "Tom Nguyen",
-    position: "CEO",
-    company: "BuildRight Agency",
-    country: "Australia",
-    rating: 5,
-    text: "We needed a full-stack developer who could handle both React and Node.js without compromising either. Delivered exactly that — a polished frontend with a robust backend, deployed to AWS with no drama. Will work with him again.",
-    avatar: "TN",
-  },
-];
+
+
 
 export const TECH_CATEGORIES = [
   { id: "all", label: "All" },

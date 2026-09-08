@@ -76,7 +76,7 @@ function MobileNavDrawer({
                 onClick={() => handleNavClick(link.href)}
                 className={`px-3 py-2 rounded-xl transition-transform duration-200 flex items-center justify-between group text-left ${
                   isActive
-                    ? "bg-obsidian text-paper-white shadow-md font-bold"
+                    ? "bg-obsidian text-paper-white shadow-sm font-bold"
                     : "text-obsidian hover:bg-obsidian/5 border border-transparent active:scale-[0.98]"
                 }`}
               >
@@ -188,7 +188,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("#about");
-  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   const navRef = useRef<HTMLDivElement | null>(null);
   const isClickScrollingRef = useRef(false);
@@ -245,14 +244,6 @@ export default function Navbar() {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
           setScrolled(scrollY > 40);
-
-          const totalScroll =
-            document.documentElement.scrollHeight - window.innerHeight;
-          if (totalScroll > 0) {
-            setScrollProgress(
-              Math.min(100, Math.max(0, (scrollY / totalScroll) * 100))
-            );
-          }
 
           if (!isClickScrollingRef.current) {
             const sections = NAV_LINKS.map((link) =>
@@ -312,7 +303,7 @@ export default function Navbar() {
         <div
           className={`w-full rounded-full border transition-colors duration-300 relative overflow-hidden group/bar ${
             scrolled
-              ? "bg-paper-white/80 backdrop-blur-xl border-iron/80 shadow-md shadow-obsidian/5 py-2.5 px-4 sm:px-6"
+              ? "bg-paper-white/80 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6"
               : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3.5 px-4 sm:px-6"
           }`}
         >
@@ -324,7 +315,7 @@ export default function Navbar() {
               onClick={() => handleNavClick("#hero")}
               className="flex items-center gap-2.5 group/logo hover:scale-[1.02] active:scale-[0.98] transition-transform text-left"
             >
-              <div className="w-8 h-8 rounded-full bg-obsidian flex items-center justify-center shadow-xs relative overflow-hidden group-hover/logo:shadow-md transition-shadow duration-300">
+              <div className="w-8 h-8 rounded-full bg-obsidian flex items-center justify-center shadow-xs relative overflow-hidden group-hover/logo:shadow-sm transition-shadow duration-300">
                 <span className="font-serif text-paper-white text-xs font-bold leading-none group-hover/logo:scale-110 transition-transform duration-300">
                   DM
                 </span>
@@ -398,13 +389,6 @@ export default function Navbar() {
                 )}
               </button>
             </div>
-          </div>
-
-          <div className="absolute bottom-0 left-4 right-4 h-[2.5px] bg-iron/30 overflow-hidden rounded-full pointer-events-none">
-            <div
-              className="h-full bg-gradient-to-r from-slate-teal via-deep-teal to-emerald-500 transition-[width] duration-75 ease-out rounded-full shadow-[0_0_8px_rgba(15,118,110,0.4)]"
-              style={{ width: `${scrollProgress}%` }}
-            />
           </div>
         </div>
       </header>

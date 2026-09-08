@@ -23,7 +23,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-paper-white border-t border-iron py-12 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-10">
           {/* Brand */}
@@ -55,7 +55,7 @@ export default function Footer() {
                     .querySelector(link.href)
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform duration-200"
+                className="text-obsidian/80 text-xs font-medium hover:text-obsidian transition-colors duration-200"
               >
                 {link.label}
               </button>
@@ -70,8 +70,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-obsidian/60 text-xs font-normal">
-            &copy; {new Date().getFullYear()} {PERSONAL.name}. Crafted with
-            editorial precision.
+            &copy; {new Date().getFullYear()} {PERSONAL.name}. Built with Next.js & TypeScript.
           </p>
 
           {/* Social + Scroll top */}
@@ -83,7 +82,7 @@ export default function Footer() {
                 target={href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="text-obsidian/70 hover:text-obsidian hover:-translate-y-0.5 hover:scale-110 active:scale-90 transition-transform duration-200"
+                className="text-obsidian/70 hover:text-obsidian transition-colors duration-200"
               >
                 <Icon className="w-4 h-4" />
               </a>
@@ -93,7 +92,7 @@ export default function Footer() {
 
             <button
               onClick={scrollTop}
-              className="w-8 h-8 rounded-full bg-bone border border-iron flex items-center justify-center text-obsidian hover:bg-obsidian hover:text-paper-white hover:scale-110 hover:-translate-y-0.5 active:scale-90 transition-transform duration-200"
+              className="w-8 h-8 rounded-full bg-bone border border-iron flex items-center justify-center text-obsidian hover:bg-obsidian hover:text-paper-white transition-colors duration-200"
               aria-label="Scroll to top"
             >
               <ArrowUp className="w-3.5 h-3.5" />

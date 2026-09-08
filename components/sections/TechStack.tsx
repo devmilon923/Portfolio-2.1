@@ -30,7 +30,13 @@ import { FaAws } from "react-icons/fa6";
 // Map tech item name to official brand SVG component & high-contrast brand color for dark backgrounds
 const TECH_ICON_MAP: Record<
   string,
-  { icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; color: string }
+  {
+    icon: React.ComponentType<{
+      className?: string;
+      style?: React.CSSProperties;
+    }>;
+    color: string;
+  }
 > = {
   React: { icon: SiReact, color: "#61DAFB" },
   "Next.js": { icon: SiNextdotjs, color: "#FFFFFF" },
@@ -63,7 +69,7 @@ export default function TechStack() {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filtered = TECH_STACK.filter(
-    (t) => activeCategory === "all" || t.category === activeCategory
+    (t) => activeCategory === "all" || t.category === activeCategory,
   );
 
   return (
@@ -71,9 +77,7 @@ export default function TechStack() {
       id="stack"
       className="py-20 lg:py-28 bg-deep-teal text-paper-white relative overflow-hidden"
     >
-
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-dusty-sky font-semibold text-xs uppercase tracking-wider mb-3">
@@ -115,10 +119,10 @@ export default function TechStack() {
             return (
               <div
                 key={tech.name}
-                className="group p-4 sm:p-5 rounded-2xl bg-paper-white/[0.04] border border-paper-white/5 flex flex-col items-center text-center gap-3 cursor-default hover:bg-paper-white/[0.09] hover:border-paper-white/20 hover:-translate-y-1 hover:scale-[1.02] transition-transform duration-300"
+                className="group p-4 sm:p-5 rounded-2xl bg-paper-white/[0.04] border border-paper-white/5 flex flex-col items-center text-center gap-3 cursor-default hover:bg-paper-white/[0.09] hover:border-paper-white/20 transition-all duration-200"
               >
                 {/* Vector Brand Icon Badge */}
-                <div className="w-12 h-12 rounded-xl bg-paper-white/[0.08] border border-paper-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-paper-white/15 group-hover:border-paper-white/25 transition-transform duration-300">
+                <div className="w-12 h-12 rounded-xl bg-paper-white/[0.08] border border-paper-white/10 flex items-center justify-center group-hover:bg-paper-white/15 group-hover:border-paper-white/25 transition-colors duration-200">
                   {IconComponent ? (
                     <IconComponent
                       className="w-6 h-6 sm:w-6.5 sm:h-6.5 transition-colors duration-300"

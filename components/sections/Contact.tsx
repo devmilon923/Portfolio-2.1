@@ -91,10 +91,13 @@ export default function Contact() {
         <div className="text-center mb-14">
           <p className="section-label mb-3">Get In Touch</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-4 text-balance">
-            Let&apos;s build something <span className=" font-normal">amazing</span>
+            Let&apos;s build something{" "}
+            <span className=" font-normal">amazing</span>
           </h2>
           <p className="text-obsidian/75 text-base sm:text-lg font-normal max-w-lg mx-auto leading-relaxed">
-            Have a web app, SaaS, or AI feature in mind? I&apos;m available for direct freelance projects, contract builds, and technical consulting.
+            Have a web app, SaaS, or AI feature in mind? I&apos;m available for
+            direct freelance projects, contract builds, and technical
+            consulting.
           </p>
         </div>
 
@@ -108,7 +111,7 @@ export default function Contact() {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian hover:-translate-y-1 hover:scale-[1.01] active:scale-[0.98] transition-transform cursor-pointer shadow-sm"
+                  className="bg-paper-white border border-iron rounded-2xl p-5 flex items-center gap-4 group hover:border-obsidian hover:shadow-sm transition-all duration-200 cursor-pointer shadow-sm"
                 >
                   <div className="w-12 h-12 rounded-full bg-sandstone flex items-center justify-center flex-shrink-0 border border-iron">
                     <Icon className="w-5 h-5 text-obsidian" />
@@ -160,7 +163,11 @@ export default function Contact() {
             className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal hover:scale-105 active:scale-95 transition-transform shadow-sm w-full sm:w-auto"
           >
             <Copy className="w-4 h-4" />
-            <span>{copied ? "Copied to clipboard!" : `Copy Email: ${PERSONAL.email}`}</span>
+            <span>
+              {copied
+                ? "Copied to clipboard!"
+                : `Copy Email: ${PERSONAL.email}`}
+            </span>
           </button>
         </div>
 

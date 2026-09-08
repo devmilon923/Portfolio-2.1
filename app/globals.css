@@ -123,14 +123,12 @@
     border-radius: 16px;
     border: 1px solid var(--color-iron);
     box-shadow: none;
-    transition:
-      transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-      border-color 0.25s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .clay-card:hover {
-    transform: translateY(-2px);
     border-color: var(--color-obsidian);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
   /* 999px Pill Button (DESIGN.md specification) */
@@ -143,18 +141,15 @@
     font-weight: 500;
     font-size: 16px;
     letter-spacing: -0.02em;
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
   }
 
   .clay-btn:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
   }
 
   .clay-btn:active {
-    transform: scale(0.98);
+    opacity: 0.95;
   }
 
   /* Section heading label */
@@ -245,3 +240,15 @@
     font-family: var(--font-caveat);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

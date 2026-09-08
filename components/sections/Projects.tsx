@@ -61,25 +61,8 @@ export default function Projects() {
       id="projects"
       className="py-20 lg:py-28 bg-paper-white relative overflow-hidden"
     >
-      {/* Subtle background atmosphere */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full opacity-20 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(212, 230, 235, 0.5) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-[15%] right-[10%] w-[400px] h-[400px] rounded-full opacity-15 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(239, 229, 249, 0.5) 0%, transparent 70%)",
-          }}
-        />
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <p className="section-label mb-3">Featured Proof Of Work</p>
@@ -100,7 +83,7 @@ export default function Projects() {
             return (
               <div
                 key={project.id}
-                className={`rounded-2xl border px-4 sm:px-8 py-6 sm:py-8 lg:p-10 transition-all duration-300 hover:shadow-sm ${accent.border}`}
+                className={`rounded-2xl border px-4 sm:px-8 py-6 sm:py-8 lg:p-10 transition-[border-color,box-shadow] duration-300 hover:shadow-sm ${accent.border}`}
                 style={{ background: accent.bg }}
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
@@ -201,7 +184,7 @@ export default function Projects() {
                     {/* 3-Pillar Proof Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {/* Challenge */}
-                      <div className="p-4 rounded-xl bg-paper-white/50 border border-obsidian/6 backdrop-blur-xs hover:-translate-y-0.5 transition-transform duration-200">
+                      <div className="p-4 rounded-xl bg-paper-white/50 border border-obsidian/6 backdrop-blur-xs hover:border-obsidian/20 hover:bg-paper-white/70 transition-colors duration-200">
                         <p className="text-slate-teal text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
                           <span>The Challenge</span>
                           <span
@@ -214,7 +197,7 @@ export default function Projects() {
                       </div>
 
                       {/* Execution */}
-                      <div className="p-4 rounded-xl bg-paper-white/50 border border-obsidian/6 backdrop-blur-xs hover:-translate-y-0.5 transition-transform duration-200">
+                      <div className="p-4 rounded-xl bg-paper-white/50 border border-obsidian/6 backdrop-blur-xs hover:border-obsidian/20 hover:bg-paper-white/70 transition-colors duration-200">
                         <p className="text-slate-teal text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
                           <span>Engineering Execution</span>
                           <span
@@ -228,7 +211,7 @@ export default function Projects() {
 
                       {/* Business ROI */}
                       <div
-                        className={`p-4 rounded-xl border backdrop-blur-xs hover:-translate-y-0.5 transition-transform duration-200 ${accent.roi}`}
+                        className={`p-4 rounded-xl border backdrop-blur-xs hover:border-obsidian/20 transition-colors duration-200 ${accent.roi}`}
                       >
                         <p className="text-slate-teal text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center justify-between">
                           <span>Business ROI</span>

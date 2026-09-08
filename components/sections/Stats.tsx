@@ -1,167 +1,86 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { STATS, CLIENT_COUNTRIES } from "@/lib/constants";
-import CountryFlag from "@/components/ui/CountryFlag";
+import { Globe2, TrendingUp, ShieldCheck, Cpu } from "lucide-react";
 
-// ── Intersection Observer hook for scroll-triggered animations ──
-function useInView(threshold = 0.3) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, inView };
-}
-
-// ── Animated counter that only starts when visible ──
-function AnimatedCounter({
-  target,
-  prefix = "",
-  suffix = "",
-  active,
-}: {
-  target: number;
-  prefix?: string;
-  suffix?: string;
-  active: boolean;
-}) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!active) return;
-    const duration = 1600;
-    const steps = 50;
-    const increment = target / steps;
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, duration / steps);
-    return () => clearInterval(timer);
-  }, [target, active]);
-
-  return (
-    <span>
-      {prefix}
-      {count}
-      {suffix}
-    </span>
-  );
-}
-
-// ── Accent color per stat card for visual hierarchy ──
-const STAT_ACCENTS = [
-  "bg-slate-teal/10 border-slate-teal/25 hover:border-slate-teal/50",
-  "bg-desert-clay/15 border-desert-clay/30 hover:border-desert-clay/55",
-  "bg-mist-mint/20 border-mist-mint/40 hover:border-mist-mint/65",
-  "bg-wisteria/20 border-wisteria/40 hover:border-wisteria/60",
-];
-
-const STAT_DOT_COLORS = [
-  "bg-slate-teal",
-  "bg-saddle-brown",
-  "bg-deep-teal",
-  "bg-slate-teal",
-];
+const STAT_ICONS = [ShieldCheck, Cpu, TrendingUp, Globe2];
 
 export default function Stats() {
-  const { ref, inView } = useInView(0.2);
-
   return (
     <section
       id="stats"
-      className="py-20 lg:py-28 bg-paper-white relative overflow-hidden border-t border-iron/60"
+      className="py-16 sm:py-20 bg-bone relative border-t border-b border-iron"
     >
-
-
-      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="text-center mb-14 lg:mb-16">
-          <p className="section-label mb-3">Impact</p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian leading-tight tracking-[-0.045em] text-balance">
-            Numbers that <span className="font-normal">matter</span>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <p className="section-label mb-3">Proven Metrics</p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-4 text-balance">
+            Engineered for <span className="font-normal">impact & scale</span>
           </h2>
-          <p className="mt-3 text-obsidian/75 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
-            Real metrics from production systems and client engagements.
+          <p className="text-obsidian/75 text-base sm:text-lg font-normal max-w-lg mx-auto leading-relaxed">
+            Quantifiable results from production software builds, database
+            optimizations, and global client deliverables.
           </p>
         </div>
 
-        {/* Stats grid — Bento-style cards with accent tints */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-14 lg:mb-16">
-          {STATS.map((stat, i) => (
-            <div
-              key={stat.label}
-              className={`group relative p-5 sm:p-6 rounded-2xl border hover:-translate-y-1 hover:shadow-sm cursor-default ${STAT_ACCENTS[i % STAT_ACCENTS.length]}`}
-              style={{
-                opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0)" : "translateY(12px)",
-                transition: `opacity 0.5s ease ${inView ? i * 80 : 0}ms, transform 0.5s ease ${inView ? i * 80 : 0}ms`,
-              }}
-            >
-              {/* Accent dot */}
+        {/* 4 Stat Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+          {STATS.map((stat, index) => {
+            const Icon = STAT_ICONS[index % STAT_ICONS.length];
+            const displayVal =
+              stat.value === 1.8 ? "2~" : `${stat.value}${stat.suffix}`;
+
+            return (
               <div
-                className={`w-1.5 h-1.5 rounded-full mb-3 ${STAT_DOT_COLORS[i % STAT_DOT_COLORS.length]}`}
-              />
-
-              {/* Stat value */}
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-obsidian mb-1.5 tracking-[-0.045em] leading-none">
-                <AnimatedCounter
-                  target={stat.value}
-                  prefix={"prefix" in stat ? (stat as { prefix?: string }).prefix : ""}
-                  suffix={stat.suffix}
-                  active={inView}
-                />
-              </div>
-
-              {/* Label */}
-              <p className="text-obsidian text-[13px] sm:text-sm font-semibold mb-0.5 leading-snug">
-                {stat.label}
-              </p>
-
-              {/* Description */}
-              <p className="text-obsidian/75 text-[11px] sm:text-xs font-normal leading-relaxed">
-                {stat.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Country flags — Clean inline strip */}
-        <div className="flex flex-col items-center gap-4">
-          <p className="text-obsidian/70 text-xs sm:text-sm font-semibold tracking-tight uppercase">
-            Trusted by clients across
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
-            {CLIENT_COUNTRIES.map((country) => (
-              <div
-                key={country.code}
-                className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bone/80 border border-iron/80 hover:border-obsidian/30 hover:bg-bone transition-colors duration-200 cursor-default"
+                key={stat.label}
+                className="bg-paper-white border border-iron rounded-2xl p-6 flex flex-col justify-between hover:border-obsidian hover:shadow-sm transition-all duration-300 shadow-2xs group"
               >
-                <CountryFlag code={country.code} className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
-                <span className="text-obsidian/80 text-[11px] sm:text-xs font-medium group-hover:text-obsidian transition-colors">
-                  {country.name}
-                </span>
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-3xl sm:text-4xl font-serif font-bold text-obsidian tracking-tight group-hover:text-slate-teal transition-colors">
+                      {displayVal}
+                    </span>
+                    <div className="w-9 h-9 rounded-full bg-sandstone flex items-center justify-center border border-iron/80">
+                      <Icon className="w-4 h-4 text-slate-teal" />
+                    </div>
+                  </div>
+                  <h3 className="text-obsidian text-base font-bold mb-1 tracking-tight">
+                    {stat.label}
+                  </h3>
+                  <p className="text-obsidian/65 text-xs sm:text-sm font-normal leading-relaxed">
+                    {stat.description}
+                  </p>
+                </div>
               </div>
+            );
+          })}
+        </div>
+
+        {/* Global Reach Trust Bar */}
+        <div className="border-t border-iron/70 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 bg-paper-white/60 rounded-2xl p-5 border">
+          <div className="flex items-center gap-2.5">
+            <Globe2 className="w-4 h-4 text-slate-teal" />
+            <span className="text-obsidian/80 text-xs sm:text-sm font-semibold">
+              Client Reach Across 5+ Countries:
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {CLIENT_COUNTRIES.map((country) => (
+              <span
+                key={country.code}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sandstone border border-iron text-xs font-medium text-obsidian shadow-2xs hover:border-obsidian transition-colors"
+              >
+                <span
+                  className="text-sm leading-none"
+                  role="img"
+                  aria-label={country.name}
+                >
+                  {country.flag}
+                </span>
+                <span>{country.name}</span>
+              </span>
             ))}
           </div>
         </div>

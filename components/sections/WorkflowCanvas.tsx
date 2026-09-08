@@ -73,7 +73,7 @@ function TypedText({
     if (!started || displayed.length >= text.length) return;
     const t = setTimeout(
       () => setDisplayed(text.slice(0, displayed.length + 1)),
-      speed + (Math.random() * speed * 0.35 - speed * 0.1)
+      speed + (Math.random() * speed * 0.35 - speed * 0.1),
     );
     return () => clearTimeout(t);
   }, [started, displayed, text, speed]);
@@ -116,7 +116,7 @@ function ErasingText({
     }
     const t = setTimeout(
       () => setDisplayed((d) => d.slice(0, -1)),
-      speed + Math.random() * 12
+      speed + Math.random() * 12,
     );
     return () => clearTimeout(t);
   }, [displayed, onDone, speed]);
@@ -244,7 +244,7 @@ function WorkflowHeader() {
 
 export default function WorkflowCanvas() {
   const [revealedPhases, setRevealedPhases] = useState<Set<number>>(
-    () => new Set(PHASES.map((p) => p.id))
+    () => new Set(PHASES.map((p) => p.id)),
   );
   const [typingPhase, setTypingPhase] = useState(0);
   const [typingState, setTypingState] = useState<
@@ -278,7 +278,7 @@ export default function WorkflowCanvas() {
   };
 
   return (
-    <div className="relative w-full rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-4 sm:p-5 font-caveat shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group">
+    <div className="relative w-full rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-4 sm:p-5 font-caveat shadow-sm hover:shadow-sm transition-shadow duration-300 overflow-hidden group">
       <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(ellipse_at_15%_15%,rgba(255,255,255,0.4)_0%,transparent_60%),radial-gradient(ellipse_at_85%_85%,rgba(245,236,229,0.3)_0%,transparent_50%)] pointer-events-none z-0" />
 
       <svg

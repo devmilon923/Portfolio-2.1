@@ -5,11 +5,9 @@ import {
   Github,
   Linkedin,
   Mail,
-  Sparkles,
   Rocket,
 } from "lucide-react";
-import { PERSONAL, CLIENT_COUNTRIES } from "@/lib/constants";
-import CountryFlag from "@/components/ui/CountryFlag";
+import { PERSONAL } from "@/lib/constants";
 import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
 import Link from "next/link";
 
@@ -65,13 +63,12 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[calc(100vh-80px)] py-12 lg:py-0">
           {/* ─── LEFT COLUMN: Identity, Headline & Action (7 cols) ──── */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left pr-0 lg:pr-4">
-            {/* ── Trust Strip — Rating + Timezone + Flag Avatar Stack ── */}
+            {/* ── Trust Strip ── */}
             <div className="flex items-center flex-wrap gap-y-2 mb-6 self-start">
-              {/* Proof Point: Shipped Apps */}
               <div className="flex items-center gap-1.5">
                 <Rocket className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
                 <span className="text-xs sm:text-[13px] font-semibold text-obsidian tracking-tight whitespace-nowrap">
-                  5+ Production Apps
+                  6+ Production Apps
                 </span>
               </div>
 
@@ -80,17 +77,9 @@ export default function Hero() {
                 aria-hidden="true"
               />
 
-              {/* Proof Point: Timezone */}
               <span className="text-xs sm:text-[13px] text-obsidian/70 font-medium whitespace-nowrap">
-                GMT+6 · Flexible
+                GMT+6 · Flexible Hours
               </span>
-
-              <span
-                className="w-px h-3.5 bg-iron/50 mx-2.5 sm:mx-3.5 flex-shrink-0"
-                aria-hidden="true"
-              />
-
-              {/* Overlapping Flag Avatar Stack + Count */}
             </div>
 
             {/* Main Headline - Concise & Punchy 2-3 Lines */}
@@ -121,8 +110,8 @@ export default function Hero() {
               </span>
             </div>
 
-            {/* CTAs Row - Direct WhatsApp DM + Contact Triggers */}
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3 mb-7 sm:mb-9 w-full sm:w-auto">
+            {/* CTAs — One primary, one secondary */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 mb-7 sm:mb-9 w-full sm:w-auto">
               <button
                 type="button"
                 onClick={() => {
@@ -130,38 +119,26 @@ export default function Hero() {
                     .querySelector("#projects")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-semibold hover:bg-deep-teal hover:scale-[1.02] active:scale-95 transition-transform duration-200 shadow-sm w-full sm:w-auto text-left"
+                className="group flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-semibold hover:bg-deep-teal transition-colors duration-200 shadow-sm w-full sm:w-auto"
               >
-                <span>View Projects</span>
+                <span>See My Work</span>
                 <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
                   →
                 </span>
               </button>
 
-              <div className="grid grid-cols-2 gap-2.5 sm:flex sm:items-center sm:gap-3 w-full sm:w-auto">
-                <a
-                  href={PERSONAL.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-5 sm:py-3.5 rounded-full border border-emerald-600/30 bg-emerald-500/10 text-emerald-950 text-xs sm:text-sm font-semibold hover:bg-emerald-500/20 hover:border-emerald-600/50 hover:scale-[1.02] active:scale-95 transition-transform duration-200 shadow-2xs w-full sm:w-auto"
-                >
-                  <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-                  <span>Direct WhatsApp</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    document
-                      .querySelector("#contact")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-full border border-iron/90 bg-paper-white text-obsidian text-xs sm:text-sm font-medium hover:bg-bone hover:border-obsidian/40 hover:scale-[1.02] active:scale-95 transition-transform duration-200 shadow-2xs w-full sm:w-auto text-left"
-                >
-                  <Mail className="w-3.5 h-3.5 text-obsidian/70" />
-                  <span>Let&apos;s Talk</span>
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  document
+                    .querySelector("#contact")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="flex items-center justify-center gap-1.5 px-6 py-3 sm:px-7 sm:py-3.5 rounded-full border border-iron/90 bg-paper-white text-obsidian text-sm font-medium hover:bg-bone hover:border-obsidian/40 transition-colors duration-200 shadow-2xs w-full sm:w-auto"
+              >
+                <Mail className="w-4 h-4 text-obsidian/70" />
+                <span>Let&apos;s Talk</span>
+              </button>
             </div>
 
             {/* Social Row - Center Aligned on Mobile */}
@@ -174,7 +151,7 @@ export default function Hero() {
                   href={PERSONAL.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform"
+                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian transition-colors duration-200"
                 >
                   <Github className="w-3.5 h-3.5 text-obsidian/70" />
                   GitHub
@@ -184,7 +161,7 @@ export default function Hero() {
                   href={PERSONAL.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform"
+                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian transition-colors duration-200"
                 >
                   <Linkedin className="w-3.5 h-3.5 text-slate-teal" />
                   LinkedIn
@@ -194,7 +171,7 @@ export default function Hero() {
                   href={PERSONAL.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian hover:-translate-y-0.5 transition-transform"
+                  className="flex items-center gap-1.5 sm:gap-2 text-obsidian/80 text-xs font-medium hover:text-obsidian transition-colors duration-200"
                 >
                   Resume
                 </a>
@@ -205,7 +182,7 @@ export default function Hero() {
           {/* ─── RIGHT COLUMN: Workflow Canvas Notepad Card (5 cols) ── */}
           <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
             {/* Subtle organic shadow backing to lift WorkflowCanvas gracefully */}
-            <div className="relative w-full max-w-[440px] transition-transform duration-300 hover:scale-[1.01]">
+            <div className="relative w-full max-w-[440px]">
               {/* Paper shadow illusion behind notepad */}
               <div
                 className="absolute inset-0 translate-x-2 translate-y-3 rounded-lg bg-stone/30 opacity-70 blur-md pointer-events-none"
@@ -220,7 +197,7 @@ export default function Hero() {
       {/* ── Scroll Indicator ─────────────────────────────────────── */}
       <button
         onClick={scrollToNext}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-obsidian/40 hover:text-obsidian hover:scale-110 transition-transform group"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-obsidian/40 hover:text-obsidian transition-colors duration-200 group"
         aria-label="Scroll down"
       >
         <span className="text-[10px] font-mono tracking-[0.2em] uppercase font-semibold">

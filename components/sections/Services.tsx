@@ -36,25 +36,7 @@ export default function Services() {
       id="services"
       className="py-20 lg:py-28 bg-paper-white relative overflow-hidden"
     >
-      {/* Subtle ambient background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-[15%] right-[10%] w-[550px] h-[550px] rounded-full opacity-20 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(212, 230, 235, 0.6) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="absolute bottom-[20%] left-[5%] w-[450px] h-[450px] rounded-full opacity-15 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(239, 229, 249, 0.5) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <p className="section-label mb-3">Service Packages &amp; Products</p>
@@ -78,10 +60,10 @@ export default function Services() {
             return (
               <div
                 key={service.id}
-                className={`group relative rounded-2xl transition-all duration-300 font-sans overflow-hidden ${
+                className={`group relative rounded-2xl transition-[border-color,box-shadow] duration-300 font-sans overflow-hidden ${
                   isFeatured
-                    ? "bg-bone border border-obsidian/15 shadow-sm hover:shadow-md"
-                    : "bg-paper-white border border-iron/80 hover:border-obsidian/20 hover:shadow-md"
+                    ? "bg-bone border border-obsidian/15 shadow-sm hover:shadow-sm"
+                    : "bg-paper-white border border-iron/80 hover:border-obsidian/20 hover:shadow-sm"
                 }`}
               >
                 {/* Featured subtle top accent line */}
@@ -184,8 +166,8 @@ export default function Services() {
                           key={feat.title}
                           className={`p-4 rounded-xl transition-all duration-200 group/feat ${
                             isFeatured
-                              ? "bg-paper-white/80 border border-obsidian/8 hover:border-obsidian/20 hover:-translate-y-0.5"
-                              : "bg-bone/50 border border-iron/60 hover:border-obsidian/15 hover:-translate-y-0.5"
+                              ? "bg-paper-white/80 border border-obsidian/8 hover:border-obsidian/20 hover:shadow-2xs"
+                              : "bg-bone/50 border border-iron/60 hover:border-obsidian/15 hover:shadow-2xs"
                           }`}
                         >
                           <div className="flex items-center gap-2 mb-2">
@@ -228,7 +210,7 @@ export default function Services() {
             {PLATFORMS.map((p) => (
               <div
                 key={p.name}
-                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/80 hover:border-obsidian/25 hover:scale-[1.02] sm:hover:scale-105 transition-transform duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center font-sans"
+                className="flex items-center gap-3 sm:gap-2.5 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-xl sm:rounded-full bg-paper-white border border-iron/80 hover:border-obsidian/25 hover:shadow-sm transition-all duration-200 cursor-default shadow-2xs w-full sm:w-auto justify-start sm:justify-center font-sans"
               >
                 <span
                   className="w-6 h-6 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-[9px] font-black text-white flex-shrink-0 shadow-2xs"

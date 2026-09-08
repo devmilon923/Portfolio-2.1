@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import {
   Code2,
   Cpu,
@@ -9,10 +8,6 @@ import {
   Award,
   GraduationCap,
   Globe2,
-  MessageSquare,
-  Zap,
-  Rocket,
-  ShieldCheck,
 } from "lucide-react";
 import {
   PERSONAL,
@@ -20,299 +15,17 @@ import {
   CERTIFICATIONS,
   EDUCATION,
   LANGUAGES,
-  WHY_SOLO_VS_AGENCY,
+  STATS,
 } from "@/lib/constants";
 import meImage from "./../../assets/me.jpeg";
 import Image from "next/image";
 
 const icons = [Code2, Cpu, GitBranch, Globe];
 
-/* ─── ELEGANT MINIMAL NEURAL MESH & AMBIENT DUST ─────────────────── */
-function ProfileCardNeuralMesh() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const mouseRef = useRef<{ x: number | null; y: number | null }>({
-    x: null,
-    y: null,
-  });
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animationFrameId: number;
-    let width = (canvas.width = canvas.offsetWidth);
-    let height = (canvas.height = canvas.offsetHeight);
-
-    const handleResize = () => {
-      if (!canvas) return;
-      width = canvas.width = canvas.offsetWidth;
-      height = canvas.height = canvas.offsetHeight;
-      initElements();
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      };
-    };
-
-    const handleMouseLeave = () => {
-      mouseRef.current = { x: null, y: null };
-    };
-
-    const parent = canvas.parentElement;
-    if (parent) {
-      parent.addEventListener("mousemove", handleMouseMove);
-      parent.addEventListener("mouseleave", handleMouseLeave);
-    }
-    window.addEventListener("resize", handleResize);
-
-    interface Node {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      alpha: number;
-      phase: number;
-    }
-
-    interface AmbientOrb {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-    }
-
-    let nodes: Node[] = [];
-    let ambientOrbs: AmbientOrb[] = [];
-
-    const initElements = () => {
-      nodes = [];
-      ambientOrbs = [];
-
-      const count = 9;
-      for (let i = 0; i < count; i++) {
-        nodes.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.18,
-          vy: (Math.random() - 0.5) * 0.18,
-          radius: Math.random() * 1.5 + 1.2,
-          alpha: Math.random() * 0.35 + 0.25,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-
-      for (let i = 0; i < 3; i++) {
-        ambientOrbs.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.08,
-          vy: (Math.random() - 0.5) * 0.08,
-          radius: Math.random() * 40 + 50,
-        });
-      }
-    };
-
-    initElements();
-
-    let time = 0;
-    const render = () => {
-      ctx.clearRect(0, 0, width, height);
-      time += 0.012;
-
-      for (let i = 0; i < ambientOrbs.length; i++) {
-        const orb = ambientOrbs[i];
-        orb.x += orb.vx;
-        orb.y += orb.vy;
-
-        if (orb.x < -50) orb.x = width + 50;
-        if (orb.x > width + 50) orb.x = -50;
-        if (orb.y < -50) orb.y = height + 50;
-        if (orb.y > height + 50) orb.y = -50;
-
-        const g = ctx.createRadialGradient(
-          orb.x,
-          orb.y,
-          0,
-          orb.x,
-          orb.y,
-          orb.radius
-        );
-        g.addColorStop(0, "rgba(244, 237, 224, 0.25)");
-        g.addColorStop(1, "transparent");
-
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(orb.x, orb.y, orb.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 100) {
-            const edgeAlpha = (1 - dist / 100) * 0.15;
-            ctx.strokeStyle = `rgba(15, 23, 42, ${edgeAlpha})`;
-            ctx.lineWidth = 0.75;
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      const mx = mouseRef.current.x;
-      const my = mouseRef.current.y;
-
-      for (let i = 0; i < nodes.length; i++) {
-        const node = nodes[i];
-
-        node.x += node.vx;
-        node.y += node.vy;
-
-        if (node.x < 0) node.x = width;
-        if (node.x > width) node.x = 0;
-        if (node.y < 0) node.y = height;
-        if (node.y > height) node.y = 0;
-
-        if (mx !== null && my !== null) {
-          const dx = mx - node.x;
-          const dy = my - node.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 90) {
-            const mouseAlpha = (1 - dist / 90) * 0.25;
-            ctx.strokeStyle = `rgba(15, 118, 110, ${mouseAlpha})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(node.x, node.y);
-            ctx.lineTo(mx, my);
-            ctx.stroke();
-          }
-        }
-
-        const currentAlpha =
-          node.alpha + Math.sin(time * 1.5 + node.phase) * 0.1;
-        ctx.fillStyle = `rgba(15, 23, 42, ${Math.max(0.1, currentAlpha)})`;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      animationFrameId = requestAnimationFrame(render);
-    };
-
-    render();
-
-    const observer = new ResizeObserver(() => handleResize());
-    observer.observe(canvas);
-
-    return () => {
-      observer.disconnect();
-      if (parent) {
-        parent.removeEventListener("mousemove", handleMouseMove);
-        parent.removeEventListener("mouseleave", handleMouseLeave);
-      }
-      window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none rounded-[32px] z-0 opacity-80"
-    />
-  );
-}
-
-function AboutSoloVsAgency() {
-  return (
-    <div className="pt-14 border-t border-iron/40 mb-16">
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <span className="section-label mb-2 block">
-          Direct Value Proposition
-        </span>
-        <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-obsidian tracking-tight">
-          Why Work With a Solo Software Developer{" "}
-          <span className="font-normal text-slate-teal">
-            vs. an Agency?
-          </span>
-        </h3>
-        <p className="text-obsidian/75 text-sm sm:text-base mt-3 leading-relaxed max-w-xl mx-auto">
-          Agencies charge high retainers to pay for account reps, managers,
-          and office overhead. Partnering directly with me provides smooth
-          execution, faster delivery, and 100% single-point accountability.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {WHY_SOLO_VS_AGENCY.map((item, idx) => {
-          const iconAccentBg = [
-            "bg-mist-mint/35",
-            "bg-desert-clay/25",
-            "bg-wisteria/30",
-            "bg-dusty-sky/30",
-          ][idx % 4];
-          return (
-            <div
-              key={item.id}
-              className="group p-6 rounded-2xl bg-paper-white border border-iron/80 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-1 hover:shadow-sm transition-transform duration-300"
-            >
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className={`w-10 h-10 rounded-xl ${iconAccentBg} border border-iron/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-200`}
-                  >
-                    {item.id === "direct-comm" && (
-                      <MessageSquare className="w-4.5 h-4.5 text-obsidian/75" />
-                    )}
-                    {item.id === "zero-overhead" && (
-                      <Zap className="w-4.5 h-4.5 text-obsidian/75" />
-                    )}
-                    {item.id === "rapid-execution" && (
-                      <Rocket className="w-4.5 h-4.5 text-obsidian/75" />
-                    )}
-                    {item.id === "total-accountability" && (
-                      <ShieldCheck className="w-4.5 h-4.5 text-obsidian/75" />
-                    )}
-                  </div>
-                  <span className="text-obsidian/20 text-2xl font-serif font-bold leading-none select-none">
-                    0{idx + 1}
-                  </span>
-                </div>
-                <h4 className="text-obsidian text-[15px] font-bold mb-1 leading-snug">
-                  {item.title}
-                </h4>
-                <p className="text-slate-teal text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5">
-                  {item.subtitle}
-                </p>
-                <p className="text-obsidian/60 text-xs sm:text-[13px] leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 function AboutCredentialsGrid() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4">
-      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-0.5 transition-transform duration-200">
+      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
         <div>
           <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
             <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -325,14 +38,9 @@ function AboutCredentialsGrid() {
           </div>
           {CERTIFICATIONS.map((cert) => (
             <div key={cert.credentialId} className="space-y-1.5">
-              <p className="text-obsidian font-serif font-bold text-base">
-                {cert.title}
-              </p>
+              <p className="text-obsidian font-bold text-base">{cert.title}</p>
               <p className="text-obsidian/70 text-xs font-medium">
                 {cert.issuer}
-              </p>
-              <p className="text-[11px] font-mono text-slate-teal font-medium pt-0.5">
-                ID: {cert.credentialId}
               </p>
               <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
                 {cert.description}
@@ -342,7 +50,7 @@ function AboutCredentialsGrid() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-0.5 transition-transform duration-200">
+      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
         <div>
           <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
             <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -355,7 +63,7 @@ function AboutCredentialsGrid() {
           </div>
           {EDUCATION.map((edu) => (
             <div key={edu.degree} className="space-y-1.5">
-              <p className="text-obsidian font-serif font-bold text-base leading-snug">
+              <p className="text-obsidian font-bold text-base leading-snug">
                 {edu.degree}
               </p>
               <p className="text-obsidian/80 text-xs font-medium">
@@ -374,7 +82,7 @@ function AboutCredentialsGrid() {
         </div>
       </div>
 
-      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:-translate-y-0.5 transition-transform duration-200">
+      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
         <div>
           <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
             <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -399,14 +107,6 @@ function AboutCredentialsGrid() {
                     ({lang.level})
                   </span>
                 </div>
-                <div className="flex gap-1.5 text-[10px] font-mono text-obsidian/70">
-                  <span className="bg-paper-white px-1.5 py-0.5 rounded border border-iron/40">
-                    Comp {lang.comp}
-                  </span>
-                  <span className="bg-paper-white px-1.5 py-0.5 rounded border border-iron/40">
-                    Speak {lang.speak}
-                  </span>
-                </div>
               </div>
             ))}
           </div>
@@ -417,34 +117,15 @@ function AboutCredentialsGrid() {
 }
 
 export default function About() {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-
-  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePos({ x, y });
-  };
-
   return (
     <section
       id="about"
       className="py-20 lg:py-28 bg-bone relative overflow-hidden border-t border-iron/60"
     >
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-[30%] right-[15%] w-[500px] h-[500px] rounded-full opacity-25 blur-3xl"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(244, 237, 224, 0.6) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <p className="section-label mb-3">About The Developer</p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-3 text-balance">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-obsidian tracking-[-0.045em] mb-3 text-balance">
             Engineering precision.{" "}
             <span className="font-normal text-slate-teal">
               Business results.
@@ -457,62 +138,63 @@ export default function About() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
+          {/* Profile Card — Deep Studio Contrast Theme for B&W Portrait */}
           <div className="lg:col-span-5 flex flex-col">
-            <div
-              onMouseMove={handleCardMouseMove}
-              className="w-full h-full rounded-[32px] bg-paper-white border border-iron/90 p-6 sm:p-8 flex flex-col justify-between items-center text-center shadow-2xs relative group hover:border-obsidian/40 transition-colors duration-300 overflow-hidden"
-              style={{
-                background: `radial-gradient(400px circle at ${mousePos.x}% ${mousePos.y}%, rgba(15, 23, 42, 0.03), rgba(0, 0, 0, 0.01) 50%, transparent 80%), #ffffff`,
-              }}
-            >
-              <ProfileCardNeuralMesh />
+            <div className="w-full h-full rounded-[32px] bg-gradient-to-b from-deep-teal via-[#06191d] to-obsidian border border-iron/20 p-6 sm:p-8 flex flex-col justify-between items-center text-center shadow-lg relative group hover:border-slate-teal/50 transition-colors duration-300 overflow-hidden">
+              {/* Soft ambient background glow */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(197,213,232,0.12)_0%,transparent_70%)] pointer-events-none" />
 
               <div className="relative z-10 w-full flex flex-col justify-between items-center h-full">
+                {/* Meta stats badges */}
                 <div className="w-full flex items-center justify-between gap-2 mb-4">
-                  <div className="bg-bone/90 backdrop-blur-sm border border-iron/80 rounded-xl px-3.5 py-2 text-left shadow-2xs hover:border-obsidian/30 transition-colors">
-                    <p className="text-obsidian text-[13px] font-bold leading-tight">
-                      ~2 Years
+                  <div className="bg-paper-white/[0.05] border border-slate-teal/20 backdrop-blur-xl rounded-xl px-3.5 py-2 text-left shadow-2xs">
+                    <p className="text-paper-white text-[13px] font-bold leading-tight">
+                      {STATS[0].value === 1.8 ? "2~" : `${STATS[0].value}${STATS[0].suffix}`} Years
                     </p>
-                    <p className="text-obsidian/70 text-[10px] font-medium leading-tight mt-0.5">
-                      Industry &amp; Freelance
+                    <p className="text-dusty-sky/75 text-[10px] font-medium leading-tight mt-0.5">
+                      {STATS[0].description}
                     </p>
                   </div>
-                  <div className="bg-bone/90 backdrop-blur-sm border border-iron/80 rounded-xl px-3.5 py-2 text-right shadow-2xs hover:border-obsidian/30 transition-colors">
-                    <p className="text-obsidian text-[13px] font-bold leading-tight">
+                  <div className="bg-paper-white/[0.05] border border-slate-teal/20 backdrop-blur-xl rounded-xl px-3.5 py-2 text-right shadow-2xs">
+                    <p className="text-paper-white text-[13px] font-bold leading-tight">
                       Full-Stack + AI
                     </p>
-                    <p className="text-obsidian/70 text-[10px] font-medium leading-tight mt-0.5">
-                      Core Specialty
+                    <p className="text-dusty-sky/75 text-[10px] font-medium leading-tight mt-0.5">
+                      Primary Technical Focus
                     </p>
                   </div>
                 </div>
 
-                <div className="w-44 h-44 sm:w-48 sm:h-48 rounded-2xl bg-sandstone border border-iron/80 flex items-center justify-center relative overflow-hidden my-3 shadow-2xs group-hover:scale-[1.01] transition-colors duration-300">
+                {/* B&W Portrait Image Container (100% seamless dark blending without border) */}
+                <div className="w-48 sm:w-56 aspect-[896/1200] rounded-2xl bg-obsidian flex items-center justify-center relative overflow-hidden my-3 shadow-2xl group/img">
                   <Image
                     src={meImage}
                     alt="Milon Mia - Full Stack Engineer"
-                    className="object-cover w-full h-full"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-[1.02]"
+                    priority
                   />
                 </div>
 
+                {/* Developer identity info */}
                 <div className="text-center my-2">
-                  <p className="font-serif text-2xl sm:text-3xl font-bold text-obsidian tracking-tight">
+                  <p className="text-2xl sm:text-3xl font-bold text-paper-white tracking-tight">
                     {PERSONAL.name}
                   </p>
-                  <p className="text-slate-teal text-xs sm:text-sm font-semibold mt-1">
+                  <p className="text-dusty-sky text-xs sm:text-sm font-semibold mt-1">
                     {PERSONAL.title}
                   </p>
-                  <p className="text-obsidian/60 text-xs font-normal mt-0.5">
+                  <p className="text-paper-white/60 text-xs font-normal mt-0.5">
                     {PERSONAL.location}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-bone/90 backdrop-blur-sm border border-emerald-600/30 mt-3 shadow-2xs">
+                {/* Availability status badge */}
+                <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 mt-3 shadow-2xs">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
-                  <span className="text-obsidian text-xs font-semibold">
+                  <span className="text-emerald-300 text-xs font-semibold">
                     Available for Contracts &amp; SaaS Builds
                   </span>
                 </div>
@@ -520,6 +202,7 @@ export default function About() {
             </div>
           </div>
 
+          {/* Right Column — Engineering content */}
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="p-6 sm:p-7 rounded-[24px] bg-paper-white border border-iron/90 shadow-2xs relative overflow-hidden group hover:border-obsidian/40 transition-colors">
@@ -577,11 +260,11 @@ export default function About() {
                   return (
                     <div
                       key={strength.title}
-                      className="p-4 rounded-2xl bg-paper-white border border-iron/90 hover:border-obsidian/30 hover:-translate-y-0.5 transition-transform duration-200 shadow-2xs group"
+                      className="p-4 rounded-2xl bg-paper-white border border-iron/90 hover:border-obsidian/30 hover:shadow-sm transition-all duration-200 shadow-2xs group"
                     >
                       <div className="flex items-start gap-3">
                         <div
-                          className={`w-9 h-9 rounded-xl ${accentBg} flex items-center justify-center flex-shrink-0 mt-0.5 border border-iron/40 group-hover:scale-105 transition-transform duration-200`}
+                          className={`w-9 h-9 rounded-xl ${accentBg} flex items-center justify-center flex-shrink-0 mt-0.5 border border-iron/40 transition-colors duration-200`}
                         >
                           <Icon className="w-4 h-4 text-obsidian/80" />
                         </div>
@@ -601,7 +284,7 @@ export default function About() {
             </div>
 
             <blockquote className="border-l-2 border-slate-teal pl-4 py-1.5">
-              <p className="text-obsidian font-serif text-sm sm:text-base font-normal leading-relaxed italic">
+              <p className="text-obsidian text-sm sm:text-base font-normal leading-relaxed italic">
                 &ldquo;Great engineering isn&apos;t about adding complexity —
                 it&apos;s about solving business problems with clean, durable
                 simplicity.&rdquo;
@@ -610,7 +293,6 @@ export default function About() {
           </div>
         </div>
 
-        <AboutSoloVsAgency />
         <AboutCredentialsGrid />
       </div>
     </section>
