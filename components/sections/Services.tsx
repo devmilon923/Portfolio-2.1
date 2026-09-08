@@ -137,10 +137,10 @@ export default function Services() {
                             .querySelector("#contact")
                             ?.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className={`font-sans inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-200 whitespace-nowrap ${
+                        className={`font-sans inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-[background-color,border-color,color] duration-200 whitespace-nowrap ${
                           isFeatured
-                            ? "bg-obsidian text-paper-white hover:bg-deep-teal hover:scale-105 active:scale-95 shadow-sm"
-                            : "bg-paper-white border border-obsidian/15 text-obsidian hover:bg-obsidian hover:text-paper-white hover:scale-105 active:scale-95"
+                            ? "bg-obsidian text-paper-white hover:bg-deep-teal shadow-sm"
+                            : "bg-paper-white border border-obsidian/15 text-obsidian hover:bg-obsidian hover:text-paper-white"
                         }`}
                       >
                         <MessageSquare className="w-3.5 h-3.5" />

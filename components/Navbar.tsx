@@ -85,7 +85,7 @@ function MobileNavDrawer({
                     className={`w-8 h-8 rounded-lg flex items-center justify-center transition-transform shrink-0 ${
                       isActive
                         ? "bg-white/20 text-paper-white shadow-2xs"
-                        : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white group-hover:scale-105"
+                        : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -313,10 +313,10 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => handleNavClick("#hero")}
-              className="flex items-center gap-2.5 group/logo hover:scale-[1.02] active:scale-[0.98] transition-transform text-left"
+              className="flex items-center gap-2.5 group/logo text-left"
             >
               <div className="w-8 h-8 rounded-full bg-obsidian flex items-center justify-center shadow-xs relative overflow-hidden group-hover/logo:shadow-sm transition-shadow duration-300">
-                <span className="font-serif text-paper-white text-xs font-bold leading-none group-hover/logo:scale-110 transition-transform duration-300">
+                <span className="font-serif text-paper-white text-xs font-bold leading-none">
                   DM
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover/logo:translate-x-full transition-transform duration-700 pointer-events-none" />
@@ -369,7 +369,7 @@ export default function Navbar() {
               <a
                 target="_blank"
                 href={PERSONAL.resumeUrl}
-                className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-medium tracking-tight hover:bg-deep-teal hover:scale-[1.03] active:scale-95 transition-transform shadow-xs relative overflow-hidden group/btn"
+                className="hidden md:flex items-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-medium tracking-tight hover:bg-deep-teal transition-colors duration-200 shadow-xs relative overflow-hidden group/btn"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 pointer-events-none" />
                 <Download className="w-3.5 h-3.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />

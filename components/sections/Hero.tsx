@@ -8,8 +8,26 @@ import {
   Rocket,
 } from "lucide-react";
 import { PERSONAL } from "@/lib/constants";
-import WorkflowCanvas from "@/components/sections/WorkflowCanvas";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const WorkflowCanvas = dynamic(
+  () => import("@/components/sections/WorkflowCanvas"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[460px] rounded-2xl bg-[#f7f4ee] border border-[#e1dad9] p-5 animate-pulse flex flex-col justify-between">
+        <div className="h-6 w-32 bg-[#e2d9cd]/50 rounded" />
+        <div className="space-y-3 my-auto">
+          <div className="h-4 w-full bg-[#e2d9cd]/40 rounded" />
+          <div className="h-4 w-3/4 bg-[#e2d9cd]/40 rounded" />
+          <div className="h-4 w-5/6 bg-[#e2d9cd]/40 rounded" />
+        </div>
+        <div className="h-4 w-24 bg-[#e2d9cd]/50 rounded self-end" />
+      </div>
+    ),
+  }
+);
 
 const scrollToNext = () => {
   document.querySelector("#stats")?.scrollIntoView({ behavior: "smooth" });

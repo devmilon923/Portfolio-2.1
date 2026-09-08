@@ -98,10 +98,10 @@ export default function TechStack() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`relative px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 hover:scale-105 active:scale-95 ${
+              className={`relative px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-[border-color,background-color,color] duration-200 ${
                 activeCategory === cat.id
                   ? "bg-paper-white text-obsidian font-bold shadow-sm"
-                  : "text-paper-white/70 hover:text-paper-white border border-paper-white/20 hover:border-paper-white/40"
+                  : "text-paper-white/70 hover:text-paper-white border border-paper-white/20 hover:border-paper-white/40 hover:bg-paper-white/10"
               }`}
             >
               <span className="relative z-10">{cat.label}</span>

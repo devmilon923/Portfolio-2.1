@@ -137,7 +137,7 @@ export default function Projects() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal hover:scale-[1.03] active:scale-95 transition-transform shadow-sm flex-1 text-center"
+                          className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-obsidian text-paper-white text-xs font-semibold hover:bg-deep-teal transition-colors duration-200 shadow-sm flex-1 text-center"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                           <span>Live Demo</span>
@@ -148,7 +148,7 @@ export default function Projects() {
                           href={project.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-obsidian/12 bg-paper-white/70 text-obsidian text-xs font-semibold hover:bg-paper-white hover:border-obsidian/25 hover:scale-[1.03] active:scale-95 transition-transform backdrop-blur-xs flex-1 text-center"
+                          className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-obsidian/12 bg-paper-white/70 text-obsidian text-xs font-semibold hover:bg-paper-white hover:border-obsidian/25 transition-colors duration-200 backdrop-blur-xs flex-1 text-center"
                         >
                           <Github className="w-3.5 h-3.5" />
                           <span>Source Code</span>

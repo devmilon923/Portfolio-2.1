@@ -17,7 +17,7 @@ import {
   LANGUAGES,
   STATS,
 } from "@/lib/constants";
-import meImage from "./../../assets/me.jpeg";
+import meImage from "./../../assets/me.webp";
 import Image from "next/image";
 
 const icons = [Code2, Cpu, GitBranch, Globe];
@@ -171,6 +171,7 @@ export default function About() {
                     src={meImage}
                     alt="Milon Mia - Full Stack Engineer"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-[1.02]"
+                    sizes="(max-width: 640px) 192px, 224px"
                     priority
                   />
                 </div>

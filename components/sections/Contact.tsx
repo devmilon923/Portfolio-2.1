@@ -152,7 +152,7 @@ export default function Contact() {
             href={PERSONAL.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 text-paper-white text-sm font-semibold hover:bg-emerald-700 hover:scale-105 active:scale-95 transition-transform shadow-sm w-full sm:w-auto text-center"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 text-paper-white text-sm font-semibold hover:bg-emerald-700 transition-colors duration-200 shadow-sm w-full sm:w-auto text-center"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Chat Directly on WhatsApp</span>
@@ -160,7 +160,7 @@ export default function Contact() {
 
           <button
             onClick={copyEmail}
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal hover:scale-105 active:scale-95 transition-transform shadow-sm w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal transition-colors duration-200 shadow-sm w-full sm:w-auto"
           >
             <Copy className="w-4 h-4" />
             <span>

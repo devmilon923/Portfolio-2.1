@@ -58,7 +58,7 @@ export default function Stats() {
         </div>
 
         {/* Global Reach Trust Bar */}
-        <div className="border-t border-iron/70 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 bg-paper-white/60 rounded-2xl p-5 border">
+        <div className="border-t border-iron/70  flex flex-col md:flex-row items-center justify-between gap-4 bg-paper-white/60 rounded-2xl p-5 border">
           <div className="flex items-center gap-2.5">
             <Globe2 className="w-4 h-4 text-slate-teal" />
             <span className="text-obsidian/80 text-xs sm:text-sm font-semibold">
