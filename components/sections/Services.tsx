@@ -64,48 +64,60 @@ export default function Services() {
                 key={service.id}
                 className={`group relative rounded-2xl transition-all duration-300 font-sans overflow-hidden ${
                   isFeatured
-                    ? "bg-bone border border-obsidian/25 shadow-sm hover:border-obsidian/40"
-                    : "bg-paper-white border border-iron/80 hover:border-obsidian/20 hover:shadow-xs"
+                    ? "bg-bone border border-obsidian/25 shadow-sm hover:border-obsidian/40 hover:shadow-md"
+                    : "bg-paper-white border border-iron/80 hover:border-obsidian/40 hover:shadow-sm"
                 }`}
               >
+                {/* Featured Card Top Accent Highlight */}
+                {isFeatured && (
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-obsidian via-slate-teal to-obsidian opacity-90" />
+                )}
+
                 <div className="p-6 sm:p-8 lg:p-10">
-                  {/* ─── Top Row: Number + Meta + CTA ─── */}
+                  {/* ─── Top Row: Badges, Title, Price & CTA ─── */}
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-                    {/* Left: Number + Title Block */}
-                    <div className="flex items-start gap-4 sm:gap-5 min-w-0 flex-1">
-                      {/* Large editorial number */}
-                      <span className="text-obsidian/10 font-sans font-black text-5xl sm:text-6xl leading-none tracking-tighter select-none flex-shrink-0 -mt-1">
+                    {/* Left: Editorial Number + Title Block */}
+                    <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-5 min-w-0 flex-1">
+                      {/* Desktop Editorial Number with Hover Glow */}
+                      <span className="hidden sm:block text-obsidian/12 group-hover:text-obsidian/25 transition-colors duration-300 font-sans font-black text-5xl sm:text-6xl leading-none tracking-tighter select-none flex-shrink-0 -mt-1">
                         {num}
                       </span>
 
-                      <div className="min-w-0 flex-1 space-y-3">
-                        {/* Badges row */}
-                        <div className="flex items-center gap-2 flex-wrap">
-                          {isFeatured && (
-                            <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-obsidian text-paper-white shadow-2xs">
-                              <Sparkles className="w-3.5 h-3.5 text-paper-white" />
-                              <span>Most Popular</span>
+                      <div className="min-w-0 flex-1 space-y-3.5 sm:space-y-3 w-full">
+                        {/* Badges Row (Mobile includes Number on top right) */}
+                        <div className="flex items-center justify-between sm:justify-start gap-2 w-full">
+                          <div className="flex items-center gap-2 flex-wrap min-w-0">
+                            {isFeatured && (
+                              <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-obsidian text-paper-white shadow-2xs">
+                                <Sparkles className="w-3.5 h-3.5 text-paper-white" />
+                                <span>Most Popular</span>
+                              </span>
+                            )}
+
+                            <span
+                              className={`text-xs font-semibold px-3 py-1 rounded-full border whitespace-nowrap ${
+                                isFeatured
+                                  ? "bg-paper-white text-obsidian border-obsidian/20 shadow-2xs"
+                                  : "bg-paper-white/90 text-obsidian/90 border-iron/70 shadow-2xs"
+                              }`}
+                            >
+                              {service.badge}
                             </span>
-                          )}
 
-                          <span
-                            className={`text-xs font-semibold px-3 py-1 rounded-full border whitespace-nowrap ${
-                              isFeatured
-                                ? "bg-paper-white text-obsidian border-obsidian/20 shadow-2xs"
-                                : "bg-paper-white/90 text-obsidian/90 border-iron/70 shadow-2xs"
-                            }`}
-                          >
-                            {service.badge}
-                          </span>
+                            <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-paper-white/90 text-obsidian/85 border border-iron/70 shadow-2xs backdrop-blur-xs">
+                              <Clock className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
+                              <span>{service.turnaround}</span>
+                            </span>
+                          </div>
 
-                          <span className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-paper-white/90 text-obsidian/85 border border-iron/70 shadow-2xs backdrop-blur-xs">
-                            <Clock className="w-3.5 h-3.5 text-slate-teal flex-shrink-0" />
-                            <span>{service.turnaround}</span>
+                          {/* Mobile Editorial Number */}
+                          <span className="sm:hidden text-obsidian/20 font-sans font-black text-2xl leading-none tracking-tighter select-none flex-shrink-0">
+                            {num}
                           </span>
                         </div>
 
                         {/* Title Block with Icon Header */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 pt-0.5 sm:pt-0">
                           <div
                             className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 shadow-2xs ${
                               isFeatured
@@ -127,8 +139,17 @@ export default function Services() {
                       </div>
                     </div>
 
-                    {/* Right: CTA + Price */}
-                    <div className="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-2 flex-shrink-0 sm:pt-1">
+                    {/* Right / Bottom Footer: Dedicated Price & CTA Bar */}
+                    <div className="pt-4 sm:pt-1 mt-2 sm:mt-0 border-t border-obsidian/10 sm:border-t-0 flex items-center justify-between sm:flex-col sm:items-end gap-3 flex-shrink-0 w-full sm:w-auto">
+                      <div className="text-left sm:text-right order-1 sm:order-2">
+                        <p className="text-[10px] font-mono uppercase tracking-wider text-obsidian/60 font-semibold mb-1">
+                          Scope &amp; Rate
+                        </p>
+                        <p className="font-sans text-sm sm:text-lg font-bold text-obsidian tracking-tight leading-tight sm:leading-none">
+                          {service.price}
+                        </p>
+                      </div>
+
                       <button
                         type="button"
                         onClick={() => {
@@ -136,20 +157,15 @@ export default function Services() {
                             .querySelector("#contact")
                             ?.scrollIntoView({ behavior: "smooth" });
                         }}
-                        className={`font-sans group/btn inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-full text-xs font-semibold transition-colors duration-200 whitespace-nowrap ${
+                        className={`font-sans group/btn inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 min-h-[40px] sm:min-h-[44px] rounded-full text-xs font-semibold transition-colors duration-200 whitespace-nowrap order-2 sm:order-1 ${
                           isFeatured
                             ? "bg-obsidian text-paper-white hover:bg-deep-teal shadow-sm hover:shadow-md"
                             : "bg-paper-white border border-obsidian/20 text-obsidian hover:bg-obsidian hover:text-paper-white hover:border-obsidian shadow-2xs hover:shadow-sm"
                         }`}
                       >
-                        <MessageSquare className="w-4 h-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5" />
+                        <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5" />
                         <span>Discuss Scope</span>
                       </button>
-                      <div className="text-right">
-                        <p className="font-sans text-base sm:text-lg font-bold text-obsidian tracking-tight leading-none">
-                          {service.price}
-                        </p>
-                      </div>
                     </div>
                   </div>
 

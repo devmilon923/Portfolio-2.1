@@ -147,12 +147,12 @@ export default function Contact() {
         </div>
 
         {/* Quick copy email & WhatsApp Direct CTA */}
-        <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-center justify-center">
           <a
             href={PERSONAL.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 text-paper-white text-sm font-semibold hover:bg-emerald-700 transition-colors duration-200 shadow-sm w-full sm:w-auto text-center"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full bg-emerald-600 text-paper-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 transition-colors duration-200 shadow-sm w-full sm:w-auto text-center"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Chat Directly on WhatsApp</span>
@@ -160,7 +160,7 @@ export default function Contact() {
 
           <button
             onClick={copyEmail}
-            className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-obsidian text-paper-white text-sm font-medium hover:bg-deep-teal transition-colors duration-200 shadow-sm w-full sm:w-auto"
+            className="flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full bg-obsidian text-paper-white text-xs sm:text-sm font-medium hover:bg-deep-teal transition-colors duration-200 shadow-sm w-full sm:w-auto"
           >
             <Copy className="w-4 h-4" />
             <span>

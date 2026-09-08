@@ -15,14 +15,14 @@ export default function ServiceFeatureCard({
 }: ServiceFeatureCardProps) {
   return (
     <div
-      className={`p-4 rounded-xl transition-all border  hover:border-obsidian/25 hover:shadow-xs border-iron/60 shadow-2xs duration-200 flex items-start gap-3 h-full ${
-        isFeatured ? "bg-paper-white/90" : "bg-bone/60 "
+      className={`group/feat p-4 rounded-xl transition-all duration-200 border border-iron/60 shadow-2xs hover:border-obsidian/40 hover:bg-paper-white hover:shadow-xs flex items-start gap-3 h-full ${
+        isFeatured ? "bg-paper-white/90" : "bg-bone/60"
       }`}
     >
       {/* Icon Column */}
       <div
         aria-hidden="true"
-        className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+        className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 transition-transform duration-200 group-hover/feat:scale-105 ${
           isFeatured
             ? "bg-slate-teal/12 border border-slate-teal/25 text-slate-teal"
             : "bg-emerald-500/12 border border-emerald-600/20 text-emerald-700"
