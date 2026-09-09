@@ -142,7 +142,7 @@ export default function Services() {
                     {/* Right / Bottom Footer: Dedicated Price & CTA Bar */}
                     <div className="pt-4 sm:pt-1 mt-2 sm:mt-0 border-t border-obsidian/10 sm:border-t-0 flex items-center justify-between sm:flex-col sm:items-end gap-3 flex-shrink-0 w-full sm:w-auto">
                       <div className="text-left sm:text-right order-1 sm:order-2">
-                        <p className="text-[10px] font-mono uppercase tracking-wider text-obsidian/60 font-semibold mb-1">
+                        <p className="text-[10px]  uppercase tracking-wider text-obsidian/60 font-semibold mb-1">
                           Scope &amp; Rate
                         </p>
                         <p className="font-sans text-sm sm:text-lg font-bold text-obsidian tracking-tight leading-tight sm:leading-none">

@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-            className="relative min-h-screen flex  items-center overflow-hidden bg-paper-white py-20 lg:py-0"
+      className="relative min-h-screen flex  items-center overflow-hidden bg-paper-white py-20 lg:py-0"
     >
       {/* ── Background Atmosphere & Ambient Warmth ────────────────── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -212,7 +212,7 @@ export default function Hero() {
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-obsidian/40 hover:text-obsidian transition-colors duration-200 group"
         aria-label="Scroll down"
       >
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase font-semibold">
+        <span className="text-[10px]  tracking-[0.2em] uppercase font-semibold">
           Scroll
         </span>
         <div className="animate-bounce">

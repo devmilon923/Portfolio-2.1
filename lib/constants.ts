@@ -20,6 +20,35 @@ export const PERSONAL = {
   whatsapp: "https://wa.me/8801330792338",
 };
 
+export const EXPERIENCE = [
+  {
+    company: "Spark Tech Agency",
+    parentCompany: "Betopia Limited",
+    type: "Full-time",
+    totalDuration: "1 yr 2 mos",
+    workplaceType: "On-site",
+    roles: [
+      {
+        title: "Full Stack Developer",
+        period: "Aug 2025 – Mar 2026",
+        duration: "8 mos",
+        location: "Mohakhali, Dhaka",
+        note: "Responsibilities expanded to Full-Stack Developer based on team contributions.",
+        description:
+          "Stepped into Full-Stack Developer responsibilities within the team, taking ownership of full-stack web applications, REST APIs, and frontend integration.",
+      },
+      {
+        title: "Backend Developer",
+        period: "Feb 2025 – Aug 2025",
+        duration: "7 mos",
+        location: "Banasree, Dhaka",
+        description:
+          "Joined Betopia Limited & subsidiary Spark Tech Agency as Trainee Backend Developer, building server-side features, database architecture, and API services.",
+      },
+    ],
+  },
+];
+
 export const CERTIFICATIONS = [
   {
     title: "Web Development",
@@ -229,7 +258,8 @@ export const BUILDING_PRODUCTS = [
     status: "IN DEVELOPMENT",
     statusLabel: "In Development",
     category: "AI Memory Tooling",
-    tagline: "Embeddable cross-session vector context wrapper for LLM applications.",
+    tagline:
+      "Embeddable cross-session vector context wrapper for LLM applications.",
     description:
       "A lightweight developer utility designed to plug persistent semantic memory and multi-tenant context recall into Node.js backends.",
     role: "Creator & Backend Architect",

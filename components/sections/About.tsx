@@ -8,6 +8,8 @@ import {
   Award,
   GraduationCap,
   Globe2,
+  Briefcase,
+  MapPin,
 } from "lucide-react";
 import {
   PERSONAL,
@@ -16,6 +18,7 @@ import {
   EDUCATION,
   LANGUAGES,
   STATS,
+  EXPERIENCE,
 } from "@/lib/constants";
 import meImage from "./../../assets/me.webp";
 import Image from "next/image";
@@ -24,91 +27,183 @@ const icons = [Code2, Cpu, GitBranch, Globe];
 
 function AboutCredentialsGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4">
-      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
-        <div>
-          <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
-            <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-obsidian" />
-              Certifications
-            </span>
-            <span className="text-[10px] font-mono font-medium text-obsidian/70 bg-bone px-2 py-0.5 rounded-md border border-iron/50">
-              Jun 2024
-            </span>
-          </div>
-          {CERTIFICATIONS.map((cert) => (
-            <div key={cert.credentialId} className="space-y-1.5">
-              <p className="text-obsidian font-bold text-base">{cert.title}</p>
-              <p className="text-obsidian/70 text-xs font-medium">
-                {cert.issuer}
-              </p>
-              <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
-                {cert.description}
-              </p>
+    <div className="space-y-5 pt-4">
+      {/* Industry Experience Primary Card */}
+      {EXPERIENCE.map((exp) => (
+        <div
+          key={exp.company}
+          className="rounded-2xl bg-paper-white border border-iron/80 p-6 sm:p-7 shadow-2xs hover:border-obsidian/30 hover:shadow-sm transition-all duration-200"
+        >
+          {/* Card Header */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-iron/40 pb-4 mb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-bone border border-iron/60 flex items-center justify-center flex-shrink-0 shadow-2xs">
+                <Briefcase className="w-4 h-4 text-slate-teal" />
+              </div>
+              <div>
+                <span className="text-slate-teal text-[11px] font-bold uppercase tracking-wider block">
+                  Industry Experience
+                </span>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <h3 className="text-obsidian font-bold text-base sm:text-lg leading-none">
+                    {exp.company}
+                  </h3>
+                  {exp.parentCompany && (
+                    <span className="text-obsidian/65 text-xs font-normal">
+                      ({exp.parentCompany})
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
-        <div>
-          <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
-            <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <GraduationCap className="w-4 h-4 text-obsidian" />
-              Education
-            </span>
-            <span className="text-[10px] font-mono font-medium text-obsidian/70 bg-bone px-2 py-0.5 rounded-md border border-iron/50">
-              2019 – 2023
-            </span>
-          </div>
-          {EDUCATION.map((edu) => (
-            <div key={edu.degree} className="space-y-1.5">
-              <p className="text-obsidian font-bold text-base leading-snug">
-                {edu.degree}
-              </p>
-              <p className="text-obsidian/80 text-xs font-medium">
-                {edu.institution}
-              </p>
-              <p className="text-obsidian/60 text-xs font-normal">
-                {edu.location}
-              </p>
-              {"description" in edu && (
-                <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
-                  {edu.description}
-                </p>
-              )}
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] sm:text-[11px]  font-medium text-obsidian/80 bg-bone px-2.5 py-1 rounded-full border border-iron/60">
+                {exp.type} · {exp.totalDuration}
+              </span>
+              <span className="text-[10px] sm:text-[11px]  font-medium text-slate-teal bg-mist-mint/40 px-2.5 py-1 rounded-full border border-iron/40">
+                {exp.workplaceType}
+              </span>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
-        <div>
-          <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
-            <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <Globe2 className="w-4 h-4 text-obsidian" />
-              Languages
-            </span>
-            <span className="text-[10px] font-mono font-medium text-obsidian/70 bg-bone px-2 py-0.5 rounded-md border border-iron/50">
-              Multilingual
-            </span>
           </div>
-          <div className="space-y-2.5">
-            {LANGUAGES.map((lang) => (
-              <div
-                key={lang.name}
-                className="p-2.5 rounded-xl bg-bone/70 border border-iron/60 flex items-center justify-between"
-              >
-                <div>
-                  <span className="font-bold text-obsidian text-xs">
-                    {lang.name}
-                  </span>
-                  <span className="text-obsidian/60 text-[11px] ml-1.5">
-                    ({lang.level})
-                  </span>
+
+          {/* Timeline of Roles */}
+          <div className="relative pl-4 sm:pl-6 space-y-6 before:absolute before:left-1.5 sm:before:left-2.5 before:top-2.5 before:bottom-2.5 before:w-0.5 before:bg-iron/70">
+            {exp.roles.map((role, idx) => (
+              <div key={role.title} className="relative group/role">
+                {/* Timeline Dot Node */}
+                <div
+                  className={`absolute -left-[17px] sm:-left-[21px] top-1 w-3 h-3 rounded-full border-2 ${
+                    idx === 0
+                      ? "border-slate-teal bg-slate-teal shadow-2xs"
+                      : "border-iron/90 bg-paper-white"
+                  }`}
+                />
+
+                <div className="space-y-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                    <div className="flex items-center gap-2">
+                      <h4 className="text-obsidian font-bold text-sm sm:text-base leading-snug">
+                        {role.title}
+                      </h4>
+                      {role.note && (
+                        <span className="text-[10px] font-semibold text-slate-teal bg-sandstone px-2 py-0.5 rounded border border-iron/50">
+                          Responsibilities Expanded
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs text-obsidian/60 ">
+                      <span>{role.period}</span>
+                      <span className="w-1 h-1 rounded-full bg-iron" />
+                      <span>{role.duration}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-obsidian/55 text-xs flex items-center gap-1 font-medium">
+                    <MapPin className="w-3 h-3 text-obsidian/40 flex-shrink-0" />
+                    {role.location}
+                  </p>
+
+                  <p className="text-obsidian/75 text-xs sm:text-sm leading-relaxed pt-1">
+                    {role.description}
+                  </p>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      ))}
+
+      {/* 3-Column Grid for Certifications, Education & Languages */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
+          <div>
+            <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
+              <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Award className="w-4 h-4 text-obsidian" />
+                Certifications
+              </span>
+              <span className="text-[10px]  font-medium text-obsidian/70 bg-bone px-2 py-0.5 rounded-md border border-iron/50">
+                Jun 2024
+              </span>
+            </div>
+            {CERTIFICATIONS.map((cert) => (
+              <div key={cert.credentialId} className="space-y-1.5">
+                <p className="text-obsidian font-bold text-base">
+                  {cert.title}
+                </p>
+                <p className="text-obsidian/70 text-xs font-medium">
+                  {cert.issuer}
+                </p>
+                <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
+                  {cert.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
+          <div>
+            <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
+              <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <GraduationCap className="w-4 h-4 text-obsidian" />
+                Education
+              </span>
+              <span className="text-[10px]  font-medium text-obsidian/70 bg-bone px-2 py-0.5 rounded-md border border-iron/50">
+                2019 – 2023
+              </span>
+            </div>
+            {EDUCATION.map((edu) => (
+              <div key={edu.degree} className="space-y-1.5">
+                <p className="text-obsidian font-bold text-base leading-snug">
+                  {edu.degree}
+                </p>
+                <p className="text-obsidian/80 text-xs font-medium">
+                  {edu.institution}
+                </p>
+                <p className="text-obsidian/60 text-xs font-normal">
+                  {edu.location}
+                </p>
+                {"description" in edu && (
+                  <p className="text-obsidian/75 text-xs leading-relaxed pt-2">
+                    {edu.description}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl bg-paper-white border border-iron/80 p-6 shadow-2xs flex flex-col justify-between hover:border-obsidian/30 hover:shadow-sm transition-all duration-200">
+          <div>
+            <div className="flex items-center justify-between border-b border-iron/40 pb-3 mb-4">
+              <span className="text-slate-teal text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Globe2 className="w-4 h-4 text-obsidian" />
+                Languages
+              </span>
+              <span className="text-[10px]  font-medium text-obsidian/70 bg-bone px-2 py-0.5 rounded-md border border-iron/50">
+                Multilingual
+              </span>
+            </div>
+            <div className="space-y-2.5">
+              {LANGUAGES.map((lang) => (
+                <div
+                  key={lang.name}
+                  className="p-2.5 rounded-xl bg-bone/70 border border-iron/60 flex items-center justify-between"
+                >
+                  <div>
+                    <span className="font-bold text-obsidian text-xs">
+                      {lang.name}
+                    </span>
+                    <span className="text-obsidian/60 text-[11px] ml-1.5">
+                      ({lang.level})
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -212,7 +307,7 @@ export default function About() {
               <div className="p-6 sm:p-7 rounded-[24px] bg-paper-white border border-iron/90 shadow-2xs relative overflow-hidden group hover:border-obsidian/40 transition-colors duration-200">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="w-2 h-2 rounded-full bg-slate-teal" />
-                  <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-teal">
+                  <span className="text-[11px]  font-bold uppercase tracking-wider text-slate-teal">
                     Engineering Approach
                   </span>
                 </div>

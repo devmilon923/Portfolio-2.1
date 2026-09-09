@@ -27,7 +27,10 @@ interface MobileNavDrawerProps {
   NAV_LINKS: typeof NAV_LINKS;
   activeSection: string;
   isDarkSection: boolean;
-  handleNavClick: (e: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
+  handleNavClick: (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void;
   setMobileOpen: (open: boolean) => void;
   navHeight: number;
 }
@@ -49,7 +52,7 @@ function MobileNavDrawer({
 
     // Focus first focusable link/element in drawer
     const focusables = drawerRef.current?.querySelectorAll<HTMLElement>(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
     );
     if (focusables && focusables.length > 0) {
       focusables[0].focus();
@@ -107,14 +110,14 @@ function MobileNavDrawer({
       >
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-obsidian/10">
           <span
-            className={`text-xs font-mono font-bold uppercase tracking-wider ${
+            className={`text-xs  font-bold uppercase tracking-wider ${
               isDarkSection ? "text-dusty-sky" : "text-slate-teal"
             }`}
           >
             Navigation
           </span>
           <span
-            className={`text-[10px] font-mono font-medium px-2 py-0.5 rounded-full border ${
+            className={`text-[10px]  font-medium px-2 py-0.5 rounded-full border ${
               isDarkSection
                 ? "bg-white/10 text-paper-white/80 border-white/10"
                 : "bg-bone text-obsidian/60 border-iron/60"
@@ -141,8 +144,8 @@ function MobileNavDrawer({
                       ? "bg-paper-white text-obsidian shadow-sm font-bold"
                       : "bg-obsidian text-paper-white shadow-sm font-bold"
                     : isDarkSection
-                    ? "text-paper-white hover:bg-white/10 border border-transparent"
-                    : "text-obsidian hover:bg-obsidian/5 border border-transparent"
+                      ? "text-paper-white hover:bg-white/10 border border-transparent"
+                      : "text-obsidian hover:bg-obsidian/5 border border-transparent"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -153,8 +156,8 @@ function MobileNavDrawer({
                           ? "bg-obsidian/10 text-obsidian shadow-2xs"
                           : "bg-white/20 text-paper-white shadow-2xs"
                         : isDarkSection
-                        ? "bg-white/10 border border-white/10 text-paper-white group-hover:bg-paper-white group-hover:text-obsidian"
-                        : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white"
+                          ? "bg-white/10 border border-white/10 text-paper-white group-hover:bg-paper-white group-hover:text-obsidian"
+                          : "bg-obsidian/5 border border-obsidian/10 text-obsidian/80 group-hover:bg-obsidian group-hover:text-paper-white"
                     }`}
                   >
                     <Icon className="w-4 h-4" />
@@ -165,7 +168,7 @@ function MobileNavDrawer({
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-bold opacity-60">
+                  <span className="text-xs  font-bold opacity-60">
                     {link.code}
                   </span>
                   <ChevronRight
@@ -245,7 +248,7 @@ export default function Navbar() {
   const updatePill = useCallback(() => {
     if (!navRef.current) return;
     const activeLink = navRef.current.querySelector<HTMLAnchorElement>(
-      `a[data-href="${activeSection}"]`
+      `a[data-href="${activeSection}"]`,
     );
 
     if (activeLink) {
@@ -304,7 +307,9 @@ export default function Navbar() {
           setScrolled(scrollY > 40);
 
           if (!isClickScrollingRef.current) {
-            const sections = NAV_LINKS.map((link) => link.href.replace("#", ""));
+            const sections = NAV_LINKS.map((link) =>
+              link.href.replace("#", ""),
+            );
             let currentSection = "#about";
             const threshold = 140;
 
@@ -329,13 +334,13 @@ export default function Navbar() {
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault();
     setMobileOpen(false);
     setActiveSection(href);
     isClickScrollingRef.current = true;
-    
+
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
     if (window.history.pushState) window.history.pushState(null, "", href);
 
@@ -356,8 +361,8 @@ export default function Navbar() {
             isDarkSection
               ? "bg-obsidian/90 backdrop-blur-xl border-white/10 shadow-lg shadow-black/30 py-2.5 px-4 sm:px-6 text-paper-white"
               : scrolled
-              ? "bg-paper-white/85 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6 text-obsidian"
-              : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3 sm:py-3.5 px-4 sm:px-6 text-obsidian"
+                ? "bg-paper-white/85 backdrop-blur-xl border-iron/80 shadow-sm shadow-obsidian/5 py-2.5 px-4 sm:px-6 text-obsidian"
+                : "bg-paper-white/60 backdrop-blur-md border-iron/50 shadow-xs py-3 sm:py-3.5 px-4 sm:px-6 text-obsidian"
           }`}
         >
           <div
@@ -442,8 +447,8 @@ export default function Navbar() {
                       isActive
                         ? "text-obsidian font-bold"
                         : isDarkSection
-                        ? "text-paper-white/80 hover:text-paper-white"
-                        : "text-obsidian/75 hover:text-obsidian"
+                          ? "text-paper-white/80 hover:text-paper-white"
+                          : "text-obsidian/75 hover:text-obsidian"
                     }`}
                   >
                     {link.label}
@@ -480,7 +485,9 @@ export default function Navbar() {
                     ? "border-white/10 text-paper-white hover:bg-paper-white/10"
                     : "border-iron text-obsidian hover:bg-bone"
                 }`}
-                aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-label={
+                  mobileOpen ? "Close navigation menu" : "Open navigation menu"
+                }
               >
                 {mobileOpen ? (
                   <X className="w-4 h-4" />
@@ -506,4 +513,3 @@ export default function Navbar() {
     </>
   );
 }
-
